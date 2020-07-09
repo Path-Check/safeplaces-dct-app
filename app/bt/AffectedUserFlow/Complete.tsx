@@ -24,7 +24,7 @@ export const ExportComplete: FunctionComponent = () => {
   const { StrategyCopy } = useStrategyContent();
 
   const handleOnPressDone = () => {
-    navigation.navigate(Screens.Settings);
+    navigation.navigate(Screens.More);
   };
 
   const title = t('export.complete_title');

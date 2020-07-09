@@ -51,7 +51,7 @@ const PublishConsentForm: FunctionComponent<PublishConsentFormProps> = ({
   };
 
   const handleOnPressCancel = () => {
-    navigation.navigate(Screens.Settings);
+    navigation.navigate(Screens.More);
   };
 
   const title = t('export.publish_consent_title_bluetooth');

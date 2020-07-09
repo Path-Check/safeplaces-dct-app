@@ -18,7 +18,6 @@ import {
 import { getLocalNames } from '../../locales/languages';
 import FeatureFlag from '../../components/FeatureFlag';
 import { Typography } from '../../components/Typography';
-import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { isGPS } from '../../COVIDSafePathsConfig';
 import GoogleMapsImport from './GoogleMapsImport';
 import { Screens, useStatusBarEffect } from '../../navigation';
@@ -61,7 +60,7 @@ const LanguageSelectionListItem = ({
   </TouchableHighlight>
 );
 
-const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
+const MoreScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   const { enableFlags } = useSelector((state: RootState) => state.featureFlags);
   const {
     t,
@@ -105,87 +104,81 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper
-      title={t('navigation.more')}
-      includeBackButton={false}>
-      <ScrollView style={styles.container}>
-        {!isGPS && (
-          <View style={styles.sectionPrimary}>
-            <Typography>
-              {t('settings.share_test_result_description')}
+    <ScrollView style={styles.container}>
+      {!isGPS && (
+        <View style={styles.sectionPrimary}>
+          <Typography>{t('settings.share_test_result_description')}</Typography>
+          <TouchableOpacity
+            onPress={navigateTo(Screens.ExportFlow)}
+            style={styles.button}>
+            <Typography style={styles.buttonText}>
+              {t('settings.share_test_result')}
             </Typography>
-            <TouchableOpacity
-              onPress={navigateTo(Screens.ExportFlow)}
-              style={styles.button}>
-              <Typography style={styles.buttonText}>
-                {t('settings.share_test_result')}
-              </Typography>
-            </TouchableOpacity>
-          </View>
-        )}
-
-        <View style={styles.section}>
-          <LanguageSelectionListItem
-            label={languageName || t('label.unknown')}
-            icon={Icons.LanguagesIcon}
-            onPress={navigateTo(Screens.LanguageSelection)}
-          />
+          </TouchableOpacity>
         </View>
+      )}
 
-        {isGPS ? (
-          <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
-            <View style={styles.section}>
-              <View style={styles.listItem}>
-                <GoogleMapsImport navigation={navigation} />
-              </View>
+      <View style={styles.section}>
+        <LanguageSelectionListItem
+          label={languageName || t('label.unknown')}
+          icon={Icons.LanguagesIcon}
+          onPress={navigateTo(Screens.LanguageSelection)}
+        />
+      </View>
+
+      {isGPS ? (
+        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
+          <View style={styles.section}>
+            <View style={styles.listItem}>
+              <GoogleMapsImport navigation={navigation} />
             </View>
-          </FeatureFlag>
-        ) : null}
+          </View>
+        </FeatureFlag>
+      ) : null}
 
+      <View style={styles.section}>
+        <SettingsListItem
+          label={t('screen_titles.about')}
+          onPress={navigateTo(Screens.About)}
+        />
+        <Divider />
+        <SettingsListItem
+          label={t('screen_titles.legal')}
+          onPress={() => navigation.navigate(Screens.Licenses)}
+          style={styles.lastListItem}
+        />
+      </View>
+
+      {!isGPS ? (
         <View style={styles.section}>
           <SettingsListItem
-            label={t('screen_titles.about')}
-            onPress={navigateTo(Screens.About)}
-          />
-          <Divider />
-          <SettingsListItem
-            label={t('screen_titles.legal')}
-            onPress={() => navigation.navigate(Screens.Licenses)}
+            label='EN Debug Menu'
+            onPress={navigateTo(Screens.ENDebugMenu)}
             style={styles.lastListItem}
           />
         </View>
+      ) : null}
 
-        {!isGPS ? (
-          <View style={styles.section}>
-            <SettingsListItem
-              label='EN Debug Menu'
-              onPress={navigateTo(Screens.ENDebugMenu)}
-              style={styles.lastListItem}
-            />
-          </View>
-        ) : null}
+      <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
+        <View style={styles.section}>
+          <SettingsListItem
+            label={'Download Locally'}
+            onPress={navigateTo(Screens.ExportLocally)}
+            style={styles.lastListItem}
+          />
+        </View>
+      </FeatureFlag>
 
-        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
-          <View style={styles.section}>
-            <SettingsListItem
-              label={'Download Locally'}
-              onPress={navigateTo(Screens.ExportLocally)}
-              style={styles.lastListItem}
-            />
-          </View>
-        </FeatureFlag>
-
-        {enableFlags && (
-          <View style={styles.section}>
-            <SettingsListItem
-              label='Feature Flags (Developer)'
-              onPress={navigateTo(Screens.FeatureFlags)}
-              style={styles.lastListItem}
-            />
-          </View>
-        )}
-      </ScrollView>
-    </NavigationBarWrapper>
+      {enableFlags && (
+        <View style={styles.section}>
+          <SettingsListItem
+            label='Feature Flags (Developer)'
+            onPress={navigateTo(Screens.FeatureFlags)}
+            style={styles.lastListItem}
+          />
+        </View>
+      )}
+    </ScrollView>
   );
 };
 
@@ -240,4 +233,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SettingsScreen;
+export default MoreScreen;

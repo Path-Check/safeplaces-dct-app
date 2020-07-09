@@ -8,9 +8,7 @@ import {
   View,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
 
-import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
 import { Typography } from '../components/Typography';
 import { useStrategyContent } from '../TracingStrategyContext';
 
@@ -21,14 +19,9 @@ const PRIVACY_POLICY_URL = 'https://pathcheck.org/privacy-policy/';
 
 export const LicensesScreen = (): JSX.Element => {
   const { t } = useTranslation();
-  const navigation = useNavigation();
   const { StrategyCopy } = useStrategyContent();
 
   const legalHeaderText = StrategyCopy.legalHeader;
-
-  const backToMain = () => {
-    navigation.goBack();
-  };
 
   const infoAddress = 'info@pathcheck.org';
   const pathCheckAddress = 'pathcheck.org';
@@ -38,9 +31,7 @@ export const LicensesScreen = (): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper
-      title={t('screen_titles.legal')}
-      onBackPress={backToMain}>
+    <>
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
@@ -77,7 +68,7 @@ export const LicensesScreen = (): JSX.Element => {
           <Image source={Images.ForeArrow} />
         </View>
       </TouchableOpacity>
-    </NavigationBarWrapper>
+    </>
   );
 };
 

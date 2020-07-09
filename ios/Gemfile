@@ -2,7 +2,7 @@ ruby '~> 2.6.3'
 source "https://rubygems.org"
 
 gem "bundler", "=2.1.4"
-gem "cocoapods", "1.9.1"
+gem "cocoapods", "1.9.2"
 gem "fastlane", "2.146.1"
 
 plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')

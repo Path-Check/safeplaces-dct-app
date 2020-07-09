@@ -10,57 +10,42 @@ exports[`LicensesScreen renders correctly 1`] = `
     }
   }
 >
-  <SafeAreaView
-    style={
+  <ScrollView
+    alwaysBounceVertical={false}
+    contentContainerStyle={
       Object {
-        "backgroundColor": "#1f2c9b",
-        "flex": 1,
-        "paddingTop": 0,
+        "backgroundColor": "#f8f8f8",
+        "paddingHorizontal": 24,
+        "paddingTop": 24,
       }
     }
   >
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#1f2c9b",
-          "flexDirection": "row",
-          "justifyContent": "flex-start",
-          "paddingHorizontal": 16,
-          "paddingVertical": 8,
-        }
-      }
-    >
-      <View
+    <View>
+      <Text
         style={
-          Object {
-            "flex": 1,
-          }
+          Array [
+            Object {
+              "color": "#1f2c9b",
+              "fontFamily": "IBMPlexSans-Bold",
+              "fontSize": 28,
+              "fontWeight": "500",
+              "lineHeight": 32,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            undefined,
+          ]
         }
+        testID="licenses-legal-header"
       >
-        <TouchableOpacity
-          activeOpacity={0.2}
-        >
-          <SvgXml
-            color="#ffffff"
-            style={
-              Object {
-                "paddingTop": 12,
-              }
-            }
-            xml="
-  <svg width=\\"16\\" height=\\"27\\" viewBox=\\"0 0 16 27\\"  xmlns=\\"http://www.w3.org/2000/svg\\">
-  <path d=\\"M14.6216 0.226764L15.0632 0.650056C15.3787 0.952408 15.3787 1.3757 15.0632 1.67805L2.76011 13.4698L15.0632 25.3219C15.3787 25.6243 15.3787 26.0476 15.0632 26.3499L14.6216 26.7732C14.3061 27.0756 13.8644 27.0756 13.549 26.7732L0.236403 14.014C-0.0790606 13.7116 -0.0790606 13.2884 0.236403 12.986L13.549 0.226764C13.8644 -0.0755879 14.3061 -0.0755879 14.6216 0.226764Z\\" fill=\\"currentColor\\"/>
-  </svg>
-"
-          />
-        </TouchableOpacity>
-      </View>
+        PathCheck GPS
+      </Text>
       <View
         style={
           Object {
-            "alignItems": "center",
-            "flex": 3,
+            "paddingLeft": 20,
+            "paddingTop": 12,
           }
         }
       >
@@ -68,7 +53,7 @@ exports[`LicensesScreen renders correctly 1`] = `
           style={
             Array [
               Object {
-                "color": "#2e2e2e",
+                "color": "#4e4e4e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
                 "lineHeight": 24,
@@ -76,199 +61,116 @@ exports[`LicensesScreen renders correctly 1`] = `
               Object {
                 "writingDirection": "ltr",
               },
-              Object {
-                "color": "#ffffff",
-                "fontFamily": "IBMPlexSans-Bold",
-                "fontSize": 19,
-                "fontWeight": "500",
-                "lineHeight": 32,
-                "textTransform": "uppercase",
-              },
+              undefined,
             ]
           }
         >
-          Legal
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "flex": 1,
-          }
-        }
-      />
-    </View>
-    <View
-      style={
-        Object {
-          "backgroundColor": "#f8f8ff",
-          "flex": 1,
-        }
-      }
-    >
-      <ScrollView
-        alwaysBounceVertical={false}
-        contentContainerStyle={
-          Object {
-            "backgroundColor": "#f8f8f8",
-            "paddingHorizontal": 24,
-            "paddingTop": 24,
-          }
-        }
-      >
-        <View>
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#1f2c9b",
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 28,
-                  "fontWeight": "500",
-                  "lineHeight": 32,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                undefined,
-              ]
-            }
-            testID="licenses-legal-header"
-          >
-            PathCheck GPS
-          </Text>
-          <View
-            style={
-              Object {
-                "paddingLeft": 20,
-                "paddingTop": 12,
-              }
-            }
-          >
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4e4e4e",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 17,
-                    "lineHeight": 24,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  undefined,
-                ]
-              }
-            >
-              PathCheck Foundation
+          PathCheck Foundation
 58 Day Street
 Box 441621
 Somerville, MA 02144
-            </Text>
-            <View
-              style={
-                Object {
-                  "height": 20,
-                }
-              }
-            />
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4e4e4e",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 17,
-                    "lineHeight": 24,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#1f2c9b",
-                    "textDecorationLine": "underline",
-                  },
-                ]
-              }
-            >
-              info@pathcheck.org
-            </Text>
-            <Text
-              style={
-                Array [
-                  Object {
-                    "color": "#4e4e4e",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 17,
-                    "lineHeight": 24,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Object {
-                    "color": "#1f2c9b",
-                    "textDecorationLine": "underline",
-                  },
-                ]
-              }
-            >
-              pathcheck.org
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.2}
-        style={
-          Object {
-            "backgroundColor": "#4051db",
-            "flexDirection": "row",
-            "justifyContent": "space-between",
-            "paddingHorizontal": 15,
-            "paddingVertical": 25,
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#2e2e2e",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 17,
-                "lineHeight": 24,
-              },
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "color": "#ffffff",
-              },
-            ]
-          }
-        >
-          Privacy Policy
         </Text>
         <View
           style={
             Object {
-              "alignSelf": "center",
-              "paddingLeft": 20,
-              "paddingRight": 20,
+              "height": 20,
             }
           }
-        >
-          <Image
-            source={
+        />
+        <Text
+          style={
+            Array [
               Object {
-                "testUri": "../../../app/assets/images/foreArrow.png",
-              }
-            }
-          />
-        </View>
-      </TouchableOpacity>
+                "color": "#4e4e4e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#1f2c9b",
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          info@pathcheck.org
+        </Text>
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#4e4e4e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#1f2c9b",
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          pathcheck.org
+        </Text>
+      </View>
     </View>
-  </SafeAreaView>
+  </ScrollView>
+  <TouchableOpacity
+    activeOpacity={0.2}
+    style={
+      Object {
+        "backgroundColor": "#4051db",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "paddingHorizontal": 15,
+        "paddingVertical": 25,
+      }
+    }
+  >
+    <Text
+      style={
+        Array [
+          Object {
+            "color": "#2e2e2e",
+            "fontFamily": "IBMPlexSans",
+            "fontSize": 17,
+            "lineHeight": 24,
+          },
+          Object {
+            "writingDirection": "ltr",
+          },
+          Object {
+            "color": "#ffffff",
+          },
+        ]
+      }
+    >
+      Privacy Policy
+    </Text>
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "paddingLeft": 20,
+          "paddingRight": 20,
+        }
+      }
+    >
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/foreArrow.png",
+          }
+        }
+      />
+    </View>
+  </TouchableOpacity>
 </View>
 `;

@@ -6,7 +6,7 @@ import {
 
 import { ENPermissionStatus } from './PermissionsContext';
 import { ExposureInfo } from '../exposureHistory';
-import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
+import { ENDiagnosisKey } from '../views/More/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
 import { ExposureKey } from './AffectedUserFlow/exposureKey';
 

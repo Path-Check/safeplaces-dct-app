@@ -19,7 +19,7 @@ const PublishConsentScreen: FunctionComponent = () => {
         <Text>Invalid State</Text>
         <Button
           onPress={() => {
-            navigation.navigate(Screens.Settings);
+            navigation.navigate(Screens.More);
           }}
           title={'Go Back'}
         />

@@ -32,7 +32,7 @@ const ExportStack = (): JSX.Element => {
     const navigation = useNavigation();
     return (
       <TouchableOpacity
-        onPress={() => navigation.navigate(Screens.Settings)}
+        onPress={() => navigation.navigate(Screens.More)}
         style={styles.iconContainer}>
         <SvgXml xml={Icons.Close} color={Colors.quaternaryViolet} />
       </TouchableOpacity>
