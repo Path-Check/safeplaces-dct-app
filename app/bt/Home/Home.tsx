@@ -44,7 +44,7 @@ const Home = ({
     : t('home.bluetooth.tracing_off_subheader');
   const buttonText = t('home.bluetooth.tracing_off_button');
 
-  const showUnAuthorizedAlert = () => {
+  const showUnauthorizedAlert = () => {
     Alert.alert(
       t('home.bluetooth.unauthorized_error_title'),
       t('home.bluetooth.unauthorized_error_message'),
@@ -61,7 +61,7 @@ const Home = ({
     if (isAuthorized) {
       requestPermission();
     } else if (isPlatformiOS()) {
-      showUnAuthorizedAlert();
+      showUnauthorizedAlert();
     }
   };
 
