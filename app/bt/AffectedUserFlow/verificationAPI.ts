@@ -35,10 +35,12 @@ export type CodeVerificationError =
   | 'InvalidVerificationUrl'
   | 'Unknown';
 
+type TestType = 'confirmed' | 'likely';
+
 interface VerifiedCodeResponse {
   error: string;
   testDate: string;
-  testType: string;
+  testType: TestType;
   token: Token;
 }
 
@@ -63,6 +65,7 @@ export const postVerificationCode = async (
 
     const json = await response.json();
     if (response.ok) {
+      console.log('valid token json: ', json);
       const body: VerifiedCodeResponse = {
         error: json.error,
         testDate: json.testdate,
@@ -98,7 +101,7 @@ export const postVerificationToken = async (
 
   // const exposureKeys = await NativeModule.getExposureKeys();
   // const id = await NativeModule.persistHmacKey(hmacKey);
-  //
+
   const exposureKeys: ExposureKey[] = [
     {
       key: 'a',
@@ -114,10 +117,6 @@ export const postVerificationToken = async (
     },
   ];
 
-  console.log('======================');
-  console.log('======================');
-  console.log('======================');
-  console.log('======================');
   console.log('======================');
   const hmacDigest = await calculateHmac(exposureKeys, hmacKey);
   console.log('hmacDigest', hmacDigest);

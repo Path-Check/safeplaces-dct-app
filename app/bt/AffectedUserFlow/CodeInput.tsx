@@ -54,13 +54,12 @@ const CodeInputScreen = (): JSX.Element => {
   const handleOnPressSubmit = async () => {
     setIsLoading(true);
     setErrorMessage(defaultErrorMessage);
-    console.log('postingToken');
-    API.postVerificationToken('asdfasdf');
     try {
       const response = await API.postVerificationCode(code);
 
       if (response.kind === 'success') {
         const token = response.body.token;
+        //const token = response.body;
         API.postVerificationToken(token);
 
         navigation.navigate(Screens.AffectedUserPublishConsent);

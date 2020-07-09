@@ -38,31 +38,13 @@ export const calculateHmac = async (
     hmacKeyArrayBuffer,
   );
 
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
   console.log('signatureArraryBuffer', signatureArrayBuffer);
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
 
   const hmac = RNSimpleCrypto.utils.convertArrayBufferToBase64(
     signatureArrayBuffer,
   );
 
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
   console.log('HMAC Base64', hmac);
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
-  console.log('------------------------');
 
   return hmac;
 };
