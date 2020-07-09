@@ -1,32 +1,37 @@
 import React, { useContext } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Icons, Images } from '../../../assets';
-import { Typography } from '../../../components/Typography';
-import { MetaContext } from '../Context';
+import { AssessmentNavigationContext } from '../Context';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
+import { Button } from '../components/Button';
 
 import { Colors } from '../../../styles';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Distancing = ({ navigation }) => {
   let { t } = useTranslation();
-  let { completeRoute } = useContext(MetaContext);
+  let { completeRoute } = useContext(AssessmentNavigationContext);
+
+  const handleButtonPress = () => navigation.push(completeRoute);
+
   return (
     <Info
-      ctaAction={() => {
-        navigation.push(completeRoute);
-      }}
       backgroundColor={Colors.primaryBackgroundFaintShade}
       backgroundImage={Images.IsolatePathBackground}
       icon={Icons.Isolate}
-      ctaTitle={t('assessment.distancing_cta')}
-      description={
-        <Trans t={t} i18nKey='assessment.distancing_description'>
-          <Typography />
-        </Trans>
-      }
-      title={t('assessment.distancing_title')}
-    />
+      footer={
+        <Button
+          onPress={handleButtonPress}
+          title={t('assessment.distancing_cta')}
+        />
+      }>
+      <InfoText
+        useTitleStyle='headline2'
+        title={t('assessment.distancing_title')}
+        description={t('assessment.distancing_description')}
+      />
+    </Info>
   );
 };

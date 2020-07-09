@@ -58,6 +58,7 @@
     "@react-native-community/datetimepicker": "^2.3.2",
     "@react-native-community/geolocation": "^2.0.2",
     "@react-native-community/masked-view": "0.1.5",
+    "@react-native-community/netinfo": "^5.9.4",
     "@react-native-community/push-notification-ios": "^1.1.0",
     "@react-native-community/viewpager": "^3.3.0",
     "@react-navigation/bottom-tabs": "^5.5.2",
@@ -84,7 +85,7 @@
     "react-native-app-intro-slider": "^3.0.0",
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
-    "react-native-config": "luggit/react-native-config#1eb6ac01991210ddad2989857359a0f6ee35d734",
+    "react-native-config": "^1.2.1",
     "react-native-document-picker": "github:rparet/react-native-document-picker",
     "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.6.1",
@@ -158,6 +159,7 @@
     "react-native-svg-transformer": "^0.14.3",
     "react-native-version": "^4.0.0",
     "react-test-renderer": "^16.13.1",
+    "reactotron-react-native": "^5.0.0",
     "typescript": "^3.9.3"
   },
   "importSort": {

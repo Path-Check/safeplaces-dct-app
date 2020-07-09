@@ -6,7 +6,7 @@ import {
   render,
 } from '@testing-library/react-native';
 
-import { calendarDays, toExposureHistory } from '../../exposureHistory';
+import { toExposureHistory } from '../../bt/exposureNotifications';
 import { DateTimeUtils } from '../../helpers';
 import { factories } from '../../factories';
 
@@ -40,8 +40,10 @@ describe('History', () => {
         const exposureInfo = {
           [datum.date]: datum,
         };
-        const calendar = calendarDays(Date.now(), CALENDAR_LENGTH);
-        const exposureHistory = toExposureHistory(exposureInfo, calendar);
+        const exposureHistory = toExposureHistory(exposureInfo, {
+          startDate: Date.now(),
+          totalDays: CALENDAR_LENGTH,
+        });
 
         const { queryByTestId, getByTestId } = render(
           <History exposureHistory={exposureHistory} />,
@@ -68,6 +70,8 @@ const buildBlankExposureHistory = () => {
   const exposureInfo = {
     [datum.date]: datum,
   };
-  const calendar = calendarDays(Date.now(), CALENDAR_LENGTH);
-  return toExposureHistory(exposureInfo, calendar);
+  return toExposureHistory(exposureInfo, {
+    startDate: Date.now(),
+    totalDays: CALENDAR_LENGTH,
+  });
 };

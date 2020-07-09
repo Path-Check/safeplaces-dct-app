@@ -12,8 +12,11 @@ import { Images } from '../../app/assets/images';
 
 export default Factory.define<TracingStrategy>(() => ({
   name: 'test-tracing-strategy',
-  exposureInfoSubscription: () => {
-    return { remove: () => {} };
+  exposureEventsStrategy: {
+    exposureInfoSubscription: () => {
+      return { remove: () => {} };
+    },
+    toExposureHistory: () => [],
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: HomeScreen,
@@ -44,8 +47,6 @@ export const testStrategyCopy: StrategyCopyContent = {
   exportCompleteBody: 'exportCompleteBody',
   exportPublishButtonSubtitle: 'exportPublishButtonSubtitle',
   exportPublishTitle: 'exportPublishTitle',
-  exportStartBody: 'exportStartBody',
-  exportStartTitle: 'exportStartTitle',
   exposureNotificationsNotAvailableHeader:
     'exposureNotificationsNotAvailableHeader',
   exposureNotificationsNotAvailableSubheader:

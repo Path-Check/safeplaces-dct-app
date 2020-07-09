@@ -5,6 +5,7 @@ import { createMigrate, persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import StoreAccessor from './StoreAccessor';
 import onChangedSelectedHealthAuthorities from './middleware/onChangedSelectedHealthAuthorities';
 
 import migrations from './migrations';
@@ -31,4 +32,5 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(persistedReducer, {}, enhancers);
+StoreAccessor.setStore(store);
 export const persistor = persistStore(store);

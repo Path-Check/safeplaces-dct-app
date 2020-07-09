@@ -1,21 +1,21 @@
 import {
   getLocaleList as getLocaleListUntyped,
+  getLocalNames as getLocalNamesUntyped,
   getUserLocaleOverride as getOverride,
   setUserLocaleOverride as setOverride,
-  supportedDeviceLanguageOrEnglish as supportedDevice,
   useLanguageDirection as languageDirection,
   getLanguageFromLocale as localeLanguage,
 } from './languages';
 
-export const getLocaleList: () => Record<
-  unknown,
-  unknown
-> = getLocaleListUntyped;
+export const getLocalNames: () => Record<string, string> = getLocalNamesUntyped;
+export const getLocaleList: () => {
+  value: string;
+  label: string;
+}[] = getLocaleListUntyped;
 export const setUserLocaleOverride: (
   locale: string,
 ) => Promise<void> = setOverride;
 export const getUserLocaleOverride: () => string = getOverride;
-export const supportedDeviceLanguageOrEnglish: () => string = supportedDevice;
 export const useLanguageDirection: () =>
   | 'rtl'
   | 'ltr'

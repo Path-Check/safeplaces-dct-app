@@ -22,8 +22,6 @@ export const useBTCopyContent: StrategyCopyContentHook = (t) => {
     exportCompleteBody: t('export.complete_body_bluetooth'),
     exportPublishButtonSubtitle: '',
     exportPublishTitle: t('export.publish_consent_title_bluetooth'),
-    exportStartBody: t('export.start_body_bluetooth'),
-    exportStartTitle: t('export.start_title_bluetooth'),
     exposureNotificationsNotAvailableHeader: t(
       'home.bluetooth.unavailable_header',
     ),

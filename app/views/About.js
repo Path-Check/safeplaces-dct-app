@@ -49,9 +49,11 @@ export const AboutScreen = ({ navigation }) => {
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
         <TouchableWithoutFeedback onPress={incrementClickCount}>
-          <Typography use='headline2' style={styles.heading}>
-            {StrategyCopy.aboutHeader}
-          </Typography>
+          <View>
+            <Typography use='headline2' style={styles.heading}>
+              {StrategyCopy.aboutHeader}
+            </Typography>
+          </View>
         </TouchableWithoutFeedback>
         <Typography use='body2'>{t('label.about_para')}</Typography>
         <Typography

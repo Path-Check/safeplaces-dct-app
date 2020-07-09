@@ -17,7 +17,7 @@ final class ExposureManager: NSObject {
 
   var detectionPermitted: Bool {
     if let lastDetectionDate = BTSecureStorage.shared.$dateLastPerformedExposureDetection.wrappedValue,
-      Calendar.current.dateComponents([.hour], from: lastDetectionDate, to: Date()).hour ?? 0 < 3 {
+      Calendar.current.dateComponents([.hour], from: lastDetectionDate, to: Date()).day ?? 0 == 0 {
       return false
     }
     return true
@@ -90,7 +90,7 @@ final class ExposureManager: NSObject {
   
   @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
 
-    // Exit if last detection date was < 3 hours ago
+    // Exit if last detection date was < 24 hours ago
     if !detectionPermitted {
       completionHandler?(nil)
     }

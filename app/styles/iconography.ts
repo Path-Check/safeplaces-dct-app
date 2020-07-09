@@ -4,6 +4,9 @@ import * as Colors from './colors';
 import * as Spacing from './spacing';
 import * as Typography from './typography';
 
+export const small = 30;
+export const large = 70;
+
 export const smallIcon: ViewStyle = {
   height: 30,
   width: 30,

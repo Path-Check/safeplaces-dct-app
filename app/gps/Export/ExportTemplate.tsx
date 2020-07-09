@@ -14,7 +14,6 @@ import { SvgXml } from 'react-native-svg';
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { Typography } from '../../components/Typography';
-import { Theme } from '../../constants/themes';
 
 import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
@@ -94,12 +93,17 @@ export const ExportTemplate = ({
   });
 
   return (
-    <Theme use={lightTheme ? 'default' : 'violet'}>
+    <View style={{ flex: 1 }}>
       <BackgroundContainer lightTheme={lightTheme}>
         <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
           {onClose && (
             <View style={styles.header}>
-              <IconButton icon={Icons.Close} size={22} onPress={onClose} />
+              <IconButton
+                icon={Icons.Close}
+                size={22}
+                onPress={onClose}
+                color={lightTheme ? Colors.primaryViolet : Colors.white}
+              />
             </View>
           )}
           <ScrollView
@@ -154,6 +158,7 @@ export const ExportTemplate = ({
           </ScrollView>
 
           <Button
+            invert={!!lightTheme}
             style={{ marginTop: 10 }}
             label={nextButtonLabel}
             onPress={onNext}
@@ -174,7 +179,7 @@ export const ExportTemplate = ({
           )}
         </SafeAreaView>
       </BackgroundContainer>
-    </Theme>
+    </View>
   );
 };
 

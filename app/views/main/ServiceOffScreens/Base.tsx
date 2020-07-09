@@ -1,28 +1,20 @@
 import React from 'react';
-import {
-  Dimensions,
-  ImageBackground,
-  View,
-  Text,
-  NativeSyntheticEvent,
-  NativeTouchEvent,
-  TouchableOpacity,
-} from 'react-native';
+import { Dimensions, ImageBackground, View, Text } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../../components/Typography';
-import { Theme } from '../../../constants/themes';
 import { useStatusBarEffect } from '../../../navigation';
 import { styles } from '../style';
 
 import { Icons, Images } from '../../../assets';
+import { Button } from '../../../components/Button';
 
 export interface ServiceOffScreenProps {
   header: string;
   subheader: string;
   button?: {
     label: string;
-    onPress: (ev: NativeSyntheticEvent<NativeTouchEvent>) => void;
+    onPress: () => void;
   };
 }
 
@@ -37,7 +29,7 @@ export const ServiceOffScreen = ({
   useStatusBarEffect('light-content');
 
   return (
-    <Theme use='violet'>
+    <View style={{ flex: 1 }}>
       <ImageBackground
         source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
@@ -55,15 +47,9 @@ export const ServiceOffScreen = ({
         <View style={styles.contentBelowPulse}>
           <Text style={styles.mainTextBelow}>{header}</Text>
           <Typography style={styles.subheaderText}>{subheaderText}</Typography>
-          {button && (
-            <TouchableOpacity
-              onPress={button.onPress}
-              style={styles.buttonContainer}>
-              <Typography>{button.label}</Typography>
-            </TouchableOpacity>
-          )}
+          {button && <Button label={button.label} onPress={button.onPress} />}
         </View>
       </View>
-    </Theme>
+    </View>
   );
 };

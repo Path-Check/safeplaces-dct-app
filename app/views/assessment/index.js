@@ -1,19 +1,22 @@
 import { CardStyleInterpolators } from '@react-navigation/stack';
 import React, { useMemo, useRef } from 'react';
-import { Alert, StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from 'react-native-svg';
 
 import { Icons } from '../../assets';
 import { useSurvey } from '../../helpers/CustomHooks';
-import i18n from '../../locales/languages';
-import { AnswersContext, MetaContext, SurveyContext } from './Context';
+import {
+  AnswersContext,
+  AssessmentNavigationContext,
+  SurveyContext,
+} from './Context';
 import { AssessmentQuestion } from './AssessmentQuestion';
 import { AssessmentStart } from './AssessmentStart';
+import { Agreement } from './Agreement';
+import { EmergencyAssessment } from './EmergencyAssessment';
 import {
   END_ROUTES,
-  OPTION_VALUE_DISAGREE,
-  QUESTION_KEY_AGREE,
   SCREEN_TYPE_CAREGIVER,
   SCREEN_TYPE_DISTANCING,
   SCREEN_TYPE_EMERGENCY,
@@ -72,6 +75,9 @@ const Assessment = ({ navigation }) => {
   const survey = useSurvey();
 
   const QuestionScreen = useMemo(
+    // TODO: This question handling is a mess and should be refactored
+    // to support dynamic questions
+
     // memoize assessment question
     () => ({ navigation, route }) => (
       <AssessmentQuestion
@@ -97,15 +103,18 @@ const Assessment = ({ navigation }) => {
     }),
     [navigation],
   );
-  const screenOptions = {
+  const screenOptions = (backgroundColor = Colors.surveyPrimaryBackground) => ({
     headerHideShadow: true,
     headerTitle: '',
     headerStyle: {
-      backgroundColor: Colors.primaryBackgroundFaintShade,
+      backgroundColor: backgroundColor,
+      shadowColor: Colors.transparent,
+      shadowOffset: { height: 0, width: 0 }, // this removes the header border
     },
-  };
+    headerLeft: AssessmentBackButton,
+  });
 
-  const assessmentBackButton = () => {
+  const AssessmentBackButton = () => {
     return (
       <TouchableOpacity
         onPress={() => navigation.pop()}
@@ -115,7 +124,7 @@ const Assessment = ({ navigation }) => {
     );
   };
 
-  const assessmentCloseButton = () => {
+  const AssessmentCloseButton = () => {
     return (
       <TouchableOpacity
         onPress={() => navigation.popToTop()}
@@ -126,7 +135,7 @@ const Assessment = ({ navigation }) => {
   };
 
   return (
-    <MetaContext.Provider value={meta}>
+    <AssessmentNavigationContext.Provider value={meta}>
       <SurveyContext.Provider value={survey}>
         {/* Since answers.current is on object, it won't trigger context updates
         when mutated, but that's ok — just trying to avoid prop drilling.*/}
@@ -136,109 +145,74 @@ const Assessment = ({ navigation }) => {
             screenOptions={{
               cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
               cardStyle: {
-                backgroundColor: 'transparent',
+                backgroundColor: Colors.transparent,
               },
             }}>
             <Stack.Screen
               component={AssessmentStart}
               name='AssessmentStart'
               options={{
-                ...screenOptions,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
+                ...screenOptions(),
+                headerLeft: () => null,
               }}
+            />
+            <Stack.Screen
+              component={Agreement}
+              name='Agreement'
+              options={{
+                ...screenOptions(Colors.invertedQuaternaryBackground),
+              }}
+            />
+            <Stack.Screen
+              component={EmergencyAssessment}
+              name='EmergencyAssessment'
+              options={screenOptions()}
             />
             <Stack.Screen
               component={QuestionScreen}
               name='AssessmentQuestion'
-              options={{
-                ...screenOptions,
-                headerLeft: assessmentBackButton,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
-              }}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={AssessmentComplete}
               name='AssessmentComplete'
               options={{
-                ...screenOptions,
+                ...screenOptions(),
                 headerLeft: () => null,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
               }}
             />
             <Stack.Screen
               component={Share}
               name='EndShare'
               options={{
-                ...screenOptions,
-                headerLeft: assessmentBackButton,
-                headerRight: assessmentCloseButton,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
+                ...screenOptions(Colors.invertedQuaternaryBackground),
+                headerRight: AssessmentCloseButton,
               }}
             />
             <Stack.Screen
               component={Caregiver}
               name={SCREEN_TYPE_CAREGIVER}
-              options={{
-                ...screenOptions,
-                headerLeft: assessmentBackButton,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
-              }}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Distancing}
               name={SCREEN_TYPE_DISTANCING}
-              options={{
-                ...screenOptions,
-                headerLeft: assessmentBackButton,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
-              }}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Emergency}
               name={SCREEN_TYPE_EMERGENCY}
-              options={{
-                ...screenOptions,
-                headerLeft: assessmentBackButton,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
-              }}
+              options={screenOptions()}
             />
             <Stack.Screen
               component={Isolate}
               name={SCREEN_TYPE_ISOLATE}
-              options={{
-                ...screenOptions,
-                headerLeft: assessmentBackButton,
-                headerStyle: {
-                  backgroundColor: Colors.primaryBackgroundFaintShade,
-                  shadowColor: 'transparent',
-                },
-              }}
+              options={screenOptions()}
             />
           </Stack.Navigator>
         </AnswersContext.Provider>
       </SurveyContext.Provider>
-    </MetaContext.Provider>
+    </AssessmentNavigationContext.Provider>
   );
 };
 
@@ -266,11 +240,6 @@ function onNextQuestion({ answers, navigation, route, survey }) {
   /** @type {{ question: SurveyQuestion }} */
   const { question } = route.params;
   const response = answers.current[question.question_key];
-  if (question.question_key === QUESTION_KEY_AGREE) {
-    if (response.some((r) => r.value === OPTION_VALUE_DISAGREE)) {
-      return showAgreeAlert();
-    }
-  }
 
   const nextKey = selectNextQuestion(survey, question, response);
 
@@ -299,17 +268,6 @@ function selectNextQuestion(survey, question, answer) {
     }
   }
   return survey.questions[index + 1].question_key;
-}
-
-function showAgreeAlert() {
-  return new Promise((resolve) => {
-    Alert.alert(
-      i18n.t('assessment.agree_alert_title'),
-      i18n.t('assessment.agree_alert_description'),
-      [{ text: 'OK', onPress: resolve }],
-      { cancelable: false },
-    );
-  });
 }
 
 const styles = StyleSheet.create({
