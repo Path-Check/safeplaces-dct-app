@@ -236,7 +236,10 @@ final class ExposureManager: NSObject {
       if let error = error {
         callback([error])
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey },
+        let keys = (temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }
+        let keyCount = min(keys.count, 14)
+        let latestKeys = Array(keys.sorted(by: { $0.rollingStartNumber > $1.rollingStartNumber })[0..<keyCount])
+        APIClient.shared.request(DiagnosisKeyListRequest.post(latestKeys,
                                                               [.US]),
                                  requestType: .postKeys) { result in
                                   switch result {
