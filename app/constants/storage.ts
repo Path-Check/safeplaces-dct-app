@@ -1,4 +1,3 @@
-export const LOCATION_DATA = 'LOCATION_DATA';
 export const CONTACT_DATA = 'CONTACT_DATA';
 export const PARTICIPATE = 'PARTICIPATE';
 export const MY_UUIDs = 'MY_UUIDs';
