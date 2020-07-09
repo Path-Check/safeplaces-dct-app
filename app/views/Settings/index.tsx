@@ -110,7 +110,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     );
   };
 
-  const deleteLocationHistory = () => {
+  const handleOnPressDeleteLocationHistory = () => {
     return Alert.alert(
       t('location.data.delete_warning_title'),
       t('location.data.delete_warning_body'),
@@ -183,7 +183,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         <View style={styles.section}>
           <SettingsListItem
             label={t('screen_titles.delete_location_history')}
-            onPress={deleteLocationHistory}
+            onPress={handleOnPressDeleteLocationHistory}
             textColor={Colors.persimmon}
           />
         </View>
