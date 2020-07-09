@@ -1,10 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import {
-  createStackNavigator,
-  StackCardStyleInterpolator,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { SvgXml } from 'react-native-svg';
 
 import { AffectedUserProvider } from './AffectedUserContext';
@@ -18,10 +15,6 @@ import { Colors, Spacing } from '../../styles';
 import { Screens } from '../../navigation';
 
 const Stack = createStackNavigator();
-
-const fade: StackCardStyleInterpolator = ({ current }) => ({
-  cardStyle: { opacity: current.progress },
-});
 
 const ExportStack = (): JSX.Element => {
   const BackButton = () => {
@@ -49,12 +42,7 @@ const ExportStack = (): JSX.Element => {
   return (
     <AffectedUserProvider>
       <Stack.Navigator
-        mode='modal'
         screenOptions={{
-          cardStyleInterpolator: fade,
-          cardStyle: {
-            backgroundColor: 'transparent', // prevent white flash on Android
-          },
           headerShown: false,
           gestureEnabled: false,
         }}
