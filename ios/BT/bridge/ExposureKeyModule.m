@@ -14,8 +14,8 @@ RCT_EXPORT_METHOD(getExposureKeys: (RCTResponseSenderBlock)callback) {
   [[ExposureManager shared] getExposureKeysWithCallback:callback];
 }
 
-RCT_EXPORT_METHOD(storeHMACKey: (RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] storeHMACKeyWithCallback:callback];
+RCT_EXPORT_METHOD(storeHMACKey: (NSString *)HMACKey withCallback:(RCTResponseSenderBlock)callback) {
+  [[ExposureManager shared] storeHMACKeyWithHMACKey:HMACKey callback:callback];
 }
 
 @end
