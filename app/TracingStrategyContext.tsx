@@ -44,9 +44,7 @@ export const TracingStrategyProvider = ({
       }}>
       <StrategyPermissionsProvider>
         <ExposureHistoryProvider
-          exposureEventsStrategyContext={
-            strategy.exposureEventsStrategyContext
-          }>
+          exposureEventsStrategy={strategy.exposureEventsStrategy}>
           {children}
         </ExposureHistoryProvider>
       </StrategyPermissionsProvider>

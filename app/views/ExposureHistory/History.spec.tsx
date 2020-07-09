@@ -33,11 +33,14 @@ describe('History', () => {
         const twoDaysAgo = DateTimeUtils.beginningOfDay(
           DateTimeUtils.daysAgo(2),
         );
-        const rawExposure = factories.rawExposure.build({
-          id: 'Possible',
+        const datum = factories.exposureDatum.build({
+          kind: 'Possible',
           date: twoDaysAgo,
         });
-        const exposureHistory = toExposureHistory([rawExposure], {
+        const exposureInfo = {
+          [datum.date]: datum,
+        };
+        const exposureHistory = toExposureHistory(exposureInfo, {
           startDate: Date.now(),
           totalDays: CALENDAR_LENGTH,
         });
@@ -63,8 +66,11 @@ describe('History', () => {
 });
 
 const buildBlankExposureHistory = () => {
-  const rawExposure = factories.rawExposure.build();
-  return toExposureHistory([rawExposure], {
+  const datum = factories.exposureDatum.build();
+  const exposureInfo = {
+    [datum.date]: datum,
+  };
+  return toExposureHistory(exposureInfo, {
     startDate: Date.now(),
     totalDays: CALENDAR_LENGTH,
   });

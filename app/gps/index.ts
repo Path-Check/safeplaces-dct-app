@@ -4,17 +4,17 @@ import Home from './Home';
 import ExportStack from './ExportStack';
 import { subscribeToExposureEvents } from './exposureInfo';
 import { useGPSCopyContent, gpsAssets } from './content';
-import { ExposureEventStrategyContext } from '../ExposureHistoryContext';
+import { ExposureEventsStrategy } from '../ExposureHistoryContext';
 import { toExposureHistory } from './intersect/exposureHistory';
 
-const gpsExposureEventContext: ExposureEventStrategyContext = {
+const gpsExposureEventContext: ExposureEventsStrategy = {
   exposureInfoSubscription: subscribeToExposureEvents,
   toExposureHistory: toExposureHistory,
 };
 
 const gpsStrategy: TracingStrategy = {
   name: 'bt',
-  exposureEventsStrategyContext: gpsExposureEventContext,
+  exposureEventsStrategy: gpsExposureEventContext,
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
   affectedUserFlow: ExportStack,

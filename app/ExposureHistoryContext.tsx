@@ -31,7 +31,7 @@ type ExposureInfoSubscription = (
   cb: (exposureInfo: ExposureInfo) => void,
 ) => { remove: () => void };
 
-export interface ExposureEventStrategyContext {
+export interface ExposureEventsStrategy {
   exposureInfoSubscription: ExposureInfoSubscription;
   toExposureHistory: (
     exposureInfo: ExposureInfo,
@@ -41,7 +41,7 @@ export interface ExposureEventStrategyContext {
 
 interface ExposureHistoryProps {
   children: JSX.Element;
-  exposureEventsStrategyContext: ExposureEventStrategyContext;
+  exposureEventsStrategy: ExposureEventsStrategy;
 }
 
 const CALENDAR_DAY_COUNT = 21;
@@ -55,12 +55,12 @@ const blankHistory = blankExposureHistory(blankHistoryConfig);
 
 const ExposureHistoryProvider = ({
   children,
-  exposureEventsStrategyContext,
+  exposureEventsStrategy,
 }: ExposureHistoryProps): JSX.Element => {
   const {
     exposureInfoSubscription,
     toExposureHistory,
-  } = exposureEventsStrategyContext;
+  } = exposureEventsStrategy;
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
     blankHistory,
   );
