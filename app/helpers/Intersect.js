@@ -500,6 +500,10 @@ const performIntersectionForSingleHA = async (
   }
 
   for (const page of pages) {
+    if (!page.id) {
+      // skip this page
+      continue;
+    }
     const concernPointsPage = await getPageData(authority, page);
 
     if (
@@ -586,21 +590,21 @@ async function getPageData(authority, page) {
   // if there's no data, return an empty object.
   const cacheKey = authority.internal_id + '|page:' + page.id;
   let pageData = await GetStoreData(cacheKey);
-  if (!pageData) {
-    if (await shouldDownloadPageData()) {
-      try {
-        pageData = await retrieveUrlAsJson(page.filename);
-        SetStoreData(cacheKey, pageData);
-      } catch (e) {
-        // sometimes the url isn't right, the download will fail
-        pageData = {};
-      }
-    } else {
-      // no cache and can't download, skip this page.
-      pageData = {};
+  if (!pageData && (await shouldDownloadPageData())) {
+    try {
+      pageData = await retrieveUrlAsJson(page.filename);
+      SetStoreData(cacheKey, pageData);
+    } catch (e) {
+      // sometimes the url isn't right, the download will fail
+      console.log(
+        'error occurred while downloading ha page',
+        authority.name,
+        page.id,
+        e,
+      );
     }
   }
-  return pageData;
+  return pageData || {};
 }
 
 async function shouldDownloadPageData() {
