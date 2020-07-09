@@ -1,7 +1,7 @@
 import FinishSetup from '../pages/FinishSetup.po.js';
 import Welcome from '../pages/Welcome.po.js';
 import PersonalPrivacy from '../pages/PersonalPrivacy.po.js';
-import NotificatioNDetails from '../pages/NotificationDetails.po.js';
+import NotificationDetails from '../pages/NotificationDetails.po.js';
 import ShareDiagnosis from '../pages/ShareDiagnosis.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
@@ -15,8 +15,8 @@ export const navigateThroughPermissions = async (languageStrings) => {
   await PersonalPrivacy.isOnScreen(languageStrings);
   await PersonalPrivacy.tapButton(languageStrings);
 
-  await NotificatioNDetails.isOnScreen(languageStrings);
-  await NotificatioNDetails.tapButton(languageStrings);
+  await NotificationDetails.isOnScreen(languageStrings);
+  await NotificationDetails.tapButton(languageStrings);
 
   await ShareDiagnosis.isOnScreen(languageStrings);
   await ShareDiagnosis.tapButton(languageStrings);
