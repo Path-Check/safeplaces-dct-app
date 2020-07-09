@@ -37,7 +37,7 @@ export type Screen =
   | 'ImportFromUrl'
   | 'Welcome'
   | 'PersonalPrivacy'
-  | 'NotificatioNDetails'
+  | 'NotificationDetails'
   | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
@@ -81,7 +81,7 @@ export const Screens: { [key in Screen]: Screen } = {
   ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   PersonalPrivacy: 'PersonalPrivacy',
-  NotificatioNDetails: 'NotificatioNDetails',
+  NotificationDetails: 'NotificationDetails',
   ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',

@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
 
 import {
-  ExposureInfo,
+  blankExposureHistory,
   ExposureHistory,
-  calendarDays,
-  toExposureHistory,
+  ExposureCalendarOptions,
+  ExposureInfo,
 } from './exposureHistory';
 
 interface ExposureHistoryState {
@@ -27,26 +27,40 @@ const ExposureHistoryContext = createContext<ExposureHistoryState>(
   initialState,
 );
 
-export type ExposureInfoSubscription = (
+type ExposureInfoSubscription = (
   cb: (exposureInfo: ExposureInfo) => void,
 ) => { remove: () => void };
 
+export interface ExposureEventsStrategy {
+  exposureInfoSubscription: ExposureInfoSubscription;
+  toExposureHistory: (
+    exposureInfo: ExposureInfo,
+    calendarOptions: ExposureCalendarOptions,
+  ) => ExposureHistory;
+}
+
 interface ExposureHistoryProps {
   children: JSX.Element;
-  exposureInfoSubscription: ExposureInfoSubscription;
+  exposureEventsStrategy: ExposureEventsStrategy;
 }
 
 const CALENDAR_DAY_COUNT = 21;
 
-const blankHistory = toExposureHistory(
-  {},
-  calendarDays(Date.now(), CALENDAR_DAY_COUNT),
-);
+const blankHistoryConfig: ExposureCalendarOptions = {
+  startDate: Date.now(),
+  totalDays: CALENDAR_DAY_COUNT,
+};
+
+const blankHistory = blankExposureHistory(blankHistoryConfig);
 
 const ExposureHistoryProvider = ({
   children,
-  exposureInfoSubscription,
+  exposureEventsStrategy,
 }: ExposureHistoryProps): JSX.Element => {
+  const {
+    exposureInfoSubscription,
+    toExposureHistory,
+  } = exposureEventsStrategy;
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
     blankHistory,
   );
@@ -55,14 +69,16 @@ const ExposureHistoryProvider = ({
   useEffect(() => {
     const subscription = exposureInfoSubscription(
       (exposureInfo: ExposureInfo) => {
-        const days = calendarDays(Date.now(), CALENDAR_DAY_COUNT);
-        const exposureHistory = toExposureHistory(exposureInfo, days);
+        const exposureHistory = toExposureHistory(
+          exposureInfo,
+          blankHistoryConfig,
+        );
         setExposureHistory(exposureHistory);
       },
     );
 
     return subscription.remove;
-  }, [exposureInfoSubscription]);
+  }, [exposureInfoSubscription, toExposureHistory]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);
