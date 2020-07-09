@@ -10,26 +10,18 @@ import dayjs from 'dayjs';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
 import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
-
 import getCursor from '../api/healthcareAuthorities/getCursorApi';
 import {
   DEFAULT_CONCERN_TIME_FRAME_MINUTES,
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
-  MIN_CHECK_INTERSECT_INTERVAL,
 } from '../constants/history';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
   DEBUG_MODE,
-  LAST_CHECKED,
-  LOCATION_DATA,
 } from '../constants/storage';
-import {
-  GetStoreData,
-  RemoveStoreData,
-  SetStoreData,
-} from '../helpers/General';
+import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import StoreAccessor from '../store/StoreAccessor';
@@ -351,27 +343,6 @@ function roundExposure(diffMS, gpsPeriodMS) {
 }
 
 /**
- * Migrates the old GPS data into secure storage (Realm)
- *
- * @returns {Promise<boolean>} Boolean for whether there was any data to migrate
- */
-export async function migrateOldData() {
-  const locations = await GetStoreData(LOCATION_DATA, false);
-
-  if (Array.isArray(locations) && locations.length > 0) {
-    await NativeModules.SecureStorageManager.migrateExistingLocations(
-      locations,
-    );
-    await RemoveStoreData(LOCATION_DATA);
-    return true; // data was migrated
-  }
-  return false; // nothing to migrate
-}
-
-/** The old data has been migrated already for this session/app. */
-let hasMigratedOldData = false;
-
-/**
  * Kicks off the intersection process.  Immediately returns after starting the
  * background intersection.  Typically would be run about every 12 hours, but
  * but might get run more frequently, e.g. when the user changes authority settings
@@ -380,23 +351,11 @@ let hasMigratedOldData = false;
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export async function checkIntersect(
-  healthcareAuthorities,
-  bypassTimer = false,
-) {
+export async function checkIntersect(healthcareAuthorities) {
   console.log(
     `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}; `,
-    `is bypassing timer = ${bypassTimer}`,
   );
-
-  // TODO: remove this after June 1 once 14 day old history is irrelevant
-  if (!hasMigratedOldData) {
-    await migrateOldData();
-    hasMigratedOldData = true;
-  }
-
-  const result = await asyncCheckIntersect(healthcareAuthorities, bypassTimer);
-  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
+  const result = await asyncCheckIntersect(healthcareAuthorities);
   return result;
 }
 
@@ -406,16 +365,7 @@ export async function checkIntersect(
  *
  * Returns the array of day bins (mostly for debugging purposes)
  */
-async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
-  // first things first ... is it time to actually try the intersection?
-  let lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
-  if (
-    !bypassTimer &&
-    lastCheckedMs + MIN_CHECK_INTERSECT_INTERVAL * 60e3 > dayjs().valueOf()
-  ) {
-    return null;
-  }
-
+async function asyncCheckIntersect(healthcareAuthorities) {
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
   let { locationArray, dayBins } = await getTransformedLocalDataAndDayBins(
@@ -466,10 +416,6 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
 
   // store updated cursors
   SetStoreData(AUTHORITY_SOURCE_SETTINGS, localHAData);
-
-  // save off the current time as the last checked time
-  let unixTimeUTC = dayjs().valueOf();
-  SetStoreData(LAST_CHECKED, unixTimeUTC);
 
   return transformDayBinsToExposureInfo(dayBins);
 }

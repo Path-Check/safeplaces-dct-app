@@ -55,9 +55,7 @@ const ExportStack = (): JSX.Element => {
           cardStyle: {
             backgroundColor: 'transparent', // prevent white flash on Android
           },
-          headerStyle: {
-            height: 100,
-          },
+          headerShown: false,
           gestureEnabled: false,
         }}
         initialRouteName={Screens.AffectedUserStart}>

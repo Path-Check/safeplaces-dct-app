@@ -1,7 +1,7 @@
 import { languages } from '../helpers/language';
 import Welcome from '../pages/Welcome.po.js';
 import PersonalPrivacy from '../pages/PersonalPrivacy.po.js';
-import NotificatioNDetails from '../pages/NotificationDetails.po.js';
+import NotificationDetails from '../pages/NotificationDetails.po.js';
 import ShareDiagnosis from '../pages/ShareDiagnosis.po.js';
 import SignEula from '../pages/SignEula.po.js';
 
@@ -32,9 +32,9 @@ describe.each(languages)(
         await PersonalPrivacy.takeScreenshot();
         await PersonalPrivacy.tapButton(languageStrings);
 
-        await NotificatioNDetails.isOnScreen(languageStrings);
-        await NotificatioNDetails.takeScreenshot();
-        await NotificatioNDetails.tapButton(languageStrings);
+        await NotificationDetails.isOnScreen(languageStrings);
+        await NotificationDetails.takeScreenshot();
+        await NotificationDetails.tapButton(languageStrings);
 
         await ShareDiagnosis.isOnScreen(languageStrings);
         await ShareDiagnosis.takeScreenshot();

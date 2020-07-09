@@ -9,6 +9,10 @@ import XCTest
 @testable import GPS
 
 class LocationTests: XCTestCase {
+
+  func testSameLocationsAreNearby() {
+    XCTAssertTrue(Location.areLocationsNearby(lat1: 40.73061, lon1: -73.935242, lat2: 40.73061, lon2: -73.935242))
+  }
   
   func testNorthAndSouthPolesNotNearby() {
     XCTAssertFalse(Location.areLocationsNearby(lat1: 90.0, lon1: 0.0, lat2: -90.0, lon2: 0.0))

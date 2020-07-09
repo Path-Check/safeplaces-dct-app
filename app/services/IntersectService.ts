@@ -8,7 +8,6 @@ class IntersectService {
 
   checkIntersect = (
     healthcareAuthorities: HealthcareAuthority[] | null,
-    bypassTimer: boolean,
   ): string => {
     if (this.isServiceRunning) {
       this.nextJob = healthcareAuthorities;
@@ -16,13 +15,13 @@ class IntersectService {
     }
     this.isServiceRunning = true;
 
-    intersect(healthcareAuthorities, bypassTimer).then((exposureInfo) => {
+    intersect(healthcareAuthorities).then((exposureInfo) => {
       this.isServiceRunning = false;
 
       if (this.nextJob) {
         const job = this.nextJob;
         this.nextJob = null;
-        this.checkIntersect(job, bypassTimer);
+        this.checkIntersect(job);
       } else {
         emitGPSExposureInfo(exposureInfo);
       }
