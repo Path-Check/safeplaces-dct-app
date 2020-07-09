@@ -16,10 +16,7 @@ import {
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
 } from '../constants/history';
-import {
-  AUTHORITY_SOURCE_SETTINGS,
-  CROSSED_PATHS,
-} from '../constants/storage';
+import { AUTHORITY_SOURCE_SETTINGS, CROSSED_PATHS } from '../constants/storage';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
@@ -358,7 +355,6 @@ export async function checkIntersect(healthcareAuthorities) {
     `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}; `,
   );
   const result = await asyncCheckIntersect(healthcareAuthorities);
-  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
   return result;
 }
 

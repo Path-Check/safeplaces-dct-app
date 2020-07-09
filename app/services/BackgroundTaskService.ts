@@ -1,6 +1,4 @@
 import BackgroundFetch from 'react-native-background-fetch';
-import PushNotification from 'react-native-push-notification';
-
 import { BACKGROUND_TASK_INTERVAL } from '../constants/history';
 import IntersectService from './IntersectService';
 import { Platform, NativeModules } from 'react-native';
@@ -26,10 +24,6 @@ class BackgroundTaskService {
         requiresStorageNotLow: false, // Default
       },
       async (taskId) => {
-        PushNotification.localNotification({
-          title: 'Running background task',
-          message: new Date().toLocaleString(),
-        });
         console.log('[js] Received background-fetch event: ', taskId);
 
         if (Platform.OS === 'ios') {
@@ -37,18 +31,20 @@ class BackgroundTaskService {
         }
 
         const lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
-        if (dayjs().diff(lastCheckedMs, 'hour') >= 12) {
+        const intersectIntervalPassed =
+          dayjs().diff(lastCheckedMs, 'hour') >= 12;
+
+        if (intersectIntervalPassed) {
           IntersectService.checkIntersect(null);
           await SetStoreData(LAST_CHECKED, String(dayjs().valueOf()));
         }
 
+        console.log(
+          `[intersect] ${intersectIntervalPassed ? 'started' : 'skipped'}`,
+        );
         BackgroundFetch.finish(taskId);
       },
       (error) => {
-        PushNotification.localNotification({
-          title: 'Failed to run background task',
-          message: error.toString(),
-        });
         console.log('[js] RNBackgroundFetch failed to start', error);
       },
     );
