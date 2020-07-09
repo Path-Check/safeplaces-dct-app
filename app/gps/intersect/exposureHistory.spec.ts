@@ -64,8 +64,6 @@ describe('toExposureHistory', () => {
         const fridayResult = result[result.length - 2];
         const saturdayResult = result[result.length - 1];
 
-        console.log(result);
-
         expect(tuesdayResult).toEqual(tuesdayExposure);
         expect(wednesdayResult.kind).toBe('NoKnown');
         expect(fridayResult).toEqual(fridayExposure);
