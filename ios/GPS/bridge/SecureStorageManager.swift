@@ -30,4 +30,9 @@ class SecureStorageManager: NSObject {
     GPSSecureStorage.shared.getLocations(resolve: resolve, reject: reject)
   }
 
+  @objc
+  func removeAllLocations(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    GPSSecureStorage.shared.removeAllLocations(resolve: resolve, reject: reject)
+  }
+
 }
