@@ -40,6 +40,12 @@ const ExposureDatumIndicator = ({
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
     switch (exposureDatum.kind) {
+      case 'NoData': {
+        return [
+          { ...circleStyle },
+          { ...textStyle, color: Colors.secondaryViolet },
+        ];
+      }
       case 'NoKnown': {
         return [
           { ...circleStyle },

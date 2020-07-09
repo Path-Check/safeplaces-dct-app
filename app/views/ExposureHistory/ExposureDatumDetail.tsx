@@ -4,7 +4,12 @@ import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
 
-import { ExposureDatum, Possible, NoKnown } from '../../exposureHistory';
+import {
+  ExposureDatum,
+  Possible,
+  NoKnown,
+  NoData,
+} from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
 import { TimeHelpers } from '../utils';
 import { Screens } from '../../navigation';
@@ -30,6 +35,9 @@ const ExposureDatumDetail = ({
     }
     case 'NoKnown': {
       return <NoKnownExposureDetail datum={exposureDatum} />;
+    }
+    case 'NoData': {
+      return <NoDataExposureDetail datum={exposureDatum} />;
     }
   }
 };
@@ -90,6 +98,26 @@ const NoKnownExposureDetail = ({
   const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const explanationContent = t('exposure_datum.no_known.explanation');
+  return (
+    <View style={styles.container}>
+      <Typography style={styles.date}>{exposureDate}</Typography>
+      <View style={styles.contentContainer}>
+        <Typography style={styles.content}>{explanationContent}</Typography>
+      </View>
+    </View>
+  );
+};
+
+interface NoDataExposureDetailProps {
+  datum: NoData;
+}
+
+const NoDataExposureDetail = ({
+  datum: { date },
+}: NoDataExposureDetailProps) => {
+  const { t } = useTranslation();
+  const exposureDate = dayjs(date).format('dddd, MMM DD');
+  const explanationContent = t('exposure_datum.no_data.explanation');
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
