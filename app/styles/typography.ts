@@ -147,6 +147,12 @@ export const title: TextStyle = {
   color: Colors.primaryText,
 };
 
+export const footer: TextStyle = {
+  ...mediumFont,
+  ...bold,
+  color: Colors.black,
+};
+
 // Content
 export const mainContent: TextStyle = {
   ...mediumFont,
