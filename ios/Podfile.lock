@@ -201,6 +201,8 @@ PODS:
     - React
   - react-native-netinfo (5.9.4):
     - React
+  - react-native-randombytes (3.5.3):
+    - React
   - react-native-safe-area-context (3.0.5):
     - React
   - react-native-simple-crypto (0.2.12):
@@ -317,6 +319,7 @@ DEPENDENCIES:
   - react-native-document-picker (from `../node_modules/react-native-document-picker`)
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
+  - react-native-randombytes (from `../node_modules/react-native-randombytes`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-simple-crypto (from `../node_modules/react-native-simple-crypto`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -409,6 +412,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/geolocation"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
+  react-native-randombytes:
+    :path: "../node_modules/react-native-randombytes"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-simple-crypto:
@@ -498,6 +503,7 @@ SPEC CHECKSUMS:
   react-native-document-picker: e3516aff0dcf65ee0785d9bcf190eb10e2261154
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-netinfo: cd479ab1b67cdd1cb1403a99ecdb24190a6dd7ef
+  react-native-randombytes: 3638d24759d67c68f6ccba60c52a7a8a8faa6a23
   react-native-safe-area-context: e768fca90207ee68924b3d0877633f2ce9cc9d68
   react-native-simple-crypto: f37bae3fba012c1b389f1c68a3e4f68fe4d9b523
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865

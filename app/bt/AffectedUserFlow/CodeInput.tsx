@@ -51,16 +51,17 @@ const CodeInputScreen = (): JSX.Element => {
     navigation.navigate(Screens.Settings);
   };
 
-  const handleOnPressNext = async () => {
+  const handleOnPressSubmit = async () => {
     setIsLoading(true);
     setErrorMessage(defaultErrorMessage);
+    console.log('postingToken');
+    API.postVerificationToken('asdfasdf');
     try {
       const response = await API.postVerificationCode(code);
 
       if (response.kind === 'success') {
         const token = response.body.token;
-        const fakeHMAC = 'abcd1234';
-        API.postVerificationToken(token, fakeHMAC);
+        API.postVerificationToken(token);
 
         navigation.navigate(Screens.AffectedUserPublishConsent);
       } else {
@@ -80,6 +81,9 @@ const CodeInputScreen = (): JSX.Element => {
       }
       case 'VerificationCodeUsed': {
         return t('export.error.verification_code_used');
+      }
+      case 'InvalidVerificationUrl': {
+        return 'Invalid Verification Url';
       }
       default: {
         return t('export.error.unknown_code_verification_error');
@@ -138,7 +142,7 @@ const CodeInputScreen = (): JSX.Element => {
 
             <View>
               <TouchableOpacity
-                onPress={handleOnPressNext}
+                onPress={handleOnPressSubmit}
                 accessible
                 accessibilityLabel={t('common.submit')}
                 accessibilityRole='button'

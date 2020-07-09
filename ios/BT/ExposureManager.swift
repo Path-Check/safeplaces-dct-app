@@ -269,6 +269,8 @@ final class ExposureManager: NSObject {
     #endif
   }
   
+  func getExposureKeys() {}
+
 }
 
 private extension ExposureManager {

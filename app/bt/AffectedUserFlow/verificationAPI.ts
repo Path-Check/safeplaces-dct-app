@@ -1,5 +1,7 @@
 import Config from 'react-native-config';
 
+import { ExposureKey, calculateHmac, generateKey } from './hmac';
+
 const baseUrl = Config.GAEN_VERIFY_URL;
 const verifyUrl = `${baseUrl}/api/verify`;
 const certificateUrl = `${baseUrl}/api/certificate`;
@@ -30,6 +32,7 @@ type CodeVerificationSuccess = VerifiedCodeResponse;
 export type CodeVerificationError =
   | 'InvalidCode'
   | 'VerificationCodeUsed'
+  | 'InvalidVerificationUrl'
   | 'Unknown';
 
 interface VerifiedCodeResponse {
@@ -46,7 +49,12 @@ export const postVerificationCode = async (
     code,
   };
 
+  console.log(verifyUrl);
+
   try {
+    if (baseUrl === undefined) {
+      return { kind: 'failure', error: 'InvalidVerificationUrl' };
+    }
     const response = await fetch(verifyUrl, {
       method: 'POST',
       headers: defaultHeaders,
@@ -83,13 +91,40 @@ type VerificationTokenFailure = 'InvalidToken' | 'Unknown';
 
 export const postVerificationToken = async (
   token: Token,
-  hmac: string,
 ): Promise<
   NetworkResponse<VerificationTokenSuccess, VerificationTokenFailure>
 > => {
+  const hmacKey = generateKey();
+
+  // const exposureKeys = await NativeModule.getExposureKeys();
+  // const id = await NativeModule.persistHmacKey(hmacKey);
+  //
+  const exposureKeys: ExposureKey[] = [
+    {
+      key: 'a',
+      rollingPeriodStart: 2649312,
+      rollingPeriodCount: 12,
+      transmissionRisk: 2,
+    },
+    {
+      key: 'b',
+      rollingPeriodStart: 2649312,
+      rollingPeriodCount: 12,
+      transmissionRisk: 5,
+    },
+  ];
+
+  console.log('======================');
+  console.log('======================');
+  console.log('======================');
+  console.log('======================');
+  console.log('======================');
+  const hmacDigest = await calculateHmac(exposureKeys, hmacKey);
+  console.log('hmacDigest', hmacDigest);
+
   const data = {
     token,
-    ekeyhmac: hmac,
+    ekeyhmac: hmacDigest,
   };
 
   try {
