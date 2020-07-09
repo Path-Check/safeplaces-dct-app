@@ -6,4 +6,5 @@ export const AUTHORITIES_LIST_URL =
 
 export const AUTHORITY_NAME = 'Boston Public Health Commission';
 
-export const AUTHORITY_ADVICE_URL = 'https://mn.gov/covid19/for-minnesotans/if-sick/index.jsp';
+export const AUTHORITY_ADVICE_URL =
+  'https://mn.gov/covid19/for-minnesotans/if-sick/index.jsp';

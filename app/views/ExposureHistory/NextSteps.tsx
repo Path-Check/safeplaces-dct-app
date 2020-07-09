@@ -11,9 +11,9 @@ import { useStatusBarEffect } from '../../navigation';
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 import { Icons } from '../../assets';
 
-import { 
+import {
   AUTHORITY_NAME as healthAuthorityName,
-  AUTHORITY_ADVICE_URL
+  AUTHORITY_ADVICE_URL,
 } from '../../constants/authorities';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
@@ -38,7 +38,7 @@ const NextSteps = (): JSX.Element => {
   const buttonText = t('exposure_history.next_steps.button_text');
 
   const handleOnPressTakeAssessment = () => {
-    Linking.openURL(AUTHORITY_ADVICE_URL)
+    Linking.openURL(AUTHORITY_ADVICE_URL);
   };
 
   return (
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     ...TypographyStyles.footer,
-    marginBottom: 20
+    marginBottom: 20,
   },
   contentText: {
     ...TypographyStyles.mainContent,
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
   button: {
     ...Buttons.largeBlue,
     padding: 30,
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   buttonText: {
     ...TypographyStyles.buttonTextLight,
