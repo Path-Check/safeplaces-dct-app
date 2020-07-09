@@ -1,5 +1,5 @@
-import { DayBins, toExposureHistory } from './exposureHistory';
-import { ExposureDatum } from '../../exposureHistory';
+import { toExposureHistory } from './exposureHistory';
+import { ExposureDatum, ExposureInfo } from '../../exposureHistory';
 import dayjs from 'dayjs';
 
 describe('toExposureHistory', () => {
@@ -7,9 +7,9 @@ describe('toExposureHistory', () => {
     describe('when given the DayBins with no exposures', () => {
       it('it returns a 21 day history of NoData Exposures', () => {
         const today = dayjs('2020-06-26').valueOf();
-        const rawExposures: DayBins = [];
+        const exposureInfo: ExposureInfo = {};
 
-        const result = toExposureHistory(rawExposures, {
+        const result = toExposureHistory(exposureInfo, {
           startDate: today,
           totalDays: 21,
         });
@@ -21,14 +21,13 @@ describe('toExposureHistory', () => {
       });
     });
 
-    describe('when given the DayBins with positive duration today and 2 days ago', () => {
+    describe('when given an ExposureInfo with a possible exposure today', () => {
       it('returns an exposure history with the exposures on the correct days', () => {
         const tuesday = dayjs('2020-06-23').valueOf();
+        const wednesday = dayjs('2020-06-24').valueOf();
         const friday = dayjs('2020-06-26').valueOf();
 
         const today = friday;
-
-        const dayBins: DayBins = [300000, -1, 0, 600000, 0];
 
         const tuesdayExposure: ExposureDatum = {
           kind: 'Possible',
@@ -36,6 +35,10 @@ describe('toExposureHistory', () => {
           duration: 600000,
           totalRiskScore: 0,
           transmissionRiskLevel: 0,
+        };
+        const wednesdayExposure: ExposureDatum = {
+          kind: 'NoKnown',
+          date: wednesday,
         };
         const fridayExposure: ExposureDatum = {
           kind: 'Possible',
@@ -45,7 +48,13 @@ describe('toExposureHistory', () => {
           transmissionRiskLevel: 0,
         };
 
-        const result = toExposureHistory(dayBins, {
+        const exposureInfo: ExposureInfo = {
+          [tuesday]: tuesdayExposure,
+          [wednesday]: wednesdayExposure,
+          [friday]: fridayExposure,
+        };
+
+        const result = toExposureHistory(exposureInfo, {
           startDate: today,
           totalDays: 21,
         });
@@ -54,6 +63,8 @@ describe('toExposureHistory', () => {
         const wednesdayResult = result[result.length - 4];
         const fridayResult = result[result.length - 2];
         const saturdayResult = result[result.length - 1];
+
+        console.log(result);
 
         expect(tuesdayResult).toEqual(tuesdayExposure);
         expect(wednesdayResult.kind).toBe('NoKnown');

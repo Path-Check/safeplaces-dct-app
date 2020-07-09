@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 
 import { DateTimeUtils } from '../helpers';
-import { Possible, ExposureDatum } from '../exposureHistory';
+import { Possible, ExposureDatum, ExposureInfo } from '../exposureHistory';
 import {
   toExposureInfo,
   RawExposure,
@@ -13,9 +13,9 @@ describe('toExposureHistory', () => {
     describe('when given an ExposureInfo with no exposures', () => {
       it('it returns a 21 day history of NoKnown Exposures', () => {
         const today = dayjs('2020-06-26').valueOf();
-        const rawExposures: RawExposure[] = [];
+        const exposureInfo: ExposureInfo = {};
 
-        const result = toExposureHistory(rawExposures, {
+        const result = toExposureHistory(exposureInfo, {
           startDate: today,
           totalDays: 21,
         });
@@ -34,23 +34,6 @@ describe('toExposureHistory', () => {
 
         const today = friday;
 
-        const rawExposures: RawExposure[] = [
-          {
-            id: 'tuesdayExposure',
-            date: tuesday,
-            duration: 600000,
-            totalRiskScore: 3,
-            transmissionRiskLevel: 3,
-          },
-          {
-            id: 'fridayExposure',
-            date: friday,
-            duration: 300000,
-            totalRiskScore: 4,
-            transmissionRiskLevel: 7,
-          },
-        ];
-
         const tuesdayExposure: ExposureDatum = {
           kind: 'Possible',
           date: tuesday,
@@ -66,7 +49,12 @@ describe('toExposureHistory', () => {
           transmissionRiskLevel: 7,
         };
 
-        const result = toExposureHistory(rawExposures, {
+        const exposureInfo: ExposureInfo = {
+          [tuesday]: tuesdayExposure,
+          [friday]: fridayExposure,
+        };
+
+        const result = toExposureHistory(exposureInfo, {
           startDate: today,
           totalDays: 21,
         });

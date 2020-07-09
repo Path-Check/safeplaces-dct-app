@@ -12,7 +12,7 @@ import { Images } from '../../app/assets/images';
 
 export default Factory.define<TracingStrategy>(() => ({
   name: 'test-tracing-strategy',
-  exposureEventsStrategyContext: {
+  exposureEventsStrategy: {
     exposureInfoSubscription: () => {
       return { remove: () => {} };
     },
