@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableHighlight,
   TouchableOpacity,
-  Alert
+  Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -88,7 +88,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     onPress,
     description,
     style,
-    textColor
+    textColor,
   }: SettingsListItemProps) => {
     return (
       <TouchableHighlight
@@ -96,7 +96,10 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         style={[styles.listItem, style]}
         onPress={onPress}>
         <View>
-          <Typography style={{...styles.listItemText, ...{ color: textColor }}}>{label}</Typography>
+          <Typography
+            style={{ ...styles.listItemText, ...{ color: textColor } }}>
+            {label}
+          </Typography>
           {description ? (
             <Typography style={styles.descriptionText}>
               {description}
@@ -124,7 +127,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       ],
       { cancelable: false },
     );
-  }
+  };
 
   return (
     <NavigationBarWrapper
