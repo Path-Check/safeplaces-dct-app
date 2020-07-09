@@ -15,13 +15,8 @@ import {
   DEFAULT_CONCERN_TIME_FRAME_MINUTES,
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
-  MIN_CHECK_INTERSECT_INTERVAL,
 } from '../constants/history';
-import {
-  AUTHORITY_SOURCE_SETTINGS,
-  CROSSED_PATHS,
-  LAST_CHECKED,
-} from '../constants/storage';
+import { AUTHORITY_SOURCE_SETTINGS, CROSSED_PATHS } from '../constants/storage';
 import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
@@ -355,17 +350,11 @@ function roundExposure(diffMS, gpsPeriodMS) {
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export async function checkIntersect(
-  healthcareAuthorities,
-  bypassTimer = false,
-) {
+export async function checkIntersect(healthcareAuthorities) {
   console.log(
     `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}; `,
-    `is bypassing timer = ${bypassTimer}`,
   );
-
-  const result = await asyncCheckIntersect(healthcareAuthorities, bypassTimer);
-  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
+  const result = await asyncCheckIntersect(healthcareAuthorities);
   return result;
 }
 
@@ -375,16 +364,7 @@ export async function checkIntersect(
  *
  * Returns the array of day bins (mostly for debugging purposes)
  */
-async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
-  // first things first ... is it time to actually try the intersection?
-  let lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
-  if (
-    !bypassTimer &&
-    lastCheckedMs + MIN_CHECK_INTERSECT_INTERVAL * 60e3 > dayjs().valueOf()
-  ) {
-    return null;
-  }
-
+async function asyncCheckIntersect(healthcareAuthorities) {
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
   let { locationArray, dayBins } = await getTransformedLocalDataAndDayBins(
@@ -435,10 +415,6 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
 
   // store updated cursors
   SetStoreData(AUTHORITY_SOURCE_SETTINGS, localHAData);
-
-  // save off the current time as the last checked time
-  let unixTimeUTC = dayjs().valueOf();
-  SetStoreData(LAST_CHECKED, unixTimeUTC);
 
   return transformDayBinsToExposureInfo(dayBins);
 }
