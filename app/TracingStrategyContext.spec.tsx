@@ -79,8 +79,10 @@ describe('TracingStrategyProvider', () => {
     it('subscribes to exposure info events', async () => {
       const removeSubscriptionMock = jest.fn();
       const strategy = factories.tracingStrategy.build({
-        exposureInfoSubscription: () => {
-          return { remove: removeSubscriptionMock };
+        exposureEventsStrategy: {
+          exposureInfoSubscription: () => {
+            return { remove: removeSubscriptionMock };
+          },
         },
       });
 
