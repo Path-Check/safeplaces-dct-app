@@ -236,7 +236,25 @@ final class ExposureManager: NSObject {
       if let error = error {
         callback([error])
       } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey },
+
+        var keys = (temporaryExposureKeys ?? [])
+
+        // Sort keys (most recent first)
+        keys.sort {
+          $0.rollingStartNumber > $1.rollingStartNumber
+        }
+
+        // Select latest keys
+        if keys.count > Constants.exposureLifetime {
+          keys = Array(keys[0..<Constants.exposureLifetime])
+        }
+
+        // Set transmission risk level according to default vector
+        for i in 0..<keys.count {
+          keys[i].transmissionRiskLevel = Constants.transmissionRiskDefaultVector[i]
+        }
+
+        APIClient.shared.request(DiagnosisKeyListRequest.post(keys.compactMap { $0.asCodableKey },
                                                               [.US]),
                                  requestType: .postKeys) { result in
                                   switch result {
