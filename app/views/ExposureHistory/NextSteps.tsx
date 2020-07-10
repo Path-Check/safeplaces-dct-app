@@ -15,7 +15,7 @@ import {
   AUTHORITY_NAME as healthAuthorityName,
   AUTHORITY_ADVICE_URL,
 } from '../../constants/authorities';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { Colors } from '../../styles';
 
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
