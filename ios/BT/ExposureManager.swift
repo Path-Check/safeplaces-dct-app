@@ -22,6 +22,16 @@ final class ExposureManager: NSObject {
     }
     return true
   }
+
+  private func rollingStartNumber(_ date: Date) -> Int {
+    Int(date.timeIntervalSince1970 / (24 * 60 * 60)) * Constants.intervalsPerRollingPeriod
+  }
+
+  private var minRollingStartNumber: Int {
+    let date = Calendar.current.date(byAdding: .hour, value: -Constants.exposureLifetimeHours, to: Date())!
+    return rollingStartNumber(date)
+  }
+
   
   enum EnabledState: String {
     case ENABLED, DISABLED
@@ -237,24 +247,13 @@ final class ExposureManager: NSObject {
         callback([error])
       } else {
 
-        var keys = (temporaryExposureKeys ?? [])
+        let allKeys = (temporaryExposureKeys ?? [])
 
-        // Sort keys (most recent first)
-        keys.sort {
-          $0.rollingStartNumber > $1.rollingStartNumber
-        }
+        // Filter keys > 350 hrs old
+        let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
 
-        // Select latest keys
-        if keys.count > Constants.exposureLifetime {
-          keys = Array(keys[0..<Constants.exposureLifetime])
-        }
 
-        // Set transmission risk level according to default vector
-        for i in 0..<keys.count {
-          keys[i].transmissionRiskLevel = Constants.transmissionRiskDefaultVector[i]
-        }
-
-        APIClient.shared.request(DiagnosisKeyListRequest.post(keys.compactMap { $0.asCodableKey },
+        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
                                                               [.US]),
                                  requestType: .postKeys) { result in
                                   switch result {
