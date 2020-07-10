@@ -131,7 +131,7 @@ public class MainActivity extends ReactActivity {
       ProvideDiagnosisKeysWorker.scheduleDailyProvideDiagnosisKeys(this);
     } else {
      params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED);
-      ProvideDiagnosisKeysWorker.cancelDailyProvideDiagnosisKeys(this);
+     ProvideDiagnosisKeysWorker.cancelDailyProvideDiagnosisKeys(this);
     }
 
     if(reactContext != null) {
