@@ -6,7 +6,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { useStatusBarEffect } from '../../navigation';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 import { Icons } from '../../assets';
@@ -38,7 +38,9 @@ const NextSteps = (): JSX.Element => {
   const buttonText = t('exposure_history.next_steps.button_text');
 
   const handleOnPressTakeAssessment = () => {
-    Linking.openURL(AUTHORITY_ADVICE_URL);
+    AUTHORITY_ADVICE_URL
+      ? Linking.openURL(AUTHORITY_ADVICE_URL)
+      : navigation.navigate(Screens.SelfAssessment);
   };
 
   return (
@@ -72,7 +74,7 @@ const styles = StyleSheet.create({
   },
   footerText: {
     ...TypographyStyles.footer,
-    marginBottom: 20,
+    marginBottom: Spacing.medium,
   },
   contentText: {
     ...TypographyStyles.mainContent,
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
   },
   button: {
     ...Buttons.largeBlue,
-    padding: 30,
+    padding: Spacing.xxLarge,
     justifyContent: 'space-between',
   },
   buttonText: {
