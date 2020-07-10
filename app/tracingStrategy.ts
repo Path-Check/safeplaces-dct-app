@@ -2,11 +2,11 @@ import { ImageSourcePropType } from 'react-native';
 
 import { TFunction } from 'i18next';
 
-import { ExposureInfoSubscription } from './ExposureHistoryContext';
+import { ExposureEventsStrategy } from './ExposureHistoryContext';
 
 export interface TracingStrategy {
   name: string;
-  exposureInfoSubscription: ExposureInfoSubscription;
+  exposureEventsStrategy: ExposureEventsStrategy;
   permissionsProvider: ({ children }: { children: JSX.Element }) => JSX.Element;
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
   affectedUserFlow: () => JSX.Element;

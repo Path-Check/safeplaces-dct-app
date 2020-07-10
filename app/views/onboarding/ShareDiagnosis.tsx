@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
 import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
@@ -7,23 +8,20 @@ import { isPlatformiOS } from '../../Util';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 
-interface ShareDiagnosisProps {
-  navigation: any;
-}
-
-const ShareDiagnosis = ({ navigation }: ShareDiagnosisProps): JSX.Element => {
+const ShareDiagnosis: FunctionComponent = () => {
+  const navigation = useNavigation();
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
   const gpsNext = () =>
-    navigation.replace(
+    navigation.navigate(
       // Skip notification permissions on android
       isPlatformiOS()
         ? Screens.OnboardingNotificationPermissions
         : Screens.OnboardingLocationPermissions,
     );
 
-  const btNext = () => navigation.replace(Screens.NotificationPermissionsBT);
+  const btNext = () => navigation.navigate(Screens.NotificationPermissionsBT);
 
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 

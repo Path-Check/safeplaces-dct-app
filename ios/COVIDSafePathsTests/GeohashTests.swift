@@ -8,6 +8,7 @@
 
 
 import XCTest
+@testable import GPS
 
 class GeohashTests: XCTestCase {
   func testGeoHash() {

@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 
 import { useStatusBarEffect } from '../../navigation';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
+import { Screens } from '../../navigation';
 
-interface PersonalPrivacyProps {
-  navigation: any;
-}
-
-const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
+const PersonalPrivacy: FunctionComponent = () => {
+  const navigation = useNavigation();
   useStatusBarEffect('dark-content');
   const { t } = useTranslation();
   const { StrategyAssets, StrategyCopy } = useStrategyContent();
@@ -27,7 +26,8 @@ const PersonalPrivacy = ({ navigation }: PersonalPrivacyProps): JSX.Element => {
   };
 
   const explanationScreenActions = {
-    primaryButtonOnPress: () => navigation.replace('NotificatioNDetails'),
+    primaryButtonOnPress: () =>
+      navigation.navigate(Screens.NotificationDetails),
   };
 
   return (

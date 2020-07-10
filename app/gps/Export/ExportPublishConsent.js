@@ -21,7 +21,10 @@ export const ExportPublishConsent = ({ navigation, route }) => {
     try {
       await exportConsentApi(selectedAuthority, true, code);
       setIsConsenting(false);
-      navigation.navigate(Screens.ExportComplete, { selectedAuthority, code });
+      navigation.navigate(Screens.ExportConfirmUpload, {
+        selectedAuthority,
+        code,
+      });
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'), e.message);
       setIsConsenting(false);

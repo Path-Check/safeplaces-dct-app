@@ -1,73 +1,7 @@
 import dayjs from 'dayjs';
 
 import { DateTimeUtils } from './helpers';
-import {
-  calendarDays,
-  toExposureHistory,
-  ExposureDatum,
-  ExposureInfo,
-} from './exposureHistory';
-
-describe('toExposureHistory', () => {
-  describe('when given a 21 day calendar', () => {
-    describe('when given an ExposureInfo with no exposures', () => {
-      it('it returns a 21 day history of NoKnown Exposures', () => {
-        const today = dayjs('2020-06-26').valueOf();
-        const calendar = calendarDays(today, 21);
-        const exposureInfo: ExposureInfo = {};
-
-        const result = toExposureHistory(exposureInfo, calendar);
-
-        expect(result.length).toBe(21);
-        expect(
-          result.every((datum: ExposureDatum) => datum.kind === 'NoKnown'),
-        ).toBe(true);
-      });
-    });
-
-    describe('when given an ExposureInfo with a possible exposure today', () => {
-      it('returns an exposure history with the exposures on the correct days', () => {
-        const tuesday = dayjs('2020-06-23').valueOf();
-        const friday = dayjs('2020-06-26').valueOf();
-
-        const today = friday;
-        const calendar = calendarDays(today, 21);
-
-        const tuesdayExposure: ExposureDatum = {
-          kind: 'Possible',
-          date: tuesday,
-          duration: 600000,
-          totalRiskScore: 3,
-          transmissionRiskLevel: 3,
-        };
-        const fridayExposure: ExposureDatum = {
-          kind: 'Possible',
-          date: friday,
-          duration: 300000,
-          totalRiskScore: 4,
-          transmissionRiskLevel: 7,
-        };
-
-        const exposureInfo: ExposureInfo = {
-          [tuesday]: tuesdayExposure,
-          [friday]: fridayExposure,
-        };
-
-        const result = toExposureHistory(exposureInfo, calendar);
-
-        const tuesdayResult = result[result.length - 5];
-        const wednesdayResult = result[result.length - 4];
-        const fridayResult = result[result.length - 2];
-        const saturdayResult = result[result.length - 1];
-
-        expect(tuesdayResult).toEqual(tuesdayExposure);
-        expect(wednesdayResult.kind).toBe('NoKnown');
-        expect(fridayResult).toEqual(fridayExposure);
-        expect(saturdayResult.kind).toBe('NoKnown');
-      });
-    });
-  });
-});
+import { calendarDays } from './exposureHistory';
 
 describe('calendarDays', () => {
   describe('when today is monday and 21 days are requested', () => {
