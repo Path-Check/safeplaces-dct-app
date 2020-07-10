@@ -269,8 +269,25 @@ final class ExposureManager: NSObject {
     #endif
   }
   
-  func getExposureKeys() {}
+  @objc func getExposureKeys(callback: @escaping RCTResponseSenderBlock) {
+    manager.getDiagnosisKeys { (keys, error) in
+      if let error = error {
+        callback([error, NSNull()])
+      } else {
+        callback([NSNull(), (keys ?? []).map { $0.asDictionary }])
+      }
+    }
+  }
 
+  @objc func storeHMACKey(HMACKey: String, callback: @escaping RCTResponseSenderBlock) {
+    BTSecureStorage.shared.HMACKey = HMACKey
+    if BTSecureStorage.shared.HMACKey == HMACKey {
+      callback([BTSecureStorage.shared.HMACKey])
+      callback([NSNull(), String.genericSuccess])
+    } else {
+      callback([GenericError.unknown, NSNull()])
+    }
+  }
 }
 
 private extension ExposureManager {

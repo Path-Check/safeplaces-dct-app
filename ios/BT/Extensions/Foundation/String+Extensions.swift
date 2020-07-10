@@ -8,6 +8,7 @@ extension String {
   static let keyPathExposureDetectionErrorLocalizedDescription = "exposureDetectionErrorLocalizedDescription"
   static let keyPathDateLastPerformedExposureDetection = "dateLastPerformedExposureDetection"
   static let keyPathExposures = "exposures"
+  static let keyPathHMACKey = "HMACKey"
   static let postKeysUrl = "POST_DIAGNOSIS_KEYS_URL"
   static let downloadBaseUrl = "DOWNLOAD_BASE_URL"
   static let downloadPath = "DOWNLOAD_PATH"
