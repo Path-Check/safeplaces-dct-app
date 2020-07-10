@@ -20,6 +20,7 @@ NativeModules.ExposureEventEmitter = NativeModules.ExposureEventEmitter || {
 };
 
 jest.mock('react-native-pulse');
+jest.mock('react-native-linear-gradient');
 jest.mock('@mauron85/react-native-background-geolocation');
 
 // Silence YellowBox useNativeDriver warning
