@@ -85,7 +85,6 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void detectExposuresNow(Callback callback) {
-        // TODO get callback to share with JS layer
         ExposureNotificationClientWrapper.get(reactContext.getCurrentActivity())
                 .isEnabled().addOnSuccessListener(
                 enabled -> {
