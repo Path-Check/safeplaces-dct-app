@@ -5,6 +5,7 @@ import {
   cleanup,
   render,
 } from '@testing-library/react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { toExposureHistory } from '../../bt/exposureNotifications';
 import { DateTimeUtils } from '../../helpers';
@@ -15,6 +16,8 @@ import History from './History';
 const CALENDAR_LENGTH = 21;
 
 afterEach(cleanup);
+jest.mock('@react-navigation/native');
+(useNavigation as jest.Mock).mockReturnValue({ navigate: jest.fn() });
 
 describe('History', () => {
   it('renders', () => {

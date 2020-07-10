@@ -13,7 +13,7 @@ const gpsExposureEventContext: ExposureEventsStrategy = {
 };
 
 const gpsStrategy: TracingStrategy = {
-  name: 'bt',
+  name: 'gps',
   exposureEventsStrategy: gpsExposureEventContext,
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
