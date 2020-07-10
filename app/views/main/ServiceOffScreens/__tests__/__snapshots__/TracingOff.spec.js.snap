@@ -161,24 +161,25 @@ exports[`tracing off screen matches snapshot 1`] = `
         >
           PathCheck needs location access in Settings to privately save the places you visit
         </Text>
-        <View
+        <TouchableOpacity
           accessibilityLabel="Allow Location Access"
           accessibilityRole="button"
           accessible={true}
-          focusable={true}
-          isTVSelectable={true}
+          activeOpacity={0.2}
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#ffffff",
-              "borderColor": "#ffffff",
-              "borderRadius": 8,
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "opacity": 1,
-              "paddingBottom": 25,
-              "paddingTop": 24,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#ffffff",
+                "borderRadius": 8,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "paddingBottom": 25,
+                "paddingTop": 24,
+              },
+              undefined,
+            ]
           }
         >
           <Text
@@ -203,7 +204,7 @@ exports[`tracing off screen matches snapshot 1`] = `
           >
             Allow Location Access
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   </View>

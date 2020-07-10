@@ -10,18 +10,15 @@ exports[`renders as off by default 1`] = `
     }
   }
 >
-  <RCTSwitch
-    accessibilityRole="button"
-    onTintColor="#41dca4"
-    style={
+  <Switch
+    testID="switch"
+    thumbColor="#ffffff"
+    trackColor={
       Object {
-        "height": 31,
-        "width": 51,
+        "false": "#4e4e4e",
+        "true": "#41dca4",
       }
     }
-    testID="switch"
-    thumbTintColor="#ffffff"
-    tintColor="#4e4e4e"
     value={false}
   />
 </View>
@@ -37,18 +34,15 @@ exports[`renders on 1`] = `
     }
   }
 >
-  <RCTSwitch
-    accessibilityRole="button"
-    onTintColor="#41dca4"
-    style={
+  <Switch
+    testID="switch"
+    thumbColor="#ffffff"
+    trackColor={
       Object {
-        "height": 31,
-        "width": 51,
+        "false": "#4e4e4e",
+        "true": "#41dca4",
       }
     }
-    testID="switch"
-    thumbTintColor="#ffffff"
-    tintColor="#4e4e4e"
     value={true}
   />
 </View>
