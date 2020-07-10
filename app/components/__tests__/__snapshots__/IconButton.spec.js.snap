@@ -10,15 +10,12 @@ exports[`allows size override 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
+  <TouchableOpacity
+    activeOpacity={0.2}
     style={
       Object {
         "alignContent": "center",
         "alignItems": "center",
-        "opacity": 1,
       }
     }
   >
@@ -28,7 +25,7 @@ exports[`allows size override 1`] = `
       width={48}
       xml="<g />"
     />
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -42,16 +39,13 @@ exports[`renders the icon in a touchable opacity 1`] = `
     }
   }
 >
-  <View
+  <TouchableOpacity
     accessibilityLabel="Label"
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
+    activeOpacity={0.2}
     style={
       Object {
         "alignContent": "center",
         "alignItems": "center",
-        "opacity": 1,
       }
     }
   >
@@ -61,6 +55,6 @@ exports[`renders the icon in a touchable opacity 1`] = `
       width={24}
       xml="<g />"
     />
-  </View>
+  </TouchableOpacity>
 </View>
 `;

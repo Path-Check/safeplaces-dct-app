@@ -156,10 +156,8 @@ exports[`HomeScreen renders 1`] = `
             Enable Exposure Notifications to receive information about possible exposures
           </Text>
         </View>
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
+        <TouchableOpacity
+          activeOpacity={0.2}
           style={
             Object {
               "alignItems": "center",
@@ -168,7 +166,6 @@ exports[`HomeScreen renders 1`] = `
               "borderRadius": 8,
               "flexDirection": "row",
               "justifyContent": "center",
-              "opacity": 1,
               "paddingBottom": 25,
               "paddingTop": 24,
               "width": "100%",
@@ -198,7 +195,7 @@ exports[`HomeScreen renders 1`] = `
           >
             Allow Exposure Notifications
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   </View>
