@@ -45,12 +45,14 @@ public class Uris {
     private static final String TAG = "Uris";
     private static final Splitter WHITESPACE_SPLITTER =
             Splitter.onPattern("\\s+").trimResults().omitEmptyStrings();
-    private static final String INDEX_FILE_PATH = "exposureKeyExport/index.txt"; // TODO replace as needed per server implementation
+    //private static final String INDEX_FILE_PATH = "mn/index.txt"; // TODO replace as needed per server implementation
+    private static final String INDEX_FILE_PATH = "test.txt";
     private static final int DEFAULT_BATCH_NUM = 1; // TODO handle batching or remove per server implementation
     private static final String DEFAULT_REGION_CODE = "regionCode"; // TODO handle regions or remove  per server implementation
     private final Context context;
     private final ExposureNotificationSharedPreferences prefs;
     public final Uri baseDownloadUri;
+    public final Uri baseDownloadUriTest;
     public final Uri uploadUri;
 
     public Uris(Context context) {
@@ -58,6 +60,7 @@ public class Uris {
         this.prefs = new ExposureNotificationSharedPreferences(context);
         // These two string resources must be set by gradle.properties.
         baseDownloadUri = Uri.parse(context.getString(R.string.key_server_download_base_uri));
+        baseDownloadUriTest = Uri.parse(context.getString(R.string.key_server_download_base_uri_test));
         uploadUri = Uri.parse(context.getString(R.string.key_server_upload_uri));
     }
 
@@ -113,7 +116,7 @@ public class Uris {
                                 completer.setCancelled();
                             };
 
-                    Uri indexUri = baseDownloadUri.buildUpon().appendEncodedPath(INDEX_FILE_PATH).build();
+                    Uri indexUri = baseDownloadUriTest.buildUpon().appendEncodedPath(INDEX_FILE_PATH).build();
                     Log.d(TAG, "Getting index file from " + indexUri);
                     StringRequest request =
                             new StringRequest(indexUri.toString(), responseListener, errorListener);
