@@ -1,3 +1,4 @@
+import ExposureNotification
 import Foundation
 import RealmSwift
 
@@ -14,10 +15,6 @@ extension ExposureManager {
         }
       }
     case .detectExposuresNow:
-      guard ExposureManager.shared.detectionPermitted else {
-        callback(["Exposure detection error: you must wait until 24 hours have passed since last detection", NSNull()])
-        return
-      }
       detectExposures { error in
         if let error = error {
           callback(["Exposure detection error: \((error as NSError).userInfo)", NSNull()])
@@ -30,6 +27,7 @@ extension ExposureManager {
       ExposureManager.shared.postExposureDetectionErrorNotification()
       callback([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
+      ExposureManager.shared.postNewExposureNotification()
       let exposure = Exposure(id: UUID().uuidString,
                               date: Date().posixRepresentation - Int(TimeInterval.random(in: 0...13)) * 24 * 60 * 60 * 1000,
                               duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
