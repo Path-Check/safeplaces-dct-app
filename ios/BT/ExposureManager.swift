@@ -183,8 +183,7 @@ final class ExposureManager: NSObject {
                   finish(.failure(error))
                   return
                 }
-                // Only store new exposures
-                let newExposures = (exposures ?? []).filter{ !BTSecureStorage.shared.preexistingExposure(for: $0.date.posixRepresentation) }.map { exposure in
+                let newExposures = (exposures ?? []).map { exposure in
                   Exposure(id: UUID().uuidString,
                            date: exposure.date.posixRepresentation,
                            duration: exposure.duration,
@@ -314,13 +313,13 @@ private extension ExposureManager {
   func updateRemainingFileCapacity() {
     guard let lastResetDate =  BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
-      BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileCapacity
+      BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
       return
     }
 
     // Reset remainingDailyFileProcessingCapacity if 24 hours have elapsed since last detection
     if Date().difference(from: lastResetDate, only: .hour) >= 24 {
-      BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileCapacity
+      BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
     }
   }

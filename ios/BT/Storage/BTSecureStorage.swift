@@ -58,12 +58,7 @@ final class BTSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  func preexistingExposure(for posix: Int) -> Bool {
-    let realm = try! Realm(configuration: realmConfig)
-    return !realm.objects(Exposure.self).filter("date = '\(posix)'").isEmpty
-  }
-
-  @Persisted(keyPath: .remainingDailyFileProcessingCapacity, notificationName: .remainingDailyFileProcessingCapacityDidChange, defaultValue: Constants.dailyFileCapacity)
+  @Persisted(keyPath: .remainingDailyFileProcessingCapacity, notificationName: .remainingDailyFileProcessingCapacityDidChange, defaultValue: Constants.dailyFileProcessingCapacity)
   var remainingDailyFileProcessingCapacity: Int
 
   @Persisted(keyPath: .urlOfMostRecentlyDetectedKeyFile, notificationName: .UrlOfMostRecentlyDetectedKeyFileDidChange, defaultValue: .default)
