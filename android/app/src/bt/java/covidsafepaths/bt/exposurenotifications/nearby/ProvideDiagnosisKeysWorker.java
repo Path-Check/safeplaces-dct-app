@@ -137,7 +137,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
                 .setConstraints(
                         new Constraints.Builder()
                                 .setRequiresBatteryNotLow(true)
-                                .setRequiresDeviceIdle(true)
+                                //.setRequiresDeviceIdle(true) commented out for testing purposes.
                                 .setRequiredNetworkType(NetworkType.CONNECTED)
                                 .build())
                 .build();

@@ -1,3 +1,0 @@
-configurations.maybeCreate("default")
-
-artifacts.add("default", file('play-services-nearby-18.0.2-eap.aar'))
