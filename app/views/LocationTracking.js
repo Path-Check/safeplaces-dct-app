@@ -385,6 +385,7 @@ class LocationTracking extends Component {
     return (
       <Button
         label={buttonLabel}
+        small
         onPress={() => buttonFunction()}
         style={styles.buttonContainer}
       />
@@ -475,7 +476,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
   },
   buttonContainer: {
-    width: '100%',
+    width: 'auto',
     height: 'auto',
     marginTop: 24,
     minHeight: 54, // fixes overlaying buttons on really small screens
