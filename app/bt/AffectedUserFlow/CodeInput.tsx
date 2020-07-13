@@ -17,6 +17,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Typography } from '../../components/Typography';
 import { useAffectedUserContext } from './AffectedUserContext';
 import * as API from './verificationAPI';
+import * as NativeModule from '../nativeModule';
+import { calculateHmac, generateKey } from './hmac';
 
 import { Screens } from '../../navigation';
 import {
@@ -51,17 +53,29 @@ const CodeInputScreen = (): JSX.Element => {
     navigation.navigate(Screens.Settings);
   };
 
-  const handleOnPressNext = async () => {
+  const handleOnPressSubmit = async () => {
     setIsLoading(true);
     setErrorMessage(defaultErrorMessage);
     try {
-      const response = await API.postVerificationCode(code);
+      const response = await API.postCode(code);
 
       if (response.kind === 'success') {
         const token = response.body.token;
-        const fakeHMAC = 'abcd1234';
-        API.postVerificationToken(token, fakeHMAC);
-        navigation.navigate(Screens.AffectedUserPublishConsent);
+        const exposureKeys = await NativeModule.getExposureKeys();
+        const hmacKey = await generateKey();
+        NativeModule.storeHMACKey(hmacKey);
+        const hmacDigest = await calculateHmac(exposureKeys, hmacKey);
+
+        const certificateReponse = await API.postTokenAndHmac(
+          token,
+          hmacDigest,
+        );
+
+        if (certificateReponse.kind === 'success') {
+          navigation.navigate(Screens.AffectedUserPublishConsent);
+        } else {
+          setErrorMessage(showCertificateError(certificateReponse.error));
+        }
       } else {
         setErrorMessage(showError(response.error));
       }
@@ -79,6 +93,20 @@ const CodeInputScreen = (): JSX.Element => {
       }
       case 'VerificationCodeUsed': {
         return t('export.error.verification_code_used');
+      }
+      case 'InvalidVerificationUrl': {
+        return 'Invalid Verification Url';
+      }
+      default: {
+        return t('export.error.unknown_code_verification_error');
+      }
+    }
+  };
+
+  const showCertificateError = (error: API.TokenVerificationError): string => {
+    switch (error) {
+      case 'TokenMetaDataMismatch': {
+        return 'token meta data mismatch';
       }
       default: {
         return t('export.error.unknown_code_verification_error');
@@ -137,7 +165,7 @@ const CodeInputScreen = (): JSX.Element => {
 
             <View>
               <TouchableOpacity
-                onPress={handleOnPressNext}
+                onPress={handleOnPressSubmit}
                 accessible
                 accessibilityLabel={t('common.submit')}
                 accessibilityRole='button'
