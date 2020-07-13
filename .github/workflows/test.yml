@@ -3,11 +3,13 @@ name: Test
 on:
   push:
     branches:
+      - develop
       - master
       - bt-release
       - gps-release
   pull_request:
     branches:
+      - develop
       - master
       - bt-release
       - gps-release
