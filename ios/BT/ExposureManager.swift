@@ -119,8 +119,10 @@ final class ExposureManager: NSObject {
         case let .success(newExposures):
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
           BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
-          BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
           BTSecureStorage.shared.remainingDailyFileProcessingCapacity -= processedFileCount
+          if lastProcessedUrlPath != .default {
+            BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
+          }
           detectingExposures = false
           completionHandler?(nil)
         case let .failure(error):
@@ -318,7 +320,7 @@ private extension ExposureManager {
     }
 
     // Reset remainingDailyFileProcessingCapacity if 24 hours have elapsed since last detection
-    if Date().difference(from: lastResetDate, only: .hour) >= 24 {
+    if  Date.hourDifference(from: lastResetDate, to: Date()) > 24 {
       BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
     }
