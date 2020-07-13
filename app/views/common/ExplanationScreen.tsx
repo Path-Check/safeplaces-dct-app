@@ -17,7 +17,6 @@ import { Typography } from '../../components/Typography';
 import {
   Buttons,
   Colors,
-  Layout,
   Spacing,
   Iconography,
   Typography as TypographyStyles,
@@ -105,16 +104,12 @@ const ExplanationScreen = ({
     ...explanationScreenStyles.secondaryButtonContainerStyle,
   };
 
-  const smallScreenWidth = Layout.screenWidth <= Layout.smallScreenWidth;
-
   return (
     <View style={styles.outerContainer}>
-      {smallScreenWidth ? null : (
-        <ImageBackground
-          source={explanationScreenContent.backgroundImage}
-          style={[styles.background, explanationScreenStyles.backgroundStyle]}
-        />
-      )}
+      <ImageBackground
+        source={explanationScreenContent.backgroundImage}
+        style={[styles.background, explanationScreenStyles.backgroundStyle]}
+      />
       <View style={styles.content}>
         <ScrollView
           alwaysBounceVertical={false}
