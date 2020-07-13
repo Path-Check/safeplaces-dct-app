@@ -307,10 +307,12 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
-}
 
-private extension ExposureManager {
+  func urlPathsToProcess(_ urlPaths: [String]) -> [String] {
+    let startIdx = startIndex(for: urlPaths)
+    let endIdx = min(startIdx + BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, urlPaths.count - startIdx)
+    return Array(urlPaths[startIdx..<endIdx])
+  }
 
   func updateRemainingFileCapacity() {
     guard let lastResetDate =  BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
@@ -326,15 +328,13 @@ private extension ExposureManager {
     }
   }
 
+}
+
+private extension ExposureManager {
+
   func startIndex(for urlPaths: [String]) -> Int {
     let path = BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile
     return urlPaths.firstIndex(of: path) ?? 0
-  }
-
-  func urlPathsToProcess(_ urlPaths: [String]) -> [String] {
-    let startIdx = startIndex(for: urlPaths)
-    let endIdx = min(startIdx + BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, urlPaths.count - startIdx)
-    return Array(urlPaths[startIdx..<endIdx])
   }
 
   func notifyUserBlueToothOffIfNeeded() {
