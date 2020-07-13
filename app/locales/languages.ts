@@ -36,13 +36,16 @@ import zh_Hant from './zh_Hant.json';
 // 1. Add the language in Lokalise
 // 2. run: yarn i18n:pull with your lokalise token, see app/locales/pull.sh instructions
 // 3. import xy from `./xy.json` and add the language to the language block
+//
+
+type Locale = string;
 
 /** Fetch the user language override, if any */
-export async function getUserLocaleOverride() {
+export async function getUserLocaleOverride(): Promise<Locale> {
   return await GetStoreData(LANG_OVERRIDE);
 }
 
-export function getLanguageFromLocale(locale) {
+export function getLanguageFromLocale(locale: Locale): Locale {
   const [languageCode] = toIETFLanguageTag(locale).split('-');
   return languageCode;
 }
@@ -52,24 +55,27 @@ export function getLanguageFromLocale(locale) {
  *
  * @param {string} locale
  */
-function toIETFLanguageTag(locale) {
+function toIETFLanguageTag(locale: Locale): Locale {
   return locale.replace('_', '-').toLowerCase();
 }
 
-async function setLocale(locale) {
+async function setLocale(locale: Locale) {
   dayjs.locale(toIETFLanguageTag(locale));
   return await i18next.changeLanguage(locale);
 }
 
-export function useLanguageDirection() {
+type TextDirection = 'ltr' | 'rtl';
+
+export function useLanguageDirection(): TextDirection {
   const { i18n } = useTranslation();
   return i18n.dir();
 }
 
-export async function setUserLocaleOverride(locale) {
+export async function setUserLocaleOverride(locale: Locale): Promise<void> {
   await setLocale(locale);
   await SetStoreData(LANG_OVERRIDE, locale);
 }
+
 /* eslint-disable no-underscore-dangle */
 const PROD_RESOURCES = {
   en: { label: en._display_name, translation: en },
@@ -113,13 +119,13 @@ const config = {
   },
 };
 
-export const initProdLanguages = () => {
+export const initProdLanguages = (): void => {
   i18next.use(initReactI18next).init(config);
 };
 
 initProdLanguages();
 
-export const initDevLanguages = () => {
+export const initDevLanguages = (): void => {
   i18next.use(initReactI18next).init({
     ...config,
     resources: {
@@ -130,26 +136,39 @@ export const initDevLanguages = () => {
 };
 
 /** The known locale list */
-export const getLocaleList = () =>
-  Object.entries(i18next.options.resources)
+export const getLocaleList = (): Array<{
+  value: Locale;
+  label: string;
+}> => {
+  const resources = i18next.options.resources;
+  if (!resources) {
+    return [];
+  }
+  return Object.entries(resources)
     .map(([langCode, lang]) => ({
       value: langCode,
-      label: lang.label,
+      label: lang.label as string,
     }))
-    .sort((a, b) => a.value > b.value);
+    .sort((a, b) => (a.value > b.value ? -1 : 1));
+};
 
 /** A map of locale code to name. */
-export const getLocalNames = () =>
-  Object.entries(i18next.options.resources).reduce(
-    (output, [langCode, lang]) => {
-      output[langCode] = lang.label;
+export const getLocalNames = (): Record<Locale, string> => {
+  const resources = i18next.options.resources;
+  if (!resources) {
+    return {};
+  }
+  return Object.entries(resources).reduce(
+    (output: Record<Locale, string>, [langCode, lang]) => {
+      output[langCode] = lang.label as string;
       return output;
     },
     {},
   );
+};
 
 /** Get the device locale e.g. en_US */
-export function getDeviceLocale() {
+export function getDeviceLocale(): Locale {
   return Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale || // iOS < 13
         NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
@@ -162,7 +181,7 @@ export function getDeviceLocale() {
  * e.g. device locale `en_AU` would find `en`
  *      device locale `pt_BR` would find `pt-BR`
  */
-export function supportedDeviceLanguageOrEnglish() {
+export function supportedDeviceLanguageOrEnglish(): Locale {
   const locale = getDeviceLocale(); // en_US
   const langCode = getLanguageFromLocale(locale); // en
   const localeNames = getLocalNames();
@@ -176,7 +195,11 @@ export function supportedDeviceLanguageOrEnglish() {
 setLocale(supportedDeviceLanguageOrEnglish());
 
 // detect user override
-getUserLocaleOverride().then((locale) => locale && setLocale(locale));
+getUserLocaleOverride().then((locale) => {
+  if (locale) {
+    setLocale(locale);
+  }
+});
 
 export default i18next;
 
