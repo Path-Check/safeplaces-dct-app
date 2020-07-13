@@ -61,7 +61,6 @@ const CodeInputScreen = (): JSX.Element => {
         const token = response.body.token;
         const fakeHMAC = 'abcd1234';
         API.postVerificationToken(token, fakeHMAC);
-
         navigation.navigate(Screens.AffectedUserPublishConsent);
       } else {
         setErrorMessage(showError(response.error));
