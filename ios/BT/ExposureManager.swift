@@ -107,37 +107,13 @@ final class ExposureManager: NSObject {
     // Reset file capacity to 15 if > 24 hours have elapsed since last reset
     updateRemainingFileCapacity()
     
-    func finish(_ result: Result<[Exposure]>) {
-      
-      cleanup()
-      
-      if progress.isCancelled {
-        detectingExposures = false
-        completionHandler?(GenericError.unknown)
-      } else {
-        switch result {
-        case let .success(newExposures):
-          BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
-          BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
-          BTSecureStorage.shared.remainingDailyFileProcessingCapacity -= processedFileCount
-          if lastProcessedUrlPath != .default {
-            BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
-          }
-          detectingExposures = false
-          completionHandler?(nil)
-        case let .failure(error):
-          BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
-          detectingExposures = false
-          postExposureDetectionErrorNotification()
-          completionHandler?(error)
-        }
-      }
-      
-    }
-    
     // Abort if daily file capacity is exceeded
     guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
-      finish(.success([]))
+      finish(.success([]),
+             processedFileCount: processedFileCount,
+             lastProcessedUrlPath: lastProcessedUrlPath,
+             progress: progress,
+             completionHandler: completionHandler)
       return progress
     }
     
@@ -164,7 +140,11 @@ final class ExposureManager: NSObject {
         }
         
       case let .failure(error):
-        finish(.failure(error))
+        self.finish(.failure(error),
+                    processedFileCount: processedFileCount,
+                    lastProcessedUrlPath: lastProcessedUrlPath,
+                    progress: progress,
+                    completionHandler: completionHandler)
         return
       }
       dispatchGroup.notify(queue: .main) {
@@ -176,13 +156,21 @@ final class ExposureManager: NSObject {
             let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
             ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
               if let error = error {
-                finish(.failure(error))
+                self.finish(.failure(error),
+                            processedFileCount: processedFileCount,
+                            lastProcessedUrlPath: lastProcessedUrlPath,
+                            progress: progress,
+                            completionHandler: completionHandler)
                 return
               }
               let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: "User notification")
               ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
                 if let error = error {
-                  finish(.failure(error))
+                  self.finish(.failure(error),
+                              processedFileCount: processedFileCount,
+                              lastProcessedUrlPath: lastProcessedUrlPath,
+                              progress: progress,
+                              completionHandler: completionHandler)
                   return
                 }
                 let newExposures = (exposures ?? []).map { exposure in
@@ -195,17 +183,57 @@ final class ExposureManager: NSObject {
                 if !newExposures.isEmpty {
                   self.postNewExposureNotification()
                 }
-                finish(.success(newExposures))
+                self.finish(.success(newExposures),
+                            processedFileCount: processedFileCount,
+                            lastProcessedUrlPath: lastProcessedUrlPath,
+                            progress: progress,
+                            completionHandler: completionHandler)
               }
             }
           }
         } catch(let error) {
-          finish(.failure(error))
+          self.finish(.failure(error),
+                      processedFileCount: processedFileCount,
+                      lastProcessedUrlPath: lastProcessedUrlPath,
+                      progress: progress,
+                      completionHandler: completionHandler)
         }
       }
     }
-    
     return progress
+  }
+  
+  func finish(_ result: Result<[Exposure]>,
+              processedFileCount: Int,
+              lastProcessedUrlPath: String,
+              progress: Progress,
+              completionHandler: ((Error?) -> Void)? = nil) {
+    
+    cleanup()
+    
+    if progress.isCancelled {
+      detectingExposures = false
+      postExposureDetectionErrorNotification()
+      BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
+      completionHandler?(GenericError.unknown)
+    } else {
+      switch result {
+      case let .success(newExposures):
+        BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
+        BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
+        BTSecureStorage.shared.remainingDailyFileProcessingCapacity -= processedFileCount
+        if lastProcessedUrlPath != .default {
+          BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
+        }
+        detectingExposures = false
+        completionHandler?(nil)
+      case let .failure(error):
+        BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
+        detectingExposures = false
+        postExposureDetectionErrorNotification()
+        completionHandler?(error)
+      }
+    }
   }
   
   @objc func registerBackgroundTask() {
