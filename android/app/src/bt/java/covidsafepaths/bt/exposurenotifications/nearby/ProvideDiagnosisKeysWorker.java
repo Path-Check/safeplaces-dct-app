@@ -86,6 +86,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     @NonNull
     @Override
     public ListenableFuture<Result> startWork() {
+        // TODO WHere work starts
         Log.d(TAG, "Starting worker downloading diagnosis key files and submitting "
                 + "them to the API for exposure detection, then storing the token used.");
         final String token = generateRandomToken();
@@ -133,7 +134,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     public static void scheduleDailyProvideDiagnosisKeys(Context context) {
         WorkManager workManager = WorkManager.getInstance(context);
         PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(
-                ProvideDiagnosisKeysWorker.class, 1, TimeUnit.DAYS)
+                ProvideDiagnosisKeysWorker.class, 24, TimeUnit.HOURS)
                 .setConstraints(
                         new Constraints.Builder()
                                 .setRequiresBatteryNotLow(true)

@@ -36,6 +36,7 @@ public class ExposureNotificationSharedPreferences {
   private static final String NETWORK_MODE_KEY = "ExposureNotificationSharedPreferences.NETWORK_MODE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
   private static final String ATTENUATION_THRESHOLD_2_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
+  private static final String LAST_INDEX_FILE = "ExposureNotificationSharedPreferences.LAST_INDEX_FILE";
 
   private final SharedPreferences sharedPreferences;
 
@@ -112,5 +113,13 @@ public class ExposureNotificationSharedPreferences {
 
   public void setAttenuationThreshold2(int threshold) {
     sharedPreferences.edit().putInt(ATTENUATION_THRESHOLD_2_KEY, threshold).commit();
+  }
+
+  public String getLastIndexFile() {
+    return sharedPreferences.getString(LAST_INDEX_FILE, "");
+  }
+
+  public void setLastIndexFile(String file) {
+    sharedPreferences.edit().putString(LAST_INDEX_FILE, file).commit();
   }
 }
