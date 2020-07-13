@@ -95,7 +95,7 @@ exports[`renders correctly 1`] = `
     <RCTScrollView
       contentContainerStyle={
         Object {
-          "backgroundColor": "#F7F8FF",
+          "backgroundColor": "#FFF",
           "flex": 1,
           "flexDirection": "column",
           "paddingHorizontal": 26,
@@ -107,7 +107,7 @@ exports[`renders correctly 1`] = `
         <View
           style={
             Object {
-              "flex": 4,
+              "flex": 1,
             }
           }
         >
