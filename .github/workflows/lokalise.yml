@@ -2,7 +2,6 @@ name: i18n
 
 on:
   push:
-    branches: [develop]
     paths:
       - app/locales/en.json
       - app/locales/eula/en.html

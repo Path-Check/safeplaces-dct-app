@@ -3,7 +3,6 @@ name: Test
 on:
   push:
     branches:
-      - develop
       - master
       - bt-release
       - gps-release

@@ -2,7 +2,6 @@ name: i18n
 
 on:
   push:
-    branches: [develop]
     paths:
       - app/locales/en.json
       - app/locales/eula/en.html
@@ -11,7 +10,6 @@ on:
       - .github/workflows/*.yml
       - app/locales/*.sh
   pull_request:
-    branches: [develop]
     paths:
       - app/locales/en.json
       - app/locales/eula/en.html
