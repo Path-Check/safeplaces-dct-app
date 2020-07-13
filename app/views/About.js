@@ -10,7 +10,7 @@ import {
   Alert,
   TouchableWithoutFeedback,
 } from 'react-native';
-import { getVersion } from 'react-native-device-info';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
 
 import { useStrategyContent } from '../TracingStrategyContext';
 import { NavigationBarWrapper, Typography } from '../components';
@@ -20,7 +20,7 @@ import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleA
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
-const APP_VERSION = getVersion();
+const APP_VERSION = `${getVersion()}(${getBuildNumber()})`;
 
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
