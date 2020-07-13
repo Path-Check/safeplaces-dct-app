@@ -77,6 +77,7 @@
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B57BA02724A3CD3F00FBAA05 /* KeySubmissionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */; };
 		B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* ENPermissionsModule.m */; };
+		B5A6FD6E24BC9E69007D328C /* ExposureManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */; };
 		B5C9723024B8A909007F4C0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9722F24B8A909007F4C0B /* Constants.swift */; };
 		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
 		B5E79437249E666B00BD8596 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E79436249E666B00BD8596 /* Array+Extensions.swift */; };
@@ -327,6 +328,7 @@
 		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeySubmissionModule.m; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* ENPermissionsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENPermissionsModule.m; sourceTree = "<group>"; };
+		B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManagerTests.swift; sourceTree = "<group>"; };
 		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		B5C9722F24B8A909007F4C0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExposureManager+Extensions.swift"; sourceTree = "<group>"; };
@@ -483,6 +485,7 @@
 				00E356F01AD99517003FC87E /* Supporting Files */,
 				271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */,
 				271089AF24698720009AC76F /* LocationTests.swift */,
+				B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */,
 				68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */,
 				68D8971924809F9C0091A254 /* GeohashTests.swift */,
 				68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */,
@@ -1428,6 +1431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5A6FD6E24BC9E69007D328C /* ExposureManagerTests.swift in Sources */,
 				C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1834,7 +1838,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6R7GW6VJ2A;
@@ -1987,7 +1991,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6R7GW6VJ2A;
@@ -2183,7 +2187,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.mn.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "pathcheck-mn-bt-appstore";
+				PROVISIONING_PROFILE_SPECIFIER = PathCheckAppStore;
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2201,7 +2205,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2230,7 +2234,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2427,7 +2431,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -2583,7 +2587,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2769,7 +2773,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -2921,7 +2925,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3106,7 +3110,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -3258,7 +3262,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3443,7 +3447,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
@@ -3595,7 +3599,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
 				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

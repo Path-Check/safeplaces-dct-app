@@ -14,11 +14,11 @@ final class ExposureManager: NSObject {
   let manager = ENManager()
   
   var detectingExposures = false
-
+  
   private func rollingStartNumber(_ date: Date) -> Int {
     Int(date.timeIntervalSince1970 / (24 * 60 * 60)) * Constants.intervalsPerRollingPeriod
   }
-
+  
   private var minRollingStartNumber: Int {
     let date = Calendar.current.date(byAdding: .hour, value: -Constants.exposureLifetimeHours, to: Date())!
     return rollingStartNumber(date)
@@ -92,10 +92,10 @@ final class ExposureManager: NSObject {
   @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
     
     let progress = Progress()
-
+    
     var lastProcessedUrlPath: String = .default
     var processedFileCount: Int = 0
-
+    
     // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
     guard !detectingExposures else {
       completionHandler?(GenericError.unknown)
@@ -103,14 +103,14 @@ final class ExposureManager: NSObject {
     }
     
     detectingExposures = true
-
+    
     // Reset file capacity to 15 if > 24 hours have elapsed since last reset
     updateRemainingFileCapacity()
-
+    
     func finish(_ result: Result<[Exposure]>) {
       
       cleanup()
-
+      
       if progress.isCancelled {
         detectingExposures = false
         completionHandler?(GenericError.unknown)
@@ -119,8 +119,10 @@ final class ExposureManager: NSObject {
         case let .success(newExposures):
           BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
           BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
-          BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
           BTSecureStorage.shared.remainingDailyFileProcessingCapacity -= processedFileCount
+          if lastProcessedUrlPath != .default {
+            BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
+          }
           detectingExposures = false
           completionHandler?(nil)
         case let .failure(error):
@@ -132,16 +134,16 @@ final class ExposureManager: NSObject {
       }
       
     }
-
+    
     // Abort if daily file capacity is exceeded
     guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
       finish(.success([]))
       return progress
     }
-
+    
     APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
       let dispatchGroup = DispatchGroup()
-
+      
       switch result {
       case let .success(indexFileString):
         let remoteURLs = indexFileString.gaenFilePaths
@@ -160,7 +162,7 @@ final class ExposureManager: NSObject {
             dispatchGroup.leave()
           }
         }
-
+        
       case let .failure(error):
         finish(.failure(error))
         return
@@ -169,7 +171,7 @@ final class ExposureManager: NSObject {
         do {
           try self.downloadedPackages.unpack { urls in
             self.localUncompressedURLs = urls
-
+            
             // TODO: Fetch configuration from API
             let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
             ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
@@ -232,7 +234,7 @@ final class ExposureManager: NSObject {
       self?.scheduleBackgroundTaskIfNeeded()
     }
   }
-
+  
   @objc func scheduleBackgroundTaskIfNeeded() {
     guard ENManager.authorizationStatus == .authorized else { return }
     let taskRequest = BGProcessingTaskRequest(identifier: ExposureManager.backgroundTaskIdentifier)
@@ -243,19 +245,19 @@ final class ExposureManager: NSObject {
       print("Unable to schedule background task: \(error)")
     }
   }
-
+  
   @objc func getAndPostDiagnosisKeys(callback: @escaping RCTResponseSenderBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         callback([error])
       } else {
-
+        
         let allKeys = (temporaryExposureKeys ?? [])
-
+        
         // Filter keys > 350 hrs old
         let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
-
-
+        
+        
         APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
                                                               [.US]),
                                  requestType: .postKeys) { result in
@@ -269,11 +271,11 @@ final class ExposureManager: NSObject {
       }
     }
   }
-
+  
   func postExposureDetectionErrorNotification() {
     #if DEBUG
     let identifier = String.exposureDetectionErrorNotificationIdentifier
-
+    
     let content = UNMutableNotificationContent()
     content.title = String.exposureDetectionErrorNotificationTitle.localized
     content.body = String.exposureDetectionErrorNotificationBody.localized
@@ -288,10 +290,10 @@ final class ExposureManager: NSObject {
     }
     #endif
   }
-
+  
   func postNewExposureNotification() {
     let identifier = String.exposureDetectionErrorNotificationIdentifier
-
+    
     let content = UNMutableNotificationContent()
     content.title = String.newExposureNotificationTitle.localized
     content.body = String.newExposureNotificationBody.localized
@@ -306,35 +308,38 @@ final class ExposureManager: NSObject {
     }
   }
   
-}
-
-private extension ExposureManager {
-
+  func urlPathsToProcess(_ urlPaths: [String]) -> [String] {
+    let startIdx = startIndex(for: urlPaths)
+    let endIdx = min(startIdx + BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, urlPaths.count)
+    return Array(urlPaths[startIdx..<endIdx])
+  }
+  
   func updateRemainingFileCapacity() {
     guard let lastResetDate =  BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
       BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
       return
     }
-
+    
     // Reset remainingDailyFileProcessingCapacity if 24 hours have elapsed since last detection
-    if Date().difference(from: lastResetDate, only: .hour) >= 24 {
+    if  Date.hourDifference(from: lastResetDate, to: Date()) > 24 {
       BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
     }
   }
+  
+}
 
+private extension ExposureManager {
+  
   func startIndex(for urlPaths: [String]) -> Int {
     let path = BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile
-    return urlPaths.firstIndex(of: path) ?? 0
+    if let lastIdx = urlPaths.firstIndex(of: path) {
+      return min(lastIdx + 1, urlPaths.count)
+    }
+    return 0
   }
-
-  func urlPathsToProcess(_ urlPaths: [String]) -> [String] {
-    let startIdx = startIndex(for: urlPaths)
-    let endIdx = min(startIdx + BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, urlPaths.count - startIdx)
-    return Array(urlPaths[startIdx..<endIdx])
-  }
-
+  
   func notifyUserBlueToothOffIfNeeded() {
     let identifier = String.bluetoothNotificationIdentifier
     
