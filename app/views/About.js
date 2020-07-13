@@ -23,8 +23,13 @@ import { isGPS } from '../COVIDSafePathsConfig';
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
 const VERSION = getVersion();
 
+// Append "ALPHA" to our iOS builds that are 1.0.0, as we use
+// a separate Alpha TestFlight that is always 1.0.0.
+// On android we include "ALPHA" directly in the version name.
 const isAlpha = VERSION === '1.0.0' && isGPS;
-const APP_VERSION = `${isAlpha && 'ALPHA '}${VERSION} (${getBuildNumber()})`;
+const APP_VERSION = `${
+  isAlpha && Platform === 'iOS' ? 'ALPHA' : ''
+}${VERSION} (${getBuildNumber()})`;
 
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
