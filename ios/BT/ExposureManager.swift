@@ -89,7 +89,7 @@ final class ExposureManager: NSObject {
   /// Local urls of the bin/sig files from each archive
   var localUncompressedURLs = [URL]()
   
-  @discardableResult func detectExposures(completionHandler: ((Error?) -> Void)? = nil) -> Progress {
+  @discardableResult func detectExposures(completionHandler: @escaping ((Error?) -> Void)) -> Progress {
     
     let progress = Progress()
     
@@ -98,7 +98,7 @@ final class ExposureManager: NSObject {
     
     // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
     guard !detectingExposures else {
-      completionHandler?(GenericError.unknown)
+      completionHandler(GenericError.unknown)
       return progress
     }
     
@@ -207,7 +207,7 @@ final class ExposureManager: NSObject {
               processedFileCount: Int,
               lastProcessedUrlPath: String,
               progress: Progress,
-              completionHandler: ((Error?) -> Void)? = nil) {
+              completionHandler: ((Error?) -> Void)) {
     
     cleanup()
     
@@ -215,23 +215,23 @@ final class ExposureManager: NSObject {
       detectingExposures = false
       postExposureDetectionErrorNotification()
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
-      completionHandler?(GenericError.unknown)
+      completionHandler(GenericError.unknown)
     } else {
       switch result {
       case let .success(newExposures):
         BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
-        BTSecureStorage.shared.exposures.append(objectsIn: newExposures)
         BTSecureStorage.shared.remainingDailyFileProcessingCapacity -= processedFileCount
         if lastProcessedUrlPath != .default {
           BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
         }
+        BTSecureStorage.shared.storeExposures(newExposures)
         detectingExposures = false
-        completionHandler?(nil)
+        completionHandler(nil)
       case let .failure(error):
         BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
         detectingExposures = false
         postExposureDetectionErrorNotification()
-        completionHandler?(error)
+        completionHandler(error)
       }
     }
   }
