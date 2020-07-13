@@ -15,6 +15,11 @@ import gpsStrategy from './app/gps';
 import BackgroundTaskService from './app/services/BackgroundTaskService';
 import { isGPS } from './app/COVIDSafePathsConfig';
 
+//This is a hack because can't find the reason that Config.TRACING_STRATEGY is underined here when running android-bt
+if (typeof Config.TRACING_STRATEGY === 'undefined'){
+   Config.TRACING_STRATEGY = 'bt';
+}
+
 const determineTracingStrategy = () => {
   switch (Config.TRACING_STRATEGY) {
     case 'gps': {
