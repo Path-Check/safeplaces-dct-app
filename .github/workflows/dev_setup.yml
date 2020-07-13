@@ -6,7 +6,6 @@ on:
     paths:
       - 'dev_setup.sh'
   pull_request:
-    branches: [develop]
     paths:
       - 'dev_setup.sh'
 
@@ -58,4 +57,3 @@ jobs:
 
       - name: Bundle iOS JS
         run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios --verbose
-
