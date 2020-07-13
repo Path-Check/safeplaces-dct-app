@@ -28,7 +28,7 @@ const VERSION = getVersion();
 // On android we include "ALPHA" directly in the version name.
 const isAlpha = VERSION === '1.0.0' && isGPS;
 const APP_VERSION = `${
-  isAlpha && Platform === 'iOS' ? 'ALPHA' : ''
+  isAlpha && Platform.OS === 'ios' ? 'ALPHA ' : ''
 }${VERSION} (${getBuildNumber()})`;
 
 export const AboutScreen = ({ navigation }) => {
