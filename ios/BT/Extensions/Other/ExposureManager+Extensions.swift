@@ -33,9 +33,7 @@ extension ExposureManager {
                               duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      let exposures = BTSecureStorage.shared.exposures
-      exposures.append(exposure)
-      BTSecureStorage.shared.exposures = exposures
+      BTSecureStorage.shared.storeExposures([exposure])
       callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
     case .resetExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default

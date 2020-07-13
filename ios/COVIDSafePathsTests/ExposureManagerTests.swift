@@ -1,5 +1,6 @@
 import Foundation
 
+import RealmSwift
 import XCTest
 @testable import BT
 
@@ -157,7 +158,10 @@ mn/1593460800-1593475200-00022.zip
     BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
 
 
-    ExposureManager.shared.finish(.success([]), processedFileCount: 4, lastProcessedUrlPath: "mn/1593460800-1593475200-00022.zip", progress: Progress())
+    ExposureManager.shared.finish(.success([]),
+                                  processedFileCount: 4,
+                                  lastProcessedUrlPath: "mn/1593460800-1593475200-00022.zip",
+                                  progress: Progress()) { _ in }
 
     // remainingDailyFileProcessingCapacity decreases, urlOfMostRecentlyDetectedKeyFile is stored
     XCTAssertEqual(BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile, "mn/1593460800-1593475200-00022.zip")
@@ -165,7 +169,7 @@ mn/1593460800-1593475200-00022.zip
 
     // ----------------
 
-    ExposureManager.shared.finish(.success([]), processedFileCount: 8, lastProcessedUrlPath: "mn/1593460800-1593475200-00023.zip", progress: Progress())
+    ExposureManager.shared.finish(.success([]), processedFileCount: 8, lastProcessedUrlPath: "mn/1593460800-1593475200-00023.zip", progress: Progress()) { _ in }
 
     // remainingDailyFileProcessingCapacity decreases, urlOfMostRecentlyDetectedKeyFile is stored
     XCTAssertEqual(BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile, "mn/1593460800-1593475200-00023.zip")
@@ -174,7 +178,10 @@ mn/1593460800-1593475200-00022.zip
     // ----------------
 
     // remainingDailyFileProcessingCapacity does not decrease, urlOfMostRecentlyDetectedKeyFile is not stored if empty string
-    ExposureManager.shared.finish(.success([]), processedFileCount: 0, lastProcessedUrlPath: .default, progress: Progress())
+    ExposureManager.shared.finish(.success([]),
+                                  processedFileCount: 0,
+                                  lastProcessedUrlPath: .default,
+                                  progress: Progress()) { _ in }
 
     XCTAssertEqual(BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile, "mn/1593460800-1593475200-00023.zip")
     XCTAssertEqual(BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, 3)
@@ -185,7 +192,10 @@ mn/1593460800-1593475200-00022.zip
     // Setup
     BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
     BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = "mn/1593460800-1593475200-00022.zip"
-    ExposureManager.shared.finish(.failure(GenericError.unknown), processedFileCount: 4, lastProcessedUrlPath: "invalid", progress: Progress())
+    ExposureManager.shared.finish(.failure(GenericError.unknown),
+                                  processedFileCount: 4,
+                                  lastProcessedUrlPath: "invalid",
+                                  progress: Progress()) { _ in }
 
     // remainingDailyFileProcessingCapacity does not decrease, urlOfMostRecentlyDetectedKeyFile is not stored
     XCTAssertEqual(BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile, "mn/1593460800-1593475200-00022.zip")
@@ -199,13 +209,34 @@ mn/1593460800-1593475200-00022.zip
     progress.cancel()
     BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
     BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = "mn/1593460800-1593475200-00022.zip"
-    ExposureManager.shared.finish(.failure(GenericError.unknown), processedFileCount: 4, lastProcessedUrlPath: "invalid", progress: progress)
+    ExposureManager.shared.finish(.failure(GenericError.unknown), processedFileCount: 4,
+                                  lastProcessedUrlPath: "invalid",
+                                  progress: progress) { _ in }
 
     // remainingDailyFileProcessingCapacity does not decrease, urlOfMostRecentlyDetectedKeyFile is not stored
     XCTAssertEqual(BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile, "mn/1593460800-1593475200-00022.zip")
     XCTAssertEqual(BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, Constants.dailyFileProcessingCapacity)
   }
-  
+
+  func testExposureStorage() {
+
+    // Setup
+    BTSecureStorage.shared.resetUserState() { _ in }
+
+    XCTAssertEqual(BTSecureStorage.shared.userState.exposures.count, 0)
+
+    let exposure = Exposure(id: UUID().uuidString,
+                            date: Date().posixRepresentation - Int(TimeInterval.random(in: 0...13)) * 24 * 60 * 60 * 1000,
+                            duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
+                            totalRiskScore: .random(in: 1...8),
+                            transmissionRiskLevel: .random(in: 0...7))
+    ExposureManager.shared.finish(.success([exposure]),
+                                  processedFileCount: 4,
+                                  lastProcessedUrlPath: "",
+                                  progress: Progress()) { _ in }
+    XCTAssertEqual(BTSecureStorage.shared.userState.exposures.count, 1)
+  }
+
 }
 
 
