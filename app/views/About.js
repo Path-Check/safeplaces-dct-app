@@ -18,9 +18,13 @@ import { NavigationBarWrapper, Typography } from '../components';
 import { useDispatch } from 'react-redux';
 import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
+import { isGPS } from '../COVIDSafePathsConfig';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
-const APP_VERSION = `${getVersion()}(${getBuildNumber()})`;
+const VERSION = getVersion();
+
+const isAlpha = VERSION === '1.0.0' && isGPS;
+const APP_VERSION = `${isAlpha && 'ALPHA '}${VERSION} (${getBuildNumber()})`;
 
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
