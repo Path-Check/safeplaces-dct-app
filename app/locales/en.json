@@ -118,7 +118,10 @@
   "exposure_datum": {
     "possible": {
       "duration": "Possible Exposure Time: {{duration}}",
-      "explanation": "For {{duration}}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.",
+      "explanation": {
+        "gps": "For {{duration}} throughout this day, your phone was within 100 feet of someone who was later diagnosed with COVID-19.",
+        "bt": "For {{duration}}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis."
+      },
       "what_next": "What should I do next?"
     },
     "no_known": {
