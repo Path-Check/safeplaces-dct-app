@@ -19,6 +19,7 @@ export default function Index({ navigation: { navigate, goBack } }) {
           navigate('Details', {
             source: { uri: url },
             textFirstDialog: t('label.dialog_advice'),
+            isSponsorsScreen: true,
           })
         }>
         <Card style={styles.imageContainer}>

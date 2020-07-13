@@ -1,16 +1,21 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 
-const activityIndicatorLoadingView = () => {
+import Colors from '../../constants/colors';
+
+const activityIndicatorLoadingView = isSponsorsScreen => {
   //making a view to show to while loading the webpage
+
+  const contentPosition = isSponsorsScreen ? 'flex-start' : 'center';
+
   return (
     <ActivityIndicator
-      color='#009688'
+      color={Colors.BLUE_RIBBON}
       size='large'
       style={{
         backgroundColor: 'white',
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: contentPosition,
       }}
     />
   );
