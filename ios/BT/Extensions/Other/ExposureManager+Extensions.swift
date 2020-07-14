@@ -45,7 +45,7 @@ extension ExposureManager {
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       callback([NSNull(), "Exposure Detection Error: "])
     case .getAndPostDiagnosisKeys:
-      getAndPostDiagnosisKeys(callback: callback)
+      getAndPostDiagnosisKeysDebug(callback: callback)
     case .resetExposures:
       BTSecureStorage.shared.exposures = List<Exposure>()
       callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures.count)"])
@@ -53,23 +53,6 @@ extension ExposureManager {
       let enabled = manager.exposureNotificationEnabled ? false : true
       requestExposureNotificationAuthorization(enabled: enabled) { result in
         callback([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
-      }
-    }
-  }
-
-  func getAndPostTestDiagnosisKeys(completion: @escaping (Error?) -> Void) {
-    manager.getTestDiagnosisKeys { temporaryExposureKeys, error in
-      if let error = error {
-        completion(error)
-      } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .postKeys) { result in
-          switch result {
-          case .success:
-            completion(nil)
-          case .failure(let error):
-            completion(error)
-          }
-        }
       }
     }
   }
