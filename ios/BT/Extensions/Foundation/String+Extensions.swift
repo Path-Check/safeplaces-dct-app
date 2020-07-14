@@ -17,6 +17,7 @@ extension String {
   static let keyPathExposureDetectionErrorLocalizedDescription = "exposureDetectionErrorLocalizedDescription"
   static let keyPathdateLastPerformedFileCapacityReset = "dateLastPerformedFileCapacityReset"
   static let keyPathExposures = "exposures"
+  static let keyPathHMACKey = "HMACKey"
 
   // .env
   static let postKeysUrl = "POST_DIAGNOSIS_KEYS_URL"

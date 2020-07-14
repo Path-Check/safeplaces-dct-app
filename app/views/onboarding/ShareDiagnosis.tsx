@@ -13,16 +13,22 @@ const ShareDiagnosis: FunctionComponent = () => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
-  const gpsNext = () =>
-    navigation.navigate(
+  const gpsNext = () => {
+    return navigation.navigate(
       // Skip notification permissions on android
       isPlatformiOS()
         ? Screens.OnboardingNotificationPermissions
         : Screens.OnboardingLocationPermissions,
     );
+  };
 
-  const btNext = () => navigation.navigate(Screens.NotificationPermissionsBT);
-
+  const btNext = () => {
+    navigation.navigate(
+      isPlatformiOS()
+        ? Screens.NotificationPermissionsBT
+        : Screens.EnableExposureNotifications,
+    );
+  };
   const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   const explanationScreenContent = {
