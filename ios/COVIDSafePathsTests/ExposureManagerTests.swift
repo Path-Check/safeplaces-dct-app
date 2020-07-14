@@ -232,9 +232,16 @@ mn/1593460800-1593475200-00022.zip
                             transmissionRiskLevel: .random(in: 0...7))
     ExposureManager.shared.finish(.success([exposure]),
                                   processedFileCount: 4,
-                                  lastProcessedUrlPath: "",
+                                  lastProcessedUrlPath: .default,
                                   progress: Progress()) { _ in }
     XCTAssertEqual(BTSecureStorage.shared.userState.exposures.count, 1)
+  }
+
+  func testInitialFileCapacity() {
+
+    // Setup
+    BTSecureStorage.shared.resetUserState() { _ in }
+    XCTAssertEqual(BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, Constants.dailyFileProcessingCapacity)
   }
 
 }
