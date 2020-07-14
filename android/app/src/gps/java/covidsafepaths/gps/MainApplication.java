@@ -91,8 +91,11 @@ public class MainApplication extends Application implements ReactApplication {
   private void initializeGeolocationTransformer() {
     BackgroundGeolocationFacade.setLocationTransform((context, location) -> {
 
-      // Save Location in encrypted realm db
-      SecureStorage.INSTANCE.saveDeviceLocation(location);
+      // filter out (0,0) locations
+      if (Math.abs(location.getLatitude()) > 1e-5 && Math.abs(location.getLongitude()) > 1e-5) {
+        // Save Location in encrypted realm db
+        SecureStorage.INSTANCE.saveDeviceLocation(location);
+      }
 
       // Always return null. We never want to store data in the libraries SQLite DB
       return null;
