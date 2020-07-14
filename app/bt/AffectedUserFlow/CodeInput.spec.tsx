@@ -49,10 +49,11 @@ describe('CodeInputScreen', () => {
         .spyOn(API, 'postCode')
         .mockResolvedValue(successTokenResponse);
       jest.spyOn(NativeModule, 'getExposureKeys').mockResolvedValue([]);
-      jest.spyOn(Hmac, 'generateKey').mockResolvedValueOnce('key');
-      jest.spyOn(NativeModule, 'storeHMACKey').mockResolvedValueOnce();
       const hmacDigest = 'hmacDigest';
-      jest.spyOn(Hmac, 'calculateHmac').mockResolvedValueOnce(hmacDigest);
+      const hmacKey = 'hmacKey';
+      jest
+        .spyOn(Hmac, 'calculateHmac')
+        .mockResolvedValueOnce([hmacDigest, hmacKey]);
       const certificateReponse = {
         kind: 'success' as const,
         body: {

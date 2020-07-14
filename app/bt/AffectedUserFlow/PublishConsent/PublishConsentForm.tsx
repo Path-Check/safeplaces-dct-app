@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { FunctionComponent, useState } from 'react';
 import {
   ScrollView,
+  Alert,
   ImageBackground,
   TouchableOpacity,
   StyleSheet,
@@ -11,44 +12,49 @@ import { SvgXml } from 'react-native-svg';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 
-import { Button } from '../../components/Button';
-import { Typography } from '../../components/Typography';
-import { useStrategyContent } from '../../TracingStrategyContext';
-import { useStatusBarEffect } from '../../navigation';
-import * as BTNativeModule from '../nativeModule';
+import { Button } from '../../../components/Button';
+import { Typography } from '../../../components/Typography';
+import * as BTNativeModule from '../../nativeModule';
 
-import { Screens } from '../../navigation';
-import { Images } from '../../assets';
+import { Screens } from '../../../navigation';
+import { Icons, Images } from '../../../assets';
 import {
   Colors,
   Spacing,
   Buttons,
   Iconography,
   Typography as TypographyStyles,
-} from '../../styles';
+} from '../../../styles';
 
-const PublishConsent = (): JSX.Element => {
-  useStatusBarEffect('dark-content');
+interface PublishConsentFormProps {
+  hmacKey: string;
+  certificate: string;
+}
+
+const PublishConsentForm: FunctionComponent<PublishConsentFormProps> = ({
+  hmacKey,
+  certificate,
+}) => {
   const navigation = useNavigation();
-  const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
-
-  const { StrategyCopy, StrategyAssets } = useStrategyContent();
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleOnPressConfirm = async () => {
     setIsLoading(true);
-    const cb = (_errorMessage: string, _successMessage: string) => {
-      navigation.navigate(Screens.AffectedUserComplete);
+    try {
+      await BTNativeModule.submitDiagnosisKeys(certificate, hmacKey);
       setIsLoading(false);
-    };
-    BTNativeModule.submitDiagnosisKeys(cb);
+      navigation.navigate(Screens.AffectedUserComplete);
+    } catch (e) {
+      setIsLoading(false);
+      Alert.alert(t('common.something_went_wrong'), e.message);
+    }
   };
 
   const handleOnPressCancel = () => {
     navigation.navigate(Screens.Settings);
   };
 
-  const title = StrategyCopy.exportPublishTitle;
+  const title = t('export.publish_consent_title_bluetooth');
   const body = t('export.publish_consent_body_bluetooth');
 
   return (
@@ -61,7 +67,7 @@ const PublishConsent = (): JSX.Element => {
           contentContainerStyle={styles.contentContainer}>
           <View style={styles.icon}>
             <SvgXml
-              xml={StrategyAssets.exportPublishIcon}
+              xml={Icons.Bell}
               width={Iconography.small}
               height={Iconography.small}
             />
@@ -135,4 +141,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PublishConsent;
+export default PublishConsentForm;
