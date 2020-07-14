@@ -10,15 +10,21 @@
 
 RCT_EXPORT_MODULE();
 
-RCT_EXPORT_METHOD(storeHMACKey: (NSString *)HMACKey withCallback:(RCTResponseSenderBlock)callback) {
-  [[ExposureManager shared] storeHMACKeyWithHMACKey:HMACKey callback:callback];
-}
-
 RCT_REMAP_METHOD(fetchExposureKeys,
-                fetchExposureKeysWithResolver:(RCTPromiseResolveBlock)resolve
-                rejecter:(RCTPromiseRejectBlock)reject)
+                 fetchExposureKeysWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
 {
   [[ExposureManager shared] fetchExposureKeysWithResolve:resolve reject:reject];
 }
+
+RCT_REMAP_METHOD(postDiagnosisKeys,
+                 certificate: (NSString *)certificate
+                 hmacKey: (NSString *)HMACKey
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[ExposureManager shared] getAndPostDiagnosisKeysWithCertificate:certificate HMACKey:HMACKey resolve:resolve reject:reject];
+}
+
 
 @end

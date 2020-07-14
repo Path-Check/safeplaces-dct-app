@@ -37,6 +37,10 @@ extension String {
 
   // JS Layer
   static let genericSuccess = "success"
+  
+  // ErrorCodes
+  static let networkFailure = "network_request_error"
+  static let noExposureKeysFound = "no_exposure_keys_found"
 
   // Computed Properties
   var gaenFilePaths: [String] {

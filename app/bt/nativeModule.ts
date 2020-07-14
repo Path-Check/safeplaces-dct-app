@@ -72,22 +72,8 @@ export const getCurrentENPermissionsStatus = async (
   });
 };
 
-// Key Submission Module
-const keySubmissionModule = NativeModules.KeySubmissionModule;
-
-export const submitDiagnosisKeys = async (
-  cb: (errorMessage: string, successMessage: string) => void,
-): Promise<void> => {
-  keySubmissionModule.postDiagnosisKeys(cb);
-};
-
 // Exposure Key Module
 const exposureKeyModule = NativeModules.ExposureKeyModule;
-
-export const getExposureKeys = async (): Promise<ExposureKey[]> => {
-  const keys: RawExposureKey[] = await exposureKeyModule.fetchExposureKeys();
-  return keys.map(toExposureKey);
-};
 
 interface RawExposureKey {
   key: null | string;
@@ -95,6 +81,11 @@ interface RawExposureKey {
   rollingStartNumber: number;
   transmissionRisk: number;
 }
+
+export const getExposureKeys = async (): Promise<ExposureKey[]> => {
+  const keys: RawExposureKey[] = await exposureKeyModule.fetchExposureKeys();
+  return keys.map(toExposureKey);
+};
 
 const toExposureKey = (rawExposureKey: RawExposureKey): ExposureKey => {
   return {
@@ -105,9 +96,11 @@ const toExposureKey = (rawExposureKey: RawExposureKey): ExposureKey => {
   };
 };
 
-export const storeHMACKey = async (hmacKey: string): Promise<void> => {
-  // exposureKeyModule.storeHMACKey(hmacKey);
-  console.log('storing hmacKey', hmacKey);
+export const submitDiagnosisKeys = async (
+  certificate: string,
+  hmacKey: string,
+): Promise<'success'> => {
+  return exposureKeyModule.postDiagnosisKeys(certificate, hmacKey);
 };
 
 // Debug Module
