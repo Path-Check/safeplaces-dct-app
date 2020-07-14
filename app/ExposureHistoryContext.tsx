@@ -11,7 +11,6 @@ import {
   ExposureCalendarOptions,
   ExposureInfo,
 } from './exposureHistory';
-import { BTNativeModule } from './bt';
 
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
@@ -45,6 +44,7 @@ export interface ExposureEventsStrategy {
     exposureInfo: ExposureInfo,
     calendarOptions: ExposureCalendarOptions,
   ) => ExposureHistory;
+  getExposureHistory: (cb: (exposureInfo: ExposureInfo) => void) => void;
 }
 
 interface ExposureHistoryProps {
@@ -105,7 +105,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
       );
       setExposureHistory(exposureHistory);
     };
-    BTNativeModule.getCurrentExposures(cb);
+    exposureEventsStrategy.getExposureHistory(cb);
   };
 
   const hasBeenExposed = false;

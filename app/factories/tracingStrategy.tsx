@@ -17,6 +17,7 @@ export default Factory.define<TracingStrategy>(() => ({
       return { remove: () => {} };
     },
     toExposureHistory: () => [],
+    getExposureHistory: () => {},
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: HomeScreen,
