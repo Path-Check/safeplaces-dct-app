@@ -74,7 +74,7 @@ const Container = styled.TouchableOpacity`
   align-self: stretch;
 `;
 
-const getFontSize = ({ small }) => (small ? '14px' : '20px');
+const getFontSize = ({ small }) => (small ? '18px' : '20px');
 
 const getLineHeight = ({ small }) => (small ? '21px' : '40px');
 

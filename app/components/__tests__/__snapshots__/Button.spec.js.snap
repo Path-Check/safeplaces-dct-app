@@ -43,7 +43,7 @@ exports[`allows small override 1`] = `
         Object {
           "color": "#FFF",
           "fontFamily": "IBMPlexSans-Medium",
-          "fontSize": 14,
+          "fontSize": 18,
           "fontWeight": "normal",
           "lineHeight": 21,
           "writingDirection": "ltr",
