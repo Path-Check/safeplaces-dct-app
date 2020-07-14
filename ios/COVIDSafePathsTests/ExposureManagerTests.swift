@@ -77,7 +77,7 @@ mn/1593460800-1593475200-00021.zip
 mn/1593460800-1593475200-00022.zip
 """
   
-  func testUrlPathsToProcessFirstPass() {
+  func testLimitsTheNumberOfProcessedFilesToADailyMax() {
 
     // Setup
     BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = ""

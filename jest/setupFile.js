@@ -75,33 +75,3 @@ jest.mock('@react-navigation/stack', () => {
     },
   };
 });
-
-jest.mock('@react-navigation/native', () => {
-  return {
-    createAppContainer: jest
-      .fn()
-      .mockReturnValue(function NavigationContainer() {
-        return null;
-      }),
-    createDrawerNavigator: jest.fn(),
-    createMaterialTopTabNavigator: jest.fn(),
-    StackActions: {
-      push: jest
-        .fn()
-        .mockImplementation((x) => ({ ...x, type: 'Navigation/PUSH' })),
-      replace: jest
-        .fn()
-        .mockImplementation((x) => ({ ...x, type: 'Navigation/REPLACE' })),
-    },
-    NavigationActions: {
-      navigate: jest.fn().mockImplementation((x) => x),
-    },
-    useNavigation: () => {
-      return { navigate: jest.fn() };
-    },
-    useRoute: () => {
-      return {};
-    },
-    useFocusEffect: jest.fn(),
-  };
-});

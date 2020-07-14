@@ -8,7 +8,9 @@ import { ENPermissionStatus } from './PermissionsContext';
 import { ExposureInfo } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
+import { ExposureKey } from './AffectedUserFlow/exposureKey';
 
+// Event Subscriptions
 export const subscribeToExposureEvents = (
   cb: (exposureInfo: ExposureInfo) => void,
 ): EventSubscription => {
@@ -52,11 +54,9 @@ const toStatus = (data: string[]): ENPermissionStatus => {
   return result;
 };
 
-const permissionsModule = NativeModules.ENPermissionsModule;
-const keySubmissionModule = NativeModules.KeySubmissionModule;
-const exposureHistoryModule = NativeModules.ExposureHistoryModule;
-
 // Permissions Module
+const permissionsModule = NativeModules.ENPermissionsModule;
+
 export const requestAuthorization = async (
   cb: (data: string) => void,
 ): Promise<void> => {
@@ -73,13 +73,16 @@ export const getCurrentENPermissionsStatus = async (
 };
 
 // Key Submission Module
+const keySubmissionModule = NativeModules.KeySubmissionModule;
+
 export const submitDiagnosisKeys = async (
   cb: (errorMessage: string, successMessage: string) => void,
 ): Promise<void> => {
   keySubmissionModule.postDiagnosisKeys(cb);
 };
 
-// Exposure History
+// Exposure History Module
+const exposureHistoryModule = NativeModules.ExposureHistoryModule;
 export const getCurrentExposures = async (
   cb: (exposureInfo: ExposureInfo) => void,
 ): Promise<void> => {
@@ -87,6 +90,35 @@ export const getCurrentExposures = async (
     const rawExposures: RawExposure[] = JSON.parse(rawExposure);
     cb(toExposureInfo(rawExposures));
   });
+};
+
+// Exposure Key Module
+const exposureKeyModule = NativeModules.ExposureKeyModule;
+
+export const getExposureKeys = async (): Promise<ExposureKey[]> => {
+  const keys: RawExposureKey[] = await exposureKeyModule.fetchExposureKeys();
+  return keys.map(toExposureKey);
+};
+
+interface RawExposureKey {
+  key: null | string;
+  rollingPeriod: number;
+  rollingStartNumber: number;
+  transmissionRisk: number;
+}
+
+const toExposureKey = (rawExposureKey: RawExposureKey): ExposureKey => {
+  return {
+    key: rawExposureKey.key || '',
+    rollingPeriod: rawExposureKey.rollingPeriod,
+    rollingStartNumber: rawExposureKey.rollingStartNumber,
+    transmissionRisk: rawExposureKey.transmissionRisk,
+  };
+};
+
+export const storeHMACKey = async (hmacKey: string): Promise<void> => {
+  // exposureKeyModule.storeHMACKey(hmacKey);
+  console.log('storing hmacKey', hmacKey);
 };
 
 // Debug Module
