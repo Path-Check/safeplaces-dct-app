@@ -210,7 +210,6 @@ final class ExposureManager: NSObject {
     
     if progress.isCancelled {
       detectingExposures = false
-      postExposureDetectionErrorNotification()
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
       completionHandler(GenericError.unknown)
     } else {
@@ -364,10 +363,6 @@ final class ExposureManager: NSObject {
     let exposures = Array(BTSecureStorage.shared.userState.exposures)
     return exposures.jsonStringRepresentation()
   }
-  
-}
-
-private extension ExposureManager {
 
   func updateRemainingFileCapacity() {
     guard let lastResetDate =  BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
