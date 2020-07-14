@@ -73,7 +73,7 @@ export async function setUserLocaleOverride(locale) {
 /* eslint-disable no-underscore-dangle */
 const PROD_RESOURCES = {
   en: { label: en._display_name, translation: en },
-  es_PR: { label: es_PR._display_name, translation: es_PR },
+  ht: { label: ht._display_name, translation: ht },
 };
 
 /** Languages only available in feature flag. */
@@ -82,7 +82,7 @@ const DEV_RESOURCES = {
   da: { label: da._display_name, translation: da },
   es: { label: es._display_name, translation: es },
   es_419: { label: es_419._display_name, translation: es_419 },
-  ht: { label: ht._display_name, translation: ht },
+  es_PR: { label: es_PR._display_name, translation: es_PR },
   fil: { label: fil._display_name, translation: fil },
   fr: { label: fr._display_name, translation: fr },
   id: { label: id._display_name, translation: id },
