@@ -4,7 +4,7 @@ import RealmSwift
 
 final class BTSecureStorage: SafePathsSecureStorage {
 
-  static let shared = BTSecureStorage()
+  static let shared = BTSecureStorage(inMemory: false)
 
   override var keychainIdentifier: String {
     "\(Bundle.main.bundleIdentifier!).realm"
@@ -16,6 +16,13 @@ final class BTSecureStorage: SafePathsSecureStorage {
     }
     return realmConfig
   }()
+
+  override init(inMemory: Bool = false) {
+    super.init(inMemory: inMemory)
+    if !userStateExists {
+      resetUserState({ _ in })
+    }
+  }
 
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncryptionKey() {
@@ -36,13 +43,17 @@ final class BTSecureStorage: SafePathsSecureStorage {
     return realm.object(ofType: UserState.self, forPrimaryKey: 0) ?? UserState()
   }
 
+  var userStateExists: Bool {
+    let realm = try! Realm(configuration: realmConfig)
+    return realm.object(ofType: UserState.self, forPrimaryKey: 0) != nil
+  }
+
   func setUserValue<Value: Codable>(value: Value, keyPath: String, notificationName: Notification.Name) {
       let realm = try! Realm(configuration: realmConfig)
       try! realm.write {
         realm.create(UserState.self, value: [keyPath: value], update: .modified)
-        let encodedValue = try JSONEncoder().encode(value)
-        let stringRepresentation = String(data: encodedValue, encoding: .utf8)!
-        NotificationCenter.default.post(name: notificationName, object: stringRepresentation)
+        let jsonString = value.jsonStringRepresentation()
+        NotificationCenter.default.post(name: notificationName, object: jsonString)
     }
   }
 
@@ -61,7 +72,9 @@ final class BTSecureStorage: SafePathsSecureStorage {
   func storeExposures(_ exposures: [Exposure]) {
     let realm = try! Realm(configuration: realmConfig)
     try! realm.write {
-      exposures.forEach { userState.exposures.append($0) }
+      userState.exposures.append(objectsIn: exposures)
+      let jsonString = userState.exposures.jsonStringRepresentation()
+      NotificationCenter.default.post(name: .ExposuresDidChange, object: jsonString)
     }
   }
 

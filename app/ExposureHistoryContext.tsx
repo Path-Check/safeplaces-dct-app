@@ -6,6 +6,7 @@ import {
   ExposureCalendarOptions,
   ExposureInfo,
 } from './exposureHistory';
+import { BTNativeModule } from './bt';
 
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
@@ -13,6 +14,7 @@ interface ExposureHistoryState {
   userHasNewExposure: boolean;
   observeExposures: () => void;
   resetExposures: () => void;
+  getCurrentExposures: () => void;
 }
 
 const initialState = {
@@ -21,6 +23,7 @@ const initialState = {
   userHasNewExposure: true,
   observeExposures: () => {},
   resetExposures: () => {},
+  getCurrentExposures: () => {},
 };
 
 const ExposureHistoryContext = createContext<ExposureHistoryState>(
@@ -77,6 +80,8 @@ const ExposureHistoryProvider = ({
       },
     );
 
+    getCurrentExposures();
+
     return subscription.remove;
   }, [exposureInfoSubscription, toExposureHistory]);
 
@@ -88,6 +93,17 @@ const ExposureHistoryProvider = ({
     setUserHasNewExposure(true);
   };
 
+  const getCurrentExposures = async () => {
+    const cb = (exposureInfo: ExposureInfo) => {
+      const exposureHistory = toExposureHistory(
+        exposureInfo,
+        blankHistoryConfig,
+      );
+      setExposureHistory(exposureHistory);
+    };
+    BTNativeModule.getCurrentExposures(cb);
+  };
+
   const hasBeenExposed = false;
   return (
     <ExposureHistoryContext.Provider
@@ -97,6 +113,7 @@ const ExposureHistoryProvider = ({
         userHasNewExposure,
         observeExposures,
         resetExposures,
+        getCurrentExposures,
       }}>
       {children}
     </ExposureHistoryContext.Provider>

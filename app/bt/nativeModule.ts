@@ -54,6 +54,7 @@ const toStatus = (data: string[]): ENPermissionStatus => {
 
 const permissionsModule = NativeModules.ENPermissionsModule;
 const keySubmissionModule = NativeModules.KeySubmissionModule;
+const exposureHistoryModule = NativeModules.ExposureHistoryModule;
 
 // Permissions Module
 export const requestAuthorization = async (
@@ -76,6 +77,16 @@ export const submitDiagnosisKeys = async (
   cb: (errorMessage: string, successMessage: string) => void,
 ): Promise<void> => {
   keySubmissionModule.postDiagnosisKeys(cb);
+};
+
+// Exposure History
+export const getCurrentExposures = async (
+  cb: (exposureInfo: ExposureInfo) => void,
+): Promise<void> => {
+  exposureHistoryModule.getCurrentExposures((rawExposure: string) => {
+    const rawExposures: RawExposure[] = JSON.parse(rawExposure);
+    cb(toExposureInfo(rawExposures));
+  });
 };
 
 // Debug Module
