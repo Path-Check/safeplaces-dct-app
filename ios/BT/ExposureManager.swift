@@ -379,9 +379,6 @@ final class ExposureManager: NSObject {
       }
     }
   }
-}
-
-private extension ExposureManager {
 
   func updateRemainingFileCapacity() {
     guard let lastResetDate =  BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
