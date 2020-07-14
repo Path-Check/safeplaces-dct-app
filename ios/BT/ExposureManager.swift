@@ -213,7 +213,6 @@ final class ExposureManager: NSObject {
     
     if progress.isCancelled {
       detectingExposures = false
-      postExposureDetectionErrorNotification()
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
       completionHandler(GenericError.unknown)
     } else {
