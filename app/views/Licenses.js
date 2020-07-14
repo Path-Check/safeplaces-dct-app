@@ -83,7 +83,7 @@ export const LicensesScreen = ({ navigation }) => {
             }}
             style={{
               marginTop: 15,
-              backgroundColor: Colors.INTRO_WHITE_BG,
+              backgroundColor: Colors.WHITE,
             }}
           />
         </View>

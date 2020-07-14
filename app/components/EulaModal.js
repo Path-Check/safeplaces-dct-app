@@ -2,6 +2,7 @@ import { Button, Text } from 'native-base';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Linking, Modal, StyleSheet, View } from 'react-native';
+import { Platform } from 'react-native';
 import loadLocalResource from 'react-native-local-resource';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
@@ -131,6 +132,8 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   );
 };
 
+const getMarginTop = () => (Platform.OS === 'ios' ? 50 : 0);
+
 const styles = StyleSheet.create({
   // Container covers the entire screen
   container: {
@@ -146,7 +149,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.BLUE_RIBBON,
   },
   closeIcon: {
-    marginTop: 50,
+    marginTop: getMarginTop(),
     marginBottom: 6,
     marginRight: 8,
     alignSelf: 'flex-end',
