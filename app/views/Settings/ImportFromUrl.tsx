@@ -15,7 +15,7 @@ import { Typography } from '../../components/Typography';
 import { Button } from '../../components/Button';
 import { NavigationProp } from '../../navigation';
 
-import { Forms } from '../../styles';
+import { Forms, Spacing } from '../../styles';
 
 type ImportFromUrlProps = {
   navigation: NavigationProp;
@@ -49,7 +49,7 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
         <Typography use={'headline2'}>
           {t('import.mockData.url_instructions')}
         </Typography>
-        <Typography use={'body2'}>
+        <Typography style={{ paddingTop: Spacing.small }} use={'body2'}>
           {t('import.mockData.instruction_info')}
         </Typography>
         <TextInput
@@ -63,7 +63,12 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
             },
           ]}
         />
-        <Button label={t('common.add')} onPress={importData} />
+        <Button
+          disabled={!url}
+          invert
+          label={t('common.add')}
+          onPress={importData}
+        />
       </View>
     </NavigationBarWrapper>
   );
