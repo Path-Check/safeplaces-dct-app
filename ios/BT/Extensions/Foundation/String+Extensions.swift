@@ -24,6 +24,10 @@ extension String {
   static let newExposureNotificationBody = "Someone you were near recently has been diagnosed with COVID-19. Tap for more details."
   static let exposureDetectionErrorNotificationIdentifier = "expososure-notification-error"
   static let genericSuccess = "success"
+  
+  // ErrorCodes
+  static let networkFailure = "network_request_error"
+  static let noExposureKeysFound = "no_exposure_keys_found"
 
   var gaenFilePaths: [String] {
     split(separator: "\n").map { String($0) }
