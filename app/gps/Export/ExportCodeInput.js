@@ -19,9 +19,9 @@ import exportCodeApi from '../../api/export/exportCodeApi';
 import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
-import { Colors, Buttons } from '../../styles';
-import FeatureFlag from '../../components/FeatureFlag';
+import { Colors } from '../../styles';
 import { FeatureFlagOption } from '../../store/types';
+import { useSelector } from 'react-redux';
 
 const CODE_LENGTH = 6;
 
@@ -123,6 +123,9 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const [isCheckingCode, setIsCheckingCode] = useState(false);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
+  const featureFlags = useSelector((state) => state.featureFlags?.flags || {});
+  const bypassApi = !!featureFlags[FeatureFlagOption.BYPASS_EXPORT_API];
+
   const { selectedAuthority } = route.params;
 
   const navigateToNextScreen = () => {
@@ -133,6 +136,10 @@ export const ExportSelectHA = ({ route, navigation }) => {
   };
 
   const validateCode = async () => {
+    if (bypassApi) {
+      navigateToNextScreen();
+      return;
+    }
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
@@ -205,16 +212,6 @@ export const ExportSelectHA = ({ route, navigation }) => {
               label={t('common.next')}
               onPress={validateCode}
             />
-            {/* Bypass API to allow easy testing of screens */}
-            <FeatureFlag flag={FeatureFlagOption.BYPASS_EXPORT_API}>
-              <Button
-                style={Buttons.largeTransparent}
-                secondary
-                loading={isCheckingCode}
-                label={'Bypass API (Feature Flag)'}
-                onPress={navigateToNextScreen}
-              />
-            </FeatureFlag>
           </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
