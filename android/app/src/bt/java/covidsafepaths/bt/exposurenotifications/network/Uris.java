@@ -43,6 +43,7 @@ import covidsafepaths.bt.exposurenotifications.storage.ExposureNotificationShare
  * Encapsulates logic for resolving URIs for uploading and downloading Diagnosis Keys.
  */
 public class Uris {
+    private static final int MAX_KEY_BATCHES_PER_DAY = 20;
     private static final String TAG = "Uris";
     private static final Splitter WHITESPACE_SPLITTER =
             Splitter.onPattern("\\s+").trimResults().omitEmptyStrings();
@@ -126,7 +127,7 @@ public class Uris {
                                 final String indexEntry = indexEntries.get(i);
                                 uriList.add(baseDownloadUri.buildUpon().appendEncodedPath(indexEntry).build());
 
-                                if(uriList.size() == 20) {
+                                if(uriList.size() == MAX_KEY_BATCHES_PER_DAY) {
                                     putLastIndexEntry(indexEntry);
                                     break;
                                 }
