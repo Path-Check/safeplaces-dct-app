@@ -73,8 +73,6 @@ const PossibleExposureDetail = ({
         <View style={styles.contentContainer}>
           <Typography style={styles.content}>{explanationContent}</Typography>
         </View>
-      </View>
-      <View style={styles.ctaContainer}>
         <TouchableOpacity
           testID={'exposure-history-next-steps-button'}
           style={styles.nextStepsButton}
@@ -148,15 +146,12 @@ const styles = StyleSheet.create({
   content: {
     ...TypographyStyles.secondaryContent,
   },
-  ctaContainer: {
-    marginBottom: Spacing.medium,
-  },
   nextStepsButton: {
-    ...Buttons.largeBlueOutline,
+    ...Buttons.largeBlue,
     marginTop: Spacing.xLarge,
   },
   nextStepsButtonText: {
-    ...TypographyStyles.buttonTextDark,
+    ...TypographyStyles.buttonTextLight,
   },
 });
 

@@ -23,7 +23,7 @@ RCT_REMAP_METHOD(postDiagnosisKeys,
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-//  [[ExposureManager shared] getAndPostDiagnosisKeysWithCertificate:certificate HMACKey:HMACKey com]
+  [[ExposureManager shared] getAndPostDiagnosisKeysWithCertificate:certificate HMACKey:HMACKey resolve:resolve reject:reject];
 }
 
 

@@ -377,7 +377,7 @@ final class ExposureManager: NSObject {
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
     }
   }
-
+  
 }
 
 private extension ExposureManager {
