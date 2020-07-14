@@ -12,10 +12,9 @@ import { Screens, useStatusBarEffect } from '../../navigation';
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 import { Icons } from '../../assets';
 
-import { AUTHORITY_ADVICE_URL } from '../../constants/authorities';
 import { Colors } from '../../styles';
 
-const { GAEN_AUTHORITY_NAME: healthAuthorityName } = env;
+const { GAEN_AUTHORITY_NAME: healthAuthorityName, AUTHORITY_ADVICE_URL } = env;
 
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
