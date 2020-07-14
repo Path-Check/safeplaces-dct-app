@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   TouchableOpacity,
   Linking,
@@ -9,13 +9,10 @@ import {
   StatusBar,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import loadLocalResource from 'react-native-local-resource';
 import WebView from 'react-native-webview';
 
 import { Button, Checkbox, IconButton, Typography } from '../components';
-import en from '../locales/eula/en.html';
-import es_PR from '../locales/eula/es_PR.html';
-import ht from '../locales/eula/ht.html';
+import { eulaPicker } from '../helpers/eulaUtil';
 
 import { Icons } from '../assets';
 import {
@@ -25,23 +22,18 @@ import {
   Typography as TypographyStyles,
 } from '../styles';
 
-const EULA_FILES = { en, es_PR, ht };
-
-const DEFAULT_EULA_URL = 'about:blank';
-
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
-  const [html, setHtml] = useState(undefined);
   const { t } = useTranslation();
 
-  // Pull the EULA in the correct language, with en as fallback
-  const eulaPath = EULA_FILES[selectedLocale] || en;
+  const eulaPath = eulaPicker(selectedLocale)
+  const canContinue = boxChecked;
 
   // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
   const shouldStartLoadWithRequestHandler = (webViewState) => {
     let shouldLoadRequest = true;
-    if (webViewState.url !== DEFAULT_EULA_URL) {
+    if (webViewState.url !== eulaPath) {
       // If the webpage to load isn't the EULA, load it in a separate browser
       Linking.openURL(webViewState.url);
       // Don't load the page if its being handled in a separate browser
@@ -50,17 +42,8 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
     return shouldLoadRequest;
   };
 
-  // Load the EULA from disk
-  useEffect(() => {
-    const loadEula = async () => {
-      setHtml(await loadLocalResource(eulaPath));
-    };
-    loadEula();
-  }, [selectedLocale, setHtml, eulaPath]);
-
-  const canContinue = boxChecked;
-
   const handleOnPressGetStarted = () => setModalVisibility(true);
+  
   return (
     <>
       <TouchableOpacity style={styles.button} onPress={handleOnPressGetStarted}>
@@ -80,15 +63,15 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 accessibilityLabel='Close'
                 onPress={() => setModalVisibility(false)}
               />
-              {html && (
+              
                 <WebView
                   style={{ flex: 1 }}
-                  source={{ html }}
+                  source={{ uri: eulaPath }}
                   onShouldStartLoadWithRequest={
                     shouldStartLoadWithRequestHandler
                   }
                 />
-              )}
+              
             </View>
           </SafeAreaView>
           <SafeAreaView style={{ backgroundColor: Colors.secondaryBlue }}>
