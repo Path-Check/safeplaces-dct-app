@@ -65,7 +65,6 @@ public class DiagnosisKeyFileSubmitter {
      * <p>Returns early if given an empty list of batches.
      */
     public ListenableFuture<?> submitFiles(List<KeyFileBatch> batches, ExposureConfiguration config, String token) {
-        // TODO Can do a maximum of 20 files per 24 hours.
         if (batches.isEmpty()) {
             Log.d(TAG, "No files to provide to google play services.");
             return Futures.immediateFuture(null);
@@ -73,7 +72,6 @@ public class DiagnosisKeyFileSubmitter {
         Log.d(TAG, "Providing  " + batches.size() + " diagnosis key batches to google play services.");
         List<ListenableFuture<?>> batchCompletions = new ArrayList<>();
 
-        // TODO this might be a solid spot to add the last checked for index. Can add that to the sharedpreferences.
         for (KeyFileBatch b : batches) {
             batchCompletions.add(submitBatch(b, config, token));
         }
@@ -93,7 +91,6 @@ public class DiagnosisKeyFileSubmitter {
     }
 
     private ListenableFuture<?> submitBatch(KeyFileBatch batch, ExposureConfiguration config, String token) {
-        // TODO Where files are submitted to GAEN
         return TaskToFutureAdapter.getFutureWithTimeout(
                 client.provideDiagnosisKeys(batch.files(), config, token),
                 API_TIMEOUT.toMillis(),

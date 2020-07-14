@@ -92,6 +92,9 @@ public class Uris {
                             Log.d(TAG, "Index file has " + indexEntries.size() + " lines.");
                             List<Uri> uriList = new ArrayList<>();
 
+                            // Parse out each line of the index file and split them into batches as indicated by
+                            // the leading timestamp in the filename, e.g. "1589490000" for
+                            // "exposureKeyExport-US/1589490000-00002.zip"
                             final int startIndex = getStartIndex(indexEntries, getLastIndexEntry());
                             for (int i = startIndex; i < indexEntries.size(); i++) {
                                 final String indexEntry = indexEntries.get(i);

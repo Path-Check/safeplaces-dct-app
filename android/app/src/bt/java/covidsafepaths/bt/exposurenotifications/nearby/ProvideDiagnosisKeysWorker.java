@@ -86,7 +86,6 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     @NonNull
     @Override
     public ListenableFuture<Result> startWork() {
-        // TODO WHere work starts
         Log.d(TAG, "Starting worker downloading diagnosis key files and submitting "
                 + "them to the API for exposure detection, then storing the token used.");
         final String token = generateRandomToken();
