@@ -57,7 +57,6 @@ extension ExposureManager {
     }
   }
 
-  // Includes today's key, requires com.apple.developer.exposure-notification-test entitlement
   func getAndPostTestDiagnosisKeys(completion: @escaping (Error?) -> Void) {
     manager.getTestDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
