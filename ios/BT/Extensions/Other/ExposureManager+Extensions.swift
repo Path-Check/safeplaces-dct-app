@@ -15,6 +15,12 @@ extension ExposureManager {
         }
       }
     case .detectExposuresNow:
+      guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
+        let hoursRemaining = 24 - Date.hourDifference(from: BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset ?? Date(), to: Date())
+        callback(["You have reached the exposure file submission limit. Please wait \(hoursRemaining) hours before detecting exposures again.", NSNull()])
+        return
+      }
+
       detectExposures { error in
         if let error = error {
           callback(["Exposure detection error: \((error as NSError).userInfo)", NSNull()])
@@ -33,15 +39,13 @@ extension ExposureManager {
                               duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      let exposures = BTSecureStorage.shared.exposures
-      exposures.append(exposure)
-      BTSecureStorage.shared.exposures = exposures
-      callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
+      BTSecureStorage.shared.storeExposures([exposure])
+      callback([NSNull(), "Exposures: \(BTSecureStorage.shared.userState.exposures)"])
     case .resetExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       callback([NSNull(), "Exposure Detection Error: "])
     case .getAndPostDiagnosisKeys:
-      getAndPostDiagnosisKeys(callback: callback)
+      getAndPostDiagnosisKeysDebug(callback: callback)
     case .resetExposures:
       BTSecureStorage.shared.exposures = List<Exposure>()
       callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures.count)"])
@@ -49,24 +53,6 @@ extension ExposureManager {
       let enabled = manager.exposureNotificationEnabled ? false : true
       requestExposureNotificationAuthorization(enabled: enabled) { result in
         callback([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
-      }
-    }
-  }
-
-  // Includes today's key, requires com.apple.developer.exposure-notification-test entitlement
-  func getAndPostTestDiagnosisKeys(completion: @escaping (Error?) -> Void) {
-    manager.getTestDiagnosisKeys { temporaryExposureKeys, error in
-      if let error = error {
-        completion(error)
-      } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .postKeys) { result in
-          switch result {
-          case .success:
-            completion(nil)
-          case .failure(let error):
-            completion(error)
-          }
-        }
       }
     }
   }

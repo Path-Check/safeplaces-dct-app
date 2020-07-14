@@ -58,6 +58,13 @@ final class BTSecureStorage: SafePathsSecureStorage {
     }
   }
 
+  func storeExposures(_ exposures: [Exposure]) {
+    let realm = try! Realm(configuration: realmConfig)
+    try! realm.write {
+      exposures.forEach { userState.exposures.append($0) }
+    }
+  }
+
   @Persisted(keyPath: .remainingDailyFileProcessingCapacity, notificationName: .remainingDailyFileProcessingCapacityDidChange, defaultValue: Constants.dailyFileProcessingCapacity)
   var remainingDailyFileProcessingCapacity: Int
 
