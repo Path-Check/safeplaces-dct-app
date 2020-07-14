@@ -48,7 +48,6 @@ public class Uris {
     private static final Splitter WHITESPACE_SPLITTER =
             Splitter.onPattern("\\s+").trimResults().omitEmptyStrings();
     private static final String INDEX_FILE_PATH = "mn/index.txt"; // TODO replace as needed per server implementation
-    //private static final String INDEX_FILE_PATH = "test.txt";
     private static final int DEFAULT_BATCH_NUM = 1; // TODO handle batching or remove per server implementation
     private static final String DEFAULT_REGION_CODE = "regionCode"; // TODO handle regions or remove  per server implementation
     private final Context context;
@@ -93,35 +92,6 @@ public class Uris {
                             Log.d(TAG, "Index file has " + indexEntries.size() + " lines.");
                             List<Uri> uriList = new ArrayList<>();
 
-//                            for (int i = 0; i < indexEntries.size(); i++) {
-//                                final String indexEntry = indexEntries.get(i);
-
-//                            if (hasLastIndexEntry()) {
-//                                for (int i = 0; i < indexEntries.size(); i++) {
-//                                    final String indexEntry = indexEntries.get(i);
-//                                    if(indexEntry.equals(lastIndexEntry)) {
-//                                        for (int j = i; j < indexEntries.size(); j++) {
-//                                            final String newIndexEntry = indexEntries.get(i);
-//                                            if (j < 20) {
-//                                                uriList.add(baseDownloadUri.buildUpon().appendEncodedPath(newIndexEntry).build());
-//                                            } else {
-//                                                break;
-//                                            }
-//                                        }
-//                                    }
-//                                }
-//                            } else {
-//                                for (int i = 0; i < indexEntries.size(); i++) {
-//                                    if (i < 20) {
-//                                        final String indexEntry = indexEntries.get(i);
-//                                        uriList.add(baseDownloadUri.buildUpon().appendEncodedPath(indexEntry).build());
-//                                    } else {
-//                                        break;
-//                                    }
-//                                }
-//                            }
-                            // }
-
                             final int startIndex = getStartIndex(indexEntries, getLastIndexEntry());
                             for (int i = startIndex; i < indexEntries.size(); i++) {
                                 final String indexEntry = indexEntries.get(i);
@@ -132,17 +102,6 @@ public class Uris {
                                     break;
                                 }
                             }
-
-                            // Parse out each line of the index file and split them into batches as indicated by
-                            // the leading timestamp in the filename, e.g. "1589490000" for
-                            // "exposureKeyExport-US/1589490000-00002.zip"
-//                            for (String indexEntry : indexEntries) {
-//                                uriList.add(baseDownloadUri.buildUpon().appendEncodedPath(indexEntry).build());
-//                                // TODO Only add the ones that haven't checked here.
-//                                // Grab the latest index. If nothing saved, start from top of index.
-//                                // Iterate through all keys and find the latest one that has been checked.
-//                                // Starting from the batch after that one, go to 20.
-//                            }
 
                             ImmutableList.Builder<KeyFileBatch> builder = ImmutableList.builder();
                             // Just one
