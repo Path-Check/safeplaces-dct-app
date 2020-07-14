@@ -2,9 +2,8 @@ import RNSimpleCrypto from 'react-native-simple-crypto';
 
 import { ExposureKey } from './exposureKey';
 
-export const generateKey = async (): Promise<string> => {
-  const arrayBuffer = await RNSimpleCrypto.utils.randomBytes(32);
-  return arrayBufferToString(arrayBuffer);
+export const generateKey = async (): Promise<ArrayBuffer> => {
+  return await RNSimpleCrypto.utils.randomBytes(32);
 };
 
 export const arrayBufferToString = (arrayBuffer: ArrayBuffer): string => {
@@ -13,22 +12,24 @@ export const arrayBufferToString = (arrayBuffer: ArrayBuffer): string => {
 
 export const calculateHmac = async (
   exposureKeys: ExposureKey[],
-  keyHmac: string,
-): Promise<string> => {
+): Promise<[string, string]> => {
   const exposureKeyMessage = serializeKeys(exposureKeys);
 
   const messageArrayBuffer = RNSimpleCrypto.utils.convertUtf8ToArrayBuffer(
     exposureKeyMessage,
   );
 
-  const keyArrayBuffer = RNSimpleCrypto.utils.convertUtf8ToArrayBuffer(keyHmac);
+  const hmacKey = await generateKey();
 
   const signatureArrayBuffer = await RNSimpleCrypto.HMAC.hmac256(
     messageArrayBuffer,
-    keyArrayBuffer,
+    hmacKey,
   );
 
-  return RNSimpleCrypto.utils.convertArrayBufferToBase64(signatureArrayBuffer);
+  return [
+    RNSimpleCrypto.utils.convertArrayBufferToBase64(signatureArrayBuffer),
+    RNSimpleCrypto.utils.convertArrayBufferToBase64(hmacKey),
+  ];
 };
 
 const serializeKeys = (exposureKeys: ExposureKey[]) => {

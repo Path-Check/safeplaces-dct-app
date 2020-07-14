@@ -270,11 +270,39 @@ final class ExposureManager: NSObject {
       print("Unable to schedule background task: \(error)")
     }
   }
-  
-  @objc func getAndPostDiagnosisKeys(callback: @escaping RCTResponseSenderBlock) {
+
+  @objc func getAndPostDiagnosisKeysDebug(callback: @escaping RCTResponseSenderBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         callback([error])
+      } else {
+
+        let allKeys = (temporaryExposureKeys ?? [])
+
+        // Filter keys > 350 hrs old
+        let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
+
+
+        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
+                                                              [.US],
+                                                              String.default,
+                                                              String.default),
+                                 requestType: .postKeys) { result in
+                                  switch result {
+                                  case .success:
+                                    callback([NSNull(), String.genericSuccess])
+                                  case .failure(let error):
+                                    callback([error, NSNull()])
+                                  }
+        }
+      }
+    }
+  }
+
+  @objc func getAndPostDiagnosisKeys(certificate: String, HMACKey: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    manager.getDiagnosisKeys { temporaryExposureKeys, error in
+      if let error = error {
+        reject(String.noExposureKeysFound, "Failed to get exposure keys", error)
       } else {
         
         let allKeys = (temporaryExposureKeys ?? [])
@@ -282,15 +310,14 @@ final class ExposureManager: NSObject {
         // Filter keys > 350 hrs old
         let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
         
-        
-        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
-                                                              [.US]),
+
+        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey }, [.US], certificate, HMACKey),
                                  requestType: .postKeys) { result in
                                   switch result {
                                   case .success:
-                                    callback([NSNull(), String.genericSuccess])
+                                    resolve(String.genericSuccess)
                                   case .failure(let error):
-                                    callback([error, NSNull()])
+                                    reject(String.networkFailure, "Failed to post exposure keys \(error.localizedDescription)", error)
                                   }
         }
       }
@@ -330,16 +357,6 @@ final class ExposureManager: NSObject {
       } else {
         resolve((keys ?? []).map { $0.asDictionary })
       }
-    }
-  }
-
-  @objc func storeHMACKey(HMACKey: String, callback: @escaping RCTResponseSenderBlock) {
-    BTSecureStorage.shared.HMACKey = HMACKey
-    if BTSecureStorage.shared.HMACKey == HMACKey {
-      callback([BTSecureStorage.shared.HMACKey])
-      callback([NSNull(), String.genericSuccess])
-    } else {
-      callback([GenericError.unknown, NSNull()])
     }
   }
 }

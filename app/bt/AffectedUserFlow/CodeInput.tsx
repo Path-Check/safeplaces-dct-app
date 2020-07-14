@@ -18,7 +18,7 @@ import { Typography } from '../../components/Typography';
 import { useAffectedUserContext } from './AffectedUserContext';
 import * as API from './verificationAPI';
 import * as NativeModule from '../nativeModule';
-import { calculateHmac, generateKey } from './hmac';
+import { calculateHmac } from './hmac';
 
 import { Screens } from '../../navigation';
 import {
@@ -37,7 +37,11 @@ const CodeInputScreen = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
 
-  const { code, setCode } = useAffectedUserContext();
+  const {
+    code,
+    setCode,
+    setExposureSubmissionCredentials,
+  } = useAffectedUserContext();
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(defaultErrorMessage);
 
@@ -62,19 +66,17 @@ const CodeInputScreen = (): JSX.Element => {
       if (response.kind === 'success') {
         const token = response.body.token;
         const exposureKeys = await NativeModule.getExposureKeys();
-        const hmacKey = await generateKey();
-        NativeModule.storeHMACKey(hmacKey);
-        const hmacDigest = await calculateHmac(exposureKeys, hmacKey);
+        const [hmacDigest, hmacKey] = await calculateHmac(exposureKeys);
 
-        const certificateReponse = await API.postTokenAndHmac(
-          token,
-          hmacDigest,
-        );
+        const certResponse = await API.postTokenAndHmac(token, hmacDigest);
 
-        if (certificateReponse.kind === 'success') {
+        if (certResponse.kind === 'success') {
+          const certificate = certResponse.body.certificate;
+          setExposureSubmissionCredentials(certificate, hmacKey);
+          Keyboard.dismiss();
           navigation.navigate(Screens.AffectedUserPublishConsent);
         } else {
-          setErrorMessage(showCertificateError(certificateReponse.error));
+          setErrorMessage(showCertificateError(certResponse.error));
         }
       } else {
         setErrorMessage(showError(response.error));

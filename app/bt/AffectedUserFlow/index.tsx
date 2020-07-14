@@ -11,7 +11,7 @@ import { AffectedUserProvider } from './AffectedUserContext';
 import Start from './Start';
 import CodeInput from './CodeInput';
 import Complete from './Complete';
-import PublishConsent from './PublishConsent';
+import PublishConsent from './PublishConsent/PublishConsentScreen';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing } from '../../styles';

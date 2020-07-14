@@ -39,7 +39,7 @@ export const ExportPublishConsent = ({ navigation, route }) => {
       onNext={consent}
       nextButtonLabel={t('export.consent_button_title')}
       buttonSubtitle={StrategyCopy.exportPublishButtonSubtitle}
-      headline={StrategyCopy.exportPublishTitle}
+      headline={t('export.publish_consent_title')}
       body={t('export.publish_consent_body', { name: selectedAuthority.name })}
       buttonLoading={isConsenting}
       icon={Icons.Publish}

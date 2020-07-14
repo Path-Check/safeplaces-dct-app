@@ -31,7 +31,7 @@ enum DiagnosisKeyListRequest: APIRequest {
 
   typealias ResponseType = Void
 
-  case post([ExposureKey], [Region])
+  case post([ExposureKey], [Region], String, String)
 
   var method: HTTPMethod {
     switch self {
@@ -49,14 +49,17 @@ enum DiagnosisKeyListRequest: APIRequest {
 
   var parameters: Parameters? {
     switch self {
-    case .post(let diagnosisKeys, let regions):
-      let keys = diagnosisKeys.map { try? $0.toJson() as? JSONObject }
+    case .post(let diagnosisKeys,
+               let regions,
+               let certificate,
+               let hmacKey):
+               let keys = diagnosisKeys.map { try? $0.toJson() as? JSONObject }
       return [
         "temporaryExposureKeys": keys,
         "regions": regions.map { $0.rawValue },
         "appPackageName": Bundle.main.bundleIdentifier!,
-        "verificationPayload": "TODO",
-        "hmackey": ReactNativeConfig.env(for: .hmackey)!,
+        "verificationPayload": String.default,
+        "hmackey": String.default,
         "padding": String(decoding: Data(), as: UTF8.self)
       ]
     }
