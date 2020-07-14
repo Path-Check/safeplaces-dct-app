@@ -30,13 +30,12 @@ import {
 const LocationsPermissions = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { authSubscription, location } = useContext(PermissionsContext);
+  const { location } = useContext(PermissionsContext);
 
   useStatusBarEffect('dark-content');
 
   const requestLocationAccess = async () => {
     await location.request();
-    authSubscription.request();
     completeOnboarding();
   };
 
