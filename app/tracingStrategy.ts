@@ -1,4 +1,5 @@
 import { ImageSourcePropType } from 'react-native';
+import { Dispatch, Middleware } from 'redux';
 
 import { TFunction } from 'i18next';
 
@@ -12,6 +13,7 @@ export interface TracingStrategy {
   affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
+  extraMiddleware: Middleware<Dispatch>[];
 }
 
 export interface StrategyAssets {

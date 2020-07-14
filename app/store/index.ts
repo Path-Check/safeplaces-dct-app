@@ -1,23 +1,24 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { createImmutableStateInvariantMiddleware } from '@reduxjs/toolkit';
-import { applyMiddleware, createStore } from 'redux';
-import { createMigrate, persistReducer, persistStore } from 'redux-persist';
+import {
+  applyMiddleware,
+  createStore,
+  Store,
+  Middleware,
+  Dispatch,
+} from 'redux';
+import {
+  createMigrate,
+  persistReducer,
+  persistStore,
+  Persistor,
+} from 'redux-persist';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import StoreAccessor from './StoreAccessor';
-import onChangedSelectedHealthAuthorities from './middleware/onChangedSelectedHealthAuthorities';
-
 import migrations from './migrations';
 import rootReducer from './reducers/rootReducer';
-
-const enhancers = composeWithDevTools(
-  applyMiddleware(
-    thunk,
-    createImmutableStateInvariantMiddleware(),
-    onChangedSelectedHealthAuthorities,
-  ),
-);
 
 export const STORE_VERSION = 1;
 const persistConfig = {
@@ -31,6 +32,18 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(persistedReducer, {}, enhancers);
-StoreAccessor.setStore(store);
-export const persistor = persistStore(store);
+export const createStoreAndPersistor = (
+  extraMiddleware: Middleware<Dispatch>[],
+): [Store, Persistor] => {
+  const enhancers = composeWithDevTools(
+    applyMiddleware(
+      thunk,
+      createImmutableStateInvariantMiddleware(),
+      ...extraMiddleware,
+    ),
+  );
+  const store = createStore(persistedReducer, {}, enhancers);
+  StoreAccessor.setStore(store);
+  const persistor = persistStore(store);
+  return [store, persistor];
+};

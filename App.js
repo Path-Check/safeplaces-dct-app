@@ -9,7 +9,7 @@ import 'array-flat-polyfill';
 import { Entry } from './app/Entry';
 import { TracingStrategyProvider } from './app/TracingStrategyContext';
 import VersionCheckService from './app/services/VersionCheckService';
-import { store, persistor } from './app/store';
+import { createStoreAndPersistor } from './app/store';
 import btStrategy from './app/bt';
 import gpsStrategy from './app/gps';
 import BackgroundTaskService from './app/services/BackgroundTaskService';
@@ -46,6 +46,8 @@ const App = () => {
     VersionCheckService.start();
     isGPS && BackgroundTaskService.start();
   }, []);
+
+  const [store, persistor] = createStoreAndPersistor(strategy.extraMiddleware);
 
   return (
     <Provider store={store}>
