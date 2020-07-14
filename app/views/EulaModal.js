@@ -3,6 +3,7 @@ import {
   TouchableOpacity,
   Linking,
   Modal,
+  ActivityIndicator,
   StyleSheet,
   View,
   SafeAreaView,
@@ -22,12 +23,23 @@ import {
   Typography as TypographyStyles,
 } from '../styles';
 
+const Spinner = () => {
+  return (
+    <ActivityIndicator
+      size={'large'}
+      color={Colors.darkGray}
+      style={styles.activityIndicator}
+      testID={'loading-indicator'}
+    />
+  );
+};
+
 export const EulaModal = ({ selectedLocale, continueFunction }) => {
   const [modalVisible, setModalVisibility] = useState(false);
   const [boxChecked, toggleCheckbox] = useState(false);
   const { t } = useTranslation();
 
-  const eulaPath = eulaPicker(selectedLocale)
+  const eulaPath = eulaPicker(selectedLocale);
   const canContinue = boxChecked;
 
   // Any links inside the EULA should launch a separate browser otherwise you can get stuck inside the app
@@ -43,7 +55,7 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
   };
 
   const handleOnPressGetStarted = () => setModalVisibility(true);
-  
+
   return (
     <>
       <TouchableOpacity style={styles.button} onPress={handleOnPressGetStarted}>
@@ -63,15 +75,13 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 accessibilityLabel='Close'
                 onPress={() => setModalVisibility(false)}
               />
-              
-                <WebView
-                  style={{ flex: 1 }}
-                  source={{ uri: eulaPath }}
-                  onShouldStartLoadWithRequest={
-                    shouldStartLoadWithRequestHandler
-                  }
-                />
-              
+              <WebView
+                style={{ flex: 1 }}
+                source={{ uri: eulaPath }}
+                startInLoadingState
+                renderLoading={Spinner}
+                onShouldStartLoadWithRequest={shouldStartLoadWithRequestHandler}
+              />
             </View>
           </SafeAreaView>
           <SafeAreaView style={{ backgroundColor: Colors.secondaryBlue }}>
@@ -131,5 +141,12 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     ...TypographyStyles.buttonTextDark,
+  },
+  activityIndicator: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
   },
 });
