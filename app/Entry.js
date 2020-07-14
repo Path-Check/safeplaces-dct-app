@@ -107,7 +107,7 @@ const MoreTabStack = () => (
     <Stack.Screen name={Screens.About} component={AboutScreen} />
     <Stack.Screen name={Screens.Licenses} component={LicensesScreen} />
     <Stack.Screen name={Screens.FeatureFlags} component={FeatureFlagsScreen} />
-    <Stack.Screen name={Screens.Import} component={ImportScreen} />
+    <Stack.Screen name={Screens.ImportFromGoogle} component={ImportScreen} />
     <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
     <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
     <Stack.Screen

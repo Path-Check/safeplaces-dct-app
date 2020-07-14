@@ -7,15 +7,25 @@ import ExportTemplate from './ExportTemplate';
 import exportUploadApi from '../../api/export/exportUploadApi';
 import { Screens } from '../../navigation';
 import { Icons } from '../../assets';
+import { useSelector } from 'react-redux';
+import { FeatureFlagOption } from '../../store/types';
 
 export const ExportComplete = ({ navigation, route }) => {
   const { t } = useTranslation();
   const [isUploading, setIsUploading] = useState(false);
+  const featureFlags = useSelector((state) => state.featureFlags?.flags || {});
+  const bypassApi = !!featureFlags[FeatureFlagOption.BYPASS_EXPORT_API];
+
   const onClose = () => exitWarningAlert(navigation);
 
   const { selectedAuthority, code } = route.params;
 
   const upload = async () => {
+    // Bypass API to allow easy testing of screens
+    if (bypassApi) {
+      navigation.navigate(Screens.ExportComplete);
+      return;
+    }
     setIsUploading(true);
     try {
       const concernPoints = await NativeModules.SecureStorageManager.getLocations();
