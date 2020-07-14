@@ -10,7 +10,7 @@ import { ExposureEventsStrategy } from '../ExposureHistoryContext';
 const btExposureEventContext: ExposureEventsStrategy = {
   exposureInfoSubscription: BTNativeModule.subscribeToExposureEvents,
   toExposureHistory: toExposureHistory,
-  getExposureHistory: BTNativeModule.getCurrentExposures,
+  getCurrentExposures: BTNativeModule.getCurrentExposures,
 };
 
 const btStrategy: TracingStrategy = {

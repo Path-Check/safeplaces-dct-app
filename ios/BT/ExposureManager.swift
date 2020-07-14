@@ -359,6 +359,12 @@ final class ExposureManager: NSObject {
       }
     }
   }
+
+  @objc var currentExposures: String {
+    let exposures = Array(BTSecureStorage.shared.userState.exposures)
+    return exposures.jsonStringRepresentation()
+  }
+  
 }
 
 private extension ExposureManager {
@@ -375,11 +381,6 @@ private extension ExposureManager {
       BTSecureStorage.shared.remainingDailyFileProcessingCapacity = Constants.dailyFileProcessingCapacity
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()
     }
-  }
-
-  @objc var currentExposures: String {
-    let exposures = Array(BTSecureStorage.shared.userState.exposures)
-    return exposures.jsonStringRepresentation()
   }
 
 }

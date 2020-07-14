@@ -10,7 +10,7 @@ import { toExposureHistory } from './intersect/exposureHistory';
 const gpsExposureEventContext: ExposureEventsStrategy = {
   exposureInfoSubscription: subscribeToExposureEvents,
   toExposureHistory: toExposureHistory,
-  getExposureHistory: getCurrentExposures,
+  getCurrentExposures: getCurrentExposures,
 };
 
 const gpsStrategy: TracingStrategy = {
