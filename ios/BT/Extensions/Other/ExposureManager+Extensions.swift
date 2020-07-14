@@ -15,6 +15,12 @@ extension ExposureManager {
         }
       }
     case .detectExposuresNow:
+      guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
+        let hoursRemaining = 24 - Date.hourDifference(from: BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset ?? Date(), to: Date())
+        callback(["You have reached the exposure file submission limit. Please wait \(hoursRemaining) hours before detecting exposures again.", NSNull()])
+        return
+      }
+
       detectExposures { error in
         if let error = error {
           callback(["Exposure detection error: \((error as NSError).userInfo)", NSNull()])
@@ -34,7 +40,7 @@ extension ExposureManager {
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
       BTSecureStorage.shared.storeExposures([exposure])
-      callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
+      callback([NSNull(), "Exposures: \(BTSecureStorage.shared.userState.exposures)"])
     case .resetExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
       callback([NSNull(), "Exposure Detection Error: "])
