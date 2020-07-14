@@ -19,6 +19,7 @@ import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 import org.devio.rn.splashscreen.SplashScreen;
 
 import covidsafepaths.bt.exposurenotifications.ExposureNotificationClientWrapper;
+import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker;
 import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 import covidsafepaths.bt.exposurenotifications.utils.RequestCodes;
 import covidsafepaths.bt.exposurenotifications.utils.Util;
@@ -68,7 +69,7 @@ public class MainActivity extends ReactActivity {
     ExposureNotificationClientWrapper.get(this)
             .isEnabled().addOnSuccessListener(
             enabled -> {
-              sendEvent(enabled);
+              handleExposureStateChanged(enabled);
             });
 
   }
@@ -106,28 +107,31 @@ public class MainActivity extends ReactActivity {
               .start()
               .addOnSuccessListener(
                       unused -> {
-                        sendEvent(true);
+                        handleExposureStateChanged(true);
                       })
               .addOnFailureListener(
                       exception -> {
-                        sendEvent(false);
+                        handleExposureStateChanged(false);
                       })
               .addOnCanceledListener(() -> {
-                sendEvent(false);
+                handleExposureStateChanged(false);
               });
     } else {
-      sendEvent(false);
+      handleExposureStateChanged(false);
     }
   }
 
-  private void sendEvent(boolean enabled) {
+
+  private void handleExposureStateChanged(boolean enabled) {
     final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
     WritableArray params = null;
 
     if(enabled) {
       params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED);
+      ProvideDiagnosisKeysWorker.scheduleDailyProvideDiagnosisKeys(this);
     } else {
      params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED);
+     ProvideDiagnosisKeysWorker.cancelDailyProvideDiagnosisKeys(this);
     }
 
     if(reactContext != null) {

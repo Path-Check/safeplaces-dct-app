@@ -1,4 +1,9 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  FunctionComponent,
+} from 'react';
 
 import {
   blankExposureHistory,
@@ -40,7 +45,6 @@ export interface ExposureEventsStrategy {
 }
 
 interface ExposureHistoryProps {
-  children: JSX.Element;
   exposureEventsStrategy: ExposureEventsStrategy;
 }
 
@@ -53,10 +57,10 @@ const blankHistoryConfig: ExposureCalendarOptions = {
 
 const blankHistory = blankExposureHistory(blankHistoryConfig);
 
-const ExposureHistoryProvider = ({
+const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
   children,
   exposureEventsStrategy,
-}: ExposureHistoryProps): JSX.Element => {
+}) => {
   const {
     exposureInfoSubscription,
     toExposureHistory,

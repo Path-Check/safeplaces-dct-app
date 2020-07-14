@@ -64,6 +64,7 @@
     "ok": "Ok",
     "something_went_wrong": "Something went wrong",
     "start": "Start",
+    "settings": "Open Settings",
     "submit": "Submit"
   },
   "export": {
@@ -149,10 +150,10 @@
       "how_does_this_work_para": "Whenever location access is enabled for your PathCheck app, the app saves the following information about each place you take your phone: the GPS coordinates, date, and times your phone was at that location.\n\nThis information is stored in an encrypted list within your phone for 14 days. If one or more of your local or regional Health Departments has partnered with PathCheck, and you have elected to receive exposure notifications from them in your PathCheck app, they can send your app encrypted collections of anonymized GPS coordinates, dates, and times gathered from their community members who later received positive diagnoses and chose to share.\n\nYour phone then locally (within your app) compares your encrypted location history to the data shared by your selected local Health Departments to inform you about possible exposures."
     },
     "next_steps": {
-      "ha_self_assessment": "{{healthAuthority}} recommends you take a self-assessment",
-      "possible_crossed_paths": "It is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.",
+      "ha_self_assessment": "Follow the advice from {{healthAuthorityName}} about what to do next.",
+      "possible_crossed_paths": "Based on your location history, it is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.",
       "possible_infection_precaution": "This does not mean that you are infected, but you should take precautions anyway. People who don't exhibit symptoms can sometimes still be contagious.",
-      "button_text": "Take Self Assessment"
+      "button_text": "See Recommendations"
     }
   },
   "import": {
@@ -198,7 +199,9 @@
       "all_services_on_header": "PathCheck",
       "all_services_on_subheader": "Exposure notifications are on",
       "unavailable_header": "Exposure history notifications are not yet available",
-      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck"
+      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck",
+      "unauthorized_error_title": "Please Update Settings",
+      "unauthorized_error_message": "You must authorize COVID-19 Exposure Logging in the Settings app to continue."
     },
     "shared": {
       "notifications_off_header": "Notifications Disabled",

@@ -9,10 +9,13 @@ import {
 import React from 'react';
 import { Linking } from 'react-native';
 import renderer from 'react-test-renderer';
+import { useFocusEffect } from '@react-navigation/native';
 
 import Import from '../Import';
 
 jest.spyOn(console, 'log').mockImplementation(() => {});
+jest.mock('@react-navigation/native');
+useFocusEffect.mockReturnValue(jest.fn());
 
 const GoogleTakeOutAutoImport = require('../../helpers/GoogleTakeOutAutoImport');
 const General = require('../../helpers/General');
