@@ -76,6 +76,8 @@
 		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
 		B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* ENPermissionsModule.m */; };
+		B59F4C3524BDF879007B09D5 /* ExposureHistoryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */; };
+		B59F4C3724BE0658007B09D5 /* List+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F4C3624BE0658007B09D5 /* List+Extensions.swift */; };
 		B5A6FD6E24BC9E69007D328C /* ExposureManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */; };
 		B5C9723024B8A909007F4C0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9722F24B8A909007F4C0B /* Constants.swift */; };
 		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
@@ -328,6 +330,8 @@
 		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeySubmissionModule.m; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* ENPermissionsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENPermissionsModule.m; sourceTree = "<group>"; };
+		B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureHistoryModule.m; sourceTree = "<group>"; };
+		B59F4C3624BE0658007B09D5 /* List+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Extensions.swift"; sourceTree = "<group>"; };
 		B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManagerTests.swift; sourceTree = "<group>"; };
 		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		B5C9722F24B8A909007F4C0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -749,6 +753,7 @@
 				B5E79436249E666B00BD8596 /* Array+Extensions.swift */,
 				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
 				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
+				B59F4C3624BE0658007B09D5 /* List+Extensions.swift */,
 				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
 			);
 			path = Foundation;
@@ -878,6 +883,7 @@
 				B596C0712488127D00943B79 /* ENPermissionsModule.m */,
 				C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */,
 				B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */,
+				B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */,
 				B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */,
 				B5582D43249943DE001458A9 /* ExposureEventEmitter.m */,
 			);
@@ -1393,8 +1399,10 @@
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
 				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
+				B59F4C3524BDF879007B09D5 /* ExposureHistoryModule.m in Sources */,
 				B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
+				B59F4C3724BE0658007B09D5 /* List+Extensions.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,

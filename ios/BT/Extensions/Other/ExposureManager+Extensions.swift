@@ -33,7 +33,6 @@ extension ExposureManager {
       ExposureManager.shared.postExposureDetectionErrorNotification()
       callback([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
     case .simulateExposure:
-      ExposureManager.shared.postNewExposureNotification()
       let exposure = Exposure(id: UUID().uuidString,
                               date: Date().posixRepresentation - Int(TimeInterval.random(in: 0...13)) * 24 * 60 * 60 * 1000,
                               duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),

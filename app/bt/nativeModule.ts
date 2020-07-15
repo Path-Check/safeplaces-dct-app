@@ -72,6 +72,17 @@ export const getCurrentENPermissionsStatus = async (
   });
 };
 
+// Exposure History Module
+const exposureHistoryModule = NativeModules.ExposureHistoryModule;
+export const getCurrentExposures = async (
+  cb: (exposureInfo: ExposureInfo) => void,
+): Promise<void> => {
+  exposureHistoryModule.getCurrentExposures((rawExposure: string) => {
+    const rawExposures: RawExposure[] = JSON.parse(rawExposure);
+    cb(toExposureInfo(rawExposures));
+  });
+};
+
 // Exposure Key Module
 const exposureKeyModule = NativeModules.ExposureKeyModule;
 

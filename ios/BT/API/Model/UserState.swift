@@ -10,7 +10,7 @@ class UserState: Object {
   @objc dynamic var remainingDailyFileProcessingCapacity: Int = Constants.dailyFileProcessingCapacity
   @objc dynamic var exposureDetectionErrorLocalizedDescription: String = .default
   @objc dynamic var urlOfMostRecentlyDetectedKeyFile: String = .default
-  dynamic var exposures: List<Exposure> = List<Exposure>()
+  let exposures: List<Exposure> = List<Exposure>()
 
   override class func primaryKey() -> String? {
     "id"

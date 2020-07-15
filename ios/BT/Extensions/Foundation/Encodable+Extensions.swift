@@ -1,8 +1,7 @@
-import RealmSwift
-
-extension List where Element: Encodable {
-  public func encode(to coder: Encoder) throws {
-    var container = coder.unkeyedContainer()
-    try container.encode(contentsOf: self)
+extension Encodable {
+  func jsonStringRepresentation() -> String {
+    let encodedValue = try! JSONEncoder().encode(self)
+    let string = String(data: encodedValue, encoding: .utf8)!
+    return string
   }
 }
