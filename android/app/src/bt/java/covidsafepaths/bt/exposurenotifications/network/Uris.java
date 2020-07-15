@@ -19,7 +19,6 @@ package covidsafepaths.bt.exposurenotifications.network;
 
 import android.content.Context;
 import android.net.Uri;
-import android.text.TextUtils;
 import android.util.Log;
 
 import androidx.concurrent.futures.CallbackToFutureAdapter;
@@ -38,6 +37,7 @@ import java.util.List;
 
 import covidsafepaths.bt.exposurenotifications.common.AppExecutors;
 import covidsafepaths.bt.exposurenotifications.storage.ExposureNotificationSharedPreferences;
+import covidsafepaths.bt.exposurenotifications.storage.RealmSecureStorageBte;
 
 /**
  * Encapsulates logic for resolving URIs for uploading and downloading Diagnosis Keys.
@@ -95,13 +95,14 @@ public class Uris {
                             // Parse out each line of the index file and split them into batches as indicated by
                             // the leading timestamp in the filename, e.g. "1589490000" for
                             // "exposureKeyExport-US/1589490000-00002.zip"
-                            final int startIndex = getStartIndex(indexEntries, getLastIndexEntry());
+                            final String zipFileName =  RealmSecureStorageBte.INSTANCE.getLastDownloadedKeyZipFileName();
+                            final int startIndex = getStartIndex(indexEntries, zipFileName);
                             for (int i = startIndex; i < indexEntries.size(); i++) {
                                 final String indexEntry = indexEntries.get(i);
                                 uriList.add(baseDownloadUri.buildUpon().appendEncodedPath(indexEntry).build());
 
                                 if(uriList.size() == MAX_KEY_BATCHES_PER_DAY) {
-                                    putLastIndexEntry(indexEntry);
+                                    RealmSecureStorageBte.INSTANCE.insertOrUpdateLastDownloadedKeyZipFileName(indexEntry);
                                     break;
                                 }
                             }
@@ -123,20 +124,6 @@ public class Uris {
         } else {
             return indexOfLastEntryInList + 1;
         }
-    }
-
-    private String getLastIndexEntry() {
-        ExposureNotificationSharedPreferences prefs = new ExposureNotificationSharedPreferences(context);
-        return prefs.getLastIndexFile();
-    }
-
-    private void putLastIndexEntry(String file) {
-        ExposureNotificationSharedPreferences prefs = new ExposureNotificationSharedPreferences(context);
-        prefs.setLastIndexFile(file);
-    }
-
-    private boolean hasLastIndexEntry() {
-        return !TextUtils.isEmpty(getLastIndexEntry());
     }
 
     // Downloads index file content as string (currently assuming .txt)

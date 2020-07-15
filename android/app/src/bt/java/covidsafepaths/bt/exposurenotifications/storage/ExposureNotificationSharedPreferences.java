@@ -114,12 +114,4 @@ public class ExposureNotificationSharedPreferences {
   public void setAttenuationThreshold2(int threshold) {
     sharedPreferences.edit().putInt(ATTENUATION_THRESHOLD_2_KEY, threshold).commit();
   }
-
-  public String getLastIndexFile() {
-    return sharedPreferences.getString(LAST_INDEX_FILE, "");
-  }
-
-  public void setLastIndexFile(String file) {
-    sharedPreferences.edit().putString(LAST_INDEX_FILE, file).commit();
-  }
 }

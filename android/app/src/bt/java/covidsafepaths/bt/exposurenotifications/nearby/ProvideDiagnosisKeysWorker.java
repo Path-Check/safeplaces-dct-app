@@ -142,7 +142,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
                                 .build())
                 .build();
         workManager
-                .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.REPLACE, workRequest);
+                .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
     }
 
     /**
