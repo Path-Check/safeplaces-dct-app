@@ -104,10 +104,12 @@ const NoKnownExposureDetail = ({
   const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const explanationContent = t('exposure_datum.no_known.explanation');
+  const explanationTitle = t('exposure_datum.no_known.title');
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
       <View style={styles.contentContainer}>
+        <Typography style={styles.info}>{explanationTitle}</Typography>
         <Typography style={styles.content}>{explanationContent}</Typography>
       </View>
     </View>
@@ -124,10 +126,12 @@ const NoDataExposureDetail = ({
   const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const explanationContent = t('exposure_datum.no_data.explanation');
+  const explanationTitle = t('exposure_datum.no_data.title');
   return (
     <View style={styles.container}>
       <Typography style={styles.date}>{exposureDate}</Typography>
       <View style={styles.contentContainer}>
+        <Typography style={styles.info}>{explanationTitle}</Typography>
         <Typography style={styles.content}>{explanationContent}</Typography>
       </View>
     </View>
@@ -146,7 +150,8 @@ const styles = StyleSheet.create({
     ...TypographyStyles.header6,
   },
   info: {
-    lineHeight: TypographyStyles.largeLineHeight,
+    ...TypographyStyles.mainContentViolet,
+    paddingBottom: Spacing.xxSmall,
   },
   contentContainer: {
     paddingTop: Spacing.xxSmall,

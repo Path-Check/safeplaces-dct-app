@@ -125,9 +125,11 @@
       "what_next": "What should I do next?"
     },
     "no_known": {
+      "title": "No reports received at this time",
       "explanation": "Your exposure history will be updated if this changes in the future."
     },
     "no_data": {
+      "title": "No information available for this days",
       "explanation": "This happens when location access is disabled for your PathCheck app or the date selected was more than 14 days ago. No exposure notifications will be available for this day."
     }
   },

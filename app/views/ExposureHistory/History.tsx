@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryBackground,
   },
   headerRow: {
+    alignItems: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: Spacing.xSmall,
