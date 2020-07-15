@@ -30,7 +30,7 @@ const ExposureDatumIndicator = ({
     return (
       <>
         {indicator}
-        <View style={styles.selectedBadge} />
+        <View style={styles.todayBadge} />
       </>
     );
   };
@@ -135,8 +135,8 @@ const styles = StyleSheet.create({
     color: Colors.primaryText,
     fontWeight: Typography.heavyWeight,
   },
-  selectedBadge: {
-    ...Affordances.bottomDotBadge(Colors.primaryText),
+  todayBadge: {
+    ...Affordances.bottomDotBadge(Colors.primaryBlue),
   },
 });
 
