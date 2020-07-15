@@ -90,7 +90,7 @@ class GPSSecureStorageTest: XCTestCase {
     // given
     let location1TimeDouble = Date().timeIntervalSince1970 * 1000
     let location1Time = location1TimeDouble / 1000
-    let location1 = [Location.Key.time.rawValue: location1TimeDouble, Location.Key.latitude.rawValue: 40.730610, Location.Key.longitude.rawValue: -73.935242]
+    let location1: [String: Any] = [Location.Key.time.rawValue: location1TimeDouble, Location.Key.latitude.rawValue: 40.730610, Location.Key.longitude.rawValue: -73.935242, Location.Key.hashes.rawValue: ["test1", "test2"]]
     let location2TimeDouble = Date().addingTimeInterval(10).timeIntervalSince1970 * 1000
     let location2TimeString = String(format:"%.0f", location2TimeDouble)
     let location2Time = location2TimeDouble / 1000
@@ -121,6 +121,10 @@ class GPSSecureStorageTest: XCTestCase {
     XCTAssertEqual(-73.935242, resultLocation.longitude)
     XCTAssertEqual(location1Time, resultLocation.time)
     XCTAssertEqual(Location.Source.google.rawValue, resultLocation.source)
+    XCTAssertEqual(2, resultLocation.hashes.count)
+    XCTAssertEqual("test1", resultLocation.hashes[0])
+    XCTAssertEqual("test2", resultLocation.hashes[1])
+
     guard let resultLocation2 = querySingleLocationByTime(time: location2Time) else {
       XCTFail("Resulting location 2 returned nil")
       return
