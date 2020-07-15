@@ -121,7 +121,6 @@ public class MainActivity extends ReactActivity {
     }
   }
 
-
   private void handleExposureStateChanged(boolean enabled) {
     final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
     WritableArray params = null;
