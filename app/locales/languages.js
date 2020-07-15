@@ -62,7 +62,7 @@ export const CONVERT_ISO_TO_IETF = {
   tl: 'tl-ph',
   fil: 'tl-ph',
   zh_Hant: 'zh',
-  es_PR: 'es-us', // TODO: replace it with es-pr when available
+  es_PR: 'es-pr',
 };
 
 async function setLocale(locale) {
