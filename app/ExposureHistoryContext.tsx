@@ -18,6 +18,7 @@ interface ExposureHistoryState {
   userHasNewExposure: boolean;
   observeExposures: () => void;
   resetExposures: () => void;
+  getCurrentExposures: () => void;
 }
 
 const initialState = {
@@ -26,6 +27,7 @@ const initialState = {
   userHasNewExposure: true,
   observeExposures: () => {},
   resetExposures: () => {},
+  getCurrentExposures: () => {},
 };
 
 const ExposureHistoryContext = createContext<ExposureHistoryState>(
@@ -42,6 +44,7 @@ export interface ExposureEventsStrategy {
     exposureInfo: ExposureInfo,
     calendarOptions: ExposureCalendarOptions,
   ) => ExposureHistory;
+  getCurrentExposures: (cb: (exposureInfo: ExposureInfo) => void) => void;
 }
 
 interface ExposureHistoryProps {
@@ -84,12 +87,27 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     return subscription.remove;
   }, [exposureInfoSubscription, toExposureHistory]);
 
+  useEffect(() => {
+    getCurrentExposures();
+  }, [toExposureHistory]);
+
   const observeExposures = () => {
     setUserHasNewExposure(false);
   };
 
   const resetExposures = () => {
     setUserHasNewExposure(true);
+  };
+
+  const getCurrentExposures = async () => {
+    const cb = (exposureInfo: ExposureInfo) => {
+      const exposureHistory = toExposureHistory(
+        exposureInfo,
+        blankHistoryConfig,
+      );
+      setExposureHistory(exposureHistory);
+    };
+    exposureEventsStrategy.getCurrentExposures(cb);
   };
 
   const hasBeenExposed = false;
@@ -101,6 +119,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
         userHasNewExposure,
         observeExposures,
         resetExposures,
+        getCurrentExposures,
       }}>
       {children}
     </ExposureHistoryContext.Provider>

@@ -42,6 +42,10 @@ const ExposureEvents: GPSExposureHistoryEventEmitter = {
   },
 };
 
+export const getCurrentExposures = async (
+  _cb: (exposureInfo: ExposureInfo) => void,
+): Promise<void> => {};
+
 export const subscribeToExposureEvents = (
   cb: (exposureHistory: ExposureInfo) => void,
 ): { remove: () => void } => {
