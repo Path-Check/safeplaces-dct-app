@@ -35,7 +35,6 @@ const LocationsPermissions = (): JSX.Element => {
   useStatusBarEffect('dark-content');
 
   const requestLocationAccess = async () => {
-    console.log('----------- request Location Access ----------------')
     await location.request();
     authSubscription.request();
     completeOnboarding();
