@@ -9,7 +9,6 @@ export const gpsAssets: StrategyAssets = {
   notificationDetailsIcon: Icons.Heart,
   shareDiagnosisBackground: Images.MultipleCrossPathBackground,
   shareDiagnosisIcon: Icons.BellYellow,
-  exportPublishIcon: Icons.Publish,
 };
 
 export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
@@ -20,7 +19,6 @@ export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
     ),
     exportCompleteBody: t('export.complete_body'),
     exportPublishButtonSubtitle: t('export.consent_button_subtitle'),
-    exportPublishTitle: t('export.publish_consent_title'),
     exportStartBody: t('export.start_body'),
     exportStartTitle: t('export.start_title'),
     exposureNotificationsNotAvailableHeader: t(

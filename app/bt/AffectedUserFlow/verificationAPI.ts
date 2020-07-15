@@ -1,19 +1,13 @@
 import Config from 'react-native-config';
-import * as Sentry from '@sentry/react-native';
 
-const baseUrl =
-  Config.GAEN_VERIFY_URL || 'https://api.gaen.extremesolution.com';
+const baseUrl = Config.GAEN_VERIFY_URL;
 const verifyUrl = `${baseUrl}/api/verify`;
 const certificateUrl = `${baseUrl}/api/certificate`;
-
-const apiKey =
-  Config.GAEN_VERIFY_API_TOKEN ||
-  'VfgDO2Qy0YI/hhU1CbFt2wu2QOJjFtr9V9dbOiMSFpzeR4RXEfKR+DnRoLuSBCvzR6vSbXPQAtZrdfjAo6SYVg';
 
 const defaultHeaders = {
   'content-type': 'application/json',
   accept: 'application/json',
-  'X-API-Key': apiKey,
+  'X-API-Key': Config.GAEN_VERIFY_API_TOKEN,
 };
 
 export type Token = string;
@@ -36,16 +30,19 @@ type CodeVerificationSuccess = VerifiedCodeResponse;
 export type CodeVerificationError =
   | 'InvalidCode'
   | 'VerificationCodeUsed'
+  | 'InvalidVerificationUrl'
   | 'Unknown';
+
+type TestType = 'confirmed' | 'likely';
 
 interface VerifiedCodeResponse {
   error: string;
   testDate: string;
-  testType: string;
+  testType: TestType;
   token: Token;
 }
 
-export const postVerificationCode = async (
+export const postCode = async (
   code: string,
 ): Promise<NetworkResponse<CodeVerificationSuccess, CodeVerificationError>> => {
   const data = {
@@ -60,7 +57,6 @@ export const postVerificationCode = async (
     });
 
     const json = await response.json();
-
     if (response.ok) {
       const body: VerifiedCodeResponse = {
         error: json.error,
@@ -70,9 +66,8 @@ export const postVerificationCode = async (
       };
       return { kind: 'success', body };
     } else {
-      Sentry.captureMessage(`url: ${Config.GAEN_VERIFY_URL} ${json.error}`);
       switch (json.error) {
-        case 'internal serer error':
+        case 'internal server error':
           return { kind: 'failure', error: 'InvalidCode' };
         case 'verification code used':
           return { kind: 'failure', error: 'VerificationCodeUsed' };
@@ -81,24 +76,28 @@ export const postVerificationCode = async (
       }
     }
   } catch (e) {
-    Sentry.captureMessage(`url: ${Config.GAEN_VERIFY_URL} ${e}`);
-    throw new Error(e);
+    return { kind: 'failure', error: 'Unknown' };
   }
 };
 
-type VerificationTokenSuccess = 'Success';
+interface TokenVerificationResponse {
+  certificate: Token;
+  error: string;
+}
 
-type VerificationTokenFailure = 'InvalidToken' | 'Unknown';
+type TokenVerificationSuccess = TokenVerificationResponse;
 
-export const postVerificationToken = async (
+export type TokenVerificationError = 'TokenMetaDataMismatch' | 'Unknown';
+
+export const postTokenAndHmac = async (
   token: Token,
+  hmacDigest: string,
 ): Promise<
-  NetworkResponse<VerificationTokenSuccess, VerificationTokenFailure>
+  NetworkResponse<TokenVerificationSuccess, TokenVerificationError>
 > => {
-  const hmac = 'asdf';
   const data = {
     token,
-    ekeyhmac: hmac,
+    ekeyhmac: hmacDigest,
   };
 
   try {
@@ -110,11 +109,15 @@ export const postVerificationToken = async (
 
     const json = await response.json();
     if (response.ok) {
-      return { kind: 'success', body: 'Success' };
+      const body = {
+        certificate: json.certificate,
+        error: json.error,
+      };
+      return { kind: 'success', body };
     } else {
       switch (json.error) {
-        case 'invalid_token': {
-          return { kind: 'failure', error: 'InvalidToken' };
+        case 'token metadata mismatch': {
+          return { kind: 'failure', error: 'TokenMetaDataMismatch' };
         }
         default: {
           return { kind: 'failure', error: 'Unknown' };

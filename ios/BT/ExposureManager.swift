@@ -180,9 +180,6 @@ final class ExposureManager: NSObject {
                            totalRiskScore: exposure.totalRiskScore,
                            transmissionRiskLevel: exposure.transmissionRiskLevel)
                 }
-                if !newExposures.isEmpty {
-                  self.postNewExposureNotification()
-                }
                 self.finish(.success(newExposures),
                             processedFileCount: processedFileCount,
                             lastProcessedUrlPath: lastProcessedUrlPath,
@@ -213,7 +210,6 @@ final class ExposureManager: NSObject {
     
     if progress.isCancelled {
       detectingExposures = false
-      postExposureDetectionErrorNotification()
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
       completionHandler(GenericError.unknown)
     } else {
@@ -273,11 +269,39 @@ final class ExposureManager: NSObject {
       print("Unable to schedule background task: \(error)")
     }
   }
-  
-  @objc func getAndPostDiagnosisKeys(callback: @escaping RCTResponseSenderBlock) {
+
+  @objc func getAndPostDiagnosisKeysDebug(callback: @escaping RCTResponseSenderBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         callback([error])
+      } else {
+
+        let allKeys = (temporaryExposureKeys ?? [])
+
+        // Filter keys > 350 hrs old
+        let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
+
+
+        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
+                                                              [.US],
+                                                              String.default,
+                                                              String.default),
+                                 requestType: .postKeys) { result in
+                                  switch result {
+                                  case .success:
+                                    callback([NSNull(), String.genericSuccess])
+                                  case .failure(let error):
+                                    callback([error, NSNull()])
+                                  }
+        }
+      }
+    }
+  }
+
+  @objc func getAndPostDiagnosisKeys(certificate: String, HMACKey: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    manager.getDiagnosisKeys { temporaryExposureKeys, error in
+      if let error = error {
+        reject(String.noExposureKeysFound, "Failed to get exposure keys", error)
       } else {
         
         let allKeys = (temporaryExposureKeys ?? [])
@@ -285,15 +309,14 @@ final class ExposureManager: NSObject {
         // Filter keys > 350 hrs old
         let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
         
-        
-        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
-                                                              [.US]),
+
+        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey }, [.US], certificate, HMACKey),
                                  requestType: .postKeys) { result in
                                   switch result {
                                   case .success:
-                                    callback([NSNull(), String.genericSuccess])
+                                    resolve(String.genericSuccess)
                                   case .failure(let error):
-                                    callback([error, NSNull()])
+                                    reject(String.networkFailure, "Failed to post exposure keys \(error.localizedDescription)", error)
                                   }
         }
       }
@@ -319,29 +342,28 @@ final class ExposureManager: NSObject {
     #endif
   }
   
-  func postNewExposureNotification() {
-    let identifier = String.exposureDetectionErrorNotificationIdentifier
-    
-    let content = UNMutableNotificationContent()
-    content.title = String.newExposureNotificationTitle.localized
-    content.body = String.newExposureNotificationBody.localized
-    content.sound = .default
-    let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
-    UNUserNotificationCenter.current().add(request) { error in
-      DispatchQueue.main.async {
-        if let error = error {
-          print("Error showing error user notification: \(error)")
-        }
-      }
-    }
-  }
-  
   func urlPathsToProcess(_ urlPaths: [String]) -> [String] {
     let startIdx = startIndex(for: urlPaths)
     let endIdx = min(startIdx + BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, urlPaths.count)
     return Array(urlPaths[startIdx..<endIdx])
   }
   
+  @objc func fetchExposureKeys(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    manager.getDiagnosisKeys { (keys, error) in
+      if let error = error {
+        print(error)
+        reject("no_exposure_keys", "There was an error fetching the exposure keys \(error)", error);
+      } else {
+        resolve((keys ?? []).map { $0.asDictionary })
+      }
+    }
+  }
+
+  @objc var currentExposures: String {
+    let exposures = Array(BTSecureStorage.shared.userState.exposures)
+    return exposures.jsonStringRepresentation()
+  }
+
   func updateRemainingFileCapacity() {
     guard let lastResetDate =  BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
       BTSecureStorage.shared.dateLastPerformedFileCapacityReset = Date()

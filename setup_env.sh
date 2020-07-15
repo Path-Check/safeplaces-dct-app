@@ -25,6 +25,3 @@ if [ ! -f pathcheck-mobile-resources/environment/$HA/.env.bt.release ]; then
 fi
 
 cp -r pathcheck-mobile-resources/environment/$HA/. ./
-
-git update-index --assume-unchanged .env.bt
-git update-index --assume-unchanged .env.bt.release

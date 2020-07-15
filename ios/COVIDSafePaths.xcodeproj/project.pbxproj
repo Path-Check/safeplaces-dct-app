@@ -75,8 +75,9 @@
 		B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5582D43249943DE001458A9 /* ExposureEventEmitter.m */; };
 		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
 		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
-		B57BA02724A3CD3F00FBAA05 /* KeySubmissionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */; };
 		B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* ENPermissionsModule.m */; };
+		B59F4C3524BDF879007B09D5 /* ExposureHistoryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */; };
+		B59F4C3724BE0658007B09D5 /* List+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F4C3624BE0658007B09D5 /* List+Extensions.swift */; };
 		B5A6FD6E24BC9E69007D328C /* ExposureManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */; };
 		B5C9723024B8A909007F4C0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9722F24B8A909007F4C0B /* Constants.swift */; };
 		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
@@ -146,6 +147,7 @@
 		C53FD0B824719AD1006D3268 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
 		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
 		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
+		C550A66624B7906F002CA7F2 /* ExposureKeyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */; };
 		C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58463E32486C51100BCB842 /* ExposureManager.swift */; };
 		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
 		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
@@ -328,6 +330,8 @@
 		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeySubmissionModule.m; sourceTree = "<group>"; };
 		B596C0712488127D00943B79 /* ENPermissionsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENPermissionsModule.m; sourceTree = "<group>"; };
+		B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureHistoryModule.m; sourceTree = "<group>"; };
+		B59F4C3624BE0658007B09D5 /* List+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Extensions.swift"; sourceTree = "<group>"; };
 		B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManagerTests.swift; sourceTree = "<group>"; };
 		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
 		B5C9722F24B8A909007F4C0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 		C504FDC5249D15990024219C /* GPS-Production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GPS-Production.entitlements"; sourceTree = "<group>"; };
 		C53FD0C124719AD1006D3268 /* BT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureKeyModule.m; sourceTree = "<group>"; };
 		C56190A12485332E009A6756 /* BT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BT-Bridging-Header.h"; sourceTree = "<group>"; };
 		C58463E32486C51100BCB842 /* ExposureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManager.swift; sourceTree = "<group>"; };
 		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -748,6 +753,7 @@
 				B5E79436249E666B00BD8596 /* Array+Extensions.swift */,
 				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
 				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
+				B59F4C3624BE0658007B09D5 /* List+Extensions.swift */,
 				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
 			);
 			path = Foundation;
@@ -875,7 +881,9 @@
 			isa = PBXGroup;
 			children = (
 				B596C0712488127D00943B79 /* ENPermissionsModule.m */,
+				C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */,
 				B57BA02624A3CD3F00FBAA05 /* KeySubmissionModule.m */,
+				B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */,
 				B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */,
 				B5582D43249943DE001458A9 /* ExposureEventEmitter.m */,
 			);
@@ -944,7 +952,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				1F58BA62394E44D5A03818F4 /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -1192,21 +1199,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		1F58BA62394E44D5A03818F4 /* Upload Debug Symbols to Sentry */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Upload Debug Symbols to Sentry";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		45684CE4A6F5A3119A259BE5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1305,7 +1298,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport EXTRA_PACKAGER_ARGS=\"--sourcemap-output $DERIVED_FILE_DIR/main.jsbundle.map\"\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		C7E79764B7E41310387F475F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1390,8 +1383,8 @@
 			files = (
 				B5FBB0D524916D8900433980 /* UserState.swift in Sources */,
 				B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */,
-				B57BA02724A3CD3F00FBAA05 /* KeySubmissionModule.m in Sources */,
 				B54CBF26249A72E700218477 /* Region.swift in Sources */,
+				C550A66624B7906F002CA7F2 /* ExposureKeyModule.m in Sources */,
 				B54CBF32249A738500218477 /* IndexFileRequests.swift in Sources */,
 				B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */,
 				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
@@ -1406,8 +1399,10 @@
 				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
 				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
 				C5C850C7248014F700A494CA /* main.m in Sources */,
+				B59F4C3524BDF879007B09D5 /* ExposureHistoryModule.m in Sources */,
 				B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */,
 				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
+				B59F4C3724BE0658007B09D5 /* List+Extensions.swift in Sources */,
 				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
 				B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */,
 				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
@@ -1838,145 +1833,25 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6R7GW6VJ2A;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/Permission-Notifications\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNBackgroundFetch\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCPushNotificationIOS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
-					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSentry\"",
-					"\"${PODS_ROOT}/Headers/Public/RNShare\"",
-					"\"${PODS_ROOT}/Headers/Public/RNZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/Realm\"",
-					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-background-timer\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-document-picker\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-uuid-generator\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-viewpager\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
-					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-				);
 				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Alamofire\"",
-					"-l\"BVLinearGradient\"",
-					"-l\"DoubleConversion\"",
-					"-l\"FBReactNativeSpec\"",
-					"-l\"Folly\"",
-					"-l\"Permission-Notifications\"",
-					"-l\"RCTTypeSafety\"",
-					"-l\"RNBackgroundFetch\"",
-					"-l\"RNCAsyncStorage\"",
-					"-l\"RNCMaskedView\"",
-					"-l\"RNCPushNotificationIOS\"",
-					"-l\"RNDateTimePicker\"",
-					"-l\"RNFS\"",
-					"-l\"RNGestureHandler\"",
-					"-l\"RNPermissions\"",
-					"-l\"RNReanimated\"",
-					"-l\"RNSVG\"",
-					"-l\"RNScreens\"",
-					"-l\"RNSentry\"",
-					"-l\"RNShare\"",
-					"-l\"RNZipArchive\"",
-					"-l\"React-Core\"",
-					"-l\"React-CoreModules\"",
-					"-l\"React-RCTActionSheet\"",
-					"-l\"React-RCTAnimation\"",
-					"-l\"React-RCTBlob\"",
-					"-l\"React-RCTImage\"",
-					"-l\"React-RCTLinking\"",
-					"-l\"React-RCTNetwork\"",
-					"-l\"React-RCTSettings\"",
-					"-l\"React-RCTText\"",
-					"-l\"React-RCTVibration\"",
-					"-l\"React-cxxreact\"",
-					"-l\"React-jsi\"",
-					"-l\"React-jsiexecutor\"",
-					"-l\"React-jsinspector\"",
-					"-l\"ReactCommon\"",
-					"-l\"Realm\"",
-					"-l\"RealmSwift\"",
-					"-l\"SSZipArchive\"",
-					"-l\"Sentry\"",
-					"-l\"Yoga\"",
-					"-l\"ZIPFoundation\"",
-					"-l\"c++\"",
-					"-l\"glog\"",
-					"-l\"iconv\"",
-					"-l\"react-native-background-timer\"",
-					"-l\"react-native-config\"",
-					"-l\"react-native-document-picker\"",
-					"-l\"react-native-netinfo\"",
-					"-l\"react-native-safe-area-context\"",
-					"-l\"react-native-splash-screen\"",
-					"-l\"react-native-uuid-generator\"",
-					"-l\"react-native-viewpager\"",
-					"-l\"react-native-webview\"",
-					"-l\"realmcore-ios\"",
-					"-l\"rn-fetch-blob\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"TSBackgroundFetch\"",
-					"-framework",
-					"\"UIKit\"",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.mn.bt;
 				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "pathcheck-dev-john";
+				PROVISIONING_PROFILE_SPECIFIER = "PathCheck Dev";
 				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1991,198 +1866,20 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6R7GW6VJ2A;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/Permission-Notifications\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNBackgroundFetch\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCPushNotificationIOS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
-					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSentry\"",
-					"\"${PODS_ROOT}/Headers/Public/RNShare\"",
-					"\"${PODS_ROOT}/Headers/Public/RNZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/Realm\"",
-					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-background-timer\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-document-picker\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-uuid-generator\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-viewpager\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
-					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-				);
 				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNBackgroundFetch\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNDateTimePicker\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSentry\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Realm\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Sentry\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-config\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-document-picker\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-netinfo\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
-					"\"${PODS_ROOT}/Realm/core\"",
-				);
-				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Alamofire\"",
-					"-l\"BVLinearGradient\"",
-					"-l\"DoubleConversion\"",
-					"-l\"FBReactNativeSpec\"",
-					"-l\"Folly\"",
-					"-l\"Permission-Notifications\"",
-					"-l\"RCTTypeSafety\"",
-					"-l\"RNBackgroundFetch\"",
-					"-l\"RNCAsyncStorage\"",
-					"-l\"RNCMaskedView\"",
-					"-l\"RNCPushNotificationIOS\"",
-					"-l\"RNDateTimePicker\"",
-					"-l\"RNFS\"",
-					"-l\"RNGestureHandler\"",
-					"-l\"RNPermissions\"",
-					"-l\"RNReanimated\"",
-					"-l\"RNSVG\"",
-					"-l\"RNScreens\"",
-					"-l\"RNSentry\"",
-					"-l\"RNShare\"",
-					"-l\"RNZipArchive\"",
-					"-l\"React-Core\"",
-					"-l\"React-CoreModules\"",
-					"-l\"React-RCTActionSheet\"",
-					"-l\"React-RCTAnimation\"",
-					"-l\"React-RCTBlob\"",
-					"-l\"React-RCTImage\"",
-					"-l\"React-RCTLinking\"",
-					"-l\"React-RCTNetwork\"",
-					"-l\"React-RCTSettings\"",
-					"-l\"React-RCTText\"",
-					"-l\"React-RCTVibration\"",
-					"-l\"React-cxxreact\"",
-					"-l\"React-jsi\"",
-					"-l\"React-jsiexecutor\"",
-					"-l\"React-jsinspector\"",
-					"-l\"ReactCommon\"",
-					"-l\"Realm\"",
-					"-l\"RealmSwift\"",
-					"-l\"SSZipArchive\"",
-					"-l\"Sentry\"",
-					"-l\"Yoga\"",
-					"-l\"ZIPFoundation\"",
-					"-l\"c++\"",
-					"-l\"glog\"",
-					"-l\"iconv\"",
-					"-l\"react-native-background-timer\"",
-					"-l\"react-native-config\"",
-					"-l\"react-native-document-picker\"",
-					"-l\"react-native-netinfo\"",
-					"-l\"react-native-safe-area-context\"",
-					"-l\"react-native-splash-screen\"",
-					"-l\"react-native-uuid-generator\"",
-					"-l\"react-native-viewpager\"",
-					"-l\"react-native-webview\"",
-					"-l\"realmcore-ios\"",
-					"-l\"rn-fetch-blob\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"TSBackgroundFetch\"",
-					"-framework",
-					"\"UIKit\"",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
 				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.mn.bt;
@@ -2431,140 +2128,20 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/Permission-Notifications\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNBackgroundFetch\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCPushNotificationIOS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
-					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSentry\"",
-					"\"${PODS_ROOT}/Headers/Public/RNShare\"",
-					"\"${PODS_ROOT}/Headers/Public/RNZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/Realm\"",
-					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-background-timer\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-document-picker\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-uuid-generator\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-viewpager\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
-					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-				);
 				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Alamofire\"",
-					"-l\"BVLinearGradient\"",
-					"-l\"DoubleConversion\"",
-					"-l\"FBReactNativeSpec\"",
-					"-l\"Folly\"",
-					"-l\"Permission-Notifications\"",
-					"-l\"RCTTypeSafety\"",
-					"-l\"RNBackgroundFetch\"",
-					"-l\"RNCAsyncStorage\"",
-					"-l\"RNCMaskedView\"",
-					"-l\"RNCPushNotificationIOS\"",
-					"-l\"RNDateTimePicker\"",
-					"-l\"RNFS\"",
-					"-l\"RNGestureHandler\"",
-					"-l\"RNPermissions\"",
-					"-l\"RNReanimated\"",
-					"-l\"RNSVG\"",
-					"-l\"RNScreens\"",
-					"-l\"RNSentry\"",
-					"-l\"RNShare\"",
-					"-l\"RNZipArchive\"",
-					"-l\"React-Core\"",
-					"-l\"React-CoreModules\"",
-					"-l\"React-RCTActionSheet\"",
-					"-l\"React-RCTAnimation\"",
-					"-l\"React-RCTBlob\"",
-					"-l\"React-RCTImage\"",
-					"-l\"React-RCTLinking\"",
-					"-l\"React-RCTNetwork\"",
-					"-l\"React-RCTSettings\"",
-					"-l\"React-RCTText\"",
-					"-l\"React-RCTVibration\"",
-					"-l\"React-cxxreact\"",
-					"-l\"React-jsi\"",
-					"-l\"React-jsiexecutor\"",
-					"-l\"React-jsinspector\"",
-					"-l\"ReactCommon\"",
-					"-l\"Realm\"",
-					"-l\"RealmSwift\"",
-					"-l\"SSZipArchive\"",
-					"-l\"Sentry\"",
-					"-l\"Yoga\"",
-					"-l\"ZIPFoundation\"",
-					"-l\"c++\"",
-					"-l\"glog\"",
-					"-l\"iconv\"",
-					"-l\"react-native-background-timer\"",
-					"-l\"react-native-config\"",
-					"-l\"react-native-document-picker\"",
-					"-l\"react-native-netinfo\"",
-					"-l\"react-native-safe-area-context\"",
-					"-l\"react-native-splash-screen\"",
-					"-l\"react-native-uuid-generator\"",
-					"-l\"react-native-viewpager\"",
-					"-l\"react-native-webview\"",
-					"-l\"realmcore-ios\"",
-					"-l\"rn-fetch-blob\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"TSBackgroundFetch\"",
-					"-framework",
-					"\"UIKit\"",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -D DEBUG";
 				PRODUCT_NAME = BT;
@@ -2773,140 +2350,20 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/Permission-Notifications\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNBackgroundFetch\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCPushNotificationIOS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
-					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSentry\"",
-					"\"${PODS_ROOT}/Headers/Public/RNShare\"",
-					"\"${PODS_ROOT}/Headers/Public/RNZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/Realm\"",
-					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-background-timer\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-document-picker\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-uuid-generator\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-viewpager\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
-					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-				);
 				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Alamofire\"",
-					"-l\"BVLinearGradient\"",
-					"-l\"DoubleConversion\"",
-					"-l\"FBReactNativeSpec\"",
-					"-l\"Folly\"",
-					"-l\"Permission-Notifications\"",
-					"-l\"RCTTypeSafety\"",
-					"-l\"RNBackgroundFetch\"",
-					"-l\"RNCAsyncStorage\"",
-					"-l\"RNCMaskedView\"",
-					"-l\"RNCPushNotificationIOS\"",
-					"-l\"RNDateTimePicker\"",
-					"-l\"RNFS\"",
-					"-l\"RNGestureHandler\"",
-					"-l\"RNPermissions\"",
-					"-l\"RNReanimated\"",
-					"-l\"RNSVG\"",
-					"-l\"RNScreens\"",
-					"-l\"RNSentry\"",
-					"-l\"RNShare\"",
-					"-l\"RNZipArchive\"",
-					"-l\"React-Core\"",
-					"-l\"React-CoreModules\"",
-					"-l\"React-RCTActionSheet\"",
-					"-l\"React-RCTAnimation\"",
-					"-l\"React-RCTBlob\"",
-					"-l\"React-RCTImage\"",
-					"-l\"React-RCTLinking\"",
-					"-l\"React-RCTNetwork\"",
-					"-l\"React-RCTSettings\"",
-					"-l\"React-RCTText\"",
-					"-l\"React-RCTVibration\"",
-					"-l\"React-cxxreact\"",
-					"-l\"React-jsi\"",
-					"-l\"React-jsiexecutor\"",
-					"-l\"React-jsinspector\"",
-					"-l\"ReactCommon\"",
-					"-l\"Realm\"",
-					"-l\"RealmSwift\"",
-					"-l\"SSZipArchive\"",
-					"-l\"Sentry\"",
-					"-l\"Yoga\"",
-					"-l\"ZIPFoundation\"",
-					"-l\"c++\"",
-					"-l\"glog\"",
-					"-l\"iconv\"",
-					"-l\"react-native-background-timer\"",
-					"-l\"react-native-config\"",
-					"-l\"react-native-document-picker\"",
-					"-l\"react-native-netinfo\"",
-					"-l\"react-native-safe-area-context\"",
-					"-l\"react-native-splash-screen\"",
-					"-l\"react-native-uuid-generator\"",
-					"-l\"react-native-viewpager\"",
-					"-l\"react-native-webview\"",
-					"-l\"realmcore-ios\"",
-					"-l\"rn-fetch-blob\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"TSBackgroundFetch\"",
-					"-framework",
-					"\"UIKit\"",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
 				PRODUCT_NAME = BT;
@@ -3110,140 +2567,20 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/Permission-Notifications\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNBackgroundFetch\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCPushNotificationIOS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
-					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSentry\"",
-					"\"${PODS_ROOT}/Headers/Public/RNShare\"",
-					"\"${PODS_ROOT}/Headers/Public/RNZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/Realm\"",
-					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-background-timer\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-document-picker\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-uuid-generator\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-viewpager\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
-					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-				);
 				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Alamofire\"",
-					"-l\"BVLinearGradient\"",
-					"-l\"DoubleConversion\"",
-					"-l\"FBReactNativeSpec\"",
-					"-l\"Folly\"",
-					"-l\"Permission-Notifications\"",
-					"-l\"RCTTypeSafety\"",
-					"-l\"RNBackgroundFetch\"",
-					"-l\"RNCAsyncStorage\"",
-					"-l\"RNCMaskedView\"",
-					"-l\"RNCPushNotificationIOS\"",
-					"-l\"RNDateTimePicker\"",
-					"-l\"RNFS\"",
-					"-l\"RNGestureHandler\"",
-					"-l\"RNPermissions\"",
-					"-l\"RNReanimated\"",
-					"-l\"RNSVG\"",
-					"-l\"RNScreens\"",
-					"-l\"RNSentry\"",
-					"-l\"RNShare\"",
-					"-l\"RNZipArchive\"",
-					"-l\"React-Core\"",
-					"-l\"React-CoreModules\"",
-					"-l\"React-RCTActionSheet\"",
-					"-l\"React-RCTAnimation\"",
-					"-l\"React-RCTBlob\"",
-					"-l\"React-RCTImage\"",
-					"-l\"React-RCTLinking\"",
-					"-l\"React-RCTNetwork\"",
-					"-l\"React-RCTSettings\"",
-					"-l\"React-RCTText\"",
-					"-l\"React-RCTVibration\"",
-					"-l\"React-cxxreact\"",
-					"-l\"React-jsi\"",
-					"-l\"React-jsiexecutor\"",
-					"-l\"React-jsinspector\"",
-					"-l\"ReactCommon\"",
-					"-l\"Realm\"",
-					"-l\"RealmSwift\"",
-					"-l\"SSZipArchive\"",
-					"-l\"Sentry\"",
-					"-l\"Yoga\"",
-					"-l\"ZIPFoundation\"",
-					"-l\"c++\"",
-					"-l\"glog\"",
-					"-l\"iconv\"",
-					"-l\"react-native-background-timer\"",
-					"-l\"react-native-config\"",
-					"-l\"react-native-document-picker\"",
-					"-l\"react-native-netinfo\"",
-					"-l\"react-native-safe-area-context\"",
-					"-l\"react-native-splash-screen\"",
-					"-l\"react-native-uuid-generator\"",
-					"-l\"react-native-viewpager\"",
-					"-l\"react-native-webview\"",
-					"-l\"realmcore-ios\"",
-					"-l\"rn-fetch-blob\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"TSBackgroundFetch\"",
-					"-framework",
-					"\"UIKit\"",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
 				PRODUCT_NAME = BT;
@@ -3447,140 +2784,20 @@
 				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 20;
+				CURRENT_PROJECT_VERSION = 27;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/BVLinearGradient\"",
-					"\"${PODS_ROOT}/Headers/Public/DoubleConversion\"",
-					"\"${PODS_ROOT}/Headers/Public/FBLazyVector\"",
-					"\"${PODS_ROOT}/Headers/Public/FBReactNativeSpec\"",
-					"\"${PODS_ROOT}/Headers/Public/Permission-Notifications\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTRequired\"",
-					"\"${PODS_ROOT}/Headers/Public/RCTTypeSafety\"",
-					"\"${PODS_ROOT}/Headers/Public/RNBackgroundFetch\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCAsyncStorage\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCMaskedView\"",
-					"\"${PODS_ROOT}/Headers/Public/RNCPushNotificationIOS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNDateTimePicker\"",
-					"\"${PODS_ROOT}/Headers/Public/RNFS\"",
-					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNPermissions\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
-					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
-					"\"${PODS_ROOT}/Headers/Public/RNSentry\"",
-					"\"${PODS_ROOT}/Headers/Public/RNShare\"",
-					"\"${PODS_ROOT}/Headers/Public/RNZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/React-Core\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTBlob\"",
-					"\"${PODS_ROOT}/Headers/Public/React-RCTText\"",
-					"\"${PODS_ROOT}/Headers/Public/React-cxxreact\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsi\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsiexecutor\"",
-					"\"${PODS_ROOT}/Headers/Public/React-jsinspector\"",
-					"\"${PODS_ROOT}/Headers/Public/ReactCommon\"",
-					"\"${PODS_ROOT}/Headers/Public/Realm\"",
-					"\"${PODS_ROOT}/Headers/Public/SSZipArchive\"",
-					"\"${PODS_ROOT}/Headers/Public/Sentry\"",
-					"\"${PODS_ROOT}/Headers/Public/Yoga\"",
-					"\"${PODS_ROOT}/Headers/Public/glog\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-background-timer\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-config\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-document-picker\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-netinfo\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-safe-area-context\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-splash-screen\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-uuid-generator\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-viewpager\"",
-					"\"${PODS_ROOT}/Headers/Public/react-native-webview\"",
-					"\"${PODS_ROOT}/Headers/Public/rn-fetch-blob\"",
-					"\"$(PODS_ROOT)/Headers/Private/React-Core\"",
-				);
 				INFOPLIST_FILE = BT/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"Alamofire\"",
-					"-l\"BVLinearGradient\"",
-					"-l\"DoubleConversion\"",
-					"-l\"FBReactNativeSpec\"",
-					"-l\"Folly\"",
-					"-l\"Permission-Notifications\"",
-					"-l\"RCTTypeSafety\"",
-					"-l\"RNBackgroundFetch\"",
-					"-l\"RNCAsyncStorage\"",
-					"-l\"RNCMaskedView\"",
-					"-l\"RNCPushNotificationIOS\"",
-					"-l\"RNDateTimePicker\"",
-					"-l\"RNFS\"",
-					"-l\"RNGestureHandler\"",
-					"-l\"RNPermissions\"",
-					"-l\"RNReanimated\"",
-					"-l\"RNSVG\"",
-					"-l\"RNScreens\"",
-					"-l\"RNSentry\"",
-					"-l\"RNShare\"",
-					"-l\"RNZipArchive\"",
-					"-l\"React-Core\"",
-					"-l\"React-CoreModules\"",
-					"-l\"React-RCTActionSheet\"",
-					"-l\"React-RCTAnimation\"",
-					"-l\"React-RCTBlob\"",
-					"-l\"React-RCTImage\"",
-					"-l\"React-RCTLinking\"",
-					"-l\"React-RCTNetwork\"",
-					"-l\"React-RCTSettings\"",
-					"-l\"React-RCTText\"",
-					"-l\"React-RCTVibration\"",
-					"-l\"React-cxxreact\"",
-					"-l\"React-jsi\"",
-					"-l\"React-jsiexecutor\"",
-					"-l\"React-jsinspector\"",
-					"-l\"ReactCommon\"",
-					"-l\"Realm\"",
-					"-l\"RealmSwift\"",
-					"-l\"SSZipArchive\"",
-					"-l\"Sentry\"",
-					"-l\"Yoga\"",
-					"-l\"ZIPFoundation\"",
-					"-l\"c++\"",
-					"-l\"glog\"",
-					"-l\"iconv\"",
-					"-l\"react-native-background-timer\"",
-					"-l\"react-native-config\"",
-					"-l\"react-native-document-picker\"",
-					"-l\"react-native-netinfo\"",
-					"-l\"react-native-safe-area-context\"",
-					"-l\"react-native-splash-screen\"",
-					"-l\"react-native-uuid-generator\"",
-					"-l\"react-native-viewpager\"",
-					"-l\"react-native-webview\"",
-					"-l\"realmcore-ios\"",
-					"-l\"rn-fetch-blob\"",
-					"-l\"stdc++\"",
-					"-l\"z\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"JavaScriptCore\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"TSBackgroundFetch\"",
-					"-framework",
-					"\"UIKit\"",
+					"-lc++",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
 				PRODUCT_NAME = BT;
