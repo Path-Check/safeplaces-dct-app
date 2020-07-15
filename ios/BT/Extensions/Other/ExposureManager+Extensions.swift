@@ -52,6 +52,9 @@ extension ExposureManager {
       requestExposureNotificationAuthorization(enabled: enabled) { result in
         resolve("EN Enabled: \(self.manager.exposureNotificationEnabled)")
       }
+    case .showLastProcessedFilePath:
+      let path = BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile
+      resolve(path)
     }
   }
   

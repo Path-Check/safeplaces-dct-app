@@ -132,6 +132,10 @@ export const simulateExposure = async (): Promise<'success'> => {
   return debugModule.simulateExposure();
 };
 
+export const showLastProcessedFilePath = async (): Promise<string> => {
+  return debugModule.showLastProcessedFilePath();
+};
+
 export const resetExposure = async (): Promise<'success'> => {
   return debugModule.resetExposure();
 };
