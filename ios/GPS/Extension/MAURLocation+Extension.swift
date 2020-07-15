@@ -10,6 +10,11 @@ import Scrypt
 
 extension MAURLocation {
 
+  // Require a timestamp and non (0, 0) (lat, lon). Would name `isValid` but this conflicts with existing prop.
+  @objc public var isAcceptable: Bool {
+    return hasTime() && (abs(latitude.doubleValue) > 1e-5 || abs(longitude.doubleValue) > 1e-5)
+  }
+
   /// Generates array of geohashes concatenated with time, within a 10 meter radius of given location
   public var geoHashes: [String] {
     Geohash.GEO_CIRCLE_RADII.map({ radii in

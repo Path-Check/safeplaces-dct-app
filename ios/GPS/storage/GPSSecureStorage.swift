@@ -127,13 +127,8 @@ private extension GPSSecureStorage {
   func saveDeviceLocationImmediately(_ backgroundLocation: MAURLocation, backfill: Bool) {
     Log.storage.debug("Processing \(backgroundLocation)")
 
-    // The geolocation library sometimes returns nil times.
-    // Almost immediately after these locations, we receive an identical location containing a time.
-    guard backgroundLocation.hasTime() else {
-      return
-    }
-
-    guard let realm = getRealmInstance() else {
+    guard backgroundLocation.isValid, let realm = getRealmInstance() else {
+      Log.storage.debug("Ignoring invalid location")
       return
     }
 
