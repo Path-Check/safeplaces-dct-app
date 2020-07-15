@@ -11,7 +11,7 @@ exports[`base 1`] = `
   }
 >
   <SafeAreaView
-    backgroundColor="#4051db"
+    backgroundColor="#5061e6"
     style={
       Object {
         "borderTopWidth": 0,
