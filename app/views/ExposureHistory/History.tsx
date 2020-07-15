@@ -63,7 +63,9 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
       <ScrollView style={styles.container} alwaysBounceVertical={false}>
         <View>
           <View style={styles.headerRow}>
-            <Typography style={styles.headerText}>{titleText}</Typography>
+            <View style={{ flex: 1 }}>
+              <Typography style={styles.headerText}>{titleText}</Typography>
+            </View>
             <TouchableOpacity
               onPress={handleOnPressMoreInfo}
               style={styles.moreInfoButton}>
