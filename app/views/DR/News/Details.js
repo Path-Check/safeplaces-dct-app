@@ -4,6 +4,7 @@ import { BackHandler, Dimensions } from 'react-native';
 import PDFView from 'react-native-pdf';
 import { WebView } from 'react-native-webview';
 
+import activityIndicatorLoadingView from '../../../components/DR/ActivityIndicator';
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 import DialogAdvices from '../../DialogAdvices';
 
@@ -18,7 +19,12 @@ const fixerImage = `
 const Details = ({
   navigation,
   route: {
-    params: { source, switchScreenTo = 'WebView', textFirstDialog },
+    params: {
+      source,
+      switchScreenTo = 'WebView',
+      textFirstDialog,
+      isSponsorsScreen = false,
+    },
   },
 }) => {
   navigation.setOptions({ headerShown: false });
@@ -66,6 +72,7 @@ const Details = ({
             height: Dimensions.get('window').height,
             backgroundColor: 'white',
           }}
+          activityIndicator={activityIndicatorLoadingView(isSponsorsScreen)}
         />
       )}
       {switchScreenTo === 'WebView' && (
@@ -73,6 +80,7 @@ const Details = ({
           source={source}
           startInLoadingState
           injectedJavaScript={fixerImage}
+          renderLoading={() => activityIndicatorLoadingView(isSponsorsScreen)}
           onLoadStart={() => {
             if (textFirstDialog) {
               setShowDialog(true);

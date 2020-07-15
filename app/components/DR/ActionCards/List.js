@@ -20,6 +20,7 @@ export default function DataList({
   descriptionLinesNum = 3,
   navigation: { navigate },
   switchScreenTo,
+  isSponsorsScreen,
 }) {
   const cropsName = [
     '120x67',
@@ -50,6 +51,7 @@ export default function DataList({
               navigate('Details', {
                 switchScreenTo,
                 source: { uri: url },
+                isSponsorsScreen,
               })
             }
             key={String(index)}
