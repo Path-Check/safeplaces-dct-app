@@ -110,7 +110,7 @@ const toExposureKey = (rawExposureKey: RawExposureKey): ExposureKey => {
 export const submitDiagnosisKeys = async (
   certificate: string,
   hmacKey: string,
-): Promise<'success'> => {
+): Promise<string> => {
   return exposureKeyModule.postDiagnosisKeys(certificate, hmacKey);
 };
 
@@ -124,7 +124,7 @@ export const fetchDiagnosisKeys = async (): Promise<ENDiagnosisKey[]> => {
 export type ENModuleErrorMessage = string | null;
 export type ENModuleSuccessMessage = string | null;
 
-export const detectExposuresNow = async (): Promise<'success'> => {
+export const detectExposuresNow = async (): Promise<string> => {
   return debugModule.detectExposuresNow();
 };
 
