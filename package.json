@@ -16,7 +16,7 @@
     "run-ios-gps": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\" --configuration \"Debug-GPS\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
-    "postinstall": "./scripts/install-submodules.sh node_modules/\\@mauron85/react-native-background-geolocation && patch-package && node ./scripts/replace.js && npx react-native-jetifier",
+    "postinstall": "./scripts/install-submodules.sh node_modules/\\@mauron85/react-native-background-geolocation && npx react-native-jetifier",
     "postversion": "react-native-version",
     "set-ha": "./setup_env.sh",
     "format:all": "prettier --write ./app/**/*.js",
