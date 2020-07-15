@@ -270,35 +270,11 @@ final class ExposureManager: NSObject {
     }
   }
 
-  @objc func getAndPostDiagnosisKeysDebug(callback: @escaping RCTResponseSenderBlock) {
-    manager.getDiagnosisKeys { temporaryExposureKeys, error in
-      if let error = error {
-        callback([error])
-      } else {
 
-        let allKeys = (temporaryExposureKeys ?? [])
-
-        // Filter keys > 350 hrs old
-        let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
-
-
-        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
-                                                              [.US],
-                                                              String.default,
-                                                              String.default),
-                                 requestType: .postKeys) { result in
-                                  switch result {
-                                  case .success:
-                                    callback([NSNull(), String.genericSuccess])
-                                  case .failure(let error):
-                                    callback([error, NSNull()])
-                                  }
-        }
-      }
-    }
-  }
-
-  @objc func getAndPostDiagnosisKeys(certificate: String, HMACKey: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  @objc func getAndPostDiagnosisKeys(certificate: String,
+                                     HMACKey: String,
+                                     resolve: @escaping RCTPromiseResolveBlock,
+                                     reject: @escaping RCTPromiseRejectBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         reject(String.noExposureKeysFound, "Failed to get exposure keys", error)

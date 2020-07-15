@@ -62,27 +62,18 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
   };
 
   const handleOnPressSimulationButton = (
-    callSimulatedEvent: (
-      cb: (errorString: string | null, successString: string | null) => void,
-    ) => void,
+    callSimulatedEvent: () => Promise<string>,
   ) => {
-    return () => {
-      // Update loading state
-      setLoading(true);
-
-      const cb = (errorString: string | null, successString: string | null) => {
-        // Update loading state
+    return async () => {
+      try {
+        setLoading(true);
+        const result = await callSimulatedEvent();
         setLoading(false);
-
-        if (errorString) {
-          showErrorAlert(errorString);
-        } else if (successString) {
-          showSuccessAlert(successString);
-        } else {
-          showSuccessAlert('success');
-        }
-      };
-      callSimulatedEvent(cb);
+        showSuccessAlert(result);
+      } catch (e) {
+        setLoading(false);
+        showErrorAlert(e.message);
+      }
     };
   };
 
@@ -163,12 +154,6 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
                 BTNativeModule.toggleExposureNotifications,
               )}
             />
-            <DebugMenuListItem
-              label='Reset Exposure Detection Error'
-              onPress={handleOnPressSimulationButton(
-                BTNativeModule.resetExposureDetectionError,
-              )}
-            />
           </View>
           <View style={styles.section}>
             <DebugMenuListItem
@@ -181,7 +166,7 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
               label='Get and Post Diagnosis Keys'
               style={styles.lastListItem}
               onPress={handleOnPressSimulationButton(
-                BTNativeModule.getAndPostDiagnosisKeys,
+                BTNativeModule.submitExposureKeys,
               )}
             />
           </View>
