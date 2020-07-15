@@ -8,7 +8,7 @@ import {
 } from './exposureHistory';
 
 import { useSelector } from 'react-redux';
-import { RootState } from './store/types';
+import { RootState, FeatureFlagOption } from './store/types';
 import { mockPossible } from './factories/exposureDatum';
 
 interface ExposureHistoryState {
@@ -67,14 +67,20 @@ const ExposureHistoryProvider = ({
     toExposureHistory,
   } = exposureEventsStrategy;
 
-  const { EXPOSURE_MODE: exposureMode } = useSelector(
-    (state: RootState) => state.featureFlags.flags,
+  const featureFlags = useSelector(
+    (state: RootState) => state.featureFlags?.flags || {},
   );
+  const exposureMode = !!featureFlags[FeatureFlagOption.EXPOSURE_MODE];
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
     exposureMode ? mockedHistory : blankHistory,
   );
 
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(false);
+
+  useEffect(() => {
+    // in theory, useSelector should solve this, but the calendar screen never gets unmounted
+    setExposureHistory(exposureMode ? mockedHistory : blankHistory);
+  }, [exposureMode]);
 
   useEffect(() => {
     const subscription = exposureInfoSubscription(
