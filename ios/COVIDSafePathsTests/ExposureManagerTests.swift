@@ -1,7 +1,8 @@
 import Foundation
-
+import  ExposureNotification
 import RealmSwift
 import XCTest
+
 @testable import BT
 
 class ExposureManagerTests: XCTestCase {
@@ -242,6 +243,29 @@ mn/1593460800-1593475200-00022.zip
     // Setup
     BTSecureStorage.shared.resetUserState() { _ in }
     XCTAssertEqual(BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity, Constants.dailyFileProcessingCapacity)
+  }
+
+  func testFilterOldKeysForSubmission() {
+    // Keys older than 350 hours should not be submitted
+    
+    let oneMonthAgo: Date = Calendar.current.date(byAdding: .month, value: -1, to: Date())!
+    let oneWeekAgo: Date = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+    let today: Date = Date()
+
+    let keyA = ENTemporaryExposureKey()
+    keyA.rollingStartNumber = ENTemporaryExposureKey.rollingStartNumber(oneMonthAgo)
+
+    let keyB = ENTemporaryExposureKey()
+    keyB.rollingStartNumber = ENTemporaryExposureKey.rollingStartNumber(oneWeekAgo)
+
+    let keyC = ENTemporaryExposureKey()
+    keyC.rollingStartNumber = ENTemporaryExposureKey.rollingStartNumber(today)
+
+    let currentKeys = [keyA, keyB, keyC].current()
+
+    XCTAssertFalse(currentKeys.contains(keyA))
+    XCTAssertTrue(currentKeys.contains(keyB))
+    XCTAssertTrue(currentKeys.contains(keyC))
   }
 
 }
