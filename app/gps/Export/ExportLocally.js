@@ -24,7 +24,7 @@ const ExportLocally = ({ navigation }) => {
           latitude,
           longitude,
           time,
-          hashes
+          hashes,
         })),
       );
       const title = 'COVIDSafePaths.json';
