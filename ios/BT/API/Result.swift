@@ -7,6 +7,13 @@ public enum Result<T> {
 
 }
 
+public enum ExposureResult {
+
+  case success(Int)
+  case failure(ExposureError)
+
+}
+
 public enum GenericError: Error {
 
   case unknown
@@ -15,6 +22,22 @@ public enum GenericError: Error {
   case notFound
   case notImplemented
   case unauthorized
+
+}
+
+public enum ExposureError: LocalizedError {
+
+  case `default`(String?)
+
+  public var errorDescription: String? {
+    switch self {
+    case .default(message: let message):
+      guard let unwrappedMessage = message else {
+        return localizedDescription
+      }
+      return unwrappedMessage
+    }
+  }
 
 }
 

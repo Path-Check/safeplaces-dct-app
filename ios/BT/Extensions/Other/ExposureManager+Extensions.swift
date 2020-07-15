@@ -19,15 +19,16 @@ extension ExposureManager {
     case .detectExposuresNow:
       guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
         let hoursRemaining = 24 - Date.hourDifference(from: BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset ?? Date(), to: Date())
-        reject("You have reached the exposure file submission limit. Please wait \(hoursRemaining) hours before detecting exposures again.", "Failed to detect Exposures", GenericError.unknown)
+        reject("Time window Error.", "You have reached the exposure file submission limit. Please wait \(hoursRemaining) hours before detecting exposures again.", GenericError.unknown)
         return
       }
       
-      detectExposures { error in
-        if let error = error {
-          reject(error.localizedDescription, "Failed to detect Exposures", error)
-        } else {
-          resolve("Exposure detection successfully executed.")
+      detectExposures { result in
+        switch result {
+        case .success(let numberOfFilesProcessed):
+          resolve("Exposure detection successfully executed. Processed \(numberOfFilesProcessed) files.")
+        case .failure(let exposureError):
+          reject(exposureError.localizedDescription, exposureError.errorDescription, exposureError)
         }
       }
     case .simulateExposureDetectionError:
