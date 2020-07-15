@@ -161,6 +161,8 @@ android {
 
         versionCode 11
         versionName "1.0.8"
+
+        resValue "string", "build_config_package", "org.pathcheck.covidsafepaths"
     }
     splits {
         abi {
