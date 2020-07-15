@@ -38,6 +38,7 @@ import NotificationDetails from './views/onboarding/NotificationDetails';
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
+import LocationsPermissionsDisabled from './views/onboarding/LocationPermissionsDisabled'
 import LanguageSelection from './views/LanguageSelection';
 
 import { Screens, Stacks } from './navigation';
@@ -271,6 +272,10 @@ const OnboardingStack = () => (
     <Stack.Screen
       name={Screens.OnboardingLocationPermissions}
       component={LocationsPermissions}
+    />
+    <Stack.Screen
+      name={Screens.OnboardingLocationDisabled}
+      component={LocationsPermissionsDisabled}
     />
     <Stack.Screen
       name={Screens.NotificationPermissionsBT}

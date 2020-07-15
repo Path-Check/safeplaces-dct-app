@@ -6,12 +6,15 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
 import PermissionsContext from '../../gps/PermissionsContext';
-import { Screens } from '../../navigation';
+import { PermissionStatus } from '../../permissionStatus';
+import onboardingCompleteAction from '../../store/actions/onboardingCompleteAction';
+import { SetStoreData } from '../../helpers/General';
+import { PARTICIPATE } from '../../constants/storage';
 import { Typography } from '../../components/Typography';
 import { useStatusBarEffect } from '../../navigation';
 
@@ -24,30 +27,32 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
-const NotificationsPermissions = (): JSX.Element => {
-  const navigation = useNavigation();
+const LocationsPermissions = (): JSX.Element => {
   const { t } = useTranslation();
-  const { notification } = useContext(PermissionsContext);
+  const dispatch = useDispatch();
+  const { authSubscription, location } = useContext(PermissionsContext);
 
   useStatusBarEffect('dark-content');
 
-  const requestPermission = async () => {
-    await notification.request();
+  const requestLocationAccess = async () => {
+    await location.request();
+    authSubscription.request();
+    completeOnboarding();
   };
 
-  const continueOnboarding = () => {
-    // TODO: add a check if user has disabled location on device level
-    // here or maybe in Entry.js?
-    navigation.navigate(Screens.OnboardingLocationPermissions);
+  const completeOnboarding = () => {
+    const storeData = location.status === PermissionStatus.GRANTED;
+    SetStoreData(PARTICIPATE, JSON.stringify(storeData));
+    dispatch(onboardingCompleteAction());
   };
 
-  const handleOnPressEnable = async () => {
-    await requestPermission();
-    continueOnboarding();
+  const handleOnPressEnable = () => {
+    requestLocationAccess();
+    completeOnboarding();
   };
 
   const handleOnPressMaybeLater = () => {
-    continueOnboarding();
+    completeOnboarding();
   };
 
   return (
@@ -59,23 +64,24 @@ const NotificationsPermissions = (): JSX.Element => {
           alwaysBounceVertical={false}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={styles.iconCircle}>
-            <SvgXml xml={Icons.Bell} width={30} height={30} />
+            <SvgXml xml={Icons.LocationPin} width={30} height={30} />
           </View>
           <Typography style={styles.headerText}>
-            {t('onboarding.notification_header')}
+            {t('onboarding.location_header')}
           </Typography>
           <View style={{ height: Spacing.medium }} />
           <Typography style={styles.contentText}>
-            {t('onboarding.notification_subheader')}
+            {t('onboarding.location_subheader')}
           </Typography>
         </ScrollView>
-        <TouchableOpacity
+
+        {/* <TouchableOpacity
           onPress={handleOnPressEnable}
           style={styles.enableButton}>
           <Typography style={styles.enableButtonText}>
-            {t('label.launch_enable_notif')}
+            {t('label.launch_allow_location')}
           </Typography>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity
           onPress={handleOnPressMaybeLater}
@@ -125,4 +131,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationsPermissions;
+export default LocationsPermissions;

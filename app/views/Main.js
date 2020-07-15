@@ -8,6 +8,7 @@ import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
   NotificationsOffScreen,
+  LocationDisabledScreen,
   // SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
 import PermissionsContext from '../gps/PermissionsContext';
@@ -20,17 +21,20 @@ import { useStatusBarEffect } from '../navigation';
 export const Main = () => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
-  const { notification } = useContext(PermissionsContext);
+  const { notification, location } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
   const [canTrack, setCanTrack] = useState(true);
-
+  const [locationDisabled, setLocationDisabled] = useState(true);
+  
   const updateStateInfo = useCallback(async () => {
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
+    console.log('object',locationStatus)
     setCanTrack(locationStatus.canTrack);
     notification.check();
+    location.check();
     NotificationService.configure(notification.status);
-  }, [setCanTrack, notification]);
+  }, [setCanTrack, notification,location]);
 
   useEffect(() => {
     updateStateInfo();
@@ -46,7 +50,9 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  if (!canTrack) {
+  if (!locationDisabled) {
+    return <LocationDisabledScreen />;
+  } else if (!canTrack) {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
