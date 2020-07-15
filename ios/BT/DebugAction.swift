@@ -5,5 +5,6 @@
   simulateExposure,
   getAndPostDiagnosisKeys,
   resetExposures,
-  toggleENAuthorization
+  toggleENAuthorization,
+  showLastProcessedFilePath
 }

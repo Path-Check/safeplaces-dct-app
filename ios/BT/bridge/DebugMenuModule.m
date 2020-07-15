@@ -20,7 +20,7 @@ RCT_REMAP_METHOD(detectExposuresNow,
                  detectExposuresNowWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    [[ExposureManager shared] handleDebugAction:DebugActionDetectExposuresNow resolve:resolve reject:reject];
+  [[ExposureManager shared] handleDebugAction:DebugActionDetectExposuresNow resolve:resolve reject:reject];
 }
 
 RCT_REMAP_METHOD(simulateExposureDetectionError,
@@ -55,6 +55,14 @@ RCT_REMAP_METHOD(submitExposureKeys,
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
   [[ExposureManager shared] handleDebugAction:DebugActionGetAndPostDiagnosisKeys resolve:resolve reject:reject];
+}
+
+
+RCT_REMAP_METHOD(showLastProcessedFilePath,
+                 showLastProcessedFilePathResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[ExposureManager shared] handleDebugAction:DebugActionShowLastProcessedFilePath resolve:resolve reject:reject];
 }
 
 @end

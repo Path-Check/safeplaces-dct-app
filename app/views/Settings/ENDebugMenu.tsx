@@ -133,6 +133,12 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
               )}
             />
             <DebugMenuListItem
+              label='Show Last Processed File Path'
+              onPress={handleOnPressSimulationButton(
+                BTNativeModule.showLastProcessedFilePath,
+              )}
+            />
+            <DebugMenuListItem
               label='Simulate Exposure Detection Error'
               onPress={handleOnPressSimulationButton(
                 BTNativeModule.simulateExposureDetectionError,
