@@ -11,6 +11,7 @@ const AllFlagsOff: Record<FeatureFlagOption, boolean> = {
   [FeatureFlagOption.DOWNLOAD_LOCALLY]: false,
   [FeatureFlagOption.DEV_LANGUAGES]: false,
   [FeatureFlagOption.BYPASS_EXPORT_API]: false,
+  [FeatureFlagOption.EXPOSURE_MODE]: false,
 };
 
 const initialState = {
