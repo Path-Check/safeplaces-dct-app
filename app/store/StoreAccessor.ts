@@ -1,10 +1,13 @@
 import { Store } from 'redux';
+import { persistStore, Persistor } from 'redux-persist';
 
-/*
- * This accessor is added for the SOLE purpose of avoiding cyclic imports from
- * the IntersectService to the Intersect helper and again to the store. The
- * accessor serves as a bridge for the consumers.
- * */
+class MultipleStoreError extends Error {
+  constructor() {
+    super('Tried to create a second store for redux');
+    this.name = 'Attempted to create multiple redux store';
+  }
+}
+
 class StoreAccessor {
   store: Store | null = null;
 
@@ -14,6 +17,16 @@ class StoreAccessor {
 
   getStore = () => {
     return this.store;
+  };
+
+  initialize = (store: Store): Persistor => {
+    if (this.store !== null) {
+      throw new MultipleStoreError();
+    }
+
+    this.setStore(store);
+    const persistor = persistStore(store);
+    return persistor;
   };
 }
 

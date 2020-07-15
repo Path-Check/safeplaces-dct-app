@@ -6,7 +6,6 @@ import { subscribeToExposureEvents, getCurrentExposures } from './exposureInfo';
 import { useGPSCopyContent, gpsAssets } from './content';
 import { ExposureEventsStrategy } from '../ExposureHistoryContext';
 import { toExposureHistory } from './intersect/exposureHistory';
-import onChangedSelectedHealthAuthorities from '../store/middleware/onChangedSelectedHealthAuthorities';
 
 const gpsExposureEventContext: ExposureEventsStrategy = {
   exposureInfoSubscription: subscribeToExposureEvents,
@@ -22,7 +21,6 @@ const gpsStrategy: TracingStrategy = {
   affectedUserFlow: ExportStack,
   assets: gpsAssets,
   useCopy: useGPSCopyContent,
-  extraMiddleware: [onChangedSelectedHealthAuthorities],
 };
 
 export default gpsStrategy;

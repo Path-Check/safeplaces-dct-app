@@ -9,11 +9,13 @@ import 'array-flat-polyfill';
 import { Entry } from './app/Entry';
 import { TracingStrategyProvider } from './app/TracingStrategyContext';
 import VersionCheckService from './app/services/VersionCheckService';
-import { createStoreAndPersistor } from './app/store';
+import StoreAccessor from './app/store/StoreAccessor';
 import btStrategy from './app/bt';
 import gpsStrategy from './app/gps';
 import BackgroundTaskService from './app/services/BackgroundTaskService';
 import { isGPS } from './app/COVIDSafePathsConfig';
+import btStore from './app/store/btStore';
+import gpsStore from './app/store/gpsStore';
 
 const determineTracingStrategy = () => {
   switch (Config.TRACING_STRATEGY) {
@@ -47,7 +49,8 @@ const App = () => {
     isGPS && BackgroundTaskService.start();
   }, []);
 
-  const [store, persistor] = createStoreAndPersistor(strategy.extraMiddleware);
+  const store = isGPS ? gpsStore : btStore;
+  const persistor = StoreAccessor.initialize(store);
 
   return (
     <Provider store={store}>
