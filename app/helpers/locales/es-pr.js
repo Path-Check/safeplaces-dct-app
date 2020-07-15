@@ -1,5 +1,5 @@
 // Spanish (Puerto Rico) [es-PR]
-import dayjs from 'dayjs'
+import dayjs from 'dayjs';
 
 const locale = {
   name: 'es-pr',
@@ -7,7 +7,9 @@ const locale = {
   weekdays: 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
   weekdaysShort: 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
   weekdaysMin: 'do_lu_ma_mi_ju_vi_sá'.split('_'),
-  months: 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split('_'),
+  months: 'Enero_Febrero_Marzo_Abril_Mayo_Junio_Julio_Agosto_Septiembre_Octubre_Noviembre_Diciembre'.split(
+    '_',
+  ),
   weekStart: 1,
   formats: {
     LT: 'h:mm A',
@@ -15,7 +17,7 @@ const locale = {
     L: 'MM/DD/YYYY',
     LL: 'D [de] MMMM [de] YYYY',
     LLL: 'D [de] MMMM [de] YYYY h:mm A',
-    LLLL: 'dddd, D [de] MMMM [de] YYYY h:mm A'
+    LLLL: 'dddd, D [de] MMMM [de] YYYY h:mm A',
   },
   relativeTime: {
     future: 'en %s',
@@ -30,11 +32,11 @@ const locale = {
     M: 'un mes',
     MM: '%d meses',
     y: 'un año',
-    yy: '%d años'
+    yy: '%d años',
   },
-  ordinal: n => `${n}º`
-}
+  ordinal: (n) => `${n}º`,
+};
 
-dayjs.locale(locale, null, true)
+dayjs.locale(locale, null, true);
 
-export default locale
+export default locale;
