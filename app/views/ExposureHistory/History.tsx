@@ -63,7 +63,7 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
       <ScrollView style={styles.container} alwaysBounceVertical={false}>
         <View>
           <View style={styles.headerRow}>
-            <View style={{ flex: 1 }}>
+            <View style={{ flexShrink: 1 }}>
               <Typography style={styles.headerText}>{titleText}</Typography>
             </View>
             <TouchableOpacity
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
   headerRow: {
     alignItems: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     marginTop: Spacing.xSmall,
   },
   headerText: {
