@@ -35,10 +35,9 @@ import { EnableExposureNotifications } from './views/onboarding/EnableExposureNo
 import Welcome from './views/onboarding/Welcome';
 import PersonalPrivacy from './views/onboarding/PersonalPrivacy';
 import NotificationDetails from './views/onboarding/NotificationDetails';
+import LocationDetails from './views/onboarding/LocationDetails'
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
-import LocationsPermissions from './views/onboarding/LocationsPermissions';
-import LocationsPermissionsDisabled from './views/onboarding/LocationPermissionsDisabled'
 import LanguageSelection from './views/LanguageSelection';
 
 import { Screens, Stacks } from './navigation';
@@ -271,11 +270,7 @@ const OnboardingStack = () => (
     />
     <Stack.Screen
       name={Screens.OnboardingLocationPermissions}
-      component={LocationsPermissions}
-    />
-    <Stack.Screen
-      name={Screens.OnboardingLocationDisabled}
-      component={LocationsPermissionsDisabled}
+      component={LocationDetails}
     />
     <Stack.Screen
       name={Screens.NotificationPermissionsBT}

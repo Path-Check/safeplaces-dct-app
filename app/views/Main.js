@@ -25,11 +25,9 @@ export const Main = () => {
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
   const [canTrack, setCanTrack] = useState(true);
-  const [locationDisabled, setLocationDisabled] = useState(true);
   
   const updateStateInfo = useCallback(async () => {
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
-    console.log('object',locationStatus)
     setCanTrack(locationStatus.canTrack);
     notification.check();
     location.check();
@@ -50,7 +48,7 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
-  if (!locationDisabled) {
+  if (location.status === PermissionStatus.UNKNOWN) {
     return <LocationDisabledScreen />;
   } else if (!canTrack) {
     return <TracingOffScreen />;

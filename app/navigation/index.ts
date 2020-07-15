@@ -40,7 +40,6 @@ export type Screen =
   | 'NotificationDetails'
   | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
-  | 'OnboardingLocationDisabled'
   | 'OnboardingNotificationPermissions'
   | 'NotificationPermissionsBT'
   | 'EnableExposureNotifications'
@@ -85,7 +84,6 @@ export const Screens: { [key in Screen]: Screen } = {
   NotificationDetails: 'NotificationDetails',
   ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
-  OnboardingLocationDisabled: 'OnboardingLocationDisabled',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
   NotificationPermissionsBT: 'NotificationPermissionsBT',
   EnableExposureNotifications: 'EnableExposureNotifications',
