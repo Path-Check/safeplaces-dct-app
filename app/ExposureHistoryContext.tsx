@@ -7,6 +7,10 @@ import {
   ExposureInfo,
 } from './exposureHistory';
 
+import { useSelector } from 'react-redux';
+import { RootState } from './store/types';
+import { mockPossible } from './factories/exposureDatum';
+
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
   hasBeenExposed: boolean;
@@ -52,6 +56,7 @@ const blankHistoryConfig: ExposureCalendarOptions = {
 };
 
 const blankHistory = blankExposureHistory(blankHistoryConfig);
+const mockedHistory = blankHistory.map(mockPossible);
 
 const ExposureHistoryProvider = ({
   children,
@@ -61,24 +66,28 @@ const ExposureHistoryProvider = ({
     exposureInfoSubscription,
     toExposureHistory,
   } = exposureEventsStrategy;
-  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
-    blankHistory,
+
+  const { EXPOSURE_MODE: exposureMode } = useSelector(
+    (state: RootState) => state.featureFlags.flags,
   );
+  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
+    exposureMode ? mockedHistory : blankHistory,
+  );
+
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(false);
 
   useEffect(() => {
     const subscription = exposureInfoSubscription(
       (exposureInfo: ExposureInfo) => {
-        const exposureHistory = toExposureHistory(
-          exposureInfo,
-          blankHistoryConfig,
-        );
+        const exposureHistory = exposureMode
+          ? mockedHistory
+          : toExposureHistory(exposureInfo, blankHistoryConfig);
         setExposureHistory(exposureHistory);
       },
     );
 
     return subscription.remove;
-  }, [exposureInfoSubscription, toExposureHistory]);
+  }, [exposureInfoSubscription, toExposureHistory, exposureMode]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);
