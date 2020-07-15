@@ -20,10 +20,11 @@ const ExportLocally = ({ navigation }) => {
 
       let options = {};
       let jsonData = JSON.stringify(
-        locationData.map(({ latitude, longitude, time }) => ({
+        locationData.map(({ latitude, longitude, time, hashes }) => ({
           latitude,
           longitude,
           time,
+          hashes
         })),
       );
       const title = 'COVIDSafePaths.json';
