@@ -20,7 +20,7 @@ export const Share = ({ navigation }) => {
   return (
     <Info
       icon={Icons.AnonymizedDataInverted}
-      backgroundColor={Colors.invertedQuaternaryBackground}
+      backgroundColor={Colors.invertedSecondaryBackground}
       titleStyle='headline3'
       descriptionStyle='body4'
       footer={
