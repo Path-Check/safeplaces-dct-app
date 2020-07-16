@@ -26,14 +26,6 @@ export const subscribeToExposureEvents = (
   );
 };
 
-export const fetchLastExposureDetectionDate = async (): Promise<Posix | null> => {
-  try {
-    return await NativeModules.ENExposureModule.fetchLastDetectionDate();
-  } catch {
-    return null;
-  }
-};
-
 export const subscribeToEnabledStatusEvents = (
   cb: (status: ENPermissionStatus) => void,
 ): EventSubscription => {
@@ -89,6 +81,14 @@ export const getCurrentExposures = async (
     const rawExposures: RawExposure[] = JSON.parse(rawExposure);
     cb(toExposureInfo(rawExposures));
   });
+};
+
+export const fetchLastExposureDetectionDate = async (): Promise<Posix | null> => {
+  try {
+    return await exposureHistoryModule.fetchLastDetectionDate();
+  } catch {
+    return null;
+  }
 };
 
 // Exposure Key Module

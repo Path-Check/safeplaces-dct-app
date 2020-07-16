@@ -17,7 +17,6 @@ import ExposureDatumDetail from './ExposureDatumDetail';
 import { DateTimeUtils } from '../../helpers';
 import Calendar from './Calendar';
 import { Screens } from '../../navigation';
-import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { Icons } from '../../assets';
 import {
@@ -57,7 +56,6 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
 
   const showExposureDetail =
     selectedDatum && !DateTimeUtils.isInFuture(selectedDatum.date);
-  const isBT = !isGPS;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -75,7 +73,7 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
             </TouchableOpacity>
           </View>
           <View style={styles.headerRow}>
-            {isBT ? <DateInfoHeader /> : null}
+            <DateInfoHeader />
           </View>
         </View>
         <View style={styles.calendarContainer}>

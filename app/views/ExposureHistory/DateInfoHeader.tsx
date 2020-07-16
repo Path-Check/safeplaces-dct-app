@@ -1,35 +1,21 @@
-import React, {
-  FunctionComponent,
-  useState,
-  useEffect,
-  useContext,
-} from 'react';
+import React, { FunctionComponent, useContext } from 'react';
 import { StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
 
 import { Typography } from '../../components/Typography';
 import { Typography as TypographyStyles } from '../../styles';
-import { fetchLastExposureDetectionDate } from '../../bt/nativeModule';
 import ExposureHistoryContext from '../../ExposureHistoryContext';
-import { posixToDayjs } from '../../helpers/dateTimeUtils';
 
 const DateInfoHeader: FunctionComponent = () => {
-  const [
-    lastExposureDetectionDate,
-    setLastExposureDetectionDate,
-  ] = useState<Dayjs | null>(null);
   const { t } = useTranslation();
-  const { exposureHistory } = useContext(ExposureHistoryContext);
+  const { lastExposureDetectionDate } = useContext(ExposureHistoryContext);
 
-  useEffect(() => {
-    fetchLastExposureDetectionDate().then((exposureDetectionDate) => {
-      exposureDetectionDate &&
-        setLastExposureDetectionDate(posixToDayjs(exposureDetectionDate));
-    });
-  }, [exposureHistory]);
+  if (lastExposureDetectionDate === null) {
+    return null;
+  }
 
   const lastDaysText = t('exposure_history.last_days');
   const updated = t('exposure_history.updated');

@@ -4,18 +4,20 @@ import dayjs from 'dayjs';
 import '@testing-library/jest-native/extend-expect';
 
 import DateInfoHeader from './DateInfoHeader';
-import * as nativeModule from '../../bt/nativeModule';
-
-jest.mock('../../bt/nativeModule');
+import ExposureHistoryContext, {
+  initialState,
+} from '../../ExposureHistoryContext';
 
 describe('DateInfoHeader', () => {
   it('displays the time since the last exposure detection', async () => {
-    const lastExposureDetectionDate = dayjs().subtract(8, 'hour').valueOf();
-    jest
-      .spyOn(nativeModule, 'fetchLastExposureDetectionDate')
-      .mockResolvedValueOnce(lastExposureDetectionDate);
+    const lastExposureDetectionDate = dayjs().subtract(8, 'hour');
 
-    const { getByText } = render(<DateInfoHeader />);
+    const { getByText } = render(
+      <ExposureHistoryContext.Provider
+        value={{ ...initialState, lastExposureDetectionDate }}>
+        <DateInfoHeader />
+      </ExposureHistoryContext.Provider>,
+    );
 
     await wait(() => {
       expect(
@@ -25,12 +27,13 @@ describe('DateInfoHeader', () => {
   });
 
   describe('when there is not an exposure detection date', () => {
-    it('does not displays an updated at info', async () => {
-      jest
-        .spyOn(nativeModule, 'fetchLastExposureDetectionDate')
-        .mockResolvedValueOnce(null);
-
-      const { queryByText } = render(<DateInfoHeader />);
+    it('does not displays the date info', async () => {
+      const { queryByText } = render(
+        <ExposureHistoryContext.Provider
+          value={{ ...initialState, lastExposureDetectionDate: null }}>
+          <DateInfoHeader />
+        </ExposureHistoryContext.Provider>,
+      );
 
       await wait(() => {
         expect(queryByText('Updated')).toBeNull();

@@ -32,7 +32,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
 		2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
-		26F4460924BF3FDF00DE49FA /* ENExposureModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 26F4460824BF3FDF00DE49FA /* ENExposureModule.m */; };
 		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		271881C02461AF76001DE067 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
@@ -238,7 +237,6 @@
 		20E5EE8E6065465F9558DCDB /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		210E5F50B07048118538B796 /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
 		22E0DA6B2DECC1B29A4C7B64 /* Pods-GPS.release-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.release-gps.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.release-gps.xcconfig"; sourceTree = "<group>"; };
-		26F4460824BF3FDF00DE49FA /* ENExposureModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ENExposureModule.m; sourceTree = "<group>"; };
 		271089AF24698720009AC76F /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafePathsSecureStorage.swift; sourceTree = "<group>"; };
 		271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorageTest.swift; sourceTree = "<group>"; };
@@ -882,7 +880,6 @@
 				B596C0712488127D00943B79 /* ENPermissionsModule.m */,
 				C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */,
 				B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */,
-				26F4460824BF3FDF00DE49FA /* ENExposureModule.m */,
 				B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */,
 				B5582D43249943DE001458A9 /* ExposureEventEmitter.m */,
 			);
@@ -1447,7 +1444,6 @@
 				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
 				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
 				B507AA0724A2533200E039D5 /* DownloadPackage+Helpers.swift in Sources */,
-				26F4460924BF3FDF00DE49FA /* ENExposureModule.m in Sources */,
 				B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */,
 				B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */,
 				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
