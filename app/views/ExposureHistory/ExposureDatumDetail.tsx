@@ -13,6 +13,7 @@ import {
 import { Typography } from '../../components/Typography';
 import { TimeHelpers } from '../utils';
 import { Screens } from '../../navigation';
+import { displayNextSteps } from '../../COVIDSafePathsConfig';
 
 import {
   Typography as TypographyStyles,
@@ -73,14 +74,10 @@ const PossibleExposureDetail = ({
         <View style={styles.contentContainer}>
           <Typography style={styles.content}>{explanationContent}</Typography>
         </View>
-        <TouchableOpacity
-          testID={'exposure-history-next-steps-button'}
-          style={styles.nextStepsButton}
-          onPress={handleOnPressNextSteps}>
-          <Typography style={styles.nextStepsButtonText}>
-            {nextStepsButtonText}
-          </Typography>
-        </TouchableOpacity>
+        {displayNextSteps && 
+        <NextStepsButton 
+          onPress={handleOnPressNextSteps}
+          buttonText={nextStepsButtonText} />}
       </View>
     </>
   );
@@ -125,6 +122,27 @@ const NoDataExposureDetail = ({
     </View>
   );
 };
+
+interface NextStepsButtonProps {
+  buttonText: string,
+  onPress: () => void
+}
+
+const NextStepsButton = ({
+  onPress,
+  buttonText,
+}: NextStepsButtonProps) => {
+  return (
+    <TouchableOpacity
+      testID={'exposure-history-next-steps-button'}
+      style={styles.nextStepsButton}
+      onPress={onPress}>
+      <Typography style={styles.nextStepsButtonText}>
+        {buttonText}
+      </Typography>
+    </TouchableOpacity>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -44,7 +44,7 @@ import { Screens, Stacks } from './navigation';
 
 import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
-import { isGPS } from './COVIDSafePathsConfig';
+import { isGPS, displaySelfAssessment, displayNextSteps } from './COVIDSafePathsConfig';
 import { isPlatformAndroid } from './Util';
 import { useTracingStrategyContext } from './TracingStrategyContext';
 
@@ -83,7 +83,7 @@ const ExposureHistoryStack = ({ navigation }) => {
         name={Screens.ExposureHistory}
         component={ExposureHistoryScreen}
       />
-      <Stack.Screen name={Screens.NextSteps} component={NextSteps} />
+      {displayNextSteps && <Stack.Screen name={Screens.NextSteps} component={NextSteps} />}
       <Stack.Screen name={Screens.MoreInfo} component={MoreInfo} />
     </Stack.Navigator>
   );
@@ -218,6 +218,7 @@ const MainAppTabs = () => {
           }}
         />
       ) : (
+        displaySelfAssessment &&
         <Tab.Screen
           name={Stacks.SelfAssessment}
           component={SelfAssessmentStack}

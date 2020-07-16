@@ -7,6 +7,7 @@ import { SvgXml } from 'react-native-svg';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Screens, useStatusBarEffect } from '../../navigation';
+import { displayNextSteps } from '../../COVIDSafePathsConfig';
 
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 import { Icons } from '../../assets';
@@ -50,6 +51,7 @@ const NextSteps = (): JSX.Element => {
           <Typography style={styles.contentText}>{contentTextOne}</Typography>
           <Typography style={styles.contentText}>{contentTextTwo}</Typography>
         </View>
+        {displayNextSteps &&
         <View style={styles.buttonContainer}>
           <Typography style={styles.footerText}>{footerText}</Typography>
           <TouchableOpacity
@@ -58,7 +60,7 @@ const NextSteps = (): JSX.Element => {
             <Typography style={styles.buttonText}>{buttonText}</Typography>
             <SvgXml xml={Icons.Export} color={Colors.white} />
           </TouchableOpacity>
-        </View>
+        </View>}
       </View>
     </NavigationBarWrapper>
   );
