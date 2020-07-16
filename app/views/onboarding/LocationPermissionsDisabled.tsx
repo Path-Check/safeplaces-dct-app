@@ -77,13 +77,13 @@ const LocationsPermissions = (): JSX.Element => {
           </Typography>
         </ScrollView>
 
-        {/* <TouchableOpacity
+        <TouchableOpacity
           onPress={handleOnPressEnable}
           style={styles.enableButton}>
           <Typography style={styles.enableButtonText}>
             {t('label.launch_allow_location')}
           </Typography>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <TouchableOpacity
           onPress={handleOnPressMaybeLater}
