@@ -141,8 +141,8 @@
     "how_does_this_work": "How does this work?",
     "legend": {
       "exposure_likely": "Exposure very likely",
-      "exposure_possible": "Exposure possible",
       "new_exposure": "New possible exposure",
+      "exposure_possible": "Possible exposure",
       "no_exposure_detected": "No exposure detected",
       "today": "Today"
     },
