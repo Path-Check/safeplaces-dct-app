@@ -2,8 +2,8 @@ import { isValidCoordinate } from 'geolib';
 import Yaml from 'js-yaml';
 import PushNotification from 'react-native-push-notification';
 import RNFetchBlob from 'rn-fetch-blob';
+import env from 'react-native-config';
 
-import { AUTHORITIES_LIST_URL } from '../constants/authorities';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   ENABLE_HCA_AUTO_SUBSCRIPTION,
@@ -11,6 +11,8 @@ import {
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 import LocationService from './LocationService';
+
+const { AUTHORITIES_LIST_URL } = env;
 
 /**
  * Singleton class to interact with health care authority data

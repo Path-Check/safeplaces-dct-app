@@ -1,13 +1,13 @@
-import Config from 'react-native-config';
+import env from 'react-native-config';
 
-const baseUrl = Config.GAEN_VERIFY_URL;
+const baseUrl = env.GAEN_VERIFY_URL;
 const verifyUrl = `${baseUrl}/api/verify`;
 const certificateUrl = `${baseUrl}/api/certificate`;
 
 const defaultHeaders = {
   'content-type': 'application/json',
   accept: 'application/json',
-  'X-API-Key': Config.GAEN_VERIFY_API_TOKEN,
+  'X-API-Key': env.GAEN_VERIFY_API_TOKEN,
 };
 
 export type Token = string;
