@@ -4,10 +4,10 @@ import RealmSwift
 
 final class BTSecureStorage: SafePathsSecureStorage {
 
-  static let shared = BTSecureStorage()
+  static let shared = BTSecureStorage(inMemory: false)
 
   override var keychainIdentifier: String {
-    "org.pathcheck.bt.realm"
+    "\(Bundle.main.bundleIdentifier!).realm"
   }
 
   private lazy var realmConfig: Realm.Configuration = {
@@ -17,13 +17,20 @@ final class BTSecureStorage: SafePathsSecureStorage {
     return realmConfig
   }()
 
+  override init(inMemory: Bool = false) {
+    super.init(inMemory: inMemory)
+    if !userStateExists {
+      resetUserState({ _ in })
+    }
+  }
+
   override func getRealmConfig() -> Realm.Configuration? {
     if let key = getEncryptionKey() {
       if (inMemory) {
-        return Realm.Configuration(inMemoryIdentifier: identifier, encryptionKey: key as Data, schemaVersion: 2,
+        return Realm.Configuration(inMemoryIdentifier: identifier, encryptionKey: key as Data, schemaVersion: 4,
                                    migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self])
       } else {
-        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 2,
+        return Realm.Configuration(encryptionKey: key as Data, schemaVersion: 4,
                                    migrationBlock: { _, _ in }, objectTypes: [UserState.self, Exposure.self])
       }
     } else {
@@ -31,19 +38,22 @@ final class BTSecureStorage: SafePathsSecureStorage {
     }
   }
 
-  func getUserState(_ completion: ((UserState) -> Void)) {
+  var userState: UserState {
     let realm = try! Realm(configuration: realmConfig)
-    let userState = realm.object(ofType: UserState.self, forPrimaryKey: 0)
-    completion(userState ?? UserState())
+    return realm.object(ofType: UserState.self, forPrimaryKey: 0) ?? UserState()
+  }
+
+  var userStateExists: Bool {
+    let realm = try! Realm(configuration: realmConfig)
+    return realm.object(ofType: UserState.self, forPrimaryKey: 0) != nil
   }
 
   func setUserValue<Value: Codable>(value: Value, keyPath: String, notificationName: Notification.Name) {
       let realm = try! Realm(configuration: realmConfig)
       try! realm.write {
         realm.create(UserState.self, value: [keyPath: value], update: .modified)
-        let encodedValue = try JSONEncoder().encode(value)
-        let stringRepresentation = String(data: encodedValue, encoding: .utf8)!
-        NotificationCenter.default.post(name: notificationName, object: stringRepresentation)
+        let jsonString = value.jsonStringRepresentation()
+        NotificationCenter.default.post(name: notificationName, object: jsonString)
     }
   }
 
@@ -59,12 +69,31 @@ final class BTSecureStorage: SafePathsSecureStorage {
     }
   }
 
+  func storeExposures(_ exposures: [Exposure]) {
+    let realm = try! Realm(configuration: realmConfig)
+    try! realm.write {
+      userState.exposures.append(objectsIn: exposures)
+      let jsonString = userState.exposures.jsonStringRepresentation()
+      NotificationCenter.default.post(name: .ExposuresDidChange, object: jsonString)
+    }
+  }
+
+  @Persisted(keyPath: .remainingDailyFileProcessingCapacity, notificationName: .remainingDailyFileProcessingCapacityDidChange, defaultValue: Constants.dailyFileProcessingCapacity)
+  var remainingDailyFileProcessingCapacity: Int
+
+  @Persisted(keyPath: .urlOfMostRecentlyDetectedKeyFile, notificationName: .UrlOfMostRecentlyDetectedKeyFileDidChange, defaultValue: .default)
+  var urlOfMostRecentlyDetectedKeyFile: String
+
   @Persisted(keyPath: .keyPathExposures, notificationName: .ExposuresDidChange, defaultValue: List<Exposure>())
   var exposures: List<Exposure>
 
-  @Persisted(keyPath: .keyPathDateLastPerformedExposureDetection,
-             notificationName: .DateLastPerformedExposureDetectionDidChange, defaultValue: nil)
-  var dateLastPerformedExposureDetection: Date?
+  @Persisted(keyPath: .keyPathdateLastPerformedFileCapacityReset,
+             notificationName: .dateLastPerformedFileCapacityResetDidChange, defaultValue: nil)
+  var dateLastPerformedFileCapacityReset: Date?
+
+  @Persisted(keyPath: .keyPathHMACKey,
+             notificationName: .HMACKeyDidChange, defaultValue: "")
+  var HMACKey: String
 
   @Persisted(keyPath: .keyPathExposureDetectionErrorLocalizedDescription, notificationName:
     .StorageExposureDetectionErrorLocalizedDescriptionDidChange, defaultValue: .default)

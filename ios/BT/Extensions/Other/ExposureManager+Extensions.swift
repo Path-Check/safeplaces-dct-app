@@ -1,71 +1,62 @@
+import ExposureNotification
 import Foundation
 import RealmSwift
 
 extension ExposureManager {
-
-  @objc func handleDebugAction(_ action: DebugAction, callback: @escaping RCTResponseSenderBlock) {
+  
+  @objc func handleDebugAction(_ action: DebugAction,
+                               resolve: @escaping RCTPromiseResolveBlock,
+                               reject: @escaping RCTPromiseRejectBlock) {
     switch action {
     case .fetchDiagnosisKeys:
       manager.getDiagnosisKeys { (keys, error) in
         if let error = error {
-          callback([error, NSNull()])
+          reject(error.localizedDescription, "Failed to get exposure keys", error)
         } else {
-          callback([NSNull(), keys!.map { $0.asDictionary }])
+          resolve(keys!.map { $0.asDictionary })
         }
       }
     case .detectExposuresNow:
-      detectExposures { success in
-        if success {
-          callback([NSNull(), "Exposure detection successfully executed."])
-        } else {
-          callback(["Exposure detection error.", NSNull()])
+      guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
+        let hoursRemaining = 24 - Date.hourDifference(from: BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset ?? Date(), to: Date())
+        reject("Time window Error.", "You have reached the exposure file submission limit. Please wait \(hoursRemaining) hours before detecting exposures again.", GenericError.unknown)
+        return
+      }
+      
+      detectExposures { result in
+        switch result {
+        case .success(let numberOfFilesProcessed):
+          resolve("Exposure detection successfully executed. Processed \(numberOfFilesProcessed) files.")
+        case .failure(let exposureError):
+          reject(exposureError.localizedDescription, exposureError.errorDescription, exposureError)
         }
       }
     case .simulateExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
-      callback([NSNull(), "Exposure deteaction error message: \(BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription)"])
+      ExposureManager.shared.postExposureDetectionErrorNotification()
+      resolve(String.genericSuccess)
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,
                               date: Date().posixRepresentation - Int(TimeInterval.random(in: 0...13)) * 24 * 60 * 60 * 1000,
                               duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
-      let exposures = BTSecureStorage.shared.exposures
-      exposures.append(exposure)
-      BTSecureStorage.shared.exposures = exposures
-      callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures)"])
-    case .resetExposureDetectionError:
-      BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = .default
-      callback([NSNull(), "Exposure Detection Error: "])
+      BTSecureStorage.shared.storeExposures([exposure])
+      resolve("Exposures: \(BTSecureStorage.shared.userState.exposures)")
     case .getAndPostDiagnosisKeys:
-      getAndPostDiagnosisKeys(callback: callback)
+      getAndPostDiagnosisKeys(certificate: .default, HMACKey: .default, resolve: resolve, reject: reject)
     case .resetExposures:
       BTSecureStorage.shared.exposures = List<Exposure>()
-      callback([NSNull(), "Exposures: \(BTSecureStorage.shared.exposures.count)"])
+      resolve("Exposures: \(BTSecureStorage.shared.exposures.count)")
     case .toggleENAuthorization:
       let enabled = manager.exposureNotificationEnabled ? false : true
       requestExposureNotificationAuthorization(enabled: enabled) { result in
-        callback([NSNull(), "EN Enabled: \(self.manager.exposureNotificationEnabled)"])
+        resolve("EN Enabled: \(self.manager.exposureNotificationEnabled)")
       }
+    case .showLastProcessedFilePath:
+      let path = BTSecureStorage.shared.userState.urlOfMostRecentlyDetectedKeyFile
+      resolve(path)
     }
   }
-
-  // Includes today's key, requires com.apple.developer.exposure-notification-test entitlement
-  func getAndPostTestDiagnosisKeys(completion: @escaping (Error?) -> Void) {
-    manager.getTestDiagnosisKeys { temporaryExposureKeys, error in
-      if let error = error {
-        completion(error)
-      } else {
-        APIClient.shared.request(DiagnosisKeyListRequest.post((temporaryExposureKeys ?? []).compactMap { $0.asCodableKey }, [.US]), requestType: .postKeys) { result in
-          switch result {
-          case .success:
-            completion(nil)
-          case .failure(let error):
-            completion(error)
-          }
-        }
-      }
-    }
-  }
-
+  
 }

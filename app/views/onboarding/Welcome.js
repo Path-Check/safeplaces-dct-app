@@ -1,110 +1,76 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   Dimensions,
   ImageBackground,
   StatusBar,
   StyleSheet,
   View,
+  TouchableOpacity,
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import languages, {
-  getLocaleList,
-  getUserLocaleOverride,
-  setUserLocaleOverride,
-  supportedDeviceLanguageOrEnglish,
-} from '../../locales/languages';
 import { Images } from '../../assets';
-import { NativePicker, Typography } from '../../components';
+import { Typography } from '../../components';
 import { EulaModal } from '../EulaModal';
 
 import { Colors } from '../../styles';
+import { Screens } from '../../navigation';
+import { useTranslation } from 'react-i18next';
+import { getLocalNames } from '../../locales/languages';
 
 const width = Dimensions.get('window').width;
 
-class Welcome extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      locale: supportedDeviceLanguageOrEnglish(),
-    };
-  }
-
-  componentDidMount() {
-    getUserLocaleOverride().then((locale) => {
-      if (locale) {
-        this.setState({ locale });
-      }
-    });
-  }
-
-  onLocaleChange = async (locale) => {
-    if (locale) {
-      try {
-        await setUserLocaleOverride(locale);
-        this.setState({ locale });
-      } catch (err) {
-        console.log('Something went wrong in language change', err);
-      }
-    }
-  };
-
-  render() {
-    return (
+const Welcome = ({ navigation }) => {
+  const {
+    t,
+    i18n: { language: localeCode },
+  } = useTranslation();
+  const languageName = getLocalNames()[localeCode];
+  return (
+    <ImageBackground
+      source={Images.BlueGradientBackground}
+      style={styles.backgroundImage}>
       <ImageBackground
-        source={Images.BlueGradientBackground}
+        source={Images.ConcentricCircles}
         style={styles.backgroundImage}>
-        <ImageBackground
-          source={Images.ConcentricCircles}
-          style={styles.backgroundImage}>
-          <StatusBar
-            barStyle='light-content'
-            backgroundColor='transparent'
-            translucent
-          />
-          <View style={styles.mainContainer}>
-            <View
-              style={{
-                paddingTop: 60,
-                position: 'absolute',
-                alignSelf: 'center',
-                zIndex: 10,
-              }}>
-              <NativePicker
-                items={getLocaleList()}
-                value={this.state.locale}
-                onValueChange={this.onLocaleChange}>
-                {({ label, openPicker }) => (
-                  <TouchableOpacity
-                    onPress={openPicker}
-                    style={styles.languageSelector}>
-                    <Typography style={styles.languageSelectorText}>
-                      {label}
-                    </Typography>
-                  </TouchableOpacity>
-                )}
-              </NativePicker>
-            </View>
-            <View style={styles.contentContainer}>
-              <Typography style={styles.mainText}>
-                {languages.t('label.launch_screen1_header')}
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
+        />
+        <View style={styles.mainContainer}>
+          <View
+            style={{
+              paddingTop: 60,
+              position: 'absolute',
+              alignSelf: 'center',
+              zIndex: 10,
+            }}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(Screens.LanguageSelection)}
+              style={styles.languageSelector}>
+              <Typography style={styles.languageSelectorText}>
+                {languageName}
               </Typography>
-            </View>
-            <View style={styles.footerContainer}>
-              <EulaModal
-                continueFunction={() =>
-                  this.props.navigation.replace('PersonalPrivacy')
-                }
-                selectedLocale={this.state.locale}
-              />
-            </View>
+            </TouchableOpacity>
           </View>
-        </ImageBackground>
+          <View style={styles.contentContainer}>
+            <Typography style={styles.mainText}>
+              {t('label.launch_screen1_header')}
+            </Typography>
+          </View>
+          <View style={styles.footerContainer}>
+            <EulaModal
+              continueFunction={() =>
+                navigation.replace(Screens.PersonalPrivacy)
+              }
+              selectedLocale={localeCode}
+            />
+          </View>
+        </View>
       </ImageBackground>
-    );
-  }
-}
+    </ImageBackground>
+  );
+};
 
 const styles = StyleSheet.create({
   backgroundImage: {
@@ -130,7 +96,6 @@ const styles = StyleSheet.create({
     color: Colors.white,
     fontSize: 26,
   },
-  // eslint-disable-next-line react-native/no-color-literals
   languageSelector: {
     borderWidth: 1,
     borderColor: Colors.white,

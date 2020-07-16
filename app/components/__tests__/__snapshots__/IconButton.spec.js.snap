@@ -10,117 +10,22 @@ exports[`allows size override 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
+  <TouchableOpacity
+    activeOpacity={0.2}
     style={
       Object {
         "alignContent": "center",
         "alignItems": "center",
-        "opacity": 1,
       }
     }
   >
     <SvgXml
+      color="#606060"
       height={48}
-      style={Object {}}
       width={48}
       xml="<g />"
     />
-  </View>
-</View>
-`;
-
-exports[`changes color based on theme 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "alignContent": "center",
-        "alignItems": "center",
-        "opacity": 1,
-      }
-    }
-  >
-    <SvgXml
-      height={24}
-      style={
-        Object {
-          "color": "#ffffff",
-        }
-      }
-      width={24}
-      xml="<g />"
-    />
-  </View>
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "alignContent": "center",
-        "alignItems": "center",
-        "opacity": 1,
-      }
-    }
-  >
-    <SvgXml
-      height={24}
-      style={Object {}}
-      width={24}
-      xml="<g />"
-    />
-  </View>
-</View>
-`;
-
-exports[`renders different color for secondary 1`] = `
-<View
-  collapsable={true}
-  pointerEvents="box-none"
-  style={
-    Object {
-      "flex": 1,
-    }
-  }
->
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "alignContent": "center",
-        "alignItems": "center",
-        "opacity": 1,
-      }
-    }
-  >
-    <SvgXml
-      height={24}
-      secondary={true}
-      style={
-        Object {
-          "color": "#000000",
-        }
-      }
-      width={24}
-      xml="<g />"
-    />
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -134,25 +39,22 @@ exports[`renders the icon in a touchable opacity 1`] = `
     }
   }
 >
-  <View
+  <TouchableOpacity
     accessibilityLabel="Label"
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
+    activeOpacity={0.2}
     style={
       Object {
         "alignContent": "center",
         "alignItems": "center",
-        "opacity": 1,
       }
     }
   >
     <SvgXml
+      color="#606060"
       height={24}
-      style={Object {}}
       width={24}
       xml="<g />"
     />
-  </View>
+  </TouchableOpacity>
 </View>
 `;

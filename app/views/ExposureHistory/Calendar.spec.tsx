@@ -1,7 +1,8 @@
 import React from 'react';
 import { cleanup, render } from '@testing-library/react-native';
 
-import { calendarDays, toExposureHistory } from '../../exposureHistory';
+import { ExposureInfo } from '../../exposureHistory';
+import { toExposureHistory } from '../../bt/exposureNotifications';
 import { factories } from '../../factories';
 
 import Calendar from './Calendar';
@@ -14,7 +15,7 @@ describe('Calendar', () => {
     const onSelectDate = () => {};
     const selectedDatum = exposureHistory[0];
 
-    const { asJSON } = render(
+    const { getByTestId } = render(
       <Calendar
         exposureHistory={exposureHistory}
         onSelectDate={onSelectDate}
@@ -22,15 +23,17 @@ describe('Calendar', () => {
       />,
     );
 
-    expect(asJSON()).toMatchSnapshot();
+    expect(getByTestId('exposure-history-calendar')).not.toBeNull();
   });
 });
 
 const buildExposureHistory = () => {
   const datum = factories.exposureDatum.build();
-  const exposureInfo = {
+  const exposureInfo: ExposureInfo = {
     [datum.date]: datum,
   };
-  const calendar = calendarDays(Date.now(), 21);
-  return toExposureHistory(exposureInfo, calendar);
+  return toExposureHistory(exposureInfo, {
+    startDate: Date.now(),
+    totalDays: 21,
+  });
 };

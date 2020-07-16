@@ -29,7 +29,7 @@ export const MIN_CHECK_INTERSECT_INTERVAL = 6 * 60;
 /**
  * The value in minutes for the background task service to register for firing
  */
-export const INTERSECT_INTERVAL = 60 * 12; // 12 Hours, the value is received in minutes
+export const BACKGROUND_TASK_INTERVAL = 15;
 
 /**
  * Format of a single history item

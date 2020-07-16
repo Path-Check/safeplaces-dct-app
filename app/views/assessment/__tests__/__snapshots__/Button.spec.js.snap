@@ -10,15 +10,9 @@ exports[`base 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
+    disabled={false}
     testID="assessment-button"
   >
     <View
@@ -29,6 +23,7 @@ exports[`base 1`] = `
             "paddingHorizontal": 14,
             "paddingVertical": 22,
           },
+          undefined,
           Object {
             "backgroundColor": "#6979f8",
           },
@@ -42,7 +37,7 @@ exports[`base 1`] = `
               "color": "#2e2e2e",
               "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -52,6 +47,7 @@ exports[`base 1`] = `
                 "color": "#f8f8f8",
                 "textAlign": "center",
               },
+              undefined,
               Object {
                 "color": "#ffffff",
               },
@@ -62,7 +58,7 @@ exports[`base 1`] = `
         Next
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -76,15 +72,9 @@ exports[`color 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
+    disabled={false}
     testID="assessment-button"
   >
     <View
@@ -95,8 +85,9 @@ exports[`color 1`] = `
             "paddingHorizontal": 14,
             "paddingVertical": 22,
           },
+          undefined,
           Object {
-            "backgroundColor": "red",
+            "backgroundColor": "#6979f8",
           },
         ]
       }
@@ -108,7 +99,7 @@ exports[`color 1`] = `
               "color": "#2e2e2e",
               "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -118,8 +109,9 @@ exports[`color 1`] = `
                 "color": "#f8f8f8",
                 "textAlign": "center",
               },
+              undefined,
               Object {
-                "color": "red",
+                "color": "#ffffff",
               },
             ],
           ]
@@ -128,7 +120,7 @@ exports[`color 1`] = `
         Next
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -142,15 +134,9 @@ exports[`disabled 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
+    disabled={true}
     testID="assessment-button"
   >
     <View
@@ -161,6 +147,7 @@ exports[`disabled 1`] = `
             "paddingHorizontal": 14,
             "paddingVertical": 22,
           },
+          undefined,
           Object {
             "backgroundColor": "#e5e7fa",
           },
@@ -174,7 +161,7 @@ exports[`disabled 1`] = `
               "color": "#2e2e2e",
               "fontFamily": "IBMPlexSans",
               "fontSize": 17,
-              "lineHeight": 28,
+              "lineHeight": 24,
             },
             Object {
               "writingDirection": "ltr",
@@ -184,6 +171,7 @@ exports[`disabled 1`] = `
                 "color": "#f8f8f8",
                 "textAlign": "center",
               },
+              undefined,
               Object {
                 "color": "#a5affb",
               },
@@ -194,6 +182,6 @@ exports[`disabled 1`] = `
         Next
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;

@@ -1,8 +1,4 @@
-import {
-  StrategyAssets,
-  StrategyCopyContentHook,
-  StrategyInterpolatedCopyContentHook,
-} from '../tracingStrategy';
+import { StrategyAssets, StrategyCopyContentHook } from '../tracingStrategy';
 
 import { Icons, Images } from '../assets';
 
@@ -13,17 +9,6 @@ export const gpsAssets: StrategyAssets = {
   notificationDetailsIcon: Icons.Heart,
   shareDiagnosisBackground: Images.MultipleCrossPathBackground,
   shareDiagnosisIcon: Icons.BellYellow,
-  exportPublishIcon: Icons.Publish,
-};
-
-export const useGPSInterpolatedCopyContent: StrategyInterpolatedCopyContentHook = (
-  t,
-) => {
-  return {
-    exportCodeBody: (name: string) => t('export.code_input_body', { name }),
-    exportPublishBody: (name: string) =>
-      t('export.publish_consent_body', { name }),
-  };
 };
 
 export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
@@ -32,10 +17,8 @@ export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
     detailedHistoryWhatThisMeansPara: t(
       'history.what_does_this_mean_para_location',
     ),
-    exportCodeTitle: t('export.code_input_title'),
     exportCompleteBody: t('export.complete_body'),
     exportPublishButtonSubtitle: t('export.consent_button_subtitle'),
-    exportPublishTitle: t('export.publish_consent_title'),
     exportStartBody: t('export.start_body'),
     exportStartTitle: t('export.start_title'),
     exposureNotificationsNotAvailableHeader: t(

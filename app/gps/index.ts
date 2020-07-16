@@ -1,21 +1,26 @@
 import { TracingStrategy } from '../tracingStrategy';
 import { PermissionsProvider } from './PermissionsContext';
 import Home from './Home';
-import { subscribeToExposureEvents } from './exposureInfo';
-import {
-  useGPSCopyContent,
-  useGPSInterpolatedCopyContent,
-  gpsAssets,
-} from './content';
+import ExportStack from './ExportStack';
+import { subscribeToExposureEvents, getCurrentExposures } from './exposureInfo';
+import { useGPSCopyContent, gpsAssets } from './content';
+import { ExposureEventsStrategy } from '../ExposureHistoryContext';
+import { toExposureHistory } from './intersect/exposureHistory';
+
+const gpsExposureEventContext: ExposureEventsStrategy = {
+  exposureInfoSubscription: subscribeToExposureEvents,
+  toExposureHistory: toExposureHistory,
+  getCurrentExposures: getCurrentExposures,
+};
 
 const gpsStrategy: TracingStrategy = {
-  name: 'bt',
-  exposureInfoSubscription: subscribeToExposureEvents,
+  name: 'gps',
+  exposureEventsStrategy: gpsExposureEventContext,
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: Home,
+  affectedUserFlow: ExportStack,
   assets: gpsAssets,
   useCopy: useGPSCopyContent,
-  useInterpolatedCopy: useGPSInterpolatedCopyContent,
 };
 
 export default gpsStrategy;

@@ -10,11 +10,11 @@ exports[`base 1`] = `
     }
   }
 >
-  <RCTSafeAreaView
+  <SafeAreaView
     backgroundColor="#f8f8f8"
-    emulateUnlessSupported={true}
     style={
       Object {
+        "borderTopWidth": 0,
         "flex": 1,
       }
     }
@@ -23,6 +23,7 @@ exports[`base 1`] = `
       accessibilityIgnoresInvertColors={true}
       style={
         Object {
+          "borderTopWidth": 0,
           "flex": 1,
           "justifyContent": "center",
           "resizeMode": "cover",
@@ -52,23 +53,26 @@ exports[`base 1`] = `
           ]
         }
       />
-      <RCTScrollView
+      <ScrollView
         style={
           Object {
             "flex": 1,
           }
         }
       >
-        <View>
-          <View
-            style={
+        <View
+          style={
+            Array [
               Object {
+                "borderTopWidth": 0,
                 "padding": 20,
-              }
-            }
-          >
-            <SvgXml
-              xml="<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+              },
+              undefined,
+            ]
+          }
+        >
+          <SvgXml
+            xml="<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <svg width=\\"69\\" height=\\"69\\" viewBox=\\"0 0 69 69\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
 <circle cx=\\"34.5\\" cy=\\"34.5\\" r=\\"34.5\\" fill=\\"#D3D7F8\\"/>
 <path d=\\"M23.8065 42.3764L19.3627 46.8699C19.247 46.9865 19.1554 47.1248 19.0931 47.2769C19.0309 47.429 18.9993 47.5918 19 47.7561C19.0008 47.9204 19.0339 48.083 19.0976 48.2345C19.1612 48.386 19.2541 48.5234 19.371 48.6389C19.4878 48.7545 19.6263 48.8459 19.7784 48.9078C19.9306 48.9698 20.0935 49.0012 20.2578 49.0001C20.4221 48.9991 20.5846 48.9656 20.736 48.9017C20.8874 48.8378 21.0247 48.7446 21.14 48.6276L25.5837 44.1341C25.6995 44.0175 25.7911 43.8792 25.8533 43.7272C25.9156 43.5751 25.9472 43.4122 25.9464 43.2479C25.9457 43.0836 25.9125 42.9211 25.8489 42.7696C25.7852 42.6181 25.6923 42.4806 25.5755 42.3651C25.4587 42.2496 25.3202 42.1582 25.168 42.0962C25.0158 42.0342 24.8529 42.0029 24.6886 42.0039C24.5243 42.005 24.3618 42.0384 24.2105 42.1023C24.0591 42.1663 23.9218 42.2594 23.8065 42.3764Z\\" fill=\\"#2434B6\\"/>
@@ -78,56 +82,59 @@ exports[`base 1`] = `
 <path d=\\"M34.0008 25.25C29.3691 25.25 25.8762 28.474 25.8762 32.7496C25.8762 33.0811 26.0079 33.399 26.2423 33.6334C26.4767 33.8678 26.7946 33.9995 27.1262 33.9995C27.4577 33.9995 27.7756 33.8678 28.01 33.6334C28.2444 33.399 28.3761 33.0811 28.3761 32.7496C28.3596 31.884 28.5848 31.0311 29.0264 30.2865C29.468 29.5419 30.1085 28.9351 30.8759 28.5345V47.7487C30.8759 48.0802 31.0076 48.3982 31.242 48.6326C31.4764 48.867 31.7944 48.9987 32.1259 48.9987C32.4574 48.9987 32.7753 48.867 33.0097 48.6326C33.2441 48.3982 33.3758 48.0802 33.3758 47.7487V38.3743H34.6257V47.7487C34.6257 48.0802 34.7574 48.3982 34.9918 48.6326C35.2262 48.867 35.5442 48.9987 35.8757 48.9987C36.2072 48.9987 36.5251 48.867 36.7595 48.6326C36.9939 48.3982 37.1256 48.0802 37.1256 47.7487V28.5344C37.893 28.9351 38.5335 29.5418 38.9751 30.2864C39.4167 31.031 39.6419 31.884 39.6255 32.7496C39.6255 33.0811 39.7571 33.399 39.9915 33.6334C40.226 33.8678 40.5439 33.9995 40.8754 33.9995C41.2069 33.9995 41.5248 33.8678 41.7592 33.6334C41.9936 33.399 42.1253 33.0811 42.1253 32.7496C42.1253 28.474 38.6325 25.25 34.0008 25.25Z\\" fill=\\"#2434B6\\"/>
 <path d=\\"M34.0006 23.9997C35.3812 23.9997 36.5005 22.8805 36.5005 21.4999C36.5005 20.1192 35.3812 19 34.0006 19C32.62 19 31.5007 20.1192 31.5007 21.4999C31.5007 22.8805 32.62 23.9997 34.0006 23.9997Z\\" fill=\\"#2434B6\\"/>
 </svg>"
-            />
-            <Text
-              style={
+          />
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1f2c9b",
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 28,
+                  "fontWeight": "500",
+                  "lineHeight": 32,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
                 Array [
-                  Object {
-                    "color": "#1f2c9b",
-                    "fontFamily": "IBMPlexSans-Bold",
-                    "fontSize": 28,
-                    "fontWeight": "500",
-                    "lineHeight": 40,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
                   Object {
                     "marginVertical": 30,
                   },
-                ]
-              }
-            >
-              Notify Caregiver
-            </Text>
-            <Text
-              style={
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Notify Caregiver
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 17,
+                  "lineHeight": 24,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
                 Array [
-                  Object {
-                    "color": "#2e2e2e",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 17,
-                    "lineHeight": 28,
-                  },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
                   Object {
                     "marginBottom": 20,
                   },
-                ]
-              }
-              testID="description"
-            >
-              Notify a healthcare provider in your long-term care facility. Living in a long-term care facility or nursing home may put you at risk for severe illness.
+                  undefined,
+                ],
+              ]
+            }
+            testID="description"
+          >
+            Notify a healthcare provider in your long-term care facility. Living in a long-term care facility or nursing home may put you at risk for severe illness.
 
-
-              Tell a caregiver
-               at the facility that you are sick and need to see a medical provider as soon as possible.
-            </Text>
-          </View>
+Tell a caregiver at the facility that you are sick and need to see a medical provider as soon as possible.
+          </Text>
         </View>
-      </RCTScrollView>
+      </ScrollView>
       <View
         style={
           Object {
@@ -135,15 +142,9 @@ exports[`base 1`] = `
           }
         }
       >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
+        <TouchableOpacity
+          activeOpacity={0.2}
+          disabled={false}
           testID="assessment-button"
         >
           <View
@@ -154,6 +155,7 @@ exports[`base 1`] = `
                   "paddingHorizontal": 14,
                   "paddingVertical": 22,
                 },
+                undefined,
                 Object {
                   "backgroundColor": "#6979f8",
                 },
@@ -167,7 +169,7 @@ exports[`base 1`] = `
                     "color": "#2e2e2e",
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 17,
-                    "lineHeight": 28,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -177,6 +179,7 @@ exports[`base 1`] = `
                       "color": "#f8f8f8",
                       "textAlign": "center",
                     },
+                    undefined,
                     Object {
                       "color": "#ffffff",
                     },
@@ -187,9 +190,9 @@ exports[`base 1`] = `
               Next
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
-  </RCTSafeAreaView>
+  </SafeAreaView>
 </View>
 `;

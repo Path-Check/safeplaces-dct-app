@@ -93,20 +93,18 @@
     "start_title_bluetooth": "Tulungang pigilan ang paglaganap ng virus at protektakan ang mamamayan sa iyong kumunidad kung ikaw ay nasuri na o pumositibo sa COVID-19."
   },
   "exposure_history": {
-    "last_days": "Huling 21 (dalawampu't isang) araw",
-    "legend_button": "LEYENDA O LEGEND",
-    "more_info_bt": {
+    "bt": {
       "how_does_this_work": "Paano ito gumagana?",
       "how_does_this_work_para": "Kapag ang Mga Abiso ng Pagkakalantad sa Posibleng Pagkalanit o Exposure Notifications ay nakabukas o pinagagana, ang iyong cellphone o device ay gumagamit ng Bluetooth upang makipagpalitan at i-save ang mga random string ng mganumero(na tinatawag na random ID) mula sa anumang mga cellphone o device na nakatagpo nito na mayroon ding pinaganang Mga Abiso ng Pagkakalantad sa Posibleng Pagkalanit o Exposure Notifications. Ang mga Random na ID ay hindi mo makilala nang personal sa ibang mga gumagamit at magbabago nang maraming beses sa isang araw upang maprotektahan ang iyong privacy. Ang petsa at tagal ng engkwentro ay naitala kasama ang isang pagtatantya kung gaano kalapit ang dalawang telepono. Kapag ang isang tao ay nagulat ng isang positibong pagsusuri, ang mga kamakailang random na ID ng kanilang telepono ay anonimong na-fa-flag o naaabisuhan. Walang mga lokasyon o personal na impormasyon ay ibinabahagi.",
-      "why_did_i_get_an_en": "Bakit ako nakatanggap ng exposure notification?",
       "why_did_i_get_an_en_para": "Makakatanggap ka ng isang abiso sa pagkakalantad sa posibleng pagkalanit o exposure notification kapag ang isang tao na tumawid sa iyong landas na kalaunan ay nakatanggap ng isang nakumpirmado, dyagnosis o positibong pagsusuri para sa COVID-19 at pinipiling abisuhan ang iba"
     },
-    "more_info_gps": {
-      "how_does_this_work": "Paano ito gumagana?",
-      "how_does_this_work_para": "Kung kailan ang location access ay inaktiba para sa iyong PathCheck app ay tinatandaan ang mga impormasyon sa bawat mga lugar na iyong dala ang iyong cellphone o device: mga coordinate ng GPS , petsa, at oras na naroon ang cellphone o device mo sa lokayson iyon. \n\nAng impormasyong ito ay nakaimbak na encrypted na listahan lamang sa iyong cellphone o device sa loob ng 14 na araw. Kung isa o mahigit sa isa sa iyong mga lokal o rehiyonal na mga Departamentong Pangkalusugan ay nakipag-partner sa iyong PathCheck app, at iyong piniliping makatanggap ng exposure notifications galing sa kanila pamamagitan ng iyong PathCheck app, ay maari nilang ipadala ang app mo ng mga koleksyon ng encrypted na anonimong mga coordinate ng GPS, mga petsa, at mga oras na nakolekta mula sa mga miyembro ng iyong kumunidad na sa kalaunan ay sinuri at makatatanggap ng positibong dyagnosis at piniling magbigayalam.\n\nIkinukumpara ng iyong cellphone o device (sa loob ng iyong app) ang iyong encrypted na kasaysayan ng lokasyon o Location History na ipinadala ng iyong lokal na Kagawaran ng Kalusugan upang matukoy kung dapat kang makatanggap ng isang abiso sa posibleng pagkakalanit.",
-      "why_did_i_get_an_en": "Bakit ako nakatanggap ng exposure notification?",
-      "why_did_i_get_an_en_para": "Makakatanggap ka ng mga abiso sa pagkakalantad sa posibleng pagkalanit, o exposure notifications, tuwing tinatantya ng iyong app ng PathCheck na ang iyong telepono ay nasa loob ng 100 talampakan o 100 feet sa isa pang miyembro ng iyong komunidad na kalaunan ay nakatanggap ng positibong pagsusuri at pinili nilang ibahagi ang kanilang talaarawan sa lokasyon o location diary sa kanilang lokal na Kagawaran ng Kalusugan."
-    }
+    "gps": {
+      "how_does_this_work_para": "Kung kailan ang location access ay inaktiba para sa iyong PathCheck app ay tinatandaan ang mga impormasyon sa bawat mga lugar na iyong dala ang iyong cellphone o device: mga coordinate ng GPS , petsa, at oras na naroon ang cellphone o device mo sa lokayson iyon. \n\nAng impormasyong ito ay nakaimbak na encrypted na listahan lamang sa iyong cellphone o device sa loob ng 14 na araw. Kung isa o mahigit sa isa sa iyong mga lokal o rehiyonal na mga Departamentong Pangkalusugan ay nakipag-partner sa iyong PathCheck app, at iyong piniliping makatanggap ng exposure notifications galing sa kanila pamamagitan ng iyong PathCheck app, ay maari nilang ipadala ang app mo ng mga koleksyon ng encrypted na anonimong mga coordinate ng GPS, mga petsa, at mga oras na nakolekta mula sa mga miyembro ng iyong kumunidad na sa kalaunan ay sinuri at makatatanggap ng positibong dyagnosis at piniling magbigayalam.\n\nIkinukumpara ng iyong cellphone o device (sa loob ng iyong app) ang iyong encrypted na kasaysayan ng lokasyon o Location History na ipinadala ng iyong lokal na Kagawaran ng Kalusugan upang matukoy kung dapat kang makatanggap ng isang abiso sa posibleng pagkakalanit."
+    },
+    "how_does_this_work": "Paano ito gumagana?",
+    "last_days": "Huling 21 (dalawampu't isang) araw",
+    "legend_button": "LEYENDA O LEGEND",
+    "why_did_i_get_an_en": "Bakit ako nakatanggap ng exposure notification?"
   },
   "history": {
     "no_exposure": "Walang kaalaman",
@@ -176,12 +174,6 @@
     "authorities_add_url": "Idagdag ang awtoridad gamit ang URL",
     "authorities_desc": "Pumili ng isa o higit pa na Awtoridad sa Pangangalagang Pangkalusugan sa iyong lugar para sa impormasyon tungkol sa COVID-19 na malapit sa iyo, kung may magagamit.\n\nMaaring pumili ng isang pangalan mula sa pandaigdigang pagpapatala/global registry o magpasok ng isang web address na ibinigay ng isang Healthcare Authority na gumagamit ng PathCheck.",
     "authorities_input_placeholder": "I-Paste ang iyong URL dito",
-    "authorities_new_in_area_msg_0": "Mag-subscribe sa walang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_1": "Mag-subscribe sa isang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_2": "Mag-subscribe sa dalawang bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_3": "Mag-subscribe sa kaunting bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_4": "Mag-subscribe sa maraming bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_5": "Mag-subscribe sa ibang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
     "authorities_new_in_area_title_0": "Walang Bagong Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authorities",
     "authorities_new_in_area_title_1": "Isang Bagong Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authorities",
     "authorities_new_in_area_title_2": "Dalawang mga Bagong Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authorities",
@@ -202,6 +194,12 @@
     "authorities_new_subscription_title_5": "Iba pang Bagong Suskripsyon",
     "authorities_no_sources": "Walang Mga Departamentong Pangkalusugan o Health Departments",
     "authorities_removal_alert_cancel": "Kanselahin",
+    "authorities_new_in_area_msg_0": "Mag-subscribe sa walang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_1": "Mag-subscribe sa isang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_2": "Mag-subscribe sa dalawang bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_3": "Mag-subscribe sa kaunting bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_4": "Mag-subscribe sa maraming bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_5": "Mag-subscribe sa ibang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
     "authorities_removal_alert_desc": "Sigurado ka bang gusto mong alisin ang authority data source na ito?",
     "authorities_removal_alert_proceed": "Ituloy",
     "authorities_removal_alert_title": "Tanggalin ang Awtoridad",
@@ -213,9 +211,6 @@
     "event_history_subtitle": "Unawain na ang iyong personal na exposure na batay sa impormasyong ibinahagi ng mga awtoridad sa pangangalagang kalusugan.",
     "event_history_title": "Exposure History o Kasaysayan ng Pagkalantad sa Posibleng Pagkahawa",
     "filter_authorities_by_gps_history": "I-filter ang iyong mga lokasyon",
-    "home_no_contact_header_bluetooth": "PathCheck",
-    "home_no_contact_subtext_bluetooth": "Naka-on ang Exposure Notifications",
-    "home_setting_off_header_bluetooth": "Huwag paganahin ang mga Abiso o Notifications",
     "import_success": "Matagumpay na naiangkat",
     "latest_news": "Pinakabagong Balita",
     "launch_access_bluetooth": "Payagan ang Contact Tracing",
@@ -230,7 +225,6 @@
     "launch_enable_auto_subscription": "Paganahin ang auto subscription",
     "launch_enable_bluetooth": "Paganahin Ang Bluetooth",
     "launch_enable_exposure_notif": "Paganahin",
-    "launch_enable_location": "Paganahin ang Lokasyon o Location",
     "launch_enable_notif": "Paganahin ang mga Abiso o Notifications",
     "launch_exposure_notif_header": "Payagan ang Exposure Notifications",
     "launch_exposure_notif_subheader": "Upang maabisuhan tungkol sa mga pagbabago sa iyong kasaysayan ng pagkalantad sa posibleng pagkahawa o exposure history, kailangan ng iyong cellphone o device ang permiso na makipagpalitan ng anonimong o walang tiyak na pagkakakilanlan na Bluetooth code, sa iba pang mga cellphone o device.\n\nGagana lang ang Exposure Notifications kung ang ibang cellphone o device ay naka-enabled o pinagana.\n\nMaari mong i-off o patayin ang mga abisong ito sa kahit na anumang oras.",
@@ -258,7 +252,7 @@
     "launch_set_up_phone_bluetooth": "Sa susunod",
     "launch_set_up_phone_location": "I-Set up ang aking cellphone o device",
     "launch_subheader": "Huwag mabahala, ang impormasyon sa iyong cellphone o device ay hindi kailanman aalisin sa iyong aparato maliban lamang kung malinaw mong ipagpasya na ibahagi ito.",
-    "legal_page_address": "PathCheck\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
     "legal_page_header_bluetooth": "PathCheck BT",
     "legal_page_header_location": "GPS ng PathCheck",
     "loading_public_data": "Nag-lo-Load ang Data...",
@@ -308,8 +302,7 @@
     "faq": "Madalas na Tanong",
     "legal": "Ligal",
     "more": "Higit pa",
-    "report_issue": "Magsumbong ng isyu",
-    "report_positive_test": "Ipagbigay-alam ang postibong resulta ng pagsusuri"
+    "report_issue": "Magsumbong ng isyu"
   },
   "settings": {
     "share_test_result": "Ipagbigay-alam ang postibong resulta ng pagsusuri",

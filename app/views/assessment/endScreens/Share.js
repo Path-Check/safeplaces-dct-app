@@ -1,32 +1,42 @@
 import React from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { Icons } from '../../../assets';
-import { Typography } from '../../../components/Typography';
 import { Info } from '../Info';
+import { InfoText } from '../components/InfoText';
+import { Button } from '../components/Button';
 
 import { Colors } from '../../../styles';
+
+import { AUTHORITY_NAME as authority } from '../../../constants/authorities';
 
 /** @type {React.FunctionComponent<{}>} */
 export const Share = ({ navigation }) => {
   const { t } = useTranslation();
 
+  // TODO: Implement share logic
+  const handleButtonPress = () => navigation.push('AssessmentComplete');
+
   return (
     <Info
-      ctaAction={() => {
-        navigation.push('AssessmentComplete');
-      }}
       icon={Icons.AnonymizedDataInverted}
-      backgroundColor={Colors.primaryBackgroundFaintShade}
-      ctaTitle={t('assessment.share_cta')}
-      description={
-        <>
-          <Trans t={t} i18nKey='assessment.share_description'>
-            <Typography />
-          </Trans>
-        </>
-      }
-      title={t('assessment.share_title')}
-    />
+      backgroundColor={Colors.invertedQuaternaryBackground}
+      titleStyle='headline3'
+      descriptionStyle='body4'
+      footer={
+        <Button
+          onPress={handleButtonPress}
+          title={t('assessment.share_cta')}
+          backgroundColor={Colors.white}
+          textColor={Colors.black}
+        />
+      }>
+      <InfoText
+        useTitleStyle='headline7'
+        useDescriptionStyle='body4'
+        title={t('assessment.share_title')}
+        description={t('assessment.share_description', { authority })}
+      />
+    </Info>
   );
 };

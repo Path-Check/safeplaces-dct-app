@@ -15,7 +15,7 @@ struct ExposureConfiguration: Codable {
 extension ExposureConfiguration {
 
   static var placeholder: ExposureConfiguration = {
-    ExposureConfiguration(minimumRiskScore: 1,
+    ExposureConfiguration(minimumRiskScore: 0,
                           attenuationDurationThresholds: [50, 70],
                           attenuationLevelValues: [1, 2, 3, 4, 5, 6, 7, 8],
                           daysSinceLastExposureLevelValues: [1, 2, 3, 4, 5, 6, 7, 8],

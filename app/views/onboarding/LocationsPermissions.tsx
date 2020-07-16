@@ -46,8 +46,8 @@ const LocationsPermissions = (): JSX.Element => {
     dispatch(onboardingCompleteAction());
   };
 
-  const handleOnPressEnable = () => {
-    requestLocationAccess();
+  const handleOnPressEnable = async () => {
+    await requestLocationAccess();
     completeOnboarding();
   };
 
@@ -67,11 +67,11 @@ const LocationsPermissions = (): JSX.Element => {
             <SvgXml xml={Icons.LocationPin} width={30} height={30} />
           </View>
           <Typography style={styles.headerText}>
-            {t('onboarding.notification_header')}
+            {t('onboarding.location_header')}
           </Typography>
           <View style={{ height: Spacing.medium }} />
           <Typography style={styles.contentText}>
-            {t('onboarding.notification_subheader')}
+            {t('onboarding.location_subheader')}
           </Typography>
         </ScrollView>
 

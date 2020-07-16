@@ -35,6 +35,7 @@ const rounded: ViewStyle = {
 };
 
 // Color
+
 const primaryBlue: ViewStyle = {
   backgroundColor: Colors.primaryBlue,
   borderColor: Colors.primaryBlue,
@@ -48,6 +49,11 @@ const secondaryBlue: ViewStyle = {
 const white: ViewStyle = {
   backgroundColor: Colors.white,
   borderColor: Colors.white,
+};
+
+const disabled: ViewStyle = {
+  backgroundColor: Colors.mediumGray,
+  borderColor: Colors.mediumGray,
 };
 
 const tertiary: ViewStyle = {
@@ -112,7 +118,37 @@ export const tinyTeritiaryRounded: ViewStyle = {
   ...tertiary,
 };
 
+export const mediumTransparent: ViewStyle = {
+  ...base,
+  ...medium,
+  ...transparent,
+};
+
 export const largeTransparent: ViewStyle = {
+  ...base,
+  ...large,
+  ...transparent,
+};
+
+export const primary: ViewStyle = {
+  ...base,
+  ...large,
+  ...primaryBlue,
+};
+
+export const primaryDisabled: ViewStyle = {
+  ...base,
+  ...large,
+  ...disabled,
+};
+
+export const primaryInverted: ViewStyle = {
+  ...base,
+  ...large,
+  ...white,
+};
+
+export const secondary: ViewStyle = {
   ...base,
   ...large,
   ...transparent,

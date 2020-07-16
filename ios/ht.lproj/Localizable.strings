@@ -1,4 +1,4 @@
 /* Body text of notification when app is closed on iOS */
-"ios.app_closed_alert_text" = "PathCheck se byen estoke GPS ou kowòdone yon fwa chak senk minit sou aparèy sa a.";
+"ios.app_closed_alert_text" = "Chase Kowona (\"PathCheck\") ap byen estoke kowòdone GPS ou yo yon fwa chak senk minit sou aparèy sa a.";
 /* Title of notification when app is closed on iOS */
 "ios.app_closed_alert_title" = "Chase Kowona (\"PathCheck\") te fèmen";

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 import { render, cleanup } from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 
@@ -11,9 +11,9 @@ import {
 import {
   testStrategyAssets,
   testStrategyCopy,
-  testInterpolatedStrategyCopy,
 } from './factories/tracingStrategy';
 import { factories } from './factories';
+import { Images } from '../app/assets/images/';
 
 import { TracingStrategy } from './tracingStrategy';
 
@@ -26,24 +26,19 @@ jest.mock('react-i18next', () => ({
 const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
   const TestTracingStrategyConsumer = () => {
     const { name, homeScreenComponent } = useTracingStrategyContext();
-    const {
-      StrategyAssets,
-      StrategyCopy,
-      InterpolatedStrategyCopy,
-    } = useStrategyContent();
+    const { StrategyAssets, StrategyCopy } = useStrategyContent();
 
     const HomeScreen = homeScreenComponent;
 
     return (
       <View>
         <Text testID={'tracing-strategy-name'}>{name}</Text>
-        <Text testID={'tracing-strategy-assets'}>
-          {StrategyAssets.personalPrivacyBackground}
-        </Text>
+        <ImageBackground
+          source={StrategyAssets.personalPrivacyBackground}
+          testID={'tracing-strategy-assets'}
+          style={styles.background}
+        />
         <Text testID={'tracing-strategy-copy'}>{StrategyCopy.aboutHeader}</Text>
-        <Text testID={'tracing-strategy-interpolated-copy'}>
-          {InterpolatedStrategyCopy.exportCodeBody('code-body-name')}
-        </Text>
         <HomeScreen testID={'home-screen'} />
       </View>
     );
@@ -84,8 +79,10 @@ describe('TracingStrategyProvider', () => {
     it('subscribes to exposure info events', async () => {
       const removeSubscriptionMock = jest.fn();
       const strategy = factories.tracingStrategy.build({
-        exposureInfoSubscription: () => {
-          return { remove: removeSubscriptionMock };
+        exposureEventsStrategy: {
+          exposureInfoSubscription: () => {
+            return { remove: removeSubscriptionMock };
+          },
         },
       });
 
@@ -96,11 +93,8 @@ describe('TracingStrategyProvider', () => {
     });
 
     it('provides the correct strategy content', () => {
-      const expectedAsset = 'Test Asset';
+      const expectedAsset = Images.BlueGradientBackground;
       const expectedCopy = 'Test About Header';
-      const expectedCodeBody = (name: string) => {
-        return `expectedCodeBody ${name}`;
-      };
 
       const strategy = factories.tracingStrategy.build({
         assets: {
@@ -113,27 +107,17 @@ describe('TracingStrategyProvider', () => {
             aboutHeader: expectedCopy,
           };
         },
-        useInterpolatedCopy: () => {
-          return {
-            ...testInterpolatedStrategyCopy,
-            exportCodeBody: expectedCodeBody,
-          };
-        },
       });
 
       const { getByTestId } = renderTracingStrategyProvider(strategy);
 
       const assets = getByTestId('tracing-strategy-assets');
       const copy = getByTestId('tracing-strategy-copy');
-      const interpolatedCopy = getByTestId(
-        'tracing-strategy-interpolated-copy',
-      );
 
-      expect(assets).toHaveTextContent(expectedAsset);
+      expect(assets).toHaveProp('source', {
+        testUri: '../../../app/assets/images/blueGradientBackground.png',
+      });
       expect(copy).toHaveTextContent(expectedCopy);
-      expect(interpolatedCopy).toHaveTextContent(
-        expectedCodeBody('code-body-name'),
-      );
     });
 
     describe('when the user is on the HomeScreen', () => {
@@ -154,4 +138,13 @@ describe('TracingStrategyProvider', () => {
       });
     });
   });
+});
+
+const styles = StyleSheet.create({
+  background: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    position: 'absolute',
+  },
 });

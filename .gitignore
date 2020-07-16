@@ -99,3 +99,6 @@ safepaths.realm
 
 # env files
 .env.bt*
+
+# private resources
+pathcheck-mobile-resources

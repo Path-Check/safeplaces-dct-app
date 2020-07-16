@@ -4,36 +4,40 @@
     "settings_subtitle": "Self reporting survey",
     "cancel": "Cancel",
     "next": "Next",
-    "agree_question_text": "Purpose of this COVID-19 screening",
-    "agree_question_description": "The screening helps you make decisions about seeking appropriate medical care. It is not intended for the diagnosis or treatment of disease or other conditions.",
-    "agree_option_agree": "I agree",
-    "agree_option_disagree": "I do not agree",
+    "agree_question_text": "Is this an emergency?",
+    "agree_question_description": "Stop and call emergency services if you are experiencing:\n• Severe, constant chest pain or pressure \n• Extreme difficulty breathing \n• Severe, constant lightheadedness \n• Serious disorientation or unresponsiveness",
+    "agree_option_agree": "<1>I am</1> experiencing at least one of these symptoms",
+    "agree_option_disagree": "<1>I am not</1> experiencing any of these symptoms",
     "agree_alert_title": "Agreement Required",
     "agree_alert_description": "To use the SafePaths COVID-19 screening, please indicate you agree and understand its purpose.",
     "caregiver_title": "Notify Caregiver",
-    "caregiver_description": "Notify a healthcare provider in your long-term care facility. Living in a long-term care facility or nursing home may put you at risk for severe illness.\n\n<1>Tell a caregiver</1> at the facility that you are sick and need to see a medical provider as soon as possible.",
+    "caregiver_description": "Notify a healthcare provider in your long-term care facility. Living in a long-term care facility or nursing home may put you at risk for severe illness.\n\nTell a caregiver at the facility that you are sick and need to see a medical provider as soon as possible.",
     "caregiver_cta": "Next",
-    "complete_title": "All done!",
-    "complete_description": "Continue to use this app and take this screening <1>again in the next week</1> to help protect yourself and your community.",
+    "complete_title": "Thanks for keeping your community safe!",
+    "complete_description": "By sharing your health status and location history anonymously with your community, you are being proactive about fighting the spread of COVID-19.",
     "complete_cta": "Done",
     "distancing_title": "Distancing & PPE",
-    "distancing_description": "Please follow your local, state, or national guidelines for <1>social distancing</1> and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
+    "distancing_description": "Please follow your local, state, or national guidelines for social distancing and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
     "distancing_cta": "Next",
-    "emergency_title": "Emergency Services",
-    "emergency_description": "You may be having a <1>medical emergency</1>. Immediate medical attention is needed.\n\nTell the emergency operator if you have been in contact with someone with COVID-19 or if you have recently been to an area where COVID-19 is spreading.",
-    "emergency_cta": "Call Emergency Services",
+    "emergency_title": "Call Emergency Services",
+    "emergency_description": " Based on your reported symptoms, you should seek care immediately.",
+    "emergency_cta": "Call 911",
     "isolate_title": "Isolate Yourself",
-    "isolate_description": "You <1>have some symptoms</1> that may be related to COVID-19. Call your healthcare provider if your symtoms get worse. Start home isolation.",
+    "isolate_description": "You have some symptoms that may be related to COVID-19. Call your healthcare provider if your symptoms get worse. Start home isolation.",
     "isolate_cta": "Next",
     "share_title": "Publish anonymized data",
-    "share_description": "Your anonymous data helps the Boston Public Health Commission analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe Boston Public Health Commission will retain your anonymous data for a specific period of time.",
+    "share_description": "Your anonymous data helps the {{authority}} analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe {{authority}} will retain your anonymous data for a specific period of time.",
     "share_screening_title": "Anonymized Screening Data",
     "share_screening_description": "Share anonymized answers to screening questions with your local healthcare authority.",
     "share_cta_skip": "No thanks, I don't want to share data",
     "share_cta": "I understand and consent",
     "start_title": "Answer questions about your symptoms and medical history to learn what to do next about COVID-19",
     "start_description": "Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.",
-    "start_cta": "Start"
+    "start_cta": "Start",
+    "agreement_title": "This is not for diagnosis",
+    "agreement_description": "The screening helps you make decisions about seeking appropriate medical care. It is not intended for the diagnosis or treatment of disease or other conditions.",
+    "agreement_cta": "I understand and consent",
+    "agreement_footer": "By proceeding, you agree that your survey results are not intended for diagnosis or treatment."
   },
   "_display_name": "English",
   "about": {
@@ -59,20 +63,30 @@
     "next": "Next",
     "ok": "Ok",
     "something_went_wrong": "Something went wrong",
-    "start": "Start"
+    "start": "Start",
+    "settings": "Open Settings",
+    "submit": "Submit"
   },
   "export": {
+    "error": {
+      "verification_code_used": "Verification code has already been used",
+      "invalid_code": "Try a different code",
+      "unknown_code_verification_error": "Try a different code"
+    },
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
-    "code_input_body_bluetooth": "Type in the verification code provided by {{name}} with your test result to verify your diagnosis.",
+    "code_input_body_bluetooth": "Enter your verification code",
     "code_input_error": "Try a different code",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
+    "code_input_button_submit": "Submit",
+    "code_input_button_cancel": "Cancel",
     "complete_body": "By sharing your health status and location history anonymously with your community, you’re being proactive about fighting the spread of COVID-19.",
     "complete_body_bluetooth": "By choosing to share your status and anonymously notify others, you’re helping contain the spread of the virus and protect others in your community.",
     "complete_title": "Thanks for keeping your community safe!",
     "confirm_upload_body": "This will help in contact tracing efforts.\n\nIf you choose not to send your Location History to {{name}}, you are choosing to opt out of contact tracing efforts that help keep your community safe.",
     "consent_button_title": "I understand and consent",
-    "consent_button_subtitle": "By proceeding, you agree that your Heathcare Authority can retain your data for a period of time.",
+    "consent_button_cancel": "Cancel",
+    "consent_button_subtitle": "By proceeding, you agree that your Healthcare Authority can retain your data for a period of time.",
     "location_consent_link": "Please view their privacy policy here.",
     "confirm_upload_button": "Send Location History",
     "confirm_upload_title": "Send your location history to your HA",
@@ -83,7 +97,7 @@
     "publish_consent_body": "During the interview with {{name}} your interviewer can remove private locations, such as homes and apartments. They can also add any additional places you believe should be included.\n\n{{name}} may share the GPS coordinates from your location history, including date, time, and duration of your visits to let others in your community know if they may have crossed paths with the virus.\n\nI understand that the {{name}} representative will ask me verbally at the end of the interview if I consent.",
     "publish_consent_body_bluetooth": "Sharing your positive diagnosis is optional and can only be done with your consent.\n\nIf you choose to do so, you're helping others in your community make informed decisions about their health and playing your part to contain the spread of the virus.\n\nThe only information shared will be the random set of numbers your phone exchanged over Bluetooth with other phones that were nearby during the past 14 days, along with a weighted risk score based on when your symptoms developed.",
     "publish_consent_title": "Publish anonymized data",
-    "publish_consent_title_bluetooth": "Notify others in your community",
+    "publish_consent_title_bluetooth": "Notify your community",
     "select_ha_title": "Select your Health Department",
     "start_body": "Work with a representative from your local Health Department to remove personally-identifying information from your location history during your contact tracing interview.",
     "start_body_bluetooth": "Choose to anonymously notify others you may have encountered and help your community contain the spread of the virus.",
@@ -102,25 +116,44 @@
     "what_if_no_symptoms": "What if I’m not showing symptoms?",
     "what_if_no_symptoms_para": "If you have no symptoms but still would like to be tested you can go to your nearest testing site.\n\nIndividuals who don't exhibit symptoms can sometimes still carry the infection and infect others. Being careful about social distancing and coming in contact with large groups or at risk individuals (the elderly, those with significant other medical issues) is important to manage both your risk and the risk to others."
   },
+  "exposure_datum": {
+    "possible": {
+      "duration": "Possible Exposure Time: {{duration}}",
+      "explanation": "For {{duration}}, your phone was within 10 feet of someone who later received a confirmed positive COVID-19 diagnosis.",
+      "what_next": "What should I do next?"
+    },
+    "no_known": {
+      "explanation": "Your exposure history will be updated if this changes in the future."
+    },
+    "no_data": {
+      "explanation": "This happens when location access is disabled for your PathCheck app or the date selected was more than 14 days ago. No exposure notifications will be available for this day."
+    }
+  },
   "exposure_history": {
     "legend_button": "LEGEND",
     "last_days": "Last 21 days",
     "why_did_i_get_an_en": "Why did I get an exposure notification?",
     "how_does_this_work": "How does this work?",
     "legend": {
-      "exposure_likely": "Exposure very likely",
-      "exposure_possible": "Exposure possible",
+      "new_exposure": "New possible exposure",
+      "exposure_possible": "Possible exposure",
       "no_exposure_detected": "No exposure detected",
       "today": "Today"
     },
     "bt": {
       "why_did_i_get_an_en_para": "You will receive an exposure notification when someone you crossed paths with later receives a confirmed, positive diagnosis or test for COVID-19 and chooses to notify others",
       "how_does_this_work": "How does this work?",
-      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called ramdom IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
+      "how_does_this_work_para": "When Exposure Notifications are on, your phone uses Bluetooth to swap and save random number strings (called random IDs) from any phones it encounters that also have Exposure Notifications enabled. Random IDs won’t identify you personally to other users and change many times a day to protect your privacy. Date and duration of the encounter are recorded along with an estimate of how close the two phones may have been. When a person reports a positive diagnosis, their phone’s recent random IDs are flagged to anonymously notify others. No locations or personal info is shared."
     },
     "gps": {
       "why_did_i_get_an_en_para": "You will receive exposure notifications when your PathCheck app estimates that your phone was, for an extended period, within 100 feet of another individual who later received a positive diagnosis and chose to share their location diary with their local Health Department.",
       "how_does_this_work_para": "Whenever location access is enabled for your PathCheck app, the app saves the following information about each place you take your phone: the GPS coordinates, date, and times your phone was at that location.\n\nThis information is stored in an encrypted list within your phone for 14 days. If one or more of your local or regional Health Departments has partnered with PathCheck, and you have elected to receive exposure notifications from them in your PathCheck app, they can send your app encrypted collections of anonymized GPS coordinates, dates, and times gathered from their community members who later received positive diagnoses and chose to share.\n\nYour phone then locally (within your app) compares your encrypted location history to the data shared by your selected local Health Departments to inform you about possible exposures."
+    },
+    "next_steps": {
+      "ha_self_assessment": "Follow the advice from {{healthAuthorityName}} about what to do next.",
+      "possible_crossed_paths": "Based on your location history, it is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.",
+      "possible_infection_precaution": "This does not mean that you are infected, but you should take precautions anyway. People who don't exhibit symptoms can sometimes still be contagious.",
+      "button_text": "See Recommendations"
     }
   },
   "import": {
@@ -137,6 +170,12 @@
       "no_recent_locations": "Takeout doesn't have any recent locations.",
       "title": "Google Maps",
       "visit_button_text": "Visit Google Takeout"
+    },
+    "mockData": {
+      "custom_url_title": "Import from URL",
+      "url_instructions": "Enter a URL containing test location data you would like to add",
+      "instruction_info": "Data must be in JSON format!",
+      "invalid_url": "Invalid JSON URL!"
     },
     "subtitle": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
     "success": "Recent locations has been successfully imported!",
@@ -160,7 +199,9 @@
       "all_services_on_header": "PathCheck",
       "all_services_on_subheader": "Exposure notifications are on",
       "unavailable_header": "Exposure history notifications are not yet available",
-      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck"
+      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck",
+      "unauthorized_error_title": "Please Update Settings",
+      "unauthorized_error_message": "You must authorize COVID-19 Exposure Logging in the Settings app to continue."
     },
     "shared": {
       "notifications_off_header": "Notifications Disabled",

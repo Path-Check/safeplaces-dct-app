@@ -58,4 +58,3 @@ jobs:
 
       - name: Bundle iOS JS
         run: npx react-native bundle --dev false --entry-file index.js --bundle-output ios/main.jsbundle --platform ios --verbose
-

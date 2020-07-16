@@ -10,8 +10,7 @@ exports[`base 1`] = `
     }
   }
 >
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <SafeAreaView
     style={
       Object {
         "backgroundColor": "#f8f8ff",
@@ -19,250 +18,234 @@ exports[`base 1`] = `
       }
     }
   >
-    <RCTScrollView
+    <ScrollView
       style={
         Object {
           "flex": 1,
         }
       }
     >
-      <View>
-        <View
-          style={
-            Object {
-              "marginTop": 16,
-              "paddingHorizontal": 20,
-            }
+      <View
+        style={
+          Object {
+            "marginTop": 16,
+            "paddingHorizontal": 20,
           }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#1f2c9b",
-                  "fontFamily": "IBMPlexSans-Bold",
-                  "fontSize": 28,
-                  "fontWeight": "500",
-                  "lineHeight": 40,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                undefined,
-              ]
-            }
-          >
-            What is the answer?
-          </Text>
-        </View>
-        <View
+        }
+      >
+        <Text
           style={
-            Object {
-              "paddingHorizontal": 20,
-            }
-          }
-        >
-          <Text
-            style={
-              Array [
-                Object {
-                  "color": "#2e2e2e",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 17,
-                  "lineHeight": 28,
-                },
-                Object {
-                  "writingDirection": "ltr",
-                },
-                Object {
-                  "color": "#4754C5",
-                  "fontFamily": "IBMPlexSans",
-                  "fontSize": 17,
-                  "lineHeight": 20,
-                  "marginTop": 28,
-                },
-              ]
-            }
-          >
-            Select one
-          </Text>
-          <View
-            style={
+            Array [
               Object {
-                "marginTop": 20,
-              }
+                "color": "#1f2c9b",
+                "fontFamily": "IBMPlexSans-Bold",
+                "fontSize": 28,
+                "fontWeight": "500",
+                "lineHeight": 32,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              undefined,
+            ]
+          }
+        >
+          What is the answer?
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#4754C5",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 16,
+                "marginTop": 28,
+              },
+            ]
+          }
+        >
+          Select one
+        </Text>
+        <View
+          style={
+            Object {
+              "marginTop": 20,
             }
+          }
+        >
+          <TouchableOpacity
+            activeOpacity={0.2}
+            testID="option"
           >
             <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
               style={
-                Object {
-                  "opacity": 1,
-                }
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "#d3d3d3",
+                    "borderRadius": 8,
+                    "borderWidth": 2,
+                    "marginBottom": 16,
+                    "paddingHorizontal": 20,
+                    "paddingVertical": 20,
+                  },
+                  false,
+                ]
               }
-              testID="option"
             >
               <View
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderColor": "#d3d3d3",
-                      "borderRadius": 8,
-                      "borderWidth": 2,
-                      "marginBottom": 16,
-                      "paddingHorizontal": 20,
-                      "paddingVertical": 20,
-                    },
-                    false,
-                  ]
+                  Object {
+                    "alignItems": "flex-start",
+                    "flexDirection": "row",
+                  }
                 }
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "flexDirection": "row",
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#999999",
+                        "borderRadius": 40,
+                        "borderWidth": 2,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "marginRight": 24,
+                        "marginTop": 2,
+                        "width": 24,
+                      },
+                      false,
+                    ]
                   }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2e2e2e",
+                        "fontFamily": "IBMPlexSans",
+                        "fontSize": 17,
+                        "lineHeight": 24,
+                      },
+                      Object {
+                        "writingDirection": "ltr",
+                      },
+                      Object {
+                        "color": "#2e2e2e",
+                        "flex": 1,
+                        "flexWrap": "wrap",
+                        "fontFamily": "IBMPlexSans-Bold",
+                        "fontSize": 19,
+                        "fontWeight": "500",
+                        "lineHeight": 24,
+                      },
+                    ]
+                  }
+                  testID="label"
                 >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderColor": "#999999",
-                          "borderRadius": 40,
-                          "borderWidth": 2,
-                          "height": 24,
-                          "justifyContent": "center",
-                          "marginRight": 24,
-                          "marginTop": 2,
-                          "width": 24,
-                        },
-                        false,
-                      ]
-                    }
-                  />
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#2e2e2e",
-                          "fontFamily": "IBMPlexSans",
-                          "fontSize": 17,
-                          "lineHeight": 28,
-                        },
-                        Object {
-                          "writingDirection": "ltr",
-                        },
-                        Object {
-                          "color": "#2e2e2e",
-                          "flex": 1,
-                          "flexWrap": "wrap",
-                          "fontFamily": "IBMPlexSans-Bold",
-                          "fontSize": 19,
-                          "fontWeight": "500",
-                          "lineHeight": 28,
-                        },
-                      ]
-                    }
-                    testID="label"
-                  >
-                    A
-                  </Text>
-                </View>
+                  A
+                </Text>
               </View>
             </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            activeOpacity={0.2}
+            testID="option"
+          >
             <View
-              accessible={true}
-              focusable={true}
-              isTVSelectable={true}
               style={
-                Object {
-                  "opacity": 1,
-                }
+                Array [
+                  Object {
+                    "backgroundColor": "#ffffff",
+                    "borderColor": "#d3d3d3",
+                    "borderRadius": 8,
+                    "borderWidth": 2,
+                    "marginBottom": 16,
+                    "paddingHorizontal": 20,
+                    "paddingVertical": 20,
+                  },
+                  false,
+                ]
               }
-              testID="option"
             >
               <View
                 style={
-                  Array [
-                    Object {
-                      "backgroundColor": "#ffffff",
-                      "borderColor": "#d3d3d3",
-                      "borderRadius": 8,
-                      "borderWidth": 2,
-                      "marginBottom": 16,
-                      "paddingHorizontal": 20,
-                      "paddingVertical": 20,
-                    },
-                    false,
-                  ]
+                  Object {
+                    "alignItems": "flex-start",
+                    "flexDirection": "row",
+                  }
                 }
               >
                 <View
                   style={
-                    Object {
-                      "alignItems": "flex-start",
-                      "flexDirection": "row",
-                    }
+                    Array [
+                      Object {
+                        "alignItems": "center",
+                        "borderColor": "#999999",
+                        "borderRadius": 40,
+                        "borderWidth": 2,
+                        "height": 24,
+                        "justifyContent": "center",
+                        "marginRight": 24,
+                        "marginTop": 2,
+                        "width": 24,
+                      },
+                      false,
+                    ]
                   }
+                />
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "color": "#2e2e2e",
+                        "fontFamily": "IBMPlexSans",
+                        "fontSize": 17,
+                        "lineHeight": 24,
+                      },
+                      Object {
+                        "writingDirection": "ltr",
+                      },
+                      Object {
+                        "color": "#2e2e2e",
+                        "flex": 1,
+                        "flexWrap": "wrap",
+                        "fontFamily": "IBMPlexSans-Bold",
+                        "fontSize": 19,
+                        "fontWeight": "500",
+                        "lineHeight": 24,
+                      },
+                    ]
+                  }
+                  testID="label"
                 >
-                  <View
-                    style={
-                      Array [
-                        Object {
-                          "alignItems": "center",
-                          "borderColor": "#999999",
-                          "borderRadius": 40,
-                          "borderWidth": 2,
-                          "height": 24,
-                          "justifyContent": "center",
-                          "marginRight": 24,
-                          "marginTop": 2,
-                          "width": 24,
-                        },
-                        false,
-                      ]
-                    }
-                  />
-                  <Text
-                    style={
-                      Array [
-                        Object {
-                          "color": "#2e2e2e",
-                          "fontFamily": "IBMPlexSans",
-                          "fontSize": 17,
-                          "lineHeight": 28,
-                        },
-                        Object {
-                          "writingDirection": "ltr",
-                        },
-                        Object {
-                          "color": "#2e2e2e",
-                          "flex": 1,
-                          "flexWrap": "wrap",
-                          "fontFamily": "IBMPlexSans-Bold",
-                          "fontSize": 19,
-                          "fontWeight": "500",
-                          "lineHeight": 28,
-                        },
-                      ]
-                    }
-                    testID="label"
-                  >
-                    B
-                  </Text>
-                </View>
+                  B
+                </Text>
               </View>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
-    </RCTScrollView>
+    </ScrollView>
     <View
       style={
         Object {
@@ -270,15 +253,9 @@ exports[`base 1`] = `
         }
       }
     >
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        style={
-          Object {
-            "opacity": 1,
-          }
-        }
+      <TouchableOpacity
+        activeOpacity={0.2}
+        disabled={true}
         testID="assessment-button"
       >
         <View
@@ -289,6 +266,7 @@ exports[`base 1`] = `
                 "paddingHorizontal": 14,
                 "paddingVertical": 22,
               },
+              undefined,
               Object {
                 "backgroundColor": "#e5e7fa",
               },
@@ -302,7 +280,7 @@ exports[`base 1`] = `
                   "color": "#2e2e2e",
                   "fontFamily": "IBMPlexSans",
                   "fontSize": 17,
-                  "lineHeight": 28,
+                  "lineHeight": 24,
                 },
                 Object {
                   "writingDirection": "ltr",
@@ -312,6 +290,7 @@ exports[`base 1`] = `
                     "color": "#f8f8f8",
                     "textAlign": "center",
                   },
+                  undefined,
                   Object {
                     "color": "#a5affb",
                   },
@@ -322,8 +301,8 @@ exports[`base 1`] = `
             Next
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
-  </RCTSafeAreaView>
+  </SafeAreaView>
 </View>
 `;

@@ -11,57 +11,64 @@ exports[`tracing off screen matches snapshot 1`] = `
   }
 >
   <View
-    accessibilityIgnoresInvertColors={true}
     style={
       Object {
         "flex": 1,
-        "height": "110%",
-        "justifyContent": "flex-end",
-        "resizeMode": "cover",
-        "top": 0,
-        "width": "100%",
       }
     }
   >
-    <Image
-      source={
-        Object {
-          "testUri": "../../../app/assets/images/blueGradientBackground.png",
-        }
-      }
-      style={
-        Array [
-          Object {
-            "bottom": 0,
-            "left": 0,
-            "position": "absolute",
-            "right": 0,
-            "top": 0,
-          },
-          Object {
-            "height": "110%",
-            "width": "100%",
-          },
-          undefined,
-        ]
-      }
-    />
     <View
+      accessibilityIgnoresInvertColors={true}
       style={
         Object {
-          "alignItems": "center",
-          "left": 0,
-          "position": "absolute",
-          "resizeMode": "contain",
-          "right": 0,
-          "top": "-17%",
+          "flex": 1,
+          "height": "110%",
+          "justifyContent": "flex-end",
+          "resizeMode": "cover",
+          "top": 0,
+          "width": "100%",
         }
       }
     >
-      <SvgXml
-        height={1334}
-        width={1334}
-        xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+      <Image
+        source={
+          Object {
+            "testUri": "../../../app/assets/images/blueGradientBackground.png",
+          }
+        }
+        style={
+          Array [
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            },
+            Object {
+              "height": "110%",
+              "width": "100%",
+            },
+            undefined,
+          ]
+        }
+      />
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "left": 0,
+            "position": "absolute",
+            "resizeMode": "contain",
+            "right": 0,
+            "top": "-17%",
+          }
+        }
+      >
+        <SvgXml
+          height={1334}
+          width={1334}
+          xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
   <defs>
     <linearGradient x1=\\"100%\\" y1=\\"50%\\" x2=\\"2.20122466%\\" y2=\\"50%\\" id=\\"linearGradient-1\\">
         <stop stop-color=\\"#DBDBDB\\" offset=\\"0%\\"></stop>
@@ -82,91 +89,54 @@ exports[`tracing off screen matches snapshot 1`] = `
   </g>
   </g>
 </svg>"
-      />
+        />
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "height": "100%",
-        "left": 0,
-        "paddingBottom": 12,
-        "paddingHorizontal": 24,
-        "position": "absolute",
-        "right": 0,
-        "top": "-10%",
-      }
-    }
-  >
     <View
       style={
         Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "flex-end",
-          "paddingBottom": 40,
-        }
-      }
-    />
-    <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "flex-start",
-          "paddingTop": 80,
+          "height": "100%",
+          "left": 0,
+          "paddingBottom": 12,
+          "paddingHorizontal": 24,
+          "position": "absolute",
+          "right": 0,
+          "top": "-10%",
         }
       }
     >
-      <Text
+      <View
         style={
           Object {
-            "color": "#ffffff",
-            "fontSize": 26,
-            "lineHeight": 34,
-            "marginBottom": 24,
-            "textAlign": "center",
+            "alignItems": "center",
+            "flex": 1,
+            "justifyContent": "flex-end",
+            "paddingBottom": 40,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "justifyContent": "flex-start",
+            "paddingTop": 80,
           }
         }
       >
-        Location Access Disabled
-      </Text>
-      <Text
-        style={
-          Array [
-            Object {
-              "color": "#2e2e2e",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 17,
-              "lineHeight": 28,
-            },
-            Object {
-              "writingDirection": "ltr",
-            },
+        <Text
+          style={
             Object {
               "color": "#ffffff",
-              "fontSize": 18,
-              "lineHeight": 24.5,
+              "fontSize": 26,
+              "lineHeight": 34,
               "marginBottom": 24,
               "textAlign": "center",
-            },
-          ]
-        }
-      >
-        PathCheck needs location access in Settings to privately save the places you visit
-      </Text>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        style={
-          Object {
-            "height": 54,
-            "marginTop": 24,
-            "opacity": 1,
+            }
           }
-        }
-      >
+        >
+          Location Access Disabled
+        </Text>
         <Text
           style={
             Array [
@@ -174,17 +144,67 @@ exports[`tracing off screen matches snapshot 1`] = `
                 "color": "#2e2e2e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 18,
+                "lineHeight": 24.5,
+                "marginBottom": 24,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          PathCheck needs location access in Settings to privately save the places you visit
+        </Text>
+        <TouchableOpacity
+          accessibilityLabel="Allow Location Access"
+          accessibilityRole="button"
+          accessible={true}
+          activeOpacity={0.2}
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#ffffff",
+                "borderRadius": 8,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "paddingBottom": 25,
+                "paddingTop": 24,
               },
               undefined,
             ]
           }
         >
-          Allow Location Access
-        </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 17,
+                  "lineHeight": 24,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                Object {
+                  "color": "#1f2c9b",
+                  "fontSize": 19,
+                  "fontWeight": "500",
+                },
+              ]
+            }
+          >
+            Allow Location Access
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   </View>

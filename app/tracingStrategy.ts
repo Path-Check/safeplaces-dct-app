@@ -1,25 +1,26 @@
+import { ImageSourcePropType } from 'react-native';
+
 import { TFunction } from 'i18next';
 
-import { ExposureInfoSubscription } from './ExposureHistoryContext';
+import { ExposureEventsStrategy } from './ExposureHistoryContext';
 
 export interface TracingStrategy {
   name: string;
-  exposureInfoSubscription: ExposureInfoSubscription;
+  exposureEventsStrategy: ExposureEventsStrategy;
   permissionsProvider: ({ children }: { children: JSX.Element }) => JSX.Element;
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
+  affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
-  useInterpolatedCopy: StrategyInterpolatedCopyContentHook;
 }
 
 export interface StrategyAssets {
-  personalPrivacyBackground: string;
+  personalPrivacyBackground: ImageSourcePropType;
+  notificationDetailsBackground: ImageSourcePropType;
+  shareDiagnosisBackground: ImageSourcePropType;
   personalPrivacyIcon: string;
-  notificationDetailsBackground: string;
   notificationDetailsIcon: string;
-  shareDiagnosisBackground: string;
   shareDiagnosisIcon: string;
-  exportPublishIcon: string;
 }
 
 export type StrategyCopyContentHook = (t: TFunction) => StrategyCopyContent;
@@ -27,12 +28,8 @@ export type StrategyCopyContentHook = (t: TFunction) => StrategyCopyContent;
 export interface StrategyCopyContent {
   aboutHeader: string;
   detailedHistoryWhatThisMeansPara: string;
-  exportCodeTitle: string;
   exportCompleteBody: string;
   exportPublishButtonSubtitle: string;
-  exportPublishTitle: string;
-  exportStartBody: string;
-  exportStartTitle: string;
   exposureNotificationsNotAvailableHeader: string;
   exposureNotificationsNotAvailableSubheader: string;
   legalHeader: string;
@@ -47,13 +44,4 @@ export interface StrategyCopyContent {
   shareDiagnosisSubheader: string;
   settingsLoggingActive: string;
   settingsLoggingInactive: string;
-}
-
-export type StrategyInterpolatedCopyContentHook = (
-  t: TFunction,
-) => StrategyInterpolatedCopyContent;
-
-export interface StrategyInterpolatedCopyContent {
-  exportCodeBody: (name: string) => string;
-  exportPublishBody: (name: string) => string;
 }

@@ -10,15 +10,8 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={true}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
     testID="option"
   >
     <View
@@ -70,7 +63,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
                 "color": "#2e2e2e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -82,7 +75,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 19,
                 "fontWeight": "500",
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
             ]
           }
@@ -92,7 +85,7 @@ exports[`SCREEN_TYPE_CHECKBOX 1`] = `
         </Text>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -106,15 +99,8 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={true}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
     testID="option"
   >
     <View
@@ -166,7 +152,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
                 "color": "#2e2e2e",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 17,
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
               Object {
                 "writingDirection": "ltr",
@@ -178,7 +164,7 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
                 "fontFamily": "IBMPlexSans-Bold",
                 "fontSize": 19,
                 "fontWeight": "500",
-                "lineHeight": 28,
+                "lineHeight": 24,
               },
             ]
           }
@@ -188,6 +174,6 @@ exports[`SCREEN_TYPE_RADIO 1`] = `
         </Text>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;

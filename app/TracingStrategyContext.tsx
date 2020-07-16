@@ -1,12 +1,10 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
   TracingStrategy,
   StrategyCopyContent,
   StrategyCopyContentHook,
-  StrategyInterpolatedCopyContent,
-  StrategyInterpolatedCopyContentHook,
   StrategyAssets,
 } from './tracingStrategy';
 
@@ -15,9 +13,9 @@ import { ExposureHistoryProvider } from './ExposureHistoryContext';
 interface TracingStrategyContextState {
   name: string;
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
+  affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
   useCopy: StrategyCopyContentHook;
-  useInterpolatedCopy: StrategyInterpolatedCopyContentHook;
 }
 
 const TracingStrategyContext = createContext<
@@ -25,14 +23,13 @@ const TracingStrategyContext = createContext<
 >(undefined);
 
 interface TracingStrategyProps {
-  children: JSX.Element;
   strategy: TracingStrategy;
 }
 
-export const TracingStrategyProvider = ({
+export const TracingStrategyProvider: FunctionComponent<TracingStrategyProps> = ({
   children,
   strategy,
-}: TracingStrategyProps): JSX.Element => {
+}) => {
   const StrategyPermissionsProvider = strategy.permissionsProvider;
 
   return (
@@ -40,13 +37,13 @@ export const TracingStrategyProvider = ({
       value={{
         name: strategy.name,
         homeScreenComponent: strategy.homeScreenComponent,
+        affectedUserFlow: strategy.affectedUserFlow,
         assets: strategy.assets,
         useCopy: strategy.useCopy,
-        useInterpolatedCopy: strategy.useInterpolatedCopy,
       }}>
       <StrategyPermissionsProvider>
         <ExposureHistoryProvider
-          exposureInfoSubscription={strategy.exposureInfoSubscription}>
+          exposureEventsStrategy={strategy.exposureEventsStrategy}>
           {children}
         </ExposureHistoryProvider>
       </StrategyPermissionsProvider>
@@ -64,13 +61,11 @@ export const useTracingStrategyContext = (): TracingStrategyContextState => {
 
 export const useStrategyContent = (): {
   StrategyCopy: StrategyCopyContent;
-  InterpolatedStrategyCopy: StrategyInterpolatedCopyContent;
   StrategyAssets: StrategyAssets;
 } => {
   const { t } = useTranslation();
-  const { useCopy, useInterpolatedCopy, assets } = useTracingStrategyContext();
+  const { useCopy, assets } = useTracingStrategyContext();
   const StrategyCopy = useCopy(t);
-  const InterpolatedStrategyCopy = useInterpolatedCopy(t);
   const StrategyAssets = assets;
-  return { StrategyCopy, InterpolatedStrategyCopy, StrategyAssets };
+  return { StrategyCopy, StrategyAssets };
 };

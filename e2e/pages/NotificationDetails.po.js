@@ -1,9 +1,11 @@
 /* eslint-disable */
 const screenshotText = 'Onboarding - Page 3';
 
-class NotificatioNDetails {
+class NotificationDetails {
   async tapButton(languageStrings) {
-    await element(by.label(languageStrings.label.launch_next)).tap();
+    // replacing a replace for a navigate here leaves the previous view
+    // compressed and the `Next` label shows up in the tree
+    await element(by.label(languageStrings.label.launch_next)).atIndex(0).tap();
   }
 
   async takeScreenshot() {
@@ -18,4 +20,4 @@ class NotificatioNDetails {
   }
 }
 
-export default new NotificatioNDetails();
+export default new NotificationDetails();

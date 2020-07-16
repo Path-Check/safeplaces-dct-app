@@ -20,11 +20,14 @@ export const mediumGray = '#606060';
 export const darkGray = '#4e4e4e';
 export const darkestGray = '#2e2e2e';
 export const silver = '#bebebe';
-export const porcelain = '#ecfof1';
+export const steelGray = '#9BA0AA';
+export const grayBlue = '#F8F8FF';
+export const porcelain = '#ecf0f1';
 
 // Reds
 export const red = '#ff0000';
 export const persimmon = '#ff5656';
+export const emergencyRed = '#D00000';
 
 export const primaryRed = red;
 
@@ -69,6 +72,7 @@ export const quaternaryViolet = melrose;
 export const transparent = 'rgba(0, 0, 0, 0)';
 export const transparentWhite = applyOpacity(white, 0.1);
 export const transparentGray = applyOpacity(gray, 0.1);
+export const transparentDarkGray = applyOpacity(lighterGray, 0.8);
 export const transparentYellow = 'rgba(100, 100, 77, 0.4)';
 export const transparentDark = 'rgba(0,0,0,0.7)';
 
@@ -88,6 +92,7 @@ export const invertedPrimaryBackground = primaryBlue;
 export const invertedSecondaryBackground = tertiaryBlue;
 export const invertedTertiaryBackground = secondaryBlue;
 export const invertedQuaternaryBackground = primaryBlue;
+export const surveyPrimaryBackground = grayBlue;
 
 export const bottomSheetBackground = white;
 
@@ -141,6 +146,7 @@ export const formText = primaryText;
 export const formPlaceholderText = mediumGray;
 export const formInputBackground = primaryBackgroundFaintShade;
 export const formInputBorder = tertiaryBackground;
+export const placeholderTextColor = lightGray;
 
 export const success = primaryGreen;
 export const warning = primaryYellow;
