@@ -46,8 +46,8 @@ const LocationsPermissions = (): JSX.Element => {
     dispatch(onboardingCompleteAction());
   };
 
-  const handleOnPressEnable = () => {
-    requestLocationAccess();
+  const handleOnPressEnable = async () => {
+    await requestLocationAccess();
     completeOnboarding();
   };
 
