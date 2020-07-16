@@ -30,7 +30,7 @@ const ExposureDatumIndicator = ({
     return (
       <>
         {indicator}
-        <View style={styles.selectedBadge} />
+        <View style={styles.todayBadge} />
       </>
     );
   };
@@ -40,6 +40,12 @@ const ExposureDatumIndicator = ({
     textStyle,
   ]: IndicatorStyle): IndicatorStyle => {
     switch (exposureDatum.kind) {
+      case 'NoData': {
+        return [
+          { ...circleStyle },
+          { ...textStyle, color: Colors.secondaryViolet },
+        ];
+      }
       case 'NoKnown': {
         return [
           { ...circleStyle },
@@ -129,8 +135,8 @@ const styles = StyleSheet.create({
     color: Colors.primaryText,
     fontWeight: Typography.heavyWeight,
   },
-  selectedBadge: {
-    ...Affordances.bottomDotBadge(Colors.primaryText),
+  todayBadge: {
+    ...Affordances.bottomDotBadge(Colors.primaryBlue),
   },
 });
 

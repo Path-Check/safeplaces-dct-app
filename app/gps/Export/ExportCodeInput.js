@@ -20,6 +20,8 @@ import { Screens } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors } from '../../styles';
+import { FeatureFlagOption } from '../../store/types';
+import { useSelector } from 'react-redux';
 
 const CODE_LENGTH = 6;
 
@@ -121,18 +123,30 @@ export const ExportSelectHA = ({ route, navigation }) => {
   const [isCheckingCode, setIsCheckingCode] = useState(false);
   const [codeInvalid, setCodeInvalid] = useState(false);
 
+  const featureFlags = useSelector((state) => state.featureFlags?.flags || {});
+  const bypassApi = !!featureFlags[FeatureFlagOption.BYPASS_EXPORT_API];
+
   const { selectedAuthority } = route.params;
+
+  const navigateToNextScreen = () => {
+    navigation.navigate(Screens.ExportLocationConsent, {
+      selectedAuthority,
+      code,
+    });
+  };
+
   const validateCode = async () => {
+    if (bypassApi) {
+      navigateToNextScreen();
+      return;
+    }
     setIsCheckingCode(true);
     setCodeInvalid(false);
     try {
       const { valid } = await exportCodeApi(selectedAuthority, code);
 
       if (valid) {
-        navigation.navigate(Screens.ExportLocationConsent, {
-          selectedAuthority,
-          code,
-        });
+        navigateToNextScreen();
       } else {
         setCodeInvalid(true);
       }

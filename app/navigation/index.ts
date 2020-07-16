@@ -33,11 +33,11 @@ export type Screen =
   | 'About'
   | 'Licenses'
   | 'FeatureFlags'
-  | 'Import'
+  | 'ImportFromGoogle'
   | 'ImportFromUrl'
   | 'Welcome'
   | 'PersonalPrivacy'
-  | 'NotificatioNDetails'
+  | 'NotificationDetails'
   | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
@@ -77,11 +77,11 @@ export const Screens: { [key in Screen]: Screen } = {
   About: 'About',
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
-  Import: 'Import',
+  ImportFromGoogle: 'ImportFromGoogle',
   ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   PersonalPrivacy: 'PersonalPrivacy',
-  NotificatioNDetails: 'NotificatioNDetails',
+  NotificationDetails: 'NotificationDetails',
   ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',

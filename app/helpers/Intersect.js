@@ -5,31 +5,27 @@
  *  - hashed data points and thresholds
  */
 
+import NetInfo, { NetInfoStateType } from '@react-native-community/netinfo';
 import dayjs from 'dayjs';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
 import { NativeModules } from 'react-native';
 import PushNotification from 'react-native-push-notification';
-
-import { isPlatformiOS } from './../Util';
+import getCursor from '../api/healthcareAuthorities/getCursorApi';
 import {
   DEFAULT_CONCERN_TIME_FRAME_MINUTES,
   DEFAULT_THRESHOLD_MATCH_PERCENT,
   MAX_EXPOSURE_WINDOW_DAYS,
-  MIN_CHECK_INTERSECT_INTERVAL,
 } from '../constants/history';
 import {
   AUTHORITY_SOURCE_SETTINGS,
   CROSSED_PATHS,
-  LAST_CHECKED,
+  DEBUG_MODE,
 } from '../constants/storage';
-import { DEBUG_MODE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
-import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import languages from '../locales/languages';
-
+import { MIN_LOCATION_UPDATE_MS } from '../services/LocationService';
 import StoreAccessor from '../store/StoreAccessor';
-
-import getCursor from '../api/healthcareAuthorities/getCursorApi';
+import { isPlatformiOS } from './../Util';
 
 /**
  * Performs "safety" cleanup of the data, to help ensure that we actually have location
@@ -317,30 +313,6 @@ export function fillDayBins(
   return dayBins;
 }
 
-const transformDayBinsToExposureInfo = (dayBins) => {
-  return dayBins.reduce((exposureInfo, duration, index) => {
-    const startOfDayAgo = dayjs()
-      .startOf('day')
-      .subtract(index, 'day')
-      .valueOf();
-    exposureInfo[startOfDayAgo] =
-      duration > 0
-        ? {
-            kind: 'Possible',
-            date: startOfDayAgo,
-            duration: duration,
-            totalRiskScore: 0,
-            transmissionRiskLevel: 0,
-          }
-        : {
-            kind: 'NoKnown',
-            date: startOfDayAgo,
-          };
-
-    return exposureInfo;
-  }, {});
-};
-
 // rounds the number of milliseconds to nearest valid exposure period
 function roundExposure(diffMS, gpsPeriodMS) {
   return Math.round(diffMS / gpsPeriodMS) * gpsPeriodMS;
@@ -355,17 +327,11 @@ function roundExposure(diffMS, gpsPeriodMS) {
  *        from the authority (e.g. the news url) since we get that in the same call.
  *        Ideally those should probably be broken up better, but for now leaving it alone.
  */
-export async function checkIntersect(
-  healthcareAuthorities,
-  bypassTimer = false,
-) {
+export async function checkIntersect(healthcareAuthorities) {
   console.log(
     `[intersect] tick entering on ${isPlatformiOS() ? 'iOS' : 'Android'}; `,
-    `is bypassing timer = ${bypassTimer}`,
   );
-
-  const result = await asyncCheckIntersect(healthcareAuthorities, bypassTimer);
-  console.log(`[intersect] ${result ? 'completed' : 'skipped'}`);
+  const result = await asyncCheckIntersect(healthcareAuthorities);
   return result;
 }
 
@@ -375,16 +341,7 @@ export async function checkIntersect(
  *
  * Returns the array of day bins (mostly for debugging purposes)
  */
-async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
-  // first things first ... is it time to actually try the intersection?
-  let lastCheckedMs = Number(await GetStoreData(LAST_CHECKED));
-  if (
-    !bypassTimer &&
-    lastCheckedMs + MIN_CHECK_INTERSECT_INTERVAL * 60e3 > dayjs().valueOf()
-  ) {
-    return null;
-  }
-
+async function asyncCheckIntersect(healthcareAuthorities) {
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
   let { locationArray, dayBins } = await getTransformedLocalDataAndDayBins(
@@ -435,12 +392,7 @@ async function asyncCheckIntersect(healthcareAuthorities, bypassTimer = false) {
 
   // store updated cursors
   SetStoreData(AUTHORITY_SOURCE_SETTINGS, localHAData);
-
-  // save off the current time as the last checked time
-  let unixTimeUTC = dayjs().valueOf();
-  SetStoreData(LAST_CHECKED, unixTimeUTC);
-
-  return transformDayBinsToExposureInfo(dayBins);
+  return dayBins;
 }
 
 const performIntersectionForSingleHA = async (
@@ -452,7 +404,6 @@ const performIntersectionForSingleHA = async (
 ) => {
   let {
     name,
-    api_endpoint_url,
     info_website_url,
     notification_threshold_percent,
     notification_threshold_timeframe,
@@ -469,18 +420,25 @@ const performIntersectionForSingleHA = async (
     localHAData.push(currHA);
   }
 
-  for (const { startTimestamp, endTimestamp, filename } of pages) {
-    // fetch non-analyzed page
-    const pageURL = `${api_endpoint_url}${filename}`;
-    const concernPointsPage = await retrieveUrlAsJson(pageURL);
+  for (const page of pages) {
+    if (!page.id) {
+      // skip this page
+      continue;
+    }
+    const concernPointsPage = await getPageData(authority, page);
 
-    // check if any of local points hashes are contained in this page
-    updateMatchFlags(
-      locationArray,
-      new Set(concernPointsPage.concern_point_hashes),
-    );
+    if (
+      concernPointsPage.concern_point_hashes &&
+      Array.isArray(concernPointsPage.concern_point_hashes)
+    ) {
+      // check if any of local points hashes are contained in this page
+      updateMatchFlags(
+        locationArray,
+        new Set(concernPointsPage.concern_point_hashes),
+      );
+    }
 
-    currHA.cursor = `${startTimestamp}_${endTimestamp}`;
+    currHA.cursor = `${page.startTimestamp}_${page.endTimestamp}`;
   }
 
   const timeFrameMS = notification_threshold_timeframe * 60e3;
@@ -546,4 +504,50 @@ export function disableDebugMode() {
 
   // Kick off intersection calculations to restore data
   checkIntersect();
+}
+
+async function getPageData(authority, page) {
+  // this function should always return an object.
+  // if there's no data, return an empty object.
+  const cacheKey = authority.internal_id + '|page:' + page.id;
+  let pageData = await GetStoreData(cacheKey, false);
+  if (!pageData && (await shouldDownloadPageData())) {
+    try {
+      pageData = await retrieveUrlAsJson(page.filename);
+      SetStoreData(cacheKey, pageData);
+    } catch (e) {
+      // sometimes the url isn't right, the download will fail
+      console.log(
+        'error occurred while downloading ha page',
+        authority.name,
+        page.id,
+        e,
+      );
+    }
+  }
+  return pageData || {};
+}
+
+async function shouldDownloadPageData() {
+  const store = StoreAccessor.getStore();
+
+  if (store === null) {
+    throw Error.new(
+      'Attempting to access a not set store checking for intersect',
+    );
+  }
+
+  const reduxState = store.getState();
+  if (
+    reduxState &&
+    reduxState.settings &&
+    reduxState.settings.downloadLargeDataOverWifiOnly
+  ) {
+    const connectionState = await NetInfo.fetch();
+    if (connectionState.type !== NetInfoStateType.wifi) {
+      // if user decides to only use wifi, don't download if not connected to wifi
+      return false;
+    }
+  }
+  return true;
 }

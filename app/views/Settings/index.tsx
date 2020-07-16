@@ -20,7 +20,6 @@ import FeatureFlag from '../../components/FeatureFlag';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { isGPS } from '../../COVIDSafePathsConfig';
-import GoogleMapsImport from './GoogleMapsImport';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
@@ -132,16 +131,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-        {isGPS ? (
-          <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
-            <View style={styles.section}>
-              <View style={styles.listItem}>
-                <GoogleMapsImport navigation={navigation} />
-              </View>
-            </View>
-          </FeatureFlag>
-        ) : null}
-
         <View style={styles.section}>
           <SettingsListItem
             label={t('screen_titles.about')}
@@ -165,16 +154,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         ) : null}
 
-        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
-          <View style={styles.section}>
-            <SettingsListItem
-              label={'Download Locally'}
-              onPress={navigateTo(Screens.ExportLocally)}
-              style={styles.lastListItem}
-            />
-          </View>
-        </FeatureFlag>
-
         {enableFlags && (
           <View style={styles.section}>
             <SettingsListItem
@@ -184,6 +163,34 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             />
           </View>
         )}
+
+        <FeatureFlag flag={FeatureFlagOption.IMPORT_LOCATIONS_JSON_URL}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Import Location Data (JSON URL)'}
+              onPress={navigateTo(Screens.ImportFromUrl)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
+        <FeatureFlag flag={FeatureFlagOption.IMPORT_LOCATIONS_GOOGLE}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Import Location Data (Google Maps)'}
+              onPress={navigateTo(Screens.ImportFromGoogle)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
+        <FeatureFlag flag={FeatureFlagOption.DOWNLOAD_LOCALLY}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Download Locally'}
+              onPress={navigateTo(Screens.ExportLocally)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
       </ScrollView>
     </NavigationBarWrapper>
   );

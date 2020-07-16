@@ -34,7 +34,7 @@ import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Welcome from './views/onboarding/Welcome';
 import PersonalPrivacy from './views/onboarding/PersonalPrivacy';
-import NotificatioNDetails from './views/onboarding/NotificationDetails';
+import NotificationDetails from './views/onboarding/NotificationDetails';
 import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
@@ -107,7 +107,7 @@ const MoreTabStack = () => (
     <Stack.Screen name={Screens.About} component={AboutScreen} />
     <Stack.Screen name={Screens.Licenses} component={LicensesScreen} />
     <Stack.Screen name={Screens.FeatureFlags} component={FeatureFlagsScreen} />
-    <Stack.Screen name={Screens.Import} component={ImportScreen} />
+    <Stack.Screen name={Screens.ImportFromGoogle} component={ImportScreen} />
     <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
     <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
     <Stack.Screen
@@ -260,8 +260,8 @@ const OnboardingStack = () => (
     <Stack.Screen name={Screens.Welcome} component={Welcome} />
     <Stack.Screen name={Screens.PersonalPrivacy} component={PersonalPrivacy} />
     <Stack.Screen
-      name={Screens.NotificatioNDetails}
-      component={NotificatioNDetails}
+      name={Screens.NotificationDetails}
+      component={NotificationDetails}
     />
     <Stack.Screen name={Screens.ShareDiagnosis} component={ShareDiagnosis} />
     <Stack.Screen
