@@ -226,7 +226,7 @@ final class ExposureManager: NSObject {
       case let .failure(error):
         let exposureError = ExposureError.default(error.localizedDescription)
         BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
-        postExposureDetectionErrorNotification()
+        postExposureDetectionErrorNotification(exposureError.errorDescription)
         completionHandler(.failure(exposureError))
       }
     }
@@ -298,13 +298,13 @@ final class ExposureManager: NSObject {
     }
   }
   
-  func postExposureDetectionErrorNotification() {
+  func postExposureDetectionErrorNotification(_ errorString: String?) {
     #if DEBUG
     let identifier = String.exposureDetectionErrorNotificationIdentifier
     
     let content = UNMutableNotificationContent()
     content.title = String.exposureDetectionErrorNotificationTitle.localized
-    content.body = String.exposureDetectionErrorNotificationBody.localized
+    content.body = errorString ?? String.exposureDetectionErrorNotificationBody.localized
     content.sound = .default
     let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
     UNUserNotificationCenter.current().add(request) { error in
