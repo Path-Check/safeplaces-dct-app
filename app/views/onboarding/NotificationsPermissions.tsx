@@ -36,8 +36,6 @@ const NotificationsPermissions = (): JSX.Element => {
   };
 
   const continueOnboarding = () => {
-    // TODO: add a check if user has disabled location on device level
-    // here or maybe in Entry.js?
     navigation.navigate(Screens.OnboardingLocationPermissions);
   };
 
