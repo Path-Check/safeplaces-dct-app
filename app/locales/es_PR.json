@@ -13,6 +13,8 @@
     "agree_option_disagree": "No estoy de acuerdo",
     "agree_question_description": "La evaluación le ayuda a tomar decisiones sobre la búsqueda de atención médica apropiada. No está destinada al diagnóstico o tratamiento de enfermedades u otras condiciones.",
     "agree_question_text": "El propósito de este cernimiento de COVID-19",
+    "agreement_cta": "Entiendo y doy mi consentimiento",
+    "agreement_description": "La evaluación le ayuda a tomar decisiones sobre la búsqueda de atención médica apropiada. No está destinada al diagnóstico o tratamiento de enfermedades u otras condiciones.",
     "cancel": "Cancelar",
     "caregiver_cta": "Siguiente",
     "caregiver_description": "Notifique a un proveedor de atención médica en su centro de cuidados a largo plazo. Vivir en un centro de cuidados a largo plazo o en un hogar de ancianos puede ponerlo en riesgo de padecer una enfermedad grave.\n\n<1>Dígale a un cuidador</1> del centro que está enfermo y que necesita ver a un proveedor médico lo antes posible.",
@@ -63,6 +65,7 @@
   "export": {
     "code_input_body": "El representante de {{name}} proporcionará un código de verificación por teléfono para vincular sus datos con {{name}}.",
     "code_input_body_bluetooth": "Escriba el código de verificación proporcionado por {{name}} con el resultado de su prueba para verificar su diagnóstico.",
+    "code_input_button_cancel": "Cancelar",
     "code_input_error": "Intenta con un código diferente",
     "code_input_title": "Ingrese su código de verificación",
     "code_input_title_bluetooth": "Verifique su diagnóstico",
@@ -72,8 +75,13 @@
     "confirm_upload_body": "Esto ayudará en los esfuerzos de rastreo de contactos.\n\nSi eliges no enviar tu historial de localización a {{name}}, estás eligiendo no participar en los esfuerzos de rastreo de contactos que ayudan a mantener tu comunidad segura.",
     "confirm_upload_button": "Compartir el historial de ubicaciones",
     "confirm_upload_title": "Envíe su historial de ubicaciones a su HA",
+    "consent_button_cancel": "Cancelar",
     "consent_button_subtitle": "Al proceder, usted acepta que su Autoridad Sanitaria puede retener sus datos durante un período de tiempo.",
     "consent_button_title": "Entiendo y doy mi consentimiento",
+    "error": {
+      "invalid_code": "Intenta con un código diferente",
+      "unknown_code_verification_error": "Intenta con un código diferente"
+    },
     "exit_warning_body": "Tendrá que reiniciar este proceso",
     "exit_warning_cancel": "Cancelar",
     "exit_warning_confirm": "Sí, estoy seguro",
@@ -98,7 +106,6 @@
     "how_does_this_work": "¿Como funciona esto?",
     "last_days": "Los últimos 21 días",
     "legend": {
-      "exposure_likely": "Exposición muy probable",
       "no_exposure_detected": "No se detectó exposición",
       "today": "Hoy"
     },
@@ -183,7 +190,6 @@
     "auto_subscribe_checkbox": "Habilitar suscripción automática",
     "choose_provider_subtitle": "Selecciona una Autoridad de Salud para saber sobre COVID-19 en tu área, donde esté disponible",
     "choose_provider_title": "Su Autoridad de Salud",
-    "authorities_new_in_area_msg_plural": "Suscríbase a {{count}} nueva Autoridades de Salud que sean confiables en su ubicación",
     "default_news_site_name": "Noticias de PathCheck",
     "enter_authority_url": "Escriba o pegue el URL",
     "event_history_subtitle": "Comprenda su exposición personal basándose en la información compartida por las autoridades sanitarias.",
@@ -206,6 +212,7 @@
     "launch_enable_notif": "Permitir notificaciones",
     "launch_exposure_notif_header": "Permitir Notificación de Exposición",
     "launch_exposure_notif_subheader": "Para recibir notificaciones sobre las actualizaciones de su historial de exposición, su teléfono necesita permiso para intercambiar ID aleatoria Bluetooth anónima con otros dispositivos. \n\n Las notificaciones de exposición solo funcionan con otros dispositivos con la configuración habilitada. \n\n Puede desactivar estas notificaciones en cualquier momento.",
+    "authorities_new_in_area_msg_plural": "Suscríbase a {{count}} nueva Autoridades de Salud que sean confiables en su ubicación",
     "launch_finish_set_up": "Terminar la configuración",
     "launch_get_started": "Empezar",
     "launch_header_bluetooth": "Para saber con quién has estado en contacto, tu teléfono necesita acceder a tu Bluetooth.",

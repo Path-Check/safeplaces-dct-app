@@ -13,6 +13,7 @@
     "agree_option_disagree": "No estoy de acuerdo",
     "agree_question_description": "La evaluación le ayuda a tomar decisiones sobre la búsqueda de atención médica apropiada. No está destinada al diagnóstico o tratamiento de enfermedades u otras condiciones.",
     "agree_question_text": "El propósito de este cernimiento de COVID-19",
+    "agreement_description": "La evaluación le ayuda a tomar decisiones sobre la búsqueda de atención médica apropiada. No está destinada al diagnóstico o tratamiento de enfermedades u otras condiciones.",
     "cancel": "Cancelar",
     "caregiver_cta": "Siguiente",
     "caregiver_description": "Notifique a un proveedor de atención médica en su centro de cuidados a largo plazo. Vivir en un centro de cuidados a largo plazo o en un asilo puede ponerle en riesgo de padecer una enfermedad grave.\n\nDígale<1> a un</1> cuidador del centro que está enfermo y que necesita ver a un proveedor médico lo antes posible.",
@@ -49,8 +50,10 @@
   },
   "export": {
     "code_input_body_bluetooth": "Escriba el código de verificación proporcionado por {{name}} con el resultado de su prueba para verificar su diagnóstico.",
+    "code_input_button_cancel": "Cancelar",
     "code_input_title_bluetooth": "Verifique su diagnóstico",
     "complete_body_bluetooth": "Al elegir compartir su estatus y notificar anónimamente a otros, está ayudando a contener la propagación del virus y a proteger a otros en su comunidad.",
+    "consent_button_cancel": "Cancelar",
     "exit_warning_cancel": "Cancelar",
     "publish_consent_body_bluetooth": "Compartir su diagnóstico positivo es opcional y sólo puede hacerse con su consentimiento.\n\nSi decides hacerlo, estarás ayudando a otras personas de tu comunidad a tomar decisiones informadas sobre su salud y a desempeñar tu papel para contener la propagación del virus.\n\nLa única información que se compartirá será el conjunto aleatorio de números que tu teléfono intercambió por Bluetooth con otros teléfonos que estuvieron cerca durante los últimos 14 días, junto con una puntuación de riesgo ponderada basada en el momento en que se desarrollaron los síntomas.",
     "publish_consent_title_bluetooth": "Notifique a otros en su comunidad",
@@ -175,7 +178,6 @@
     "logging_inactive_location": "Localización desactivada",
     "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
     "news_title": "Últimas Noticias",
-    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
     "no_data": "No hay datos",
     "privacy_policy": "Política de privacidad",
     "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
@@ -185,7 +187,8 @@
     "skip_this_step": "Omitir este paso",
     "team": "Equipo",
     "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores e investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
-    "terms_of_use": "Condiciones de uso"
+    "terms_of_use": "Condiciones de uso",
+    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona"
   },
   "navigation": {
     "history": "Historial",
