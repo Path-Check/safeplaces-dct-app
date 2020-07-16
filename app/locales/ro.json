@@ -11,6 +11,8 @@
     "next": "Înainte"
   },
   "export": {
+    "code_input_button_cancel": "Anulează",
+    "consent_button_cancel": "Anulează",
     "exit_warning_cancel": "Anulează"
   },
   "history": {
