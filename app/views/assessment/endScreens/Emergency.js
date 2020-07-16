@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
   },
   button: {
     borderWidth: 2,
-    borderColor: Colors.emergencyRed,
+    borderColor: Colors.secondaryRed,
   },
 });

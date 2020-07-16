@@ -36,6 +36,7 @@ public class ExposureNotificationSharedPreferences {
   private static final String NETWORK_MODE_KEY = "ExposureNotificationSharedPreferences.NETWORK_MODE_KEY";
   private static final String ATTENUATION_THRESHOLD_1_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_1_KEY";
   private static final String ATTENUATION_THRESHOLD_2_KEY = "ExposureNotificationSharedPreferences.ATTENUATION_THRESHOLD_2_KEY";
+  private static final String LAST_INDEX_FILE = "ExposureNotificationSharedPreferences.LAST_INDEX_FILE";
 
   private final SharedPreferences sharedPreferences;
 

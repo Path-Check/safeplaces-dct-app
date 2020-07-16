@@ -15,6 +15,7 @@ import { NavigationProp } from '../../navigation';
 import { BTNativeModule } from './../../../app/bt';
 
 export type ENDiagnosisKey = {
+  id: string;
   rollingStartNumber: number;
 };
 
@@ -27,14 +28,13 @@ export const ENLocalDiagnosisKeyScreen = ({
 }: ENLocalDiagnosisKeyScreenProp): JSX.Element => {
   const initialKeys: ENDiagnosisKey[] = [];
 
-  const fetchDiagnosisKeys = () => {
-    const cb = (errorMessage: string, diagnosisKeys: ENDiagnosisKey[]) => {
-      if (errorMessage != null) {
-        setErrorMessage(errorMessage);
-      }
-      setDiagnosisKeys(diagnosisKeys);
-    };
-    BTNativeModule.fetchDiagnosisKeys(cb);
+  const fetchDiagnosisKeys = async () => {
+    try {
+      const keys = await BTNativeModule.fetchDiagnosisKeys();
+      setDiagnosisKeys(keys);
+    } catch (e) {
+      setErrorMessage(e.message);
+    }
   };
 
   const [diagnosisKeys, setDiagnosisKeys] = useState<ENDiagnosisKey[]>(
@@ -79,7 +79,7 @@ export const ENLocalDiagnosisKeyScreen = ({
       onBackPress={backToDebugMenu}>
       <FlatList
         data={diagnosisKeys}
-        keyExtractor={(item) => item.rollingStartNumber.toString()}
+        keyExtractor={(item) => item.id}
         renderItem={(item) => (
           <View style={styles.flatlistRowView}>
             <Typography style={styles.item} use={'body3'}>

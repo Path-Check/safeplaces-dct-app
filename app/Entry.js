@@ -298,6 +298,19 @@ const PartnersStack = () => (
   </Stack.Navigator>
 );
 
+const animateFromBottom = ({ current }) => ({
+  cardStyle: {
+    transform: [
+      {
+        translateY: current.progress.interpolate({
+          inputRange: [0, 1],
+          outputRange: [Layout.screenHeight, 0],
+        }),
+      },
+    ],
+  },
+});
+
 export const Entry = () => {
   const onboardingComplete = useSelector(isOnboardingCompleteSelector);
   const tracingStrategy = useTracingStrategyContext();
@@ -315,7 +328,8 @@ export const Entry = () => {
           name={Screens.ExportFlow}
           component={tracingStrategy.affectedUserFlow}
           options={{
-            ...TransitionPresets.ModalSlideFromBottomIOS,
+            cardStyleInterpolator: animateFromBottom,
+            gestureEnabled: false,
           }}
         />
         <Stack.Screen

@@ -11,5 +11,4 @@
   <string name="key_server_upload_uri" translatable="false">https://exposure-2kabcv6c4a-uc.a.run.app/</string>
   <!-- Server URI for diagnosis key file download -->
   <string name="key_server_download_base_uri" translatable="false">https://storage.googleapis.com/exposure-notification-export-svhfv/</string>
-  <string name="key_server_download_base_uri_test" translatable="false">https://raw.githubusercontent.com/octohub/test/master/</string>
 </resources>

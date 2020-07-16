@@ -133,7 +133,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
     public static void scheduleDailyProvideDiagnosisKeys(Context context) {
         WorkManager workManager = WorkManager.getInstance(context);
         PeriodicWorkRequest workRequest = new PeriodicWorkRequest.Builder(
-                ProvideDiagnosisKeysWorker.class, 1, TimeUnit.DAYS)
+                ProvideDiagnosisKeysWorker.class, 24, TimeUnit.HOURS)
                 .setConstraints(
                         new Constraints.Builder()
                                 .setRequiresBatteryNotLow(true)
@@ -142,7 +142,7 @@ public class ProvideDiagnosisKeysWorker extends ListenableWorker {
                                 .build())
                 .build();
         workManager
-                .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.REPLACE, workRequest);
+                .enqueueUniquePeriodicWork(WORKER_NAME, ExistingPeriodicWorkPolicy.KEEP, workRequest);
     }
 
     /**

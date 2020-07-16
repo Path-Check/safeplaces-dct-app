@@ -15,15 +15,6 @@ final class ExposureManager: NSObject {
   
   var detectingExposures = false
   
-  private func rollingStartNumber(_ date: Date) -> Int {
-    Int(date.timeIntervalSince1970 / (24 * 60 * 60)) * Constants.intervalsPerRollingPeriod
-  }
-  
-  private var minRollingStartNumber: Int {
-    let date = Calendar.current.date(byAdding: .hour, value: -Constants.exposureLifetimeHours, to: Date())!
-    return rollingStartNumber(date)
-  }
-  
   enum EnabledState: String {
     case ENABLED, DISABLED
   }
@@ -89,7 +80,7 @@ final class ExposureManager: NSObject {
   /// Local urls of the bin/sig files from each archive
   var localUncompressedURLs = [URL]()
   
-  @discardableResult func detectExposures(completionHandler: @escaping ((Error?) -> Void)) -> Progress {
+  @discardableResult func detectExposures(completionHandler: @escaping ((ExposureResult) -> Void)) -> Progress {
     
     let progress = Progress()
     
@@ -98,7 +89,11 @@ final class ExposureManager: NSObject {
     
     // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
     guard !detectingExposures else {
-      completionHandler(GenericError.unknown)
+      finish(.failure(ExposureError.default("Detection Already in Progress")),
+             processedFileCount: processedFileCount,
+             lastProcessedUrlPath: lastProcessedUrlPath,
+             progress: progress,
+             completionHandler: completionHandler)
       return progress
     }
     
@@ -133,7 +128,12 @@ final class ExposureManager: NSObject {
             case .success (let package):
               self.downloadedPackages.append(package)
             case .failure(let error):
-              print("Error downloading from remote url (\(remoteURL): \(error)")
+              self.finish(.failure(error),
+                          processedFileCount: processedFileCount,
+                          lastProcessedUrlPath: lastProcessedUrlPath,
+                          progress: progress,
+                          completionHandler: completionHandler)
+              return
             }
             dispatchGroup.leave()
           }
@@ -163,7 +163,7 @@ final class ExposureManager: NSObject {
                             completionHandler: completionHandler)
                 return
               }
-              let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: "User notification")
+              let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: .default)
               ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
                 if let error = error {
                   self.finish(.failure(error),
@@ -204,14 +204,15 @@ final class ExposureManager: NSObject {
               processedFileCount: Int,
               lastProcessedUrlPath: String,
               progress: Progress,
-              completionHandler: ((Error?) -> Void)) {
+              completionHandler: ((ExposureResult) -> Void)) {
     
     cleanup()
-    
+
+    detectingExposures = false
+
     if progress.isCancelled {
-      detectingExposures = false
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
-      completionHandler(GenericError.unknown)
+      completionHandler(.failure(ExposureError.cancelled))
     } else {
       switch result {
       case let .success(newExposures):
@@ -221,13 +222,12 @@ final class ExposureManager: NSObject {
           BTSecureStorage.shared.urlOfMostRecentlyDetectedKeyFile = lastProcessedUrlPath
         }
         BTSecureStorage.shared.storeExposures(newExposures)
-        detectingExposures = false
-        completionHandler(nil)
+        completionHandler(.success(processedFileCount))
       case let .failure(error):
+        let exposureError = ExposureError.default(error.localizedDescription)
         BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = error.localizedDescription
-        detectingExposures = false
-        postExposureDetectionErrorNotification()
-        completionHandler(error)
+        postExposureDetectionErrorNotification(exposureError.errorDescription)
+        completionHandler(.failure(exposureError))
       }
     }
   }
@@ -240,11 +240,12 @@ final class ExposureManager: NSObject {
       self?.notifyUserBlueToothOffIfNeeded()
       
       // Perform the exposure detection
-      let progress = ExposureManager.shared.detectExposures { error in
-        if error != nil {
-          task.setTaskCompleted(success: false)
-        } else {
+      let progress = ExposureManager.shared.detectExposures { result in
+        switch result {
+        case .success:
           task.setTaskCompleted(success: true)
+        case .failure:
+          task.setTaskCompleted(success: false)
         }
       }
       
@@ -270,35 +271,10 @@ final class ExposureManager: NSObject {
     }
   }
 
-  @objc func getAndPostDiagnosisKeysDebug(callback: @escaping RCTResponseSenderBlock) {
-    manager.getDiagnosisKeys { temporaryExposureKeys, error in
-      if let error = error {
-        callback([error])
-      } else {
-
-        let allKeys = (temporaryExposureKeys ?? [])
-
-        // Filter keys > 350 hrs old
-        let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
-
-
-        APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey },
-                                                              [.US],
-                                                              String.default,
-                                                              String.default),
-                                 requestType: .postKeys) { result in
-                                  switch result {
-                                  case .success:
-                                    callback([NSNull(), String.genericSuccess])
-                                  case .failure(let error):
-                                    callback([error, NSNull()])
-                                  }
-        }
-      }
-    }
-  }
-
-  @objc func getAndPostDiagnosisKeys(certificate: String, HMACKey: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+  @objc func getAndPostDiagnosisKeys(certificate: String,
+                                     HMACKey: String,
+                                     resolve: @escaping RCTPromiseResolveBlock,
+                                     reject: @escaping RCTPromiseRejectBlock) {
     manager.getDiagnosisKeys { temporaryExposureKeys, error in
       if let error = error {
         reject(String.noExposureKeysFound, "Failed to get exposure keys", error)
@@ -307,14 +283,13 @@ final class ExposureManager: NSObject {
         let allKeys = (temporaryExposureKeys ?? [])
         
         // Filter keys > 350 hrs old
-        let currentKeys = allKeys.filter { $0.rollingStartNumber > self.minRollingStartNumber }
-        
+        let currentKeys = allKeys.current()
 
         APIClient.shared.request(DiagnosisKeyListRequest.post(currentKeys.compactMap { $0.asCodableKey }, [.US], certificate, HMACKey),
                                  requestType: .postKeys) { result in
                                   switch result {
                                   case .success:
-                                    resolve(String.genericSuccess)
+                                    resolve("Submitted: \(currentKeys.count) keys.")
                                   case .failure(let error):
                                     reject(String.networkFailure, "Failed to post exposure keys \(error.localizedDescription)", error)
                                   }
@@ -323,13 +298,13 @@ final class ExposureManager: NSObject {
     }
   }
   
-  func postExposureDetectionErrorNotification() {
+  func postExposureDetectionErrorNotification(_ errorString: String?) {
     #if DEBUG
     let identifier = String.exposureDetectionErrorNotificationIdentifier
     
     let content = UNMutableNotificationContent()
     content.title = String.exposureDetectionErrorNotificationTitle.localized
-    content.body = String.exposureDetectionErrorNotificationBody.localized
+    content.body = errorString ?? String.exposureDetectionErrorNotificationBody.localized
     content.sound = .default
     let request = UNNotificationRequest(identifier: identifier, content: content, trigger: nil)
     UNUserNotificationCenter.current().add(request) { error in
