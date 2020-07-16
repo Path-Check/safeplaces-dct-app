@@ -88,6 +88,10 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     return subscription.remove;
   }, [exposureInfoSubscription, toExposureHistory]);
 
+  useEffect(() => {
+    getCurrentExposures();
+  }, [toExposureHistory]);
+
   const observeExposures = () => {
     setUserHasNewExposure(false);
   };
