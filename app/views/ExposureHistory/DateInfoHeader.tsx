@@ -14,6 +14,7 @@ import { Typography } from '../../components/Typography';
 import { Typography as TypographyStyles } from '../../styles';
 import { fetchLastExposureDetectionDate } from '../../bt/nativeModule';
 import ExposureHistoryContext from '../../ExposureHistoryContext';
+import { posixToDayjs } from '../../helpers/dateTimeUtils';
 
 const DateInfoHeader: FunctionComponent = () => {
   const [
@@ -25,7 +26,8 @@ const DateInfoHeader: FunctionComponent = () => {
 
   useEffect(() => {
     fetchLastExposureDetectionDate().then((exposureDetectionDate) => {
-      setLastExposureDetectionDate(exposureDetectionDate);
+      exposureDetectionDate &&
+        setLastExposureDetectionDate(posixToDayjs(exposureDetectionDate));
     });
   }, [exposureHistory]);
 

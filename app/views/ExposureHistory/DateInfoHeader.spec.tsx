@@ -10,7 +10,7 @@ jest.mock('../../bt/nativeModule');
 
 describe('DateInfoHeader', () => {
   it('displays the time since the last exposure detection', async () => {
-    const lastExposureDetectionDate = dayjs().subtract(8, 'hour');
+    const lastExposureDetectionDate = dayjs().subtract(8, 'hour').valueOf();
     jest
       .spyOn(nativeModule, 'fetchLastExposureDetectionDate')
       .mockResolvedValueOnce(lastExposureDetectionDate);

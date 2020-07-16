@@ -3,10 +3,9 @@ import {
   NativeModules,
   EventSubscription,
 } from 'react-native';
-import dayjs, { Dayjs } from 'dayjs';
 
 import { ENPermissionStatus } from './PermissionsContext';
-import { ExposureInfo } from '../exposureHistory';
+import { ExposureInfo, Posix } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
 import { ExposureKey } from './AffectedUserFlow/exposureKey';
@@ -27,11 +26,9 @@ export const subscribeToExposureEvents = (
   );
 };
 
-export const fetchLastExposureDetectionDate = async (): Promise<Dayjs | null> => {
+export const fetchLastExposureDetectionDate = async (): Promise<Posix | null> => {
   try {
-    const posixDate = await NativeModules.ENExposureModule.fetchLastDetectionDate();
-    const dayJsDate = dayjs(posixDate);
-    return dayJsDate.isValid() ? dayJsDate : null;
+    return await NativeModules.ENExposureModule.fetchLastDetectionDate();
   } catch {
     return null;
   }

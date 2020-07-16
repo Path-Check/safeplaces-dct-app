@@ -1,4 +1,4 @@
-import { isToday } from './dateTimeUtils';
+import { isToday, posixToDayjs } from './dateTimeUtils';
 
 describe('isToday', () => {
   describe('when provided a posix that is today', () => {
@@ -29,5 +29,18 @@ describe('isToday', () => {
 
       expect(result).toBe(false);
     });
+  });
+});
+
+describe('posixToDayjs', () => {
+  it('converts a valid posix timestamp into a Dayjs instance', () => {
+    const posixTimeStamp = new Date('2020/07/01').getTime();
+    expect(posixToDayjs(posixTimeStamp)?.format('YYYY-MM-DD')).toEqual(
+      '2020-07-01',
+    );
+  });
+
+  it('returns null for an invalid posix timestamp', () => {
+    expect(posixToDayjs(parseInt('not a valid int'))).toBeNull();
   });
 });
