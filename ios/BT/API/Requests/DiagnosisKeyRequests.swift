@@ -58,8 +58,8 @@ enum DiagnosisKeyListRequest: APIRequest {
         "temporaryExposureKeys": keys,
         "regions": regions.map { $0.rawValue },
         "appPackageName": Bundle.main.bundleIdentifier!,
-        "verificationPayload": String.default,
-        "hmackey": String.default,
+        "verificationPayload": certificate,
+        "hmackey": hmacKey,
         "padding": String(decoding: Data(), as: UTF8.self)
       ]
     }

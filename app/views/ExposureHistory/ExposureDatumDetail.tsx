@@ -49,7 +49,7 @@ interface PossibleExposureDetailProps {
 const PossibleExposureDetail = ({
   datum: { date, duration },
 }: PossibleExposureDetailProps) => {
-  const exposureDurationText = TimeHelpers.durationMsToString(duration);
+  const exposureDurationText = TimeHelpers.durationToString(duration);
   const navigation = useNavigation();
   const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');

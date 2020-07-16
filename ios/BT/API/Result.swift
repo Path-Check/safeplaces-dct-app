@@ -28,6 +28,8 @@ public enum GenericError: Error {
 public enum ExposureError: LocalizedError {
 
   case `default`(String?)
+  case dailyFileProcessingLimitExceeded
+  case cancelled
 
   public var errorDescription: String? {
     switch self {
@@ -36,6 +38,10 @@ public enum ExposureError: LocalizedError {
         return localizedDescription
       }
       return unwrappedMessage
+    case .dailyFileProcessingLimitExceeded:
+      return "Daily exposure detection file processing limit exceeded"
+    case .cancelled:
+      return "Exposure Detection Cancelled"
     }
   }
 

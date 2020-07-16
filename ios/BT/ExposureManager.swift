@@ -163,7 +163,7 @@ final class ExposureManager: NSObject {
                             completionHandler: completionHandler)
                 return
               }
-              let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: "User notification")
+              let userExplanation = NSLocalizedString(String.newExposureNotificationBody, comment: .default)
               ExposureManager.shared.manager.getExposureInfo(summary: summary!, userExplanation: userExplanation) { exposures, error in
                 if let error = error {
                   self.finish(.failure(error),
@@ -212,7 +212,7 @@ final class ExposureManager: NSObject {
 
     if progress.isCancelled {
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = GenericError.unknown.localizedDescription
-      completionHandler(.failure(ExposureError.default("Exposure Detection Cancelled")))
+      completionHandler(.failure(ExposureError.cancelled))
     } else {
       switch result {
       case let .success(newExposures):

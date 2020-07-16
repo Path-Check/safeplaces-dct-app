@@ -3,6 +3,7 @@ import React, {
   useState,
   useEffect,
   FunctionComponent,
+  useCallback,
 } from 'react';
 
 import {
@@ -99,7 +100,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     setUserHasNewExposure(true);
   };
 
-  const getCurrentExposures = async () => {
+  const getCurrentExposures = useCallback(() => {
     const cb = (exposureInfo: ExposureInfo) => {
       const exposureHistory = toExposureHistory(
         exposureInfo,
@@ -108,7 +109,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
       setExposureHistory(exposureHistory);
     };
     exposureEventsStrategy.getCurrentExposures(cb);
-  };
+  }, [toExposureHistory, exposureEventsStrategy]);
 
   const hasBeenExposed = false;
   return (

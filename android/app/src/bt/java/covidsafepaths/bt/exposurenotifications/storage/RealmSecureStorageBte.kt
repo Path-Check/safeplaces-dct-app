@@ -11,6 +11,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import java.security.SecureRandom
 
+
 /**
  * Modified from GPS target to support Exposure Notification on-device data
  */
@@ -24,7 +25,7 @@ object RealmSecureStorageBte {
     private const val MANUALLY_KEYED_KEY_ALIAS = "safepathsbte"
     private const val MANUALLY_KEYED_KEY_INDEX = 2
     private const val MANUALLY_KEYED_PRESHARED_SECRET =
-        "" // This will not be used as we do not support < 18
+            "" // This will not be used as we do not support < 18
     private const val KEY_REALM_ENCRYPTION_KEY = "KEY_REALM_ENCRYPTION_KEY"
 
     private val realmConfig: RealmConfiguration
@@ -33,9 +34,9 @@ object RealmSecureStorageBte {
         val encryptionKey = getEncryptionKey()
 
         val builder = RealmConfiguration.Builder()
-            .encryptionKey(encryptionKey)
-            .addModule(SafePathsBteRealmModule())
-            .schemaVersion(SCHEMA_VERSION)
+                .encryptionKey(encryptionKey)
+                .addModule(SafePathsBteRealmModule())
+                .schemaVersion(SCHEMA_VERSION)
 
         builder.name("safepathsbte.realm")
 
@@ -102,6 +103,18 @@ object RealmSecureStorageBte {
             val newKeyString = Base64.encodeToString(newKey, Base64.DEFAULT)
             vault.edit().putString(KEY_REALM_ENCRYPTION_KEY, newKeyString).apply()
             newKey
+        }
+    }
+
+    fun insertOrUpdateLastDownloadedKeyZipFileName(name: String) {
+        getRealmInstance().use {
+            it.executeTransaction { it.insertOrUpdate(KeyValues(ONLY_KEY, name)) }
+        }
+    }
+
+    fun getLastDownloadedKeyZipFileName(): String? {
+        return getRealmInstance().use {
+            it.where(KeyValues::class.java).equalTo("id", ONLY_KEY).findFirst()?.lastDownloadedKeyZipFileName
         }
     }
 
