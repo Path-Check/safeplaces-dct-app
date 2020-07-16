@@ -51,16 +51,17 @@ const NextSteps = (): JSX.Element => {
           <Typography style={styles.contentText}>{contentTextOne}</Typography>
           <Typography style={styles.contentText}>{contentTextTwo}</Typography>
         </View>
-        {displayNextSteps &&
-        <View style={styles.buttonContainer}>
-          <Typography style={styles.footerText}>{footerText}</Typography>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={handleOnPressTakeAssessment}>
-            <Typography style={styles.buttonText}>{buttonText}</Typography>
-            <SvgXml xml={Icons.Export} color={Colors.white} />
-          </TouchableOpacity>
-        </View>}
+        {displayNextSteps && (
+          <View style={styles.buttonContainer}>
+            <Typography style={styles.footerText}>{footerText}</Typography>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={handleOnPressTakeAssessment}>
+              <Typography style={styles.buttonText}>{buttonText}</Typography>
+              <SvgXml xml={Icons.Export} color={Colors.white} />
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
     </NavigationBarWrapper>
   );

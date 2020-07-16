@@ -44,7 +44,11 @@ import { Screens, Stacks } from './navigation';
 
 import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
-import { isGPS, displaySelfAssessment, displayNextSteps } from './COVIDSafePathsConfig';
+import {
+  isGPS,
+  displaySelfAssessment,
+  displayNextSteps,
+} from './COVIDSafePathsConfig';
 import { isPlatformAndroid } from './Util';
 import { useTracingStrategyContext } from './TracingStrategyContext';
 
@@ -83,7 +87,9 @@ const ExposureHistoryStack = ({ navigation }) => {
         name={Screens.ExposureHistory}
         component={ExposureHistoryScreen}
       />
-      {displayNextSteps && <Stack.Screen name={Screens.NextSteps} component={NextSteps} />}
+      {displayNextSteps && (
+        <Stack.Screen name={Screens.NextSteps} component={NextSteps} />
+      )}
       <Stack.Screen name={Screens.MoreInfo} component={MoreInfo} />
     </Stack.Navigator>
   );
@@ -218,25 +224,26 @@ const MainAppTabs = () => {
           }}
         />
       ) : (
-        displaySelfAssessment &&
-        <Tab.Screen
-          name={Stacks.SelfAssessment}
-          component={SelfAssessmentStack}
-          options={{
-            tabBarLabel: t('navigation.self_assessment'),
-            tabBarIcon: ({ focused, size }) => (
-              <SvgXml
-                xml={
-                  focused
-                    ? Icons.SelfAssessmentActive
-                    : Icons.SelfAssessmentInactive
-                }
-                width={size}
-                height={size}
-              />
-            ),
-          }}
-        />
+        displaySelfAssessment && (
+          <Tab.Screen
+            name={Stacks.SelfAssessment}
+            component={SelfAssessmentStack}
+            options={{
+              tabBarLabel: t('navigation.self_assessment'),
+              tabBarIcon: ({ focused, size }) => (
+                <SvgXml
+                  xml={
+                    focused
+                      ? Icons.SelfAssessmentActive
+                      : Icons.SelfAssessmentInactive
+                  }
+                  width={size}
+                  height={size}
+                />
+              ),
+            }}
+          />
+        )
       )}
       <Tab.Screen
         name={Stacks.More}

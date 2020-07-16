@@ -74,10 +74,12 @@ const PossibleExposureDetail = ({
         <View style={styles.contentContainer}>
           <Typography style={styles.content}>{explanationContent}</Typography>
         </View>
-        {displayNextSteps && 
-        <NextStepsButton 
-          onPress={handleOnPressNextSteps}
-          buttonText={nextStepsButtonText} />}
+        {displayNextSteps && (
+          <NextStepsButton
+            onPress={handleOnPressNextSteps}
+            buttonText={nextStepsButtonText}
+          />
+        )}
       </View>
     </>
   );
@@ -124,25 +126,20 @@ const NoDataExposureDetail = ({
 };
 
 interface NextStepsButtonProps {
-  buttonText: string,
-  onPress: () => void
+  buttonText: string;
+  onPress: () => void;
 }
 
-const NextStepsButton = ({
-  onPress,
-  buttonText,
-}: NextStepsButtonProps) => {
+const NextStepsButton = ({ onPress, buttonText }: NextStepsButtonProps) => {
   return (
     <TouchableOpacity
       testID={'exposure-history-next-steps-button'}
       style={styles.nextStepsButton}
       onPress={onPress}>
-      <Typography style={styles.nextStepsButtonText}>
-        {buttonText}
-      </Typography>
+      <Typography style={styles.nextStepsButtonText}>{buttonText}</Typography>
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
