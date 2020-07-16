@@ -27,6 +27,8 @@ import {
   Typography as TypographyStyles,
 } from '../../styles';
 
+// TODO: update this component with new design specs
+
 const LocationsPermissions = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();

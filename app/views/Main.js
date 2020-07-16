@@ -25,14 +25,14 @@ export const Main = () => {
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
   const [canTrack, setCanTrack] = useState(true);
-  
+
   const updateStateInfo = useCallback(async () => {
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();
     setCanTrack(locationStatus.canTrack);
     notification.check();
     location.check();
     NotificationService.configure(notification.status);
-  }, [setCanTrack, notification,location]);
+  }, [setCanTrack, notification, location]);
 
   useEffect(() => {
     updateStateInfo();

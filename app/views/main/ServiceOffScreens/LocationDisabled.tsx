@@ -4,7 +4,6 @@ import { ServiceOffScreen } from './Base';
 export const LocationDisabledScreen = (): JSX.Element => {
   // const { t } = useTranslation();
 
-
   return (
     <ServiceOffScreen
       header='location disabled on os level'

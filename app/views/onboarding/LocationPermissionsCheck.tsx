@@ -9,11 +9,11 @@ import PermissionsContext from '../../gps/PermissionsContext';
 import { useStatusBarEffect } from '../../navigation';
 import { PermissionStatus } from '../../permissionStatus';
 
-const LocationDetails = (): JSX.Element => {
+const LocationPermissionsCheck = (): JSX.Element => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
   const { location } = useContext(PermissionsContext);
-  
+
   const updateStateInfo = useCallback(async () => {
     await LocationServices.checkStatusAndStartOrStop();
     location.check();
@@ -40,4 +40,4 @@ const LocationDetails = (): JSX.Element => {
   }
 };
 
-export default LocationDetails;
+export default LocationPermissionsCheck;
