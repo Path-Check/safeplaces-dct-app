@@ -157,7 +157,7 @@
     "privacy_policy": "Política de privacidad",
     "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
     "push_at_risk_title": "Puedes estar en riesgo",
-    "recommendations_description": "Informate acerca del COVID-19, sus sintomas, preguntas frecuentes y medidas de prevencion.",
+    "recommendations_description": "Informate acerca del COVID-19, sus síntomas, preguntas frecuentes y medidas de prevencion.",
     "recommendations_title": "Recomendaciones",
     "recovered_label": "Recuperados",
     "report_symptoms_description": "Analizaremos tu estado actual de salud respecto al COVID-19 para darte instrucciones apropiadas para seguir",
@@ -321,16 +321,16 @@
     "usage": {
       "header_selector": "Selecciona lo que desea reportar",
       "header_subtitle": "Las siguientes preguntas están relacionadas con el COVID-19",
-      "selector": "Puede reportar si es COVID positivo o reportar sus sintomas actuales para saber algunos consejos",
+      "selector": "Puede reportar si es COVID positivo o reportar sus síntomas actuales para saber algunos consejos",
       "subtitle": "Responderás algunas preguntas sobre tus síntomas, viajes y el contacto que has tenido con otros",
       "positive_select": "Soy positivo",
-      "symptoms_select": "Reportar sintomas",
+      "symptoms_select": "Reportar síntomas",
       "use_myself": "Usar para mi",
       "use_others": "Usar para un familiar"
     },
     "userInfo": {
       "api_down_error_msg": "En estos momentos no podemos validar tus datos. Por favor intenta más tarde.",
-      "is_not_positive_msg": "El portador de la cedula ha resultado COVID negativo.",
+      "is_not_positive_msg": "Estimado usuario, su reporte será validado con los resultados de los laboratorios. Gracias por tu colaboración para entre todos vencer a esta pandemia.",
       "incorrect_data_error_msg": "Datos incorrectos, por favor revise.",
       "insert_data_title": "Ingrese sus datos",
       "insert_data_subtitle": "Utilizaremos estos datos para darle el apropiado seguimiento a sus resultados:",

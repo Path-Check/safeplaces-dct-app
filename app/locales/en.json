@@ -334,7 +334,7 @@
     },
     "userInfo": {
       "api_down_error_msg": "At this time we cannot validate your data. Please try again later.",
-      "is_not_positive_msg": "The identity card carrier has negative COVID.",
+      "is_not_positive_msg": "Dear user, your report will be validated with the results of the laboratories. Thank you for your collaboration to overcome this pandemic.",
       "incorrect_data_error_msg": "Incorrect data, please check.",
       "insert_data_title": "Enter your data",
       "insert_data_subtitle": "We will use these data to properly monitor your results:",
