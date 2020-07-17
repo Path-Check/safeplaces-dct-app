@@ -31,11 +31,11 @@ class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      updated: 0,
-      cases: 0,
+      lastUpdate: 0,
+      confirmed: 0,
       deaths: 0,
       recovered: 0,
-      todayCases: 0,
+      current: 0,
       refreshing: false,
     };
     this.handler = this.handler.bind(this);
@@ -49,9 +49,9 @@ class HomeScreen extends Component {
 
   // This fuction is to abreviate or separate numbers, ex: 1000 => 1,000, 100000 => 100K
   separateOrAbreviate = data => {
-    const { cases, deaths, recovered, todayCases } = data;
+    const { confirmed, deaths, recovered, current } = data;
 
-    const oldCases = [cases, deaths, recovered, todayCases];
+    const oldCases = [confirmed, deaths, recovered, current];
 
     const newCases = oldCases.map(number => {
       switch (number > 0) {
@@ -69,28 +69,35 @@ class HomeScreen extends Component {
       }
     });
     return {
-      cases: newCases[0],
+      confirmed: newCases[0],
       deaths: newCases[1],
       recovered: newCases[2],
-      todayCases: newCases[3],
+      current: newCases[3],
     };
   };
 
   getCases = () => {
-    getAllCases().then(({ updated, cases, deaths, recovered, todayCases }) => {
-      this.setState(state => ({
-        ...state,
-        updated,
-        ...this.separateOrAbreviate({ cases, deaths, recovered, todayCases }), // To take all the cards' content and abreviate them
-        refreshing: false,
-      }));
-    });
+    getAllCases().then(
+      ({ lastUpdate, confirmed, deaths, recovered, current }) => {
+        this.setState(state => ({
+          ...state,
+          lastUpdate,
+          ...this.separateOrAbreviate({
+            confirmed,
+            deaths,
+            recovered,
+            current,
+          }), // To take all the cards' content and abreviate them
+          refreshing: false,
+        }));
+      },
+    );
   };
 
   getUpdateDate = () => {
-    const { updated } = this.state;
+    const { lastUpdate } = this.state;
 
-    const dateOfCase = new Date(updated);
+    const dateOfCase = new Date(lastUpdate);
 
     let month = dateOfCase.getMonth() + 1;
     month = month <= 9 ? '0' + month : month;
@@ -127,7 +134,7 @@ class HomeScreen extends Component {
     const {
       getUpdateDate,
       props: { navigation },
-      state: { cases, deaths, recovered, todayCases, refreshing },
+      state: { confirmed, deaths, recovered, current, refreshing },
     } = this;
 
     return (
@@ -173,7 +180,7 @@ class HomeScreen extends Component {
                   </View>
                   <View style={styles.actualSituationContainer}>
                     <Card style={styles.infoCards}>
-                      <Text style={[styles.dataText]}>{cases}</Text>
+                      <Text style={[styles.dataText]}>{confirmed}</Text>
                       <Text style={styles.text}>
                         {t('label.positive_label')}
                       </Text>
@@ -202,7 +209,7 @@ class HomeScreen extends Component {
                     </Card>
                     <Card style={styles.infoCards}>
                       <Text style={[styles.dataText, { color: Colors.SUN }]}>
-                        {todayCases}
+                        {current}
                       </Text>
                       <Text style={styles.text}>
                         {t('label.case_day_label')}
