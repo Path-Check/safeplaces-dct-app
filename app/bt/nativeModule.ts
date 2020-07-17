@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import { ENPermissionStatus } from './PermissionsContext';
-import { ExposureInfo } from '../exposureHistory';
+import { ExposureInfo, Posix } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
 import { ExposureKey } from './AffectedUserFlow/exposureKey';
@@ -81,6 +81,14 @@ export const getCurrentExposures = async (
     const rawExposures: RawExposure[] = JSON.parse(rawExposure);
     cb(toExposureInfo(rawExposures));
   });
+};
+
+export const fetchLastExposureDetectionDate = async (): Promise<Posix | null> => {
+  try {
+    return await exposureHistoryModule.fetchLastDetectionDate();
+  } catch {
+    return null;
+  }
 };
 
 // Exposure Key Module
