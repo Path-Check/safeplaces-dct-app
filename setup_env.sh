@@ -38,8 +38,9 @@ IFS='
 '
 
 if [ "$2" = "--renaming" ]; then
-# Loading the .env.bt
-export $(cat .env.bt.release | xargs)
+
+# Loading the .env.bt.release
+export $(egrep -v '^#' .env.bt.release | xargs -0)
 
 # Check for a display name on the environment variables
 if [ -z "$DISPLAY_NAME" ]; then echo ERROR: No display name provided; exit 0; fi
