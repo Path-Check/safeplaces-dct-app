@@ -5,5 +5,8 @@
   <!-- Shown below icon on launcher only -->
   <string name="app_name_short" translatable="false">PathCheck GPS</string>
   <!-- Channel label for notifications shown in App > Notifications > Path Check GPS -->
+  <string name="notification_channel_name">General notifications</string>
   <string name="notification_channel_description">PathCheck GPS notifications</string>
+  <string name="background_service_notification_channel_name">Background location service</string>
+  <string name="android_permission_notification_channel_name">Permission notifications</string>
 </resources>
