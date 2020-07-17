@@ -17,18 +17,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Checkout submodules
-        uses: actions/checkout@v2
-        with:
-          repository: Path-Check/pathcheck-mobile-resources
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: pathcheck-mobile-resources
-          ref: master
-
-      - name: Setup env
-        run: sh ./setup_env.sh github
-        shell: bash
-
       - name: Cache node_modules/
         uses: actions/cache@v1
         id: node_cache
@@ -77,6 +65,9 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./android
+
+      - name: Setup env
+        run: ruby bin/fetch_ha_env_github.sh $ACCESS_TOKEN
 
       - name: Build android Staging artifact
         uses: maierj/fastlane-action@v1.4.0
@@ -97,18 +88,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Checkout submodules
-        uses: actions/checkout@v2
-        with:
-          repository: Path-Check/pathcheck-mobile-resources
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: pathcheck-mobile-resources
-          ref: master
-
-      - name: Setup env
-        run: sh ./setup_env.sh github
-        shell: bash
-
       - name: Cache node_modules/
         uses: actions/cache@v1
         id: node_cache
@@ -157,6 +136,9 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./android
+
+      - name: Setup env
+        run: ruby bin/fetch_ha_env_github.sh $ACCESS_TOKEN
 
       - name: Build android Staging artifact
         uses: maierj/fastlane-action@v1.4.0
