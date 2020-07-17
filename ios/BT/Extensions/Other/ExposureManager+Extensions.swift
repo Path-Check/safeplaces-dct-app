@@ -43,6 +43,8 @@ extension ExposureManager {
                               transmissionRiskLevel: .random(in: 0...7))
       BTSecureStorage.shared.storeExposures([exposure])
       resolve("Exposures: \(BTSecureStorage.shared.userState.exposures)")
+    case .fetchExposures:
+      resolve(currentExposures)
     case .getAndPostDiagnosisKeys:
       getAndPostDiagnosisKeys(certificate: .default, HMACKey: .default, resolve: resolve, reject: reject)
     case .resetExposures:

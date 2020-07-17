@@ -151,6 +151,12 @@ const ENDebugMenu = ({ navigation }: ENDebugMenuProps): JSX.Element => {
               )}
             />
             <DebugMenuListItem
+              label='Show Exposures'
+              onPress={() => {
+                navigation.navigate(Screens.ExposureListDebugScreen);
+              }}
+            />
+            <DebugMenuListItem
               label='Show Debug Verification Code'
               onPress={showDebugVerificationCode}
             />

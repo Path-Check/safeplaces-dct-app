@@ -102,3 +102,6 @@ safepaths.realm
 
 # private resources
 pathcheck-mobile-resources
+
+# swift packages
+ios/COVIDSafePaths.xcworkspace/xcshareddata/swiftpm/Package.resolved

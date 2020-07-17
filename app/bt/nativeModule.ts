@@ -132,6 +132,10 @@ export const simulateExposure = async (): Promise<'success'> => {
   return debugModule.simulateExposure();
 };
 
+export const fetchExposures = async (): Promise<RawExposure[]> => {
+  return debugModule.fetchExposures();
+};
+
 export const showLastProcessedFilePath = async (): Promise<string> => {
   return debugModule.showLastProcessedFilePath();
 };
