@@ -80,16 +80,18 @@ const PossibleExposureDetail = ({
           <Typography style={styles.content}>{explanationContent}</Typography>
         </View>
       </View>
-      <View style={styles.ctaContainer}>
-        <TouchableOpacity
-          testID={'exposure-history-next-steps-button'}
-          style={styles.nextStepsButton}
-          onPress={handleOnPressNextSteps}>
-          <Typography style={styles.nextStepsButtonText}>
-            {nextStepsButtonText}
-          </Typography>
-        </TouchableOpacity>
-      </View>
+      {!isGPS && (
+        <View style={styles.ctaContainer}>
+          <TouchableOpacity
+            testID={'exposure-history-next-steps-button'}
+            style={styles.nextStepsButton}
+            onPress={handleOnPressNextSteps}>
+            <Typography style={styles.nextStepsButtonText}>
+              {nextStepsButtonText}
+            </Typography>
+          </TouchableOpacity>
+        </View>
+      )}
     </>
   );
 };
