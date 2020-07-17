@@ -7,6 +7,14 @@ extension Notification.Name {
   public static let AuthorizationStatusDidChange = Notification.Name(rawValue: "onEnabledStatusUpdated")
   public static let remainingDailyFileProcessingCapacityDidChange = Notification.Name(rawValue: "remainingDailyFileProcessingCapacityDidChange")
   public static let UrlOfMostRecentlyDetectedKeyFileDidChange = Notification.Name(rawValue: "UrlOfMostRecentlyDetectedKeyFileDidChange")
+}
+
+extension Notification {
+
+  public enum UserInfoKey {
+    public static let enabledState = "enabledState"
+    public static let authorizationState = "authorizationState"
+  }
 
 }
 
