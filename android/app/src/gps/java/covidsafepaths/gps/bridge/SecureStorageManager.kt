@@ -21,7 +21,13 @@ class SecureStorageManager(reactContext: ReactApplicationContext) : ReactContext
   }
 
   @ReactMethod
-  fun importGoogleLocations(locations: ReadableArray, promise: Promise) {
+  fun importMockLocations(locations: ReadableArray, promise: Promise) {
     SecureStorage.importLocations(locations, SOURCE_GOOGLE, promise)
+  }
+
+  @ReactMethod
+  fun removeAllLocations(promise: Promise) {
+//    TODO: Implement the following method in SecureStorage
+//    SecureStorage.removeAllLocations(promise)
   }
 }
