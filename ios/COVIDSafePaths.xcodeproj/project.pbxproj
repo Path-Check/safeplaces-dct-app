@@ -825,7 +825,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.3;
+				CURRENT_PROJECT_VERSION = 1.3.14;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z3K77LA9JQ;
@@ -889,7 +889,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -913,7 +913,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.3;
+				CURRENT_PROJECT_VERSION = 1.3.14;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z3K77LA9JQ;
@@ -977,7 +977,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1056,7 +1056,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.3;
+				CURRENT_PROJECT_VERSION = 1.3.14;
 				DEAD_CODE_STRIPPING = NO;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z3K77LA9JQ;
@@ -1120,7 +1120,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1223,7 +1223,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3.3;
+				CURRENT_PROJECT_VERSION = 1.3.14;
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Z3K77LA9JQ;
@@ -1287,7 +1287,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
-				MARKETING_VERSION = 1.3.1;
+				MARKETING_VERSION = 1.3.4;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
