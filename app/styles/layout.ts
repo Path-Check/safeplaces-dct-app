@@ -29,7 +29,7 @@ export const fullWidthWithSmallMargin = screenWidth - horizontalMarginSmall * 2;
 export const fullWidthWithMediumMargin =
   screenWidth - horizontalMarginMedium * 2;
 
-export const navBar = tappableHeight;
+export const navBar = tappableHeight + Spacing.xSmall;
 
 // zIndex
 export const level1 = 1;

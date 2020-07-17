@@ -10,7 +10,6 @@ import {
 } from 'react-native-permissions';
 import { openSettings } from 'react-native-permissions';
 
-import { HCAService } from '../services/HCAService.js';
 import { PermissionStatus, statusToEnum } from '../permissionStatus';
 
 interface PermissionContextState {
@@ -20,11 +19,6 @@ interface PermissionContextState {
     request: () => void;
   };
   notification: {
-    status: PermissionStatus;
-    check: () => void;
-    request: () => void;
-  };
-  authSubscription: {
     status: PermissionStatus;
     check: () => void;
     request: () => void;
@@ -66,19 +60,13 @@ const PermissionsProvider = ({
   const [notificationPermission, setNotificationPermission] = useState(
     PermissionStatus.UNKNOWN,
   );
-  const [authSubscriptionPermission, setAuthSubscriptionPermission] = useState(
-    PermissionStatus.UNKNOWN,
-  );
 
   useEffect(() => {
     const checkAllPermissions = async () => {
       const isiOS = Platform.OS === 'ios';
-      const isDev = __DEV__;
       await Promise.all([
         checkLocationPermission(),
         isiOS ? checkNotificationPermission() : null,
-        // TODO(https://pathcheck.atlassian.net/browse/SAF-232): Put HCA auto sub logic behind a feature flag
-        isDev && isiOS ? checkAuthSubscriptionPermission() : null,
       ]);
     };
     checkAllPermissions();
@@ -97,21 +85,6 @@ const PermissionsProvider = ({
   const checkNotificationPermission = async () => {
     const { status } = await checkNotifications();
     setNotificationPermission(statusToEnum(status));
-  };
-
-  const checkAuthSubscriptionPermission = async () => {
-    const hasUserSetSubscription = await HCAService.hasUserSetSubscription();
-
-    // TODO(https://pathcheck.atlassian.net/browse/SAF-487): Figure this out
-    // Only update state if the user has already set their subscription status
-    if (hasUserSetSubscription) {
-      const isEnabled = await HCAService.isAutosubscriptionEnabled();
-      const status = isEnabled
-        ? PermissionStatus.GRANTED
-        : PermissionStatus.DENIED;
-
-      setAuthSubscriptionPermission(status);
-    }
   };
 
   const requestLocationPermission = async () => {
@@ -140,12 +113,6 @@ const PermissionsProvider = ({
     return status;
   };
 
-  const requestAuthSubscriptionPermission = async () => {
-    await HCAService.enableAutoSubscription();
-    const status = PermissionStatus.GRANTED;
-    setAuthSubscriptionPermission(status);
-  };
-
   const requestNotificationSettings = async () => {
     const status = await requestNotificationPermission();
     if (statusToEnum(status) === PermissionStatus.DENIED) {
@@ -172,11 +139,6 @@ const PermissionsProvider = ({
           status: notificationPermission,
           check: checkNotificationPermission,
           request: requestNotificationPermission,
-        },
-        authSubscription: {
-          status: authSubscriptionPermission,
-          check: checkAuthSubscriptionPermission,
-          request: requestAuthSubscriptionPermission,
         },
         requestLocationSettings,
         requestNotificationSettings,

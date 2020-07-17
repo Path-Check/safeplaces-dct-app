@@ -3,6 +3,7 @@ import { TouchableOpacity, View, StyleSheet, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
+import env from 'react-native-config';
 
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
@@ -12,11 +13,9 @@ import { displayNextSteps } from '../../COVIDSafePathsConfig';
 import { Buttons, Spacing, Typography as TypographyStyles } from '../../styles';
 import { Icons } from '../../assets';
 
-import {
-  AUTHORITY_NAME as healthAuthorityName,
-  AUTHORITY_ADVICE_URL,
-} from '../../constants/authorities';
 import { Colors } from '../../styles';
+
+const { GAEN_AUTHORITY_NAME: healthAuthorityName, AUTHORITY_ADVICE_URL } = env;
 
 const NextSteps = (): JSX.Element => {
   const navigation = useNavigation();
