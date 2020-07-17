@@ -69,7 +69,7 @@ export const ExposureListDebugScreen = ({
 
   useEffect(() => {
     fetchExposures();
-  }, []);
+  });
 
   const showErrorAlert = (errorMessage: string) => {
     Alert.alert('Error', errorMessage, [{ text: 'OK' }], {
