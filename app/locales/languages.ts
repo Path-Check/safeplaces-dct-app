@@ -9,6 +9,7 @@ import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import da from './da.json';
+import el from './el.json';
 import en from './en.json';
 import es_419 from './es_419.json';
 import es_PR from './es_PR.json';
@@ -80,6 +81,7 @@ export async function setUserLocaleOverride(locale: Locale): Promise<void> {
 const PROD_RESOURCES = {
   en: { label: en._display_name, translation: en },
   es_PR: { label: es_PR._display_name, translation: es_PR },
+  el: { label: el._display_name, translation: el },
 };
 
 /** Languages only available in feature flag. */
