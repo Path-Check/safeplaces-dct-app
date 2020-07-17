@@ -101,6 +101,7 @@ open class Location(
             time = time,
             latitude = latitude,
             longitude = longitude,
+            hashes = map.getArray(KEY_HASHES)?.let { (it.toArrayList().toList() as List<String>).toRealmList() },
             source = source
         )
       } catch (exception: Exception) {
