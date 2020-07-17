@@ -92,6 +92,17 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     });
   }, []);
 
+  const getCurrentExposures = useCallback(() => {
+    const cb = (exposureInfo: ExposureInfo) => {
+      const exposureHistory = toExposureHistory(
+        exposureInfo,
+        blankHistoryConfig,
+      );
+      setExposureHistory(exposureHistory);
+    };
+    exposureEventsStrategy.getCurrentExposures(cb);
+  }, [toExposureHistory, exposureEventsStrategy]);
+
   useEffect(() => {
     const subscription = exposureInfoSubscription(
       (exposureInfo: ExposureInfo) => {
@@ -113,6 +124,10 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     getLastExposureDetectionDate,
   ]);
 
+  useEffect(() => {
+    getCurrentExposures();
+  }, [toExposureHistory, getCurrentExposures]);
+
   const observeExposures = () => {
     setUserHasNewExposure(false);
   };
@@ -120,17 +135,6 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
   const resetExposures = () => {
     setUserHasNewExposure(true);
   };
-
-  const getCurrentExposures = useCallback(() => {
-    const cb = (exposureInfo: ExposureInfo) => {
-      const exposureHistory = toExposureHistory(
-        exposureInfo,
-        blankHistoryConfig,
-      );
-      setExposureHistory(exposureHistory);
-    };
-    exposureEventsStrategy.getCurrentExposures(cb);
-  }, [toExposureHistory, exposureEventsStrategy]);
 
   const hasBeenExposed = false;
   return (
