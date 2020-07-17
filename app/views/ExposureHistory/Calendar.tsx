@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import dayjs from 'dayjs';
+import localeData from 'dayjs/plugin/localeData';
 
 import { ExposureHistory, ExposureDatum } from '../../exposureHistory';
 import { Typography } from '../../components/Typography';
@@ -65,8 +66,13 @@ const Calendar = ({
     );
   };
 
+  const extendedDayjs = dayjs.extend(localeData);
+
   const DayLabels = () => {
-    const labels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    const labels = extendedDayjs
+      .localeData()
+      .weekdays()
+      .map((dayName: string) => dayName[0].toLocaleUpperCase());
     return (
       <View style={styles.calendarRow}>
         {labels.map((label: string, idx: number) => {
