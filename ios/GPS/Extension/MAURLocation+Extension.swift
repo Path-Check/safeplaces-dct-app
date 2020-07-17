@@ -59,7 +59,7 @@ extension MAURLocation {
   /// - Parameters:
   ///   - interval: location storage interval in seconds
   public func timeWindows(interval: TimeInterval) -> (early: Int, late: Int) {
-    let ms = Int((time.timeIntervalSince1970 % 1) * 1000);
+    let ms = Double(time.timeIntervalSince1970.truncatingRemainder(dividingBy: 1) * 1000)
     let time1 = Int(((ms - interval / 2) / interval).rounded(.down) * interval)
     let time2 = Int(((ms + interval / 2) / interval).rounded(.down) * interval)
     return (time1, time2)
