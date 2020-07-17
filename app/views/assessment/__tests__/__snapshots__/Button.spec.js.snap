@@ -25,7 +25,7 @@ exports[`base 1`] = `
           },
           undefined,
           Object {
-            "backgroundColor": "#6979f8",
+            "backgroundColor": "#5061e6",
           },
         ]
       }
@@ -87,7 +87,7 @@ exports[`color 1`] = `
           },
           undefined,
           Object {
-            "backgroundColor": "#6979f8",
+            "backgroundColor": "#5061e6",
           },
         ]
       }

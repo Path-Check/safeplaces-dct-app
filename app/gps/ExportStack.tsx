@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  CardStyleInterpolators,
-  createStackNavigator,
-  StackCardStyleInterpolator,
-} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import ExportCodeInput from './Export/ExportCodeInput';
 import ExportComplete from './Export/ExportComplete';
@@ -17,24 +13,10 @@ import { Screens } from '../navigation';
 
 const Stack = createStackNavigator();
 
-const fade: StackCardStyleInterpolator = ({ current }) => ({
-  cardStyle: { opacity: current.progress },
-});
-
-const SCREEN_OPTIONS = {
-  cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-  cardStyle: {
-    backgroundColor: 'transparent', // prevent white flash on Android
-  },
-  headerShown: false,
-};
-
 const ExportStack = (): JSX.Element => (
   <Stack.Navigator
-    mode='modal'
     screenOptions={{
-      ...SCREEN_OPTIONS,
-      cardStyleInterpolator: fade,
+      headerShown: false,
       gestureEnabled: false,
     }}
     initialRouteName={Screens.ExportSelectHA}>
