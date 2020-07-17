@@ -23,7 +23,6 @@ interface ExposureHistoryState {
   hasBeenExposed: boolean;
   userHasNewExposure: boolean;
   observeExposures: () => void;
-  resetExposures: () => void;
   getCurrentExposures: () => void;
   lastExposureDetectionDate: Dayjs | null;
 }
@@ -33,7 +32,6 @@ const initialState = {
   hasBeenExposed: false,
   userHasNewExposure: true,
   observeExposures: (): void => {},
-  resetExposures: (): void => {},
   getCurrentExposures: (): void => {},
   lastExposureDetectionDate: null,
 };
@@ -111,7 +109,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
           blankHistoryConfig,
         );
         getLastExposureDetectionDate();
-
+        setUserHasNewExposure(true);
         setExposureHistory(exposureHistory);
       },
     );
@@ -132,10 +130,6 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     setUserHasNewExposure(false);
   };
 
-  const resetExposures = () => {
-    setUserHasNewExposure(true);
-  };
-
   const hasBeenExposed = false;
   return (
     <ExposureHistoryContext.Provider
@@ -144,7 +138,6 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
         hasBeenExposed,
         userHasNewExposure,
         observeExposures,
-        resetExposures,
         getCurrentExposures,
         lastExposureDetectionDate,
       }}>
