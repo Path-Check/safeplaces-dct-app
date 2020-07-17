@@ -98,6 +98,7 @@ android/app/src/main/assets/index.android.bundle
 safepaths.realm
 
 # env files
+.env
 .env.bt*
 
 # private resources
