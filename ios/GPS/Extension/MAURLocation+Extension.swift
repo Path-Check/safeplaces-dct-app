@@ -16,15 +16,16 @@ extension MAURLocation {
   }
 
   /// Generates array of geohashes concatenated with time, within a 10 meter radius of given location
+  /// note that timeWindows returned are in seconds, but the hash is computed with msecs, so we append "000"
   public var geoHashes: [String] {
     Geohash.GEO_CIRCLE_RADII.map({ radii in
       (latitude.doubleValue + radii.latitude, longitude.doubleValue + radii.longitude)
     }).reduce(into: Set<String>(), { (hashes, currentLocation) in
       hashes.insert(Geohash.encode(latitude: currentLocation.0, longitude: currentLocation.1, length: 8))
     }).reduce(into: [String](), { (hashes, hash) in
-      let timeWindow = timeWindows(interval: Double(60 * 5 * 1000))
-      hashes.append("\(hash)\(timeWindow.early)")
-      hashes.append("\(hash)\(timeWindow.late)")
+      let timeWindow = timeWindows(interval: Double(60 * 5))
+      hashes.append("\(hash)\(timeWindow.early)000")
+      hashes.append("\(hash)\(timeWindow.late)000")
     })
   }
 
