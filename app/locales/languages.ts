@@ -129,7 +129,7 @@ export const initProdLanguages = (): void => {
   if (available) {
     i18next.use(initReactI18next).init({
       ...config,
-      lng: selected,
+      lng: available ? selected : config.lng,
     });
     return;
   }
