@@ -120,14 +120,29 @@ const config = {
 };
 
 export const initProdLanguages = (): void => {
+  const selected = i18next.language;
+  const available = Object.prototype.hasOwnProperty.call(
+    PROD_RESOURCES,
+    selected,
+  );
+
+  if (available) {
+    i18next.use(initReactI18next).init({
+      ...config,
+      lng: available ? selected : config.lng,
+    });
+    return;
+  }
   i18next.use(initReactI18next).init(config);
 };
 
 initProdLanguages();
 
 export const initDevLanguages = (): void => {
+  const current = i18next.language;
   i18next.use(initReactI18next).init({
     ...config,
+    lng: current,
     resources: {
       ...PROD_RESOURCES,
       ...DEV_RESOURCES,
