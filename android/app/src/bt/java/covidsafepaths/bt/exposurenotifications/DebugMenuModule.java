@@ -50,7 +50,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
      * Second value is success message, first value is error message
      */
     @ReactMethod
-    public void getAndPostDiagnosisKeys(Callback callback) {
+    public void submitExposureKeys() {
         List<TemporaryExposureKey> debugTEKS = DebugExposureNotificationUtils.INSTANCE.getFakeRecentKeys();
         ListenableFuture<Boolean> shareKeysFuture = shareDiagnosisManager.submitKeysToService(debugTEKS);
         FutureCallback<Boolean> shareKeysCallback = new FutureCallback<Boolean>() {
@@ -58,7 +58,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
             public void onSuccess(Boolean result) {
                 if (result) {
                     String successMessage = "Shared debug keys with server";
-                    callback.invoke(null, successMessage);
+                    //callback.invoke(null, successMessage);
                     Log.d(MODULE_NAME, successMessage);
                 } else {
                     this.onFailure(new Throwable("Error sharing debug keys with server"));
@@ -67,7 +67,7 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
 
             @Override
             public void onFailure(Throwable t) {
-                callback.invoke(t.getMessage(), null);
+                //callback.invoke(t.getMessage(), null);
                 Log.e(MODULE_NAME, "Error sharing debug keys with server", t);
             }
         };

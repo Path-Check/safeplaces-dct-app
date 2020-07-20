@@ -47,7 +47,7 @@ public class Uris {
     private static final String TAG = "Uris";
     private static final Splitter WHITESPACE_SPLITTER =
             Splitter.onPattern("\\s+").trimResults().omitEmptyStrings();
-    private static final String INDEX_FILE_PATH = "mn/index.txt"; // TODO replace as needed per server implementation
+    private static final String INDEX_FILE_PATH = "mnstate/index.txt"; // TODO replace as needed per server implementation
     private static final int DEFAULT_BATCH_NUM = 1; // TODO handle batching or remove per server implementation
     private static final String DEFAULT_REGION_CODE = "regionCode"; // TODO handle regions or remove  per server implementation
     private final Context context;
