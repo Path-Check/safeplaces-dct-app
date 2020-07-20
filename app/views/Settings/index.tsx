@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
-  TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -19,7 +18,6 @@ import { getLocalNames } from '../../locales/languages';
 import FeatureFlag from '../../components/FeatureFlag';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
@@ -108,21 +106,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       title={t('navigation.more')}
       includeBackButton={false}>
       <ScrollView style={styles.container}>
-        {!isGPS && (
-          <View style={styles.sectionPrimary}>
-            <Typography>
-              {t('settings.share_test_result_description')}
-            </Typography>
-            <TouchableOpacity
-              onPress={navigateTo(Screens.ExportFlow)}
-              style={styles.button}>
-              <Typography style={styles.buttonText}>
-                {t('settings.share_test_result')}
-              </Typography>
-            </TouchableOpacity>
-          </View>
-        )}
-
         <View style={styles.section}>
           <LanguageSelectionListItem
             label={languageName || t('label.unknown')}
@@ -143,16 +126,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             style={styles.lastListItem}
           />
         </View>
-
-        {!isGPS ? (
-          <View style={styles.section}>
-            <SettingsListItem
-              label='EN Debug Menu'
-              onPress={navigateTo(Screens.ENDebugMenu)}
-              style={styles.lastListItem}
-            />
-          </View>
-        ) : null}
 
         {enableFlags && (
           <View style={styles.section}>

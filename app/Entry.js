@@ -48,11 +48,10 @@ import { useTracingStrategyContext } from './TracingStrategyContext';
 
 import * as Icons from './assets/svgs/TabBarNav';
 import { Layout, Affordances, Spacing, Colors } from './styles';
+import ExportStack from './gps/ExportStack';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
-
-const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
 
 const SCREEN_OPTIONS = {
   cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
@@ -260,7 +259,6 @@ const PartnersStack = () => (
 
 export const Entry = () => {
   const onboardingComplete = useSelector(isOnboardingCompleteSelector);
-  const tracingStrategy = useTracingStrategyContext();
 
   return (
     <NavigationContainer>
@@ -273,7 +271,7 @@ export const Entry = () => {
         {/* Modal Views: */}
         <Stack.Screen
           name={Screens.ExportFlow}
-          component={tracingStrategy.affectedUserFlow}
+          component={ExportStack}
           options={{
             ...TransitionPresets.ModalSlideFromBottomIOS,
           }}
