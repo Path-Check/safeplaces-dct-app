@@ -67,13 +67,9 @@ const LocationsPermissions = (): JSX.Element => {
           <View style={styles.iconCircle}>
             <SvgXml xml={Icons.LocationPin} width={30} height={30} />
           </View>
-          <Typography style={styles.headerText}>
-            Placeholder
-          </Typography>
+          <Typography style={styles.headerText}>Placeholder</Typography>
           <View style={{ height: Spacing.medium }} />
-          <Typography style={styles.contentText}>
-            Placeholder
-          </Typography>
+          <Typography style={styles.contentText}>Placeholder</Typography>
         </ScrollView>
 
         <TouchableOpacity

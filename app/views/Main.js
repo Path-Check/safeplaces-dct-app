@@ -2,7 +2,10 @@ import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import LocationServices, { DEVICE_LOCATION_OFF, APP_NOT_AUTHORIZED } from '../services/LocationService';
+import LocationServices, {
+  DEVICE_LOCATION_OFF,
+  APP_NOT_AUTHORIZED,
+} from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
 import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
@@ -24,9 +27,10 @@ export const Main = () => {
   const { notification } = useContext(PermissionsContext);
   const hasSelectedAuthorities =
     useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
-  const [locationServiceStatus, setLocationServiceStatus] = useState('DEVICE_LOCATION_OFF');
+  const [locationServiceStatus, setLocationServiceStatus] = useState(
+    'DEVICE_LOCATION_OFF',
+  );
   const isiOS = Platform.OS === 'ios';
-
 
   const updateStateInfo = useCallback(async () => {
     const locationStatus = await LocationServices.checkStatusAndStartOrStop();

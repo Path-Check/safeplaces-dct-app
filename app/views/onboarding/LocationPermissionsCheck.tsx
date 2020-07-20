@@ -4,13 +4,17 @@ import { useNavigation } from '@react-navigation/native';
 import LocationDisabledScreen from './LocationPermissionsDisabled';
 import LocationsPermissions from './LocationsPermissions';
 
-import LocationServices, { DEVICE_LOCATION_OFF } from '../../services/LocationService';
+import LocationServices, {
+  DEVICE_LOCATION_OFF,
+} from '../../services/LocationService';
 import { useStatusBarEffect } from '../../navigation';
 
 const LocationPermissionsCheck = (): JSX.Element => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
-  const [locationServiceStatus, setLocationServiceStatus] = useState('DEVICE_LOCATION_OFF');
+  const [locationServiceStatus, setLocationServiceStatus] = useState(
+    'DEVICE_LOCATION_OFF',
+  );
   const isiOS = Platform.OS === 'ios';
 
   const updateStateInfo = useCallback(async () => {
