@@ -3,8 +3,9 @@
   detectExposuresNow,
   simulateExposureDetectionError,
   simulateExposure,
-  resetExposureDetectionError,
+  fetchExposures,
   getAndPostDiagnosisKeys,
   resetExposures,
-  toggleENAuthorization
+  toggleENAuthorization,
+  showLastProcessedFilePath
 }

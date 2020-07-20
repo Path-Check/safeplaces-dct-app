@@ -7,6 +7,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -18,7 +19,10 @@ import javax.annotation.Nonnull;
 
 import covidsafepaths.bt.exposurenotifications.common.AppExecutors;
 import covidsafepaths.bt.exposurenotifications.debug.DebugExposureNotificationUtils;
+import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker;
 import covidsafepaths.bt.exposurenotifications.notify.ShareDiagnosisManager;
+import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
+import covidsafepaths.bt.exposurenotifications.utils.Util;
 
 @ReactModule(name = DebugMenuModule.MODULE_NAME)
 public class DebugMenuModule extends ReactContextBaseJavaModule {
@@ -77,5 +81,28 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
     public void simulatePositiveDiagnosis(Callback callback) {
         // TODO get callback to share with JS layer
         shareDiagnosisManager.saveNewDiagnosis(true);
+    }
+
+    @ReactMethod
+    public void detectExposuresNow(Callback callback) {
+        ExposureNotificationClientWrapper.get(reactContext.getCurrentActivity())
+                .isEnabled().addOnSuccessListener(
+                enabled -> {
+                    if(enabled) {
+                        ProvideDiagnosisKeysWorker.scheduleDailyProvideDiagnosisKeys(reactContext);
+                        callback.invoke(null, CallbackMessages.DEBUG_DETECT_EXPOSURES_SUCCESS);
+                    } else {
+                        callback.invoke(CallbackMessages.DEBUG_DETECT_EXPOSURES_ERROR_EN_NOT_ENABLED, null);
+                    }
+                })
+                .addOnFailureListener(
+                        exception -> {
+                            if (!(exception instanceof ApiException)) {
+                                callback.invoke(CallbackMessages.DEBUG_DETECT_EXPOSURES_ERROR_UNKNOWN, null);
+                            } else {
+                                ApiException apiException = (ApiException) exception;
+                                callback.invoke(CallbackMessages.DEBUG_DETECT_EXPOSURES_ERROR + apiException.getStatus().toString(), null);
+                            }
+                        });
     }
 }

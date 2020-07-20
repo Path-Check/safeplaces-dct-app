@@ -23,7 +23,6 @@ import { ExportStart, ExportLocally } from './gps/Export';
 
 import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
-import Assessment from './views/assessment';
 import NextSteps from './views/ExposureHistory/NextSteps';
 import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
@@ -44,7 +43,6 @@ import { Screens, Stacks } from './navigation';
 
 import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
-import { isGPS } from './COVIDSafePathsConfig';
 import { isPlatformAndroid } from './Util';
 import { useTracingStrategyContext } from './TracingStrategyContext';
 
@@ -89,18 +87,6 @@ const ExposureHistoryStack = ({ navigation }) => {
   );
 };
 
-const SelfAssessmentStack = () => (
-  <Stack.Navigator
-    mode='modal'
-    screenOptions={{
-      ...SCREEN_OPTIONS,
-      cardStyleInterpolator: fade,
-      gestureEnabled: false,
-    }}>
-    <Stack.Screen name={Screens.SelfAssessment} component={Assessment} />
-  </Stack.Navigator>
-);
-
 const MoreTabStack = () => (
   <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
     <Stack.Screen name={Screens.Settings} component={SettingsScreen} />
@@ -114,9 +100,7 @@ const MoreTabStack = () => (
       name={Screens.ENLocalDiagnosisKey}
       component={ENLocalDiagnosisKeyScreen}
     />
-    {isGPS ? (
-      <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
-    ) : null}
+    <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
   </Stack.Navigator>
 );
 
@@ -182,61 +166,38 @@ const MainAppTabs = () => {
               />
             );
 
-            return !isGPS && userHasNewExposure ? applyBadge(tabIcon) : tabIcon;
+            return userHasNewExposure ? applyBadge(tabIcon) : tabIcon;
           },
         }}
       />
-      {isGPS && (
-        <Tab.Screen
-          name={Screens.ExportStart}
-          component={ExportStart}
-          options={{
-            tabBarLabel: t('navigation.locations'),
-            tabBarIcon: ({ focused, size }) => (
-              <SvgXml
-                xml={focused ? Icons.LocationsActive : Icons.LocationsInactive}
-                width={size}
-                height={size}
-              />
-            ),
-          }}
-        />
-      )}
-      {isGPS ? (
-        <Tab.Screen
-          name={Stacks.Partners}
-          component={PartnersStack}
-          options={{
-            tabBarLabel: t('navigation.partners'),
-            tabBarIcon: ({ focused, size }) => (
-              <SvgXml
-                xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
-                width={size}
-                height={size}
-              />
-            ),
-          }}
-        />
-      ) : (
-        <Tab.Screen
-          name={Stacks.SelfAssessment}
-          component={SelfAssessmentStack}
-          options={{
-            tabBarLabel: t('navigation.self_assessment'),
-            tabBarIcon: ({ focused, size }) => (
-              <SvgXml
-                xml={
-                  focused
-                    ? Icons.SelfAssessmentActive
-                    : Icons.SelfAssessmentInactive
-                }
-                width={size}
-                height={size}
-              />
-            ),
-          }}
-        />
-      )}
+      <Tab.Screen
+        name={Screens.ExportStart}
+        component={ExportStart}
+        options={{
+          tabBarLabel: t('navigation.locations'),
+          tabBarIcon: ({ focused, size }) => (
+            <SvgXml
+              xml={focused ? Icons.LocationsActive : Icons.LocationsInactive}
+              width={size}
+              height={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={Stacks.Partners}
+        component={PartnersStack}
+        options={{
+          tabBarLabel: t('navigation.partners'),
+          tabBarIcon: ({ focused, size }) => (
+            <SvgXml
+              xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
+              width={size}
+              height={size}
+            />
+          ),
+        }}
+      />
       <Tab.Screen
         name={Stacks.More}
         component={MoreTabStack}

@@ -6,6 +6,10 @@ import i18n from '../../../../locales/languages';
 import { AssessmentNavigationContext } from '../../Context';
 import { Share } from '../../endScreens/Share';
 
+jest.mock('react-native-config', () => ({
+  GAEN_AUTHORITY_NAME: 'Boston Public Health Commission',
+}));
+
 test('base', () => {
   const { asJSON } = render(<Share />, { wrapper: Wrapper });
   expect(asJSON()).toMatchSnapshot();

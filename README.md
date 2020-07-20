@@ -27,11 +27,7 @@ What’s truly special about Safe Paths is our strong commitment to preserving t
 
 ## Multiple Capabilities
 
-Safe Paths is designed to support a range of DCT and public health use cases. Currently the main build uses GPS for location tracking with GAEN BT tracing strategies in active development. Our roadmap includes adding support for other location and proximity technologies, symptom tracking, and communication with PHAs.
-
-### Project Aurora and the Google Apple Exposure Notification API (GAEN) 
-
-Project Aurora is the code name for a build from Safe Paths for an app that is fully compliant with GAEN. This build will not include GPS, and it will be compliant with all the rules and requirements for GAEN apps. [Learn more about Project Aurora.](https://covidsafepaths.org/a-new-open-source-solution-for-the-google-apple-exposure-notification-api/) 
+Safe Paths is designed to support a range of DCT and public health use cases. Currently the main build uses GPS for location tracking. Our roadmap includes adding support for other location and proximity technologies, symptom tracking, and communication with PHAs.
 
 ## Multiple Implementation Strategies 
 
@@ -43,10 +39,6 @@ Safe Paths is available as an app published by Path Check in the [Apple App Stor
 ### Custom Builds 
 
 We welcome public health authorities and other organizations implementing digital contact tracing strategies to create custom builds for their specific needs, incorporate Safe Paths features into their applications, or create downstream projects that stay linked to the Safe Paths project. If intending to fork the repository and develop off of it, be aware that this comes "at your own risk" for continued maintenance.
-
-### GAEN Instances
-
-The rules for GAEN require that each public health authority release their own application. The goal with Project Aurora is to support this deployment strategy. 
 
 ## End-to-End System
 
@@ -60,9 +52,11 @@ One of the important aspects of the Safe Paths open source project is that it's 
 
 [COVID Safe Paths Website](https://covidsafepaths.org/)
 
-Original White Paper: [Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic](https://drive.google.com/file/d/1nwOR4drE3YdkCkyy_HBd6giQPPhLEkRc/view?usp=sharing)
+[Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic](https://drive.google.com/file/d/1nwOR4drE3YdkCkyy_HBd6giQPPhLEkRc/view?usp=sharing) - The original white paper.
 
-[COVID Safe Paths Slack](covidsafepaths.slack.com) - This is where the community lives. 
+[COVID Safe Paths Slack](covidsafepaths.slack.com) - Where the community lives. 
+
+[Path-Check/gaen-mobile] - PathCheck's GAEN based contract tracing solution.
 
 ### Downloads for COVID Safe Paths
 
@@ -85,18 +79,6 @@ If you're looking for a first ticket - please check out the backlog for a bug or
 ## Architecture
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
-
-### White Labeling
-
-PathCheck is building two versions of the application. One for location based
-contact tracing and one for bluetooth based contact tracing. Given that the same
-application cannot have both gps and bluetooth enabled for privacy
-considerations, we need be able to build two separate version of the app for
-distribution.
-
-We are following a white labeling strategy to accomplish this. That is, we have
-two build targets for each app which use the same codebase. For development, we
-are preferring to keep as much code as possible common between the two targets.
 
 
 ## Developer Setup
@@ -136,8 +118,6 @@ Populate the following 2 `.env` files with the relevant urls for your GAEN serve
 
 ```
 yarn run-android-gps ## for the location enabled app
-
-yarn run-android-bt ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
@@ -154,8 +134,6 @@ Then, run the application:
 
 ```
 yarn run-ios-gps ## for the location enabled app
-
-yarn run-ios-bt ## for the bluetooth enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".

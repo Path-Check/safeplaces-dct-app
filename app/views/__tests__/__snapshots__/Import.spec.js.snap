@@ -1,8 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Import component renders correctly 1`] = `
-<RCTSafeAreaView
-  emulateUnlessSupported={true}
+<SafeAreaView
   style={
     Object {
       "backgroundColor": "#1f2c9b",
@@ -30,22 +29,9 @@ exports[`Import component renders correctly 1`] = `
         }
       }
     >
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
-        onClick={[Function]}
-        onResponderGrant={[Function]}
-        onResponderMove={[Function]}
-        onResponderRelease={[Function]}
-        onResponderTerminate={[Function]}
-        onResponderTerminationRequest={[Function]}
-        onStartShouldSetResponder={[Function]}
-        style={
-          Object {
-            "opacity": 1,
-          }
-        }
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
       >
         <SvgXml
           color="#ffffff"
@@ -60,7 +46,7 @@ exports[`Import component renders correctly 1`] = `
   </svg>
 "
         />
-      </View>
+      </TouchableOpacity>
     </View>
     <View
       style={
@@ -112,79 +98,200 @@ exports[`Import component renders correctly 1`] = `
       }
     }
   >
-    <RCTScrollView
+    <ScrollView
       style={
         Object {
           "padding": 20,
         }
       }
     >
-      <View>
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#2e2e2e",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 17,
-                "lineHeight": 24,
-              },
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "marginBottom": 16,
-              },
-            ]
-          }
-        >
-          Adding location data from Google will give you a head start on building your recent locations.
-        </Text>
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#2e2e2e",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 17,
-                "lineHeight": 24,
-              },
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "marginBottom": 16,
-              },
-            ]
-          }
-        >
-          Before you can import, you must first "Take out" your location data from Google.
-        </Text>
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#2e2e2e",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 17,
-                "lineHeight": 24,
-              },
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "marginBottom": 16,
-              },
-            ]
-          }
-        >
-          Visit Google Takeout and export your Location History using the following settings: 
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 17,
+              "lineHeight": 24,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Object {
+              "marginBottom": 16,
+            },
+          ]
+        }
+      >
+        Adding location data from Google will give you a head start on building your recent locations.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 17,
+              "lineHeight": 24,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Object {
+              "marginBottom": 16,
+            },
+          ]
+        }
+      >
+        Before you can import, you must first "Take out" your location data from Google.
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 17,
+              "lineHeight": 24,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Object {
+              "marginBottom": 16,
+            },
+          ]
+        }
+      >
+        Visit Google Takeout and export your Location History using the following settings: 
 1. Delivery method: "Add to Drive" 
 2. Frequency: "Export once" 
 3. File type & size: ".zip" and "1GB"
 4. Google sends an email when the export is ready 
 5. Return here to import locations from Google Drive
+      </Text>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#4051db",
+            "borderColor": "#4051db",
+            "borderRadius": 8,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 16,
+          }
+        }
+        testID="google-takeout-link"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 19,
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          Visit Google Takeout
         </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#4051db",
+            "borderColor": "#4051db",
+            "borderRadius": 8,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 16,
+          }
+        }
+        testID="google-takeout-import-btn"
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 19,
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          Import Locations
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.2}
+        onPress={[Function]}
+        style={
+          Object {
+            "alignItems": "center",
+            "backgroundColor": "#4051db",
+            "borderColor": "#4051db",
+            "borderRadius": 8,
+            "flexDirection": "row",
+            "justifyContent": "center",
+            "marginBottom": 20,
+            "paddingHorizontal": 20,
+            "paddingVertical": 16,
+          }
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#ffffff",
+                "fontSize": 19,
+                "fontWeight": "500",
+              },
+            ]
+          }
+        >
+          Import from URL
+        </Text>
+<<<<<<< HEAD
         <View
           accessible={true}
           focusable={true}
@@ -287,6 +394,10 @@ exports[`Import component renders correctly 1`] = `
         </View>
       </View>
     </RCTScrollView>
+=======
+      </TouchableOpacity>
+    </ScrollView>
+>>>>>>> develop
   </View>
-</RCTSafeAreaView>
+</SafeAreaView>
 `;

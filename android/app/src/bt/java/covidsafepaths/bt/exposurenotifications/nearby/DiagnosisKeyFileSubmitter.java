@@ -71,6 +71,7 @@ public class DiagnosisKeyFileSubmitter {
         }
         Log.d(TAG, "Providing  " + batches.size() + " diagnosis key batches to google play services.");
         List<ListenableFuture<?>> batchCompletions = new ArrayList<>();
+
         for (KeyFileBatch b : batches) {
             batchCompletions.add(submitBatch(b, config, token));
         }

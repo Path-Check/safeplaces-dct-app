@@ -1,13 +1,13 @@
-import Config from 'react-native-config';
+import env from 'react-native-config';
 
-const baseUrl = Config.GAEN_VERIFY_URL;
+const baseUrl = env.GAEN_VERIFY_URL;
 const verifyUrl = `${baseUrl}/api/verify`;
 const certificateUrl = `${baseUrl}/api/certificate`;
 
 const defaultHeaders = {
   'content-type': 'application/json',
   accept: 'application/json',
-  'X-API-Key': Config.GAEN_VERIFY_API_TOKEN,
+  'X-API-Key': env.GAEN_VERIFY_API_TOKEN,
 };
 
 export type Token = string;
@@ -30,16 +30,19 @@ type CodeVerificationSuccess = VerifiedCodeResponse;
 export type CodeVerificationError =
   | 'InvalidCode'
   | 'VerificationCodeUsed'
+  | 'InvalidVerificationUrl'
   | 'Unknown';
+
+type TestType = 'confirmed' | 'likely';
 
 interface VerifiedCodeResponse {
   error: string;
   testDate: string;
-  testType: string;
+  testType: TestType;
   token: Token;
 }
 
-export const postVerificationCode = async (
+export const postCode = async (
   code: string,
 ): Promise<NetworkResponse<CodeVerificationSuccess, CodeVerificationError>> => {
   const data = {
@@ -64,7 +67,7 @@ export const postVerificationCode = async (
       return { kind: 'success', body };
     } else {
       switch (json.error) {
-        case 'internal serer error':
+        case 'internal server error':
           return { kind: 'failure', error: 'InvalidCode' };
         case 'verification code used':
           return { kind: 'failure', error: 'VerificationCodeUsed' };
@@ -77,19 +80,24 @@ export const postVerificationCode = async (
   }
 };
 
-type VerificationTokenSuccess = 'Success';
+interface TokenVerificationResponse {
+  certificate: Token;
+  error: string;
+}
 
-type VerificationTokenFailure = 'InvalidToken' | 'Unknown';
+type TokenVerificationSuccess = TokenVerificationResponse;
 
-export const postVerificationToken = async (
+export type TokenVerificationError = 'TokenMetaDataMismatch' | 'Unknown';
+
+export const postTokenAndHmac = async (
   token: Token,
-  hmac: string,
+  hmacDigest: string,
 ): Promise<
-  NetworkResponse<VerificationTokenSuccess, VerificationTokenFailure>
+  NetworkResponse<TokenVerificationSuccess, TokenVerificationError>
 > => {
   const data = {
     token,
-    ekeyhmac: hmac,
+    ekeyhmac: hmacDigest,
   };
 
   try {
@@ -101,11 +109,15 @@ export const postVerificationToken = async (
 
     const json = await response.json();
     if (response.ok) {
-      return { kind: 'success', body: 'Success' };
+      const body = {
+        certificate: json.certificate,
+        error: json.error,
+      };
+      return { kind: 'success', body };
     } else {
       switch (json.error) {
-        case 'invalid_token': {
-          return { kind: 'failure', error: 'InvalidToken' };
+        case 'token metadata mismatch': {
+          return { kind: 'failure', error: 'TokenMetaDataMismatch' };
         }
         default: {
           return { kind: 'failure', error: 'Unknown' };

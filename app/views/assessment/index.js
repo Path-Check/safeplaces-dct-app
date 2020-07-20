@@ -160,7 +160,7 @@ const Assessment = ({ navigation }) => {
               component={Agreement}
               name='Agreement'
               options={{
-                ...screenOptions(Colors.invertedQuaternaryBackground),
+                ...screenOptions(Colors.invertedPrimaryBackground),
               }}
             />
             <Stack.Screen
@@ -185,7 +185,7 @@ const Assessment = ({ navigation }) => {
               component={Share}
               name='EndShare'
               options={{
-                ...screenOptions(Colors.invertedQuaternaryBackground),
+                ...screenOptions(Colors.invertedPrimaryBackground),
                 headerRight: AssessmentCloseButton,
               }}
             />
