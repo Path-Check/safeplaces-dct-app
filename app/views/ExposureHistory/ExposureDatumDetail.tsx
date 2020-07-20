@@ -21,6 +21,7 @@ import {
   Buttons,
   Spacing,
 } from '../../styles';
+import { isGPS } from '../../COVIDSafePathsConfig';
 
 interface ExposureDatumDetailsProps {
   exposureDatum: ExposureDatum;
@@ -49,16 +50,21 @@ interface PossibleExposureDetailProps {
 const PossibleExposureDetail = ({
   datum: { date, duration },
 }: PossibleExposureDetailProps) => {
-  const exposureDurationText = TimeHelpers.durationMsToString(duration);
+  const exposureDurationText = TimeHelpers.durationToString(duration);
   const navigation = useNavigation();
   const { t } = useTranslation();
   const exposureDate = dayjs(date).format('dddd, MMM DD');
   const exposureTime = t('exposure_datum.possible.duration', {
     duration: exposureDurationText,
   });
-  const explanationContent = t('exposure_datum.possible.explanation', {
-    duration: exposureDurationText,
-  });
+  const explanationContent = t(
+    isGPS
+      ? 'exposure_datum.possible.explanation.gps'
+      : 'exposure_datum.possible.explanation.bt',
+    {
+      duration: exposureDurationText,
+    },
+  );
   const nextStepsButtonText = t('exposure_datum.possible.what_next');
 
   const handleOnPressNextSteps = () => {

@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs, { Dayjs } from 'dayjs';
 
 export type Posix = number;
 
@@ -19,4 +19,9 @@ export const beginningOfDay = (date: Posix): Posix => {
 
 export const isInFuture = (date: Posix): boolean => {
   return date > Date.now();
+};
+
+export const posixToDayjs = (posixDate: Posix): Dayjs | null => {
+  const dayJsDate = dayjs(posixDate);
+  return dayJsDate.isValid() ? dayJsDate : null;
 };

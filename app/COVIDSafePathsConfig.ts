@@ -1,3 +1,3 @@
-import Config from 'react-native-config';
+import env from 'react-native-config';
 
-export const isGPS = Config.TRACING_STRATEGY === 'gps';
+export const isGPS = env.TRACING_STRATEGY === 'gps';

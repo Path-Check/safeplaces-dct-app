@@ -124,13 +124,11 @@ public class MainActivity extends ReactActivity {
 
   private void handleExposureStateChanged(boolean enabled) {
     final ReactContext reactContext = getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
-    WritableArray params = null;
+    WritableArray params = Util.getEnStatusWritableArray(enabled);
 
     if(enabled) {
-      params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED);
       ProvideDiagnosisKeysWorker.scheduleDailyProvideDiagnosisKeys(this);
     } else {
-     params = Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED);
      ProvideDiagnosisKeysWorker.cancelDailyProvideDiagnosisKeys(this);
     }
 

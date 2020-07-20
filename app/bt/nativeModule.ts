@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import { ENPermissionStatus } from './PermissionsContext';
-import { ExposureInfo } from '../exposureHistory';
+import { ExposureInfo, Posix } from '../exposureHistory';
 import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
 import { ExposureKey } from './AffectedUserFlow/exposureKey';
@@ -83,6 +83,14 @@ export const getCurrentExposures = async (
   });
 };
 
+export const fetchLastExposureDetectionDate = async (): Promise<Posix | null> => {
+  try {
+    return await exposureHistoryModule.fetchLastDetectionDate();
+  } catch {
+    return null;
+  }
+};
+
 // Exposure Key Module
 const exposureKeyModule = NativeModules.ExposureKeyModule;
 
@@ -130,6 +138,10 @@ export const detectExposuresNow = async (): Promise<string> => {
 
 export const simulateExposure = async (): Promise<'success'> => {
   return debugModule.simulateExposure();
+};
+
+export const fetchExposures = async (): Promise<RawExposure[]> => {
+  return debugModule.fetchExposures();
 };
 
 export const showLastProcessedFilePath = async (): Promise<string> => {

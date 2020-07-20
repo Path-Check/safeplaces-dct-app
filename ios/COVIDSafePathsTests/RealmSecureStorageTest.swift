@@ -335,6 +335,38 @@ class GPSSecureStorageTest: XCTestCase {
     
     XCTAssertEqual(0, assumedLocations.count)
   }
+
+  func testRemoveAllLocations() {
+    let location1Date = Date().addingTimeInterval(GPSSecureStorage.LOCATION_INTERVAL)
+    let location1Time = location1Date.timeIntervalSince1970
+    let backgroundLocation1 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location1Date)
+    let location2Date = Date()
+    let location2Time = location2Date.timeIntervalSince1970
+    let backgroundLocation2 = TestMAURLocation(latitude: 40.730610, longitude: -73.935242, date: location2Date)
+
+    let expect1 = XCTestExpectation(description: "Save Device Location 1")
+    let expect2 = XCTestExpectation(description: "Save Device Location 2")
+    let expect3 = XCTestExpectation(description: "Remove All Locations")
+
+    secureStorage!.saveDeviceLocation(backgroundLocation1, backfill: false) {
+      expect1.fulfill()
+    }
+    secureStorage!.saveDeviceLocation(backgroundLocation2, backfill: false) {
+      expect2.fulfill()
+    }
+
+    wait(for: [expect1, expect2], timeout: 5)
+
+    secureStorage!.removeAllLocations(
+      resolve: resolverFulfilling(expectation: expect3),
+      reject: rejecterFulfilling(expectation: expect3)
+    )
+
+    wait(for: [expect3], timeout: 5)
+
+    XCTAssertNil(querySingleLocationByTime(time: location1Time))
+    XCTAssertNil(querySingleLocationByTime(time: location2Time))
+  }
   
   func querySingleLocationByTime(time: Double) -> Location? {
     return secureStorage!

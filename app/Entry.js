@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
 import { NavigationContainer } from '@react-navigation/native';
 import {
-  CardStyleInterpolators,
   TransitionPresets,
   createStackNavigator,
 } from '@react-navigation/stack';
@@ -19,7 +18,8 @@ import PartnersEditScreen from './views/Partners/PartnersEdit';
 import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
-import { ExportStart, ExportLocally } from './gps/Export';
+import { ExportSelectHA, ExportStart, ExportLocally } from './gps/Export';
+import ExportStack from './bt/AffectedUserFlow';
 
 import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
@@ -29,6 +29,7 @@ import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
 import ImportFromUrl from './views/Settings/ImportFromUrl';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
+import { ExposureListDebugScreen } from './views/Settings/ExposureListDebugScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
@@ -45,11 +46,10 @@ import { Screens, Stacks } from './navigation';
 import ExposureHistoryContext from './ExposureHistoryContext';
 import isOnboardingCompleteSelector from './store/selectors/isOnboardingCompleteSelector';
 import { isGPS } from './COVIDSafePathsConfig';
-import { isPlatformAndroid } from './Util';
 import { useTracingStrategyContext } from './TracingStrategyContext';
 
 import * as Icons from './assets/svgs/TabBarNav';
-import { Layout, Affordances, Spacing, Colors } from './styles';
+import { Layout, Affordances, Colors } from './styles';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -57,10 +57,6 @@ const Stack = createStackNavigator();
 const fade = ({ current }) => ({ cardStyle: { opacity: current.progress } });
 
 const SCREEN_OPTIONS = {
-  cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-  cardStyle: {
-    backgroundColor: 'transparent', // prevent white flash on Android
-  },
   headerShown: false,
 };
 
@@ -101,24 +97,75 @@ const SelfAssessmentStack = () => (
   </Stack.Navigator>
 );
 
-const MoreTabStack = () => (
-  <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
-    <Stack.Screen name={Screens.Settings} component={SettingsScreen} />
-    <Stack.Screen name={Screens.About} component={AboutScreen} />
-    <Stack.Screen name={Screens.Licenses} component={LicensesScreen} />
-    <Stack.Screen name={Screens.FeatureFlags} component={FeatureFlagsScreen} />
-    <Stack.Screen name={Screens.Import} component={ImportScreen} />
-    <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
-    <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
-    <Stack.Screen
-      name={Screens.ENLocalDiagnosisKey}
-      component={ENLocalDiagnosisKeyScreen}
-    />
-    {isGPS ? (
-      <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
-    ) : null}
-  </Stack.Navigator>
-);
+const MoreTabStack = () => {
+  return (
+    <Stack.Navigator screenOptions={SCREEN_OPTIONS}>
+      <Stack.Screen name={Screens.Settings} component={SettingsScreen} />
+      <Stack.Screen name={Screens.About} component={AboutScreen} />
+      <Stack.Screen name={Screens.Licenses} component={LicensesScreen} />
+      <Stack.Screen
+        name={Screens.FeatureFlags}
+        component={FeatureFlagsScreen}
+      />
+      <Stack.Screen name={Screens.Import} component={ImportScreen} />
+      <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
+      <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
+      <Stack.Screen
+        name={Screens.LanguageSelection}
+        component={LanguageSelection}
+      />
+      <Stack.Screen
+        name={Screens.ExportFlow}
+        component={ExportStack}
+        options={{
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          gestureEnabled: false,
+        }}
+      />
+      <Stack.Screen
+        name={Screens.ExposureListDebugScreen}
+        component={ExposureListDebugScreen}
+      />
+      <Stack.Screen
+        name={Screens.ENLocalDiagnosisKey}
+        component={ENLocalDiagnosisKeyScreen}
+      />
+      {isGPS ? (
+        <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
+      ) : null}
+    </Stack.Navigator>
+  );
+};
+
+const screensWithNoTabBar = [Screens.ExportSelectHA, Screens.ExportFlow];
+
+const determineTabBarVisibility = (route) => {
+  const routeName = route.state?.routes[route.state.index].name;
+  return !screensWithNoTabBar.includes(routeName);
+};
+
+const GPSExportStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={Screens.ExportStart}
+        component={ExportStart}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name={Screens.ExportSelectHA}
+        component={ExportSelectHA}
+        options={{
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerShown: false,
+          gestureEnabled: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const MainAppTabs = () => {
   const { t } = useTranslation();
@@ -150,7 +197,6 @@ const MainAppTabs = () => {
         style: {
           backgroundColor: Colors.navBar,
           borderTopColor: Colors.navBar,
-          paddingTop: isPlatformAndroid() ? 0 : Spacing.xSmall,
           height: Layout.navBar,
         },
       }}>
@@ -188,9 +234,10 @@ const MainAppTabs = () => {
       />
       {isGPS && (
         <Tab.Screen
-          name={Screens.ExportStart}
-          component={ExportStart}
-          options={{
+          name={'Export Start'}
+          component={GPSExportStack}
+          options={({ route }) => ({
+            tabBarVisible: determineTabBarVisibility(route),
             tabBarLabel: t('navigation.locations'),
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
@@ -199,7 +246,7 @@ const MainAppTabs = () => {
                 height={size}
               />
             ),
-          }}
+          })}
         />
       )}
       {isGPS ? (
@@ -240,7 +287,8 @@ const MainAppTabs = () => {
       <Tab.Screen
         name={Stacks.More}
         component={MoreTabStack}
-        options={{
+        options={({ route }) => ({
+          tabBarVisible: determineTabBarVisibility(route),
           tabBarLabel: t('navigation.more'),
           tabBarIcon: ({ focused, size }) => (
             <SvgXml
@@ -249,7 +297,7 @@ const MainAppTabs = () => {
               height={size}
             />
           ),
-        }}
+        })}
       />
     </Tab.Navigator>
   );
@@ -299,7 +347,6 @@ const PartnersStack = () => (
 
 export const Entry = () => {
   const onboardingComplete = useSelector(isOnboardingCompleteSelector);
-  const tracingStrategy = useTracingStrategyContext();
 
   return (
     <NavigationContainer>
@@ -309,21 +356,6 @@ export const Entry = () => {
         ) : (
           <Stack.Screen name={Stacks.Onboarding} component={OnboardingStack} />
         )}
-        {/* Modal Views: */}
-        <Stack.Screen
-          name={Screens.ExportFlow}
-          component={tracingStrategy.affectedUserFlow}
-          options={{
-            ...TransitionPresets.ModalSlideFromBottomIOS,
-          }}
-        />
-        <Stack.Screen
-          name={Screens.LanguageSelection}
-          component={LanguageSelection}
-          options={{
-            ...TransitionPresets.ModalSlideFromBottomIOS,
-          }}
-        />
       </Stack.Navigator>
     </NavigationContainer>
   );

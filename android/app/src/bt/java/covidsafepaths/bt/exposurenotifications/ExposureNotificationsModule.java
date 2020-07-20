@@ -107,11 +107,7 @@ public class ExposureNotificationsModule extends ReactContextBaseJavaModule {
         ExposureNotificationClientWrapper.get(reactContext.getCurrentActivity())
                 .isEnabled().addOnSuccessListener(
                 enabled -> {
-                    if(enabled) {
-                        callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, CallbackMessages.EN_ENABLEMENT_ENABLED));
-                    } else {
-                        callback.invoke(Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_UNAUTHORIZED, CallbackMessages.EN_ENABLEMENT_DISABLED));
-                    }
+                    callback.invoke(Util.getEnStatusWritableArray(enabled));
                 })
                 .addOnFailureListener(
                         exception -> {

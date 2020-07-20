@@ -27,10 +27,20 @@ RCT_REMAP_METHOD(simulateExposureDetectionError,
                  simulateExposureDetectionErrorWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-  [[ExposureManager shared] handleDebugAction:DebugActionSimulateExposureDetectionError resolve:resolve reject:reject];}
+  [[ExposureManager shared] handleDebugAction:DebugActionSimulateExposureDetectionError resolve:resolve reject:reject];
+
+}
 
 RCT_REMAP_METHOD(simulateExposure,
                  simulateExposureWithResolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+  [[ExposureManager shared] handleDebugAction:DebugActionSimulateExposure resolve:resolve reject:reject];
+}
+
+
+RCT_REMAP_METHOD(fetchExposures,
+                 fetchExposuresWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
   [[ExposureManager shared] handleDebugAction:DebugActionSimulateExposure resolve:resolve reject:reject];

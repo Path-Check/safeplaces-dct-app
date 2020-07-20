@@ -33,16 +33,18 @@ extension ExposureManager {
       }
     case .simulateExposureDetectionError:
       BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = "Unable to connect to server."
-      ExposureManager.shared.postExposureDetectionErrorNotification()
+      ExposureManager.shared.postExposureDetectionErrorNotification("Simulated Error")
       resolve(String.genericSuccess)
     case .simulateExposure:
       let exposure = Exposure(id: UUID().uuidString,
                               date: Date().posixRepresentation - Int(TimeInterval.random(in: 0...13)) * 24 * 60 * 60 * 1000,
-                              duration: TimeInterval(Int.random(in: 1...10) * 60 * 5 * 1000),
+                              duration: TimeInterval(1),
                               totalRiskScore: .random(in: 1...8),
                               transmissionRiskLevel: .random(in: 0...7))
       BTSecureStorage.shared.storeExposures([exposure])
       resolve("Exposures: \(BTSecureStorage.shared.userState.exposures)")
+    case .fetchExposures:
+      resolve(currentExposures)
     case .getAndPostDiagnosisKeys:
       getAndPostDiagnosisKeys(certificate: .default, HMACKey: .default, resolve: resolve, reject: reject)
     case .resetExposures:

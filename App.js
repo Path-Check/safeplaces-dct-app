@@ -3,7 +3,7 @@ import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import Config from 'react-native-config';
+import env from 'react-native-config';
 import 'array-flat-polyfill';
 
 import { Entry } from './app/Entry';
@@ -16,7 +16,7 @@ import BackgroundTaskService from './app/services/BackgroundTaskService';
 import { isGPS } from './app/COVIDSafePathsConfig';
 
 const determineTracingStrategy = () => {
-  switch (Config.TRACING_STRATEGY) {
+  switch (env.TRACING_STRATEGY) {
     case 'gps': {
       return gpsStrategy;
     }
