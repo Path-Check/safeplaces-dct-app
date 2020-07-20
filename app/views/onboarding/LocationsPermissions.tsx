@@ -63,7 +63,13 @@ const LocationsPermissions = (): JSX.Element => {
           alwaysBounceVertical={false}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={styles.iconCircle}>
-            <SvgXml xml={Icons.LocationPin} width={30} height={30} />
+            <SvgXml
+              xml={Icons.LocationPin}
+              accessible
+              accessibilityLabel={t('label.pin_icon')}
+              width={30}
+              height={30}
+            />
           </View>
           <Typography style={styles.headerText}>
             {t('onboarding.location_header')}

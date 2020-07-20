@@ -24,6 +24,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
     dispatch(onboardingCompleteAction());
   };
 
+  const iconAccessibilityLabel = t('label.exposure_icon');
   const headerText = t('label.launch_exposure_notif_header');
   const bodyText = t('label.launch_exposure_notif_subheader');
   const buttonLabel = t('label.launch_enable_exposure_notif');
@@ -41,6 +42,7 @@ export const EnableExposureNotifications = (): JSX.Element => {
   const explanationScreenContent = {
     backgroundImage: Images.BlueGradientBackground,
     icon: Icons.ExposureIcon,
+    iconLabel: iconAccessibilityLabel,
     header: headerText,
     body: bodyText,
     primaryButtonLabel: buttonLabel,

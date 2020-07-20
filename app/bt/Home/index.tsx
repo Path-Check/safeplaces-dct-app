@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { StyleSheet, ImageBackground, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { useTranslation } from 'react-i18next';
 
 import PermissionsContext from '../PermissionsContext';
 import { useStatusBarEffect } from '../../navigation';
@@ -10,6 +11,7 @@ import { Icons, Images } from '../../assets';
 import { Spacing, Layout } from '../../styles';
 
 const HomeScreen = (): JSX.Element => {
+  const { t } = useTranslation();
   useStatusBarEffect('light-content');
   const { exposureNotifications } = useContext(PermissionsContext);
 
@@ -20,6 +22,8 @@ const HomeScreen = (): JSX.Element => {
       <View style={styles.iconContainer}>
         <SvgXml
           xml={Icons.StateNoContact}
+          accessible
+          accessibilityLabel={t('label.check_icon')}
           width={2 * Layout.screenWidth}
           height={2 * Layout.screenHeight}
         />
