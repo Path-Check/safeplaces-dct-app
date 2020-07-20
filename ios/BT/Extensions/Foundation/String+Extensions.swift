@@ -40,6 +40,7 @@ extension String {
   // ErrorCodes
   static let networkFailure = "network_request_error"
   static let noExposureKeysFound = "no_exposure_keys_found"
+  static let detectionNeverPerformed = "no_last_detection_date"
 
   // Computed Properties
   var gaenFilePaths: [String] {

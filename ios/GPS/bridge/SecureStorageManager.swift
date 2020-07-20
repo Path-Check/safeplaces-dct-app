@@ -21,13 +21,18 @@ class SecureStorageManager: NSObject {
   }
   
   @objc
-  func importGoogleLocations(_ locations: NSArray, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+  func importMockLocations(_ locations: NSArray, resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
     GPSSecureStorage.shared.importLocations(locations: locations, source: .google, resolve: resolve, reject: reject)
   }
 
   @objc
   func trimLocations(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
     GPSSecureStorage.shared.getLocations(resolve: resolve, reject: reject)
+  }
+
+  @objc
+  func removeAllLocations(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+    GPSSecureStorage.shared.removeAllLocations(resolve: resolve, reject: reject)
   }
 
 }

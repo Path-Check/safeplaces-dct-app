@@ -29,6 +29,7 @@ import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ENDebugMenu from './views/Settings/ENDebugMenu';
 import ImportFromUrl from './views/Settings/ImportFromUrl';
 import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
+import { ExposureListDebugScreen } from './views/Settings/ExposureListDebugScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
@@ -126,6 +127,10 @@ const MoreTabStack = () => {
           ...TransitionPresets.ModalSlideFromBottomIOS,
           gestureEnabled: false,
         }}
+      />
+      <Stack.Screen
+        name={Screens.ExposureListDebugScreen}
+        component={ExposureListDebugScreen}
       />
       <Stack.Screen
         name={Screens.ENLocalDiagnosisKey}

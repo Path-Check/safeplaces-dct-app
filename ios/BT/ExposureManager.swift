@@ -16,11 +16,11 @@ final class ExposureManager: NSObject {
     case authorized = "AUTHORIZED"
     case unauthorized = "UNAUTHORIZED"
   }
-  
+
   @objc static let shared = ExposureManager()
-  
+
   private static let backgroundTaskIdentifier = "\(Bundle.main.bundleIdentifier!).exposure-notification"
-  
+
   let manager = ENManager()
 
   var enabledState: EnabledState {
@@ -57,7 +57,7 @@ final class ExposureManager: NSObject {
         }
       }
     }
-    
+
     // Schedule background task if needed whenever EN authorization status changes
     NotificationCenter.default.addObserver(
       self,
@@ -66,11 +66,11 @@ final class ExposureManager: NSObject {
       object: nil
     )
   }
-  
+
   deinit {
     manager.invalidate()
   }
-  
+
   @objc func requestExposureNotificationAuthorization(enabled: Bool, callback: @escaping RCTResponseSenderBlock) {
     // Ensure exposure notifications are enabled if the app is authorized. The app
     // could get into a state where it is authorized, but exposure
@@ -93,18 +93,18 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
   @objc func getCurrentENPermissionsStatus(callback: @escaping RCTResponseSenderBlock) {
     callback([[authorizationState.rawValue, enabledState.rawValue]])
   }
-  
+
   @discardableResult func detectExposures(completionHandler: @escaping ((ExposureResult) -> Void)) -> Progress {
-    
+
     let progress = Progress()
-    
+
     var lastProcessedUrlPath: String = .default
     var processedFileCount: Int = 0
-    
+
     // Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
     guard !isDetectingExposures else {
       finish(
@@ -116,12 +116,12 @@ final class ExposureManager: NSObject {
       )
       return progress
     }
-    
+
     isDetectingExposures = true
-    
+
     // Reset file capacity to 15 if > 24 hours have elapsed since last reset
     ExposureManager.updateRemainingFileCapacity()
-    
+
     // Abort if daily file capacity is exceeded
     guard BTSecureStorage.shared.userState.remainingDailyFileProcessingCapacity > 0 else {
       finish(
@@ -133,10 +133,10 @@ final class ExposureManager: NSObject {
       )
       return progress
     }
-    
+
     APIClient.shared.requestString(IndexFileRequest.get, requestType: .downloadKeys) { result in
       let dispatchGroup = DispatchGroup()
-      
+
       switch result {
       case let .success(indexFileString):
         let remoteURLs = indexFileString.gaenFilePaths
@@ -160,7 +160,7 @@ final class ExposureManager: NSObject {
             dispatchGroup.leave()
           }
         }
-        
+
       case let .failure(error):
         self.finish(.failure(error),
                     processedFileCount: processedFileCount,
@@ -173,7 +173,7 @@ final class ExposureManager: NSObject {
         do {
           try self.downloadedPackages.unpack { urls in
             self.localUncompressedURLs = urls
-            
+
             // TODO: Fetch configuration from API
             let enConfiguration = ExposureConfiguration.placeholder.asENExposureConfiguration
             ExposureManager.shared.manager.detectExposures(configuration: enConfiguration, diagnosisKeyURLs: self.localUncompressedURLs) { summary, error in
@@ -221,13 +221,13 @@ final class ExposureManager: NSObject {
     }
     return progress
   }
-  
+
   func finish(_ result: Result<[Exposure]>,
               processedFileCount: Int,
               lastProcessedUrlPath: String,
               progress: Progress,
               completionHandler: ((ExposureResult) -> Void)) {
-    
+
     cleanup()
 
     isDetectingExposures = false
@@ -253,14 +253,14 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
   @objc func registerBackgroundTask() {
     notifyUserBlueToothOffIfNeeded()
     BGTaskScheduler.shared.register(forTaskWithIdentifier: ExposureManager.backgroundTaskIdentifier, using: .main) { [weak self] task in
-      
+
       // Notify the user if bluetooth is off
       self?.notifyUserBlueToothOffIfNeeded()
-      
+
       // Perform the exposure detection
       let progress = ExposureManager.shared.detectExposures { result in
         switch result {
@@ -270,18 +270,18 @@ final class ExposureManager: NSObject {
           task.setTaskCompleted(success: false)
         }
       }
-      
+
       // Handle running out of time
       task.expirationHandler = {
         progress.cancel()
         BTSecureStorage.shared.exposureDetectionErrorLocalizedDescription = NSLocalizedString("BACKGROUND_TIMEOUT", comment: "Error")
       }
-      
+
       // Schedule the next background task
       self?.scheduleBackgroundTaskIfNeeded()
     }
   }
-  
+
   @objc func scheduleBackgroundTaskIfNeeded() {
     guard ENManager.authorizationStatus == .authorized else { return }
     let taskRequest = BGProcessingTaskRequest(identifier: ExposureManager.backgroundTaskIdentifier)
@@ -301,9 +301,9 @@ final class ExposureManager: NSObject {
       if let error = error {
         reject(String.noExposureKeysFound, "Failed to get exposure keys", error)
       } else {
-        
+
         let allKeys = (temporaryExposureKeys ?? [])
-        
+
         // Filter keys > 350 hrs old
         let currentKeys = allKeys.current()
 
@@ -319,11 +319,11 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
   func postExposureDetectionErrorNotification(_ errorString: String?) {
     #if DEBUG
     let identifier = String.exposureDetectionErrorNotificationIdentifier
-    
+
     let content = UNMutableNotificationContent()
     content.title = String.exposureDetectionErrorNotificationTitle.localized
     content.body = errorString ?? String.exposureDetectionErrorNotificationBody.localized
@@ -338,7 +338,7 @@ final class ExposureManager: NSObject {
     }
     #endif
   }
-  
+
   @objc func fetchExposureKeys(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
     manager.getDiagnosisKeys { (keys, error) in
       if let error = error {
@@ -349,7 +349,7 @@ final class ExposureManager: NSObject {
       }
     }
   }
-  
+
 }
 
 // MARK: - FileProcessing
@@ -384,6 +384,16 @@ extension ExposureManager {
     }
   }
 
+  @objc func fetchLastDetectionDate(
+    resolve: @escaping RCTPromiseResolveBlock,
+    reject: @escaping RCTPromiseRejectBlock
+  ) {
+    guard let lastResetDate = BTSecureStorage.shared.userState.dateLastPerformedFileCapacityReset else {
+      reject(.detectionNeverPerformed, "No lastResetDate available", GenericError.unknown);
+      return
+    }
+    resolve(lastResetDate.posixRepresentation)
+  }
 }
 
 // MARK: - Private

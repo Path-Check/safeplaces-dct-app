@@ -98,7 +98,11 @@ android/app/src/main/assets/index.android.bundle
 safepaths.realm
 
 # env files
+.env
 .env.bt*
 
 # private resources
 pathcheck-mobile-resources
+
+# swift packages
+ios/COVIDSafePaths.xcworkspace/xcshareddata/swiftpm/Package.resolved

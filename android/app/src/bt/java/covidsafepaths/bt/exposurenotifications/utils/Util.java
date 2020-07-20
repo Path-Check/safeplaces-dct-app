@@ -19,4 +19,13 @@ public class Util {
 
         return array;
     }
+
+    public static WritableArray getEnStatusWritableArray(boolean enabled) {
+        final String enablement = enabled ?  CallbackMessages.EN_ENABLEMENT_ENABLED : CallbackMessages.EN_ENABLEMENT_DISABLED;
+
+        // Android differs from iOS in that an app can always request to enable Exposure Notifications. No need to have it authorized
+        // in the OS settings prior to enabling it in the app. For this reason, whether this app is enabled or disabled, we can
+        // safely say that it is authorized.
+        return Util.toWritableArray(CallbackMessages.EN_AUTHORIZATION_AUTHORIZED, enablement);
+    }
 }
