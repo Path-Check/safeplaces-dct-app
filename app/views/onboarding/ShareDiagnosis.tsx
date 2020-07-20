@@ -34,6 +34,7 @@ const ShareDiagnosis: FunctionComponent = () => {
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
     icon: StrategyAssets.shareDiagnosisIcon,
+    iconLabel: StrategyCopy.shareDiagnosisIconLabel,
     header: StrategyCopy.shareDiagnosisHeader,
     body: StrategyCopy.shareDiagnosisSubheader,
     primaryButtonLabel: t('label.launch_set_up_phone_location'),

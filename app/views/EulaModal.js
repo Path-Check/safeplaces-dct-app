@@ -77,7 +77,8 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                 icon={Icons.Close}
                 size={20}
                 style={styles.closeIcon}
-                accessibilityLabel='Close'
+                accessible
+                accessibilityLabel={t('label.close_icon')}
                 onPress={() => setModalVisibility(false)}
               />
               {html && (

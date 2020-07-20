@@ -53,6 +53,8 @@ exports[`HomeScreen renders 1`] = `
       }
     >
       <SvgXml
+        accessibilityLabel="Checkmark icon"
+        accessible={true}
         height={2668}
         width={1500}
         xml="<svg width=\\"850\\" height=\\"850\\" viewBox=\\"0 0 850 850\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">

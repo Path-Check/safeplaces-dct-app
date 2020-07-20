@@ -47,6 +47,8 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
           style={{ width: win.width, height: (win.width * 900) / 1125 }}
           resizeMode={'contain'}
           source={Images.Doctors}
+          accessible
+          accessibilityLabel={t('label.doctors_image')}
         />
         <View style={{ height: 20 }} />
         <View style={styles.horizontalPadding}>
