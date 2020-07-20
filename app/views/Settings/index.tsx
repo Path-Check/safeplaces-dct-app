@@ -184,7 +184,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           <SettingsListItem
             label={t('screen_titles.delete_location_history')}
             onPress={handleOnPressDeleteLocationHistory}
-            textColor={Colors.persimmon}
+            textColor={Colors.red}
           />
         </View>
 
