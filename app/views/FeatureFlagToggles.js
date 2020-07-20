@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-raw-text */
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
 import {
@@ -53,15 +53,26 @@ export const FeatureFlagsScreen = ({ navigation }) => {
   const flagMap = useSelector((state) => state.featureFlags.flags);
   const flags = Object.keys(flagMap);
   const devLanguagesEnabled = flagMap[FeatureFlagOption.DEV_LANGUAGES];
+  const isLoaded = useRef(true);
 
-  // Dev languages requires an init step, not just conditional render
-  useEffect(() => {
+  // Only runs when language flag is toggled
+  const toggleLanguages = useCallback(() => {
     if (devLanguagesEnabled) {
       initDevLanguages();
     } else {
       initProdLanguages();
     }
   }, [devLanguagesEnabled]);
+
+  // Dev languages requires an init step, not just conditional render
+  useEffect(() => {
+    if (isLoaded.current) {
+      isLoaded.current = false;
+      return;
+    } else {
+      toggleLanguages();
+    }
+  }, [toggleLanguages]);
   const dispatch = useDispatch();
 
   const disableFeatureFlags = () => {

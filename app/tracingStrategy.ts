@@ -36,11 +36,14 @@ export interface StrategyCopyContent {
   moreInfoHowContent: string;
   moreInfoWhyContent: string;
   personalPrivacyHeader: string;
+  personalPrivacyIconLabel: string;
   personalPrivacySubheader: string;
   notificationDetailsHeader: string;
+  notificationDetailsIconLabel: string;
   notificationDetailsSubheader: string;
   shareDiagnosisButton: string;
   shareDiagnosisHeader: string;
+  shareDiagnosisIconLabel: string;
   shareDiagnosisSubheader: string;
   settingsLoggingActive: string;
   settingsLoggingInactive: string;

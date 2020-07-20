@@ -208,6 +208,8 @@ const MainAppTabs = () => {
           tabBarIcon: ({ focused, size }) => (
             <SvgXml
               xml={focused ? Icons.HomeActive : Icons.HomeInactive}
+              accessible
+              accessibilityLabel={t('label.home_icon')}
               width={size}
               height={size}
             />
@@ -223,6 +225,8 @@ const MainAppTabs = () => {
             const tabIcon = (
               <SvgXml
                 xml={focused ? Icons.CalendarActive : Icons.CalendarInactive}
+                accessible
+                accessibilityLabel={t('label.calendar_icon')}
                 width={size}
                 height={size}
               />
@@ -242,6 +246,8 @@ const MainAppTabs = () => {
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
                 xml={focused ? Icons.LocationsActive : Icons.LocationsInactive}
+                accessible
+                accessibilityLabel={t('label.pin_icon')}
                 width={size}
                 height={size}
               />
@@ -258,6 +264,8 @@ const MainAppTabs = () => {
             tabBarIcon: ({ focused, size }) => (
               <SvgXml
                 xml={focused ? Icons.ShieldActive : Icons.ShieldInactive}
+                accessible
+                accessibilityLabel={t('label.shield_icon')}
                 width={size}
                 height={size}
               />
@@ -277,6 +285,8 @@ const MainAppTabs = () => {
                     ? Icons.SelfAssessmentActive
                     : Icons.SelfAssessmentInactive
                 }
+                accessible
+                accessibilityLabel={t('label.assessment_icon')}
                 width={size}
                 height={size}
               />
@@ -293,6 +303,8 @@ const MainAppTabs = () => {
           tabBarIcon: ({ focused, size }) => (
             <SvgXml
               xml={focused ? Icons.MoreActive : Icons.MoreInactive}
+              accessible
+              accessibilityLabel={t('label.more_icon')}
               width={size}
               height={size}
             />

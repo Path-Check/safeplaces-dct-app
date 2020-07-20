@@ -40,11 +40,13 @@ interface SettingsScreenProps {
 
 interface LanguageSelectionListItemProps {
   icon: string;
+  iconLabel: string;
   label: string;
   onPress: () => void;
 }
 const LanguageSelectionListItem = ({
   icon,
+  iconLabel,
   label,
   onPress,
 }: LanguageSelectionListItemProps) => (
@@ -55,6 +57,8 @@ const LanguageSelectionListItem = ({
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <SvgXml
         xml={icon}
+        accessible
+        accessibilityLabel={iconLabel}
         style={[styles.icon, { marginRight: Spacing.small }]}
       />
       <Typography use={'body1'}>{label}</Typography>
@@ -153,6 +157,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           <LanguageSelectionListItem
             label={languageName || t('label.unknown')}
             icon={Icons.LanguagesIcon}
+            iconLabel={t('label.language_icon')}
             onPress={navigateTo(Screens.LanguageSelection)}
           />
         </View>
