@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert, Platform } from 'react-native';
 import {
   render,
   cleanup,
@@ -36,6 +37,34 @@ describe('Home', () => {
   });
 
   describe('When the enPermissionStatus is not enabled', () => {
+    describe('when the enPermissionStatus is not authorized', () => {
+      it('displays an alert dialog if exposure notifications are not authorized', async () => {
+        const enPermissionStatus: ENPermissionStatus = [
+          'UNAUTHORIZED',
+          'DISABLED',
+        ];
+        const requestPermission = jest.fn();
+        const alert = jest.spyOn(Alert, 'alert');
+
+        const { getByTestId } = render(
+          <Home
+            enPermissionStatus={enPermissionStatus}
+            requestPermission={requestPermission}
+          />,
+        );
+        const button = getByTestId('home-request-permissions-button');
+
+        fireEvent.press(button);
+        await wait(() => {
+          if (Platform.OS === 'ios') {
+            expect(alert).toHaveBeenCalled();
+          } else {
+            expect(alert).not.toHaveBeenCalled();
+          }
+        });
+      });
+    });
+
     it('it renders a notification are not enabled message', () => {
       const enPermissionStatus: ENPermissionStatus = ['AUTHORIZED', 'DISABLED'];
       const requestPermission = jest.fn();

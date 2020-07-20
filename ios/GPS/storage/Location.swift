@@ -115,6 +115,11 @@ class Location: Object {
       location.latitude = latitude
       location.longitude = longitude
       location.source = source.rawValue
+
+      if let hashes = dictionary[Key.hashes.rawValue] as? [String] {
+        location.hashes.append(objectsIn: hashes)
+      }
+
       return location
     } else {
       return nil

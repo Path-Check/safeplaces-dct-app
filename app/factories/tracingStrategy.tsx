@@ -17,6 +17,7 @@ export default Factory.define<TracingStrategy>(() => ({
       return { remove: () => {} };
     },
     toExposureHistory: () => [],
+    getCurrentExposures: () => {},
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: HomeScreen,
@@ -46,7 +47,6 @@ export const testStrategyCopy: StrategyCopyContent = {
   detailedHistoryWhatThisMeansPara: 'detailedHistoryWhatThisMeansPara',
   exportCompleteBody: 'exportCompleteBody',
   exportPublishButtonSubtitle: 'exportPublishButtonSubtitle',
-  exportPublishTitle: 'exportPublishTitle',
   exposureNotificationsNotAvailableHeader:
     'exposureNotificationsNotAvailableHeader',
   exposureNotificationsNotAvailableSubheader:
@@ -72,5 +72,4 @@ export const testStrategyAssets: StrategyAssets = {
   notificationDetailsIcon: '',
   shareDiagnosisBackground: Images.BlueGradientBackground,
   shareDiagnosisIcon: '',
-  exportPublishIcon: '',
 };

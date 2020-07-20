@@ -161,24 +161,25 @@ exports[`notifications off screen matches snapshot 1`] = `
         >
           You will not receive notifications about possible exposures nor when new Health Departments are added in your area
         </Text>
-        <View
+        <TouchableOpacity
           accessibilityLabel="Allow Notifications"
           accessibilityRole="button"
           accessible={true}
-          focusable={true}
-          isTVSelectable={true}
+          activeOpacity={0.2}
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#ffffff",
-              "borderColor": "#ffffff",
-              "borderRadius": 8,
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "opacity": 1,
-              "paddingBottom": 25,
-              "paddingTop": 24,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#ffffff",
+                "borderRadius": 8,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "paddingBottom": 25,
+                "paddingTop": 24,
+              },
+              undefined,
+            ]
           }
         >
           <Text
@@ -203,7 +204,7 @@ exports[`notifications off screen matches snapshot 1`] = `
           >
             Allow Notifications
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   </View>

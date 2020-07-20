@@ -17,7 +17,7 @@ export const Agreement = ({ navigation }) => {
 
   return (
     <Info
-      backgroundColor={Colors.invertedQuaternaryBackground}
+      backgroundColor={Colors.invertedPrimaryBackground}
       icon={Icons.SelfAssessment}
       footer={
         <AgreementFooter

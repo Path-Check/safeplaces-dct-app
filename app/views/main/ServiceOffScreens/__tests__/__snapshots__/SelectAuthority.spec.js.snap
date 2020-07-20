@@ -161,24 +161,25 @@ exports[`select authority screen matches snapshot 1`] = `
         >
           Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area
         </Text>
-        <View
+        <TouchableOpacity
           accessibilityLabel="Add Health Department"
           accessibilityRole="button"
           accessible={true}
-          focusable={true}
-          isTVSelectable={true}
+          activeOpacity={0.2}
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#ffffff",
-              "borderColor": "#ffffff",
-              "borderRadius": 8,
-              "flexDirection": "row",
-              "justifyContent": "center",
-              "opacity": 1,
-              "paddingBottom": 25,
-              "paddingTop": 24,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "#ffffff",
+                "borderColor": "#ffffff",
+                "borderRadius": 8,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "paddingBottom": 25,
+                "paddingTop": 24,
+              },
+              undefined,
+            ]
           }
         >
           <Text
@@ -203,7 +204,7 @@ exports[`select authority screen matches snapshot 1`] = `
           >
             Add Health Department
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   </View>

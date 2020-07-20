@@ -10,8 +10,7 @@ exports[`LicensesScreen renders correctly 1`] = `
     }
   }
 >
-  <RCTSafeAreaView
-    emulateUnlessSupported={true}
+  <SafeAreaView
     style={
       Object {
         "backgroundColor": "#1f2c9b",
@@ -39,15 +38,8 @@ exports[`LicensesScreen renders correctly 1`] = `
           }
         }
       >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
+        <TouchableOpacity
+          activeOpacity={0.2}
         >
           <SvgXml
             color="#ffffff"
@@ -62,7 +54,7 @@ exports[`LicensesScreen renders correctly 1`] = `
   </svg>
 "
           />
-        </View>
+        </TouchableOpacity>
       </View>
       <View
         style={
@@ -114,7 +106,7 @@ exports[`LicensesScreen renders correctly 1`] = `
         }
       }
     >
-      <RCTScrollView
+      <ScrollView
         alwaysBounceVertical={false}
         contentContainerStyle={
           Object {
@@ -125,16 +117,42 @@ exports[`LicensesScreen renders correctly 1`] = `
         }
       >
         <View>
-          <View>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1f2c9b",
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 28,
+                  "fontWeight": "500",
+                  "lineHeight": 32,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
+                undefined,
+              ]
+            }
+            testID="licenses-legal-header"
+          >
+            PathCheck GPS
+          </Text>
+          <View
+            style={
+              Object {
+                "paddingLeft": 20,
+                "paddingTop": 12,
+              }
+            }
+          >
             <Text
               style={
                 Array [
                   Object {
-                    "color": "#1f2c9b",
-                    "fontFamily": "IBMPlexSans-Bold",
-                    "fontSize": 28,
-                    "fontWeight": "500",
-                    "lineHeight": 32,
+                    "color": "#4e4e4e",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 17,
+                    "lineHeight": 24,
                   },
                   Object {
                     "writingDirection": "ltr",
@@ -142,102 +160,71 @@ exports[`LicensesScreen renders correctly 1`] = `
                   undefined,
                 ]
               }
-              testID="licenses-legal-header"
             >
-              PathCheck GPS
+              PathCheck Foundation
+58 Day Street
+Box 441621
+Somerville, MA 02144
             </Text>
             <View
               style={
                 Object {
-                  "paddingLeft": 20,
-                  "paddingTop": 12,
+                  "height": 20,
                 }
               }
-            >
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4e4e4e",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 17,
-                      "lineHeight": 24,
-                    },
-                    Object {
-                      "writingDirection": "ltr",
-                    },
-                    undefined,
-                  ]
-                }
-              >
-                PathCheck Foundation
-58 Day Street
-Box 441621
-Somerville, MA 02144
-              </Text>
-              <View
-                style={
+            />
+            <Text
+              style={
+                Array [
                   Object {
-                    "height": 20,
-                  }
-                }
-              />
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4e4e4e",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 17,
-                      "lineHeight": 24,
-                    },
-                    Object {
-                      "writingDirection": "ltr",
-                    },
-                    Object {
-                      "color": "#1f2c9b",
-                      "textDecorationLine": "underline",
-                    },
-                  ]
-                }
-              >
-                info@pathcheck.org
-              </Text>
-              <Text
-                style={
-                  Array [
-                    Object {
-                      "color": "#4e4e4e",
-                      "fontFamily": "IBMPlexSans",
-                      "fontSize": 17,
-                      "lineHeight": 24,
-                    },
-                    Object {
-                      "writingDirection": "ltr",
-                    },
-                    Object {
-                      "color": "#1f2c9b",
-                      "textDecorationLine": "underline",
-                    },
-                  ]
-                }
-              >
-                pathcheck.org
-              </Text>
-            </View>
+                    "color": "#4e4e4e",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 17,
+                    "lineHeight": 24,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#1f2c9b",
+                    "textDecorationLine": "underline",
+                  },
+                ]
+              }
+            >
+              info@pathcheck.org
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "color": "#4e4e4e",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 17,
+                    "lineHeight": 24,
+                  },
+                  Object {
+                    "writingDirection": "ltr",
+                  },
+                  Object {
+                    "color": "#1f2c9b",
+                    "textDecorationLine": "underline",
+                  },
+                ]
+              }
+            >
+              pathcheck.org
+            </Text>
           </View>
         </View>
-      </RCTScrollView>
-      <View
-        accessible={true}
-        focusable={true}
-        isTVSelectable={true}
+      </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.2}
         style={
           Object {
             "backgroundColor": "#4051db",
             "flexDirection": "row",
             "justifyContent": "space-between",
-            "opacity": 1,
             "paddingHorizontal": 15,
             "paddingVertical": 25,
           }
@@ -280,8 +267,8 @@ Somerville, MA 02144
             }
           />
         </View>
-      </View>
+      </TouchableOpacity>
     </View>
-  </RCTSafeAreaView>
+  </SafeAreaView>
 </View>
 `;

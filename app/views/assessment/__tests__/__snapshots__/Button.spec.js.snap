@@ -10,15 +10,9 @@ exports[`base 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
+    disabled={false}
     testID="assessment-button"
   >
     <View
@@ -31,7 +25,7 @@ exports[`base 1`] = `
           },
           undefined,
           Object {
-            "backgroundColor": "#6979f8",
+            "backgroundColor": "#5061e6",
           },
         ]
       }
@@ -64,7 +58,7 @@ exports[`base 1`] = `
         Next
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -78,15 +72,9 @@ exports[`color 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
+    disabled={false}
     testID="assessment-button"
   >
     <View
@@ -99,7 +87,7 @@ exports[`color 1`] = `
           },
           undefined,
           Object {
-            "backgroundColor": "#6979f8",
+            "backgroundColor": "#5061e6",
           },
         ]
       }
@@ -132,7 +120,7 @@ exports[`color 1`] = `
         Next
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;
 
@@ -146,15 +134,9 @@ exports[`disabled 1`] = `
     }
   }
 >
-  <View
-    accessible={true}
-    focusable={false}
-    isTVSelectable={true}
-    style={
-      Object {
-        "opacity": 1,
-      }
-    }
+  <TouchableOpacity
+    activeOpacity={0.2}
+    disabled={true}
     testID="assessment-button"
   >
     <View
@@ -200,6 +182,6 @@ exports[`disabled 1`] = `
         Next
       </Text>
     </View>
-  </View>
+  </TouchableOpacity>
 </View>
 `;

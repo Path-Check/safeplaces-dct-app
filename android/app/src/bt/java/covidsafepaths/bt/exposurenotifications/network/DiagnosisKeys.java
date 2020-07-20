@@ -72,7 +72,7 @@ public class DiagnosisKeys {
 
   public ListenableFuture<ImmutableList<KeyFileBatch>> download() {
     // TODO handle fake / test / production
-    NetworkMode mode = preferences.getNetworkMode(NetworkMode.FAKE);
+    NetworkMode mode = preferences.getNetworkMode(NetworkMode.TEST);
     switch (mode) {
       case FAKE:
         Log.d(TAG, "Using fake: FakeDiagnosisKeyDownloader");

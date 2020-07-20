@@ -10,9 +10,8 @@ exports[`base 1`] = `
     }
   }
 >
-  <RCTSafeAreaView
+  <SafeAreaView
     backgroundColor="#F8F8FF"
-    emulateUnlessSupported={true}
     style={
       Object {
         "borderTopWidth": 0,
@@ -54,84 +53,82 @@ exports[`base 1`] = `
           ]
         }
       />
-      <RCTScrollView
+      <ScrollView
         style={
           Object {
             "flex": 1,
           }
         }
       >
-        <View>
-          <View
-            style={
-              Array [
-                Object {
-                  "borderTopWidth": 0,
-                  "padding": 20,
-                },
-                undefined,
-              ]
-            }
-          >
-            <SvgXml
-              xml="
+        <View
+          style={
+            Array [
+              Object {
+                "borderTopWidth": 0,
+                "padding": 20,
+              },
+              undefined,
+            ]
+          }
+        >
+          <SvgXml
+            xml="
 <svg width=\\"69\\" height=\\"69\\" viewBox=\\"0 0 69 69\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
 <circle cx=\\"34.5\\" cy=\\"34.5\\" r=\\"34.5\\" fill=\\"#D3D7F8\\"/>
 <path d=\\"M48.3723 23.6277C44.8687 20.1241 39.209 20.1241 35.7054 23.6277L35.0316 24.3352L34.3241 23.6277C30.8205 20.1241 25.1608 20.1241 21.6572 23.6277C18.1199 27.1313 18.1199 32.791 21.6235 36.2946L33.2124 47.8498C34.2231 48.8268 35.8064 48.8268 36.8171 47.8498L48.3723 36.2946C51.8759 32.791 51.8759 27.1313 48.3723 23.6277ZM45.5088 31.1403H43.4201V33.229C43.4201 33.9364 42.8474 34.5091 42.1399 34.5091C41.4324 34.5091 40.8597 33.9364 40.8597 33.229V31.1403H38.771C38.0636 31.1403 37.4909 30.5676 37.4909 29.8601C37.4909 29.1526 38.0636 28.5799 38.771 28.5799H40.8597V26.4912C40.8597 25.7838 41.4324 25.2111 42.1399 25.2111C42.8474 25.2111 43.4201 25.7838 43.4201 26.4912V28.5799H45.5088C46.2162 28.5799 46.7889 29.1526 46.7889 29.8601C46.8226 30.5676 46.2162 31.1403 45.5088 31.1403Z\\" fill=\\"#4754C5\\"/>
 </svg>
 "
-            />
-            <Text
-              style={
+          />
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#1f2c9b",
+                  "fontFamily": "IBMPlexSans-Bold",
+                  "fontSize": 28,
+                  "fontWeight": "500",
+                  "lineHeight": 32,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
                 Array [
                   Object {
-                    "color": "#1f2c9b",
-                    "fontFamily": "IBMPlexSans-Bold",
-                    "fontSize": 28,
-                    "fontWeight": "500",
-                    "lineHeight": 32,
+                    "marginVertical": 30,
                   },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Array [
-                    Object {
-                      "marginVertical": 30,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-            >
-              Answer questions about your symptoms and medical history to learn what to do next about COVID-19
-            </Text>
-            <Text
-              style={
+                  undefined,
+                ],
+              ]
+            }
+          >
+            Answer questions about your symptoms and medical history to learn what to do next about COVID-19
+          </Text>
+          <Text
+            style={
+              Array [
+                Object {
+                  "color": "#2e2e2e",
+                  "fontFamily": "IBMPlexSans",
+                  "fontSize": 17,
+                  "lineHeight": 24,
+                },
+                Object {
+                  "writingDirection": "ltr",
+                },
                 Array [
                   Object {
-                    "color": "#2e2e2e",
-                    "fontFamily": "IBMPlexSans",
-                    "fontSize": 17,
-                    "lineHeight": 24,
+                    "marginBottom": 20,
                   },
-                  Object {
-                    "writingDirection": "ltr",
-                  },
-                  Array [
-                    Object {
-                      "marginBottom": 20,
-                    },
-                    undefined,
-                  ],
-                ]
-              }
-              testID="description"
-            >
-              Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.
-            </Text>
-          </View>
+                  undefined,
+                ],
+              ]
+            }
+            testID="description"
+          >
+            Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.
+          </Text>
         </View>
-      </RCTScrollView>
+      </ScrollView>
       <View
         style={
           Object {
@@ -139,15 +136,9 @@ exports[`base 1`] = `
           }
         }
       >
-        <View
-          accessible={true}
-          focusable={true}
-          isTVSelectable={true}
-          style={
-            Object {
-              "opacity": 1,
-            }
-          }
+        <TouchableOpacity
+          activeOpacity={0.2}
+          disabled={false}
           testID="assessment-button"
         >
           <View
@@ -160,7 +151,7 @@ exports[`base 1`] = `
                 },
                 undefined,
                 Object {
-                  "backgroundColor": "#6979f8",
+                  "backgroundColor": "#5061e6",
                 },
               ]
             }
@@ -193,9 +184,9 @@ exports[`base 1`] = `
               Start
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
-  </RCTSafeAreaView>
+  </SafeAreaView>
 </View>
 `;
