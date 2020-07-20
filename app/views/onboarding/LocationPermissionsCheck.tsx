@@ -1,39 +1,46 @@
-import React, { useCallback, useEffect, useContext } from 'react';
-import { AppState } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { AppState, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import LocationDisabledScreen from './LocationPermissionsDisabled';
 import LocationsPermissions from './LocationsPermissions';
 
-import LocationServices from '../../services/LocationService';
-import PermissionsContext from '../../gps/PermissionsContext';
+import LocationServices, { DEVICE_LOCATION_OFF } from '../../services/LocationService';
 import { useStatusBarEffect } from '../../navigation';
-import { PermissionStatus } from '../../permissionStatus';
 
 const LocationPermissionsCheck = (): JSX.Element => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
-  const { location } = useContext(PermissionsContext);
+  const [locationServiceStatus, setLocationServiceStatus] = useState('DEVICE_LOCATION_OFF');
+  const isiOS = Platform.OS === 'ios';
 
   const updateStateInfo = useCallback(async () => {
-    await LocationServices.checkStatusAndStartOrStop();
-    location.check();
-  }, [location]);
+    const locationStatus = await LocationServices.checkStatusAndStartOrStop();
+    setLocationServiceStatus(locationStatus.reason);
+  }, [setLocationServiceStatus]);
 
   useEffect(() => {
     updateStateInfo();
     // refresh state if user backgrounds app
     AppState.addEventListener('change', updateStateInfo);
 
+    // android only, refresh state
+    if (!isiOS) {
+      AppState.addEventListener('focus', updateStateInfo);
+    }
+
     // refresh state if settings change
     const unsubscribe = navigation.addListener('focus', updateStateInfo);
 
     return () => {
       AppState.removeEventListener('change', updateStateInfo);
+      if (!isiOS) {
+        AppState.removeEventListener('focus', updateStateInfo);
+      }
       unsubscribe();
     };
   }, [navigation, updateStateInfo]);
 
-  if (location.status === PermissionStatus.UNKNOWN) {
+  if (locationServiceStatus === DEVICE_LOCATION_OFF) {
     return <LocationDisabledScreen />;
   } else {
     return <LocationsPermissions />;

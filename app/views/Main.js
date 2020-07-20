@@ -39,6 +39,8 @@ export const Main = () => {
     updateStateInfo();
     // refresh state if user backgrounds app
     AppState.addEventListener('change', updateStateInfo);
+
+    // android only, refresh state
     if (!isiOS) {
       AppState.addEventListener('focus', updateStateInfo);
     }
