@@ -62,17 +62,16 @@ export const FeatureFlagsScreen = ({ navigation }) => {
     } else {
       initProdLanguages();
     }
-  },[devLanguagesEnabled])
+  }, [devLanguagesEnabled]);
 
   // Dev languages requires an init step, not just conditional render
   useEffect(() => {
-    if(isLoaded.current) {
+    if (isLoaded.current) {
       isLoaded.current = false;
       return;
     } else {
       toggleLanguages();
     }
-
   }, [toggleLanguages]);
   const dispatch = useDispatch();
 
