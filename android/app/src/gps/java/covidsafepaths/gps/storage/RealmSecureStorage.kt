@@ -149,6 +149,17 @@ open class RealmSecureStorage(inMemory: Boolean?) {
     realm.close()
   }
 
+  fun removeAllLocations(promise: Promise) {
+    val realm = getRealmInstance()
+
+    realm.executeTransaction {
+      realm.delete(Location::class.java)
+    }
+
+    promise.resolve(null)
+    realm.close()
+  }
+
   fun createAssumedLocations(previousLocation: Location?, newLocation: BackgroundLocation): List<Location> {
     val assumedLocationsToInsert = mutableListOf<Location>()
     previousLocation?.let { previous ->

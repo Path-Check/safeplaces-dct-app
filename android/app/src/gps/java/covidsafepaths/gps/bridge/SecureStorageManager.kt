@@ -27,7 +27,6 @@ class SecureStorageManager(reactContext: ReactApplicationContext) : ReactContext
 
   @ReactMethod
   fun removeAllLocations(promise: Promise) {
-//    TODO: Implement the following method in SecureStorage
-//    SecureStorage.removeAllLocations(promise)
+    SecureStorage.removeAllLocations(promise)
   }
 }
