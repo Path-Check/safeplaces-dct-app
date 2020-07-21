@@ -51,7 +51,7 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
     </TracingStrategyProvider>,
     {
       initialState: {
-        featureFlags: { flags: { [FeatureFlagOption.EXPOSURE_MODE]: false } },
+        featureFlags: { flags: { [FeatureFlagOption.MOCK_EXPOSURE]: false } },
       },
     },
   );

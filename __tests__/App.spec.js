@@ -19,7 +19,7 @@ jest.mock('../app/store', () => ({ createPersistedStore: () => ({}) }));
 it('renders correctly', () => {
   const { asJSON } = render(<UnconnectedApp />, {
     initialState: {
-      featureFlags: { flags: { [FeatureFlagOption.EXPOSURE_MODE]: false } },
+      featureFlags: { flags: { [FeatureFlagOption.MOCK_EXPOSURE]: false } },
     },
   });
 

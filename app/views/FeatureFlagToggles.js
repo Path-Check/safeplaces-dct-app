@@ -29,7 +29,7 @@ const flagToName = (flag) => {
       return 'All Language Options';
     case FeatureFlagOption.BYPASS_EXPORT_API:
       return 'Bypass Export API Check';
-    case FeatureFlagOption.EXPOSURE_MODE:
+    case FeatureFlagOption.MOCK_EXPOSURE:
       return 'Exposure Mode';
     // For development ease:
     default:

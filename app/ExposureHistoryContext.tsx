@@ -70,22 +70,24 @@ const ExposureHistoryProvider = ({
   const featureFlags = useSelector(
     (state: RootState) => state.featureFlags?.flags || {},
   );
-  const exposureMode = !!featureFlags[FeatureFlagOption.EXPOSURE_MODE];
+  const mockExposureNotification = !!featureFlags[
+    FeatureFlagOption.MOCK_EXPOSURE
+  ];
   const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
-    exposureMode ? mockedHistory : blankHistory,
+    mockExposureNotification ? mockedHistory : blankHistory,
   );
 
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(false);
 
   useEffect(() => {
     // in theory, useSelector should solve this, but the calendar screen never gets unmounted
-    setExposureHistory(exposureMode ? mockedHistory : blankHistory);
-  }, [exposureMode]);
+    setExposureHistory(mockExposureNotification ? mockedHistory : blankHistory);
+  }, [mockExposureNotification]);
 
   useEffect(() => {
     const subscription = exposureInfoSubscription(
       (exposureInfo: ExposureInfo) => {
-        const exposureHistory = exposureMode
+        const exposureHistory = mockExposureNotification
           ? mockedHistory
           : toExposureHistory(exposureInfo, blankHistoryConfig);
         setExposureHistory(exposureHistory);
@@ -93,7 +95,7 @@ const ExposureHistoryProvider = ({
     );
 
     return subscription.remove;
-  }, [exposureInfoSubscription, toExposureHistory, exposureMode]);
+  }, [exposureInfoSubscription, toExposureHistory, mockExposureNotification]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);
