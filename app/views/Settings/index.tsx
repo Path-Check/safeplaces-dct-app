@@ -170,7 +170,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           </View>
         ) : null}
 
-        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
+        <FeatureFlag flag={FeatureFlagOption.DOWNLOAD_LOCALLY}>
           <View style={styles.section}>
             <SettingsListItem
               label={'Download Locally'}
