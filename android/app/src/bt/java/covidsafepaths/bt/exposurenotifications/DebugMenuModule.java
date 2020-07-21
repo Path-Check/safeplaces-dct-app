@@ -1,5 +1,6 @@
 package covidsafepaths.bt.exposurenotifications;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.facebook.react.bridge.Callback;
@@ -8,18 +9,29 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
 import com.google.android.gms.nearby.exposurenotification.TemporaryExposureKey;
+import com.google.common.collect.ImmutableList;
+import com.google.common.util.concurrent.FluentFuture;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
+import org.pathcheck.covidsafepaths.MainActivity;
+import org.pathcheck.covidsafepaths.R;
+import org.threeten.bp.Duration;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nonnull;
 
 import covidsafepaths.bt.exposurenotifications.common.AppExecutors;
+import covidsafepaths.bt.exposurenotifications.common.TaskToFutureAdapter;
 import covidsafepaths.bt.exposurenotifications.debug.DebugExposureNotificationUtils;
 import covidsafepaths.bt.exposurenotifications.nearby.ProvideDiagnosisKeysWorker;
+import covidsafepaths.bt.exposurenotifications.network.DiagnosisKey;
+import covidsafepaths.bt.exposurenotifications.network.DiagnosisKeys;
 import covidsafepaths.bt.exposurenotifications.notify.ShareDiagnosisManager;
 import covidsafepaths.bt.exposurenotifications.utils.CallbackMessages;
 import covidsafepaths.bt.exposurenotifications.utils.Util;
@@ -44,13 +56,19 @@ public class DebugMenuModule extends ReactContextBaseJavaModule {
         return MODULE_NAME;
     }
 
+    @ReactMethod
+    public void submitExposureKeys() {
+        MainActivity mainActivity = (MainActivity) reactContext.getCurrentActivity();
+        mainActivity.share();
+    }
+
     /**
      * Debug method to get a fake set of diagnosis keys and post them to the server.
      * Does NOT currently interact with GAEN API
      * Second value is success message, first value is error message
      */
     @ReactMethod
-    public void submitExposureKeys() {
+    public void submitExposureKeysDebug() {
         List<TemporaryExposureKey> debugTEKS = DebugExposureNotificationUtils.INSTANCE.getFakeRecentKeys();
         ListenableFuture<Boolean> shareKeysFuture = shareDiagnosisManager.submitKeysToService(debugTEKS);
         FutureCallback<Boolean> shareKeysCallback = new FutureCallback<Boolean>() {
