@@ -11,6 +11,8 @@
     "next": "下一個"
   },
   "export": {
+    "code_input_button_cancel": "取消",
+    "consent_button_cancel": "取消",
     "exit_warning_cancel": "取消"
   },
   "import": {

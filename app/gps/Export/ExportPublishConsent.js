@@ -8,23 +8,36 @@ import exportConsentApi from '../../api/export/exportConsentApi';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import { Screens } from '../../navigation';
 import { Icons } from '../../assets';
+import { useSelector } from 'react-redux';
+import { FeatureFlagOption } from '../../store/types';
 
 export const ExportPublishConsent = ({ navigation, route }) => {
   const [isConsenting, setIsConsenting] = useState(false);
+  const featureFlags = useSelector((state) => state.featureFlags?.flags || {});
+  const bypassApi = !!featureFlags[FeatureFlagOption.BYPASS_EXPORT_API];
   const { t } = useTranslation();
 
   const { StrategyCopy } = useStrategyContent();
   const { selectedAuthority, code } = route.params;
 
+  const navigateToNextScreen = () => {
+    navigation.navigate(Screens.ExportConfirmUpload, {
+      selectedAuthority,
+      code,
+    });
+  };
+
   const consent = async () => {
+    // Bypass feature flag for allowing easy testing of screens.
+    if (bypassApi) {
+      navigateToNextScreen();
+      return;
+    }
     setIsConsenting(true);
     try {
       await exportConsentApi(selectedAuthority, true, code);
       setIsConsenting(false);
-      navigation.navigate(Screens.ExportConfirmUpload, {
-        selectedAuthority,
-        code,
-      });
+      navigateToNextScreen();
     } catch (e) {
       Alert.alert(t('common.something_went_wrong'), e.message);
       setIsConsenting(false);

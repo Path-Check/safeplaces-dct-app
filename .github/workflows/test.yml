@@ -12,7 +12,7 @@ on:
       - develop
       - master
       - bt-release
-      - gps-release
+      - gps-release**
 
 jobs:
   unit-test:

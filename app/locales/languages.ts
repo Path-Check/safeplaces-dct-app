@@ -6,6 +6,7 @@ import { initReactI18next, useTranslation } from 'react-i18next';
 import { NativeModules, Platform } from 'react-native';
 
 import { LANG_OVERRIDE } from '../constants/storage';
+
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import da from './da.json';
@@ -59,8 +60,16 @@ function toIETFLanguageTag(locale: Locale): Locale {
   return locale.replace('_', '-').toLowerCase();
 }
 
-async function setLocale(locale: Locale) {
-  dayjs.locale(toIETFLanguageTag(locale));
+export const CONVERT_ISO_TO_IETF: Record<string, string | undefined> = {
+  es_419: 'es-us',
+  tl: 'tl-ph',
+  fil: 'tl-ph',
+  zh_Hant: 'zh',
+  es_PR: 'es-pr',
+};
+
+async function setLocale(locale: string) {
+  dayjs.locale(CONVERT_ISO_TO_IETF[locale] || toIETFLanguageTag(locale));
   return await i18next.changeLanguage(locale);
 }
 
@@ -78,8 +87,9 @@ export async function setUserLocaleOverride(locale: Locale): Promise<void> {
 
 /* eslint-disable no-underscore-dangle */
 const PROD_RESOURCES = {
-  en: { label: en._display_name, translation: en },
   es_PR: { label: es_PR._display_name, translation: es_PR },
+  en: { label: en._display_name, translation: en },
+  ht: { label: ht._display_name, translation: ht },
 };
 
 /** Languages only available in feature flag. */
@@ -88,7 +98,6 @@ const DEV_RESOURCES = {
   da: { label: da._display_name, translation: da },
   es: { label: es._display_name, translation: es },
   es_419: { label: es_419._display_name, translation: es_419 },
-  ht: { label: ht._display_name, translation: ht },
   fil: { label: fil._display_name, translation: fil },
   fr: { label: fr._display_name, translation: fr },
   id: { label: id._display_name, translation: id },

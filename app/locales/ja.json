@@ -11,6 +11,8 @@
     "next": "次へ進む"
   },
   "export": {
+    "code_input_button_cancel": "キャンセル",
+    "consent_button_cancel": "キャンセル",
     "exit_warning_cancel": "キャンセル"
   },
   "import": {
