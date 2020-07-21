@@ -18,8 +18,8 @@ import PartnersEditScreen from './views/Partners/PartnersEdit';
 import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 
 import { LicensesScreen } from './views/Licenses';
-import { ExportSelectHA, ExportStart, ExportLocally } from './gps/Export';
-import ExportStack from './bt/AffectedUserFlow';
+import { ExportStart, ExportLocally } from './gps/Export';
+import ExportStack from './gps/ExportStack';
 
 import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
@@ -114,14 +114,7 @@ const MoreTabStack = () => {
         name={Screens.LanguageSelection}
         component={LanguageSelection}
       />
-      <Stack.Screen
-        name={Screens.ExportFlow}
-        component={ExportStack}
-        options={{
-          ...TransitionPresets.ModalSlideFromBottomIOS,
-          gestureEnabled: false,
-        }}
-      />
+
       <Stack.Screen
         name={Screens.ExposureListDebugScreen}
         component={ExposureListDebugScreen}
@@ -155,12 +148,12 @@ const GPSExportStack = () => {
         }}
       />
       <Stack.Screen
-        name={Screens.ExportSelectHA}
-        component={ExportSelectHA}
+        name={Screens.ExportFlow}
+        component={ExportStack}
         options={{
           ...TransitionPresets.ModalSlideFromBottomIOS,
-          headerShown: false,
           gestureEnabled: false,
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
