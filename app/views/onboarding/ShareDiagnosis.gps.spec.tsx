@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { render, cleanup, fireEvent } from '@testing-library/react-native';
+import { render, cleanup, fireEvent } from '../../test-utils/redux-provider';
 import '@testing-library/jest-native/extend-expect';
 
 import gpsStrategy from '../../gps';
@@ -8,6 +8,7 @@ import { TracingStrategyProvider } from '../../TracingStrategyContext';
 import ShareDiagnosis from './ShareDiagnosis';
 import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
+import { FeatureFlagOption } from '../../store/types';
 
 afterEach(cleanup);
 
@@ -25,8 +26,12 @@ describe('Home', () => {
           navigate: navigateMock,
         });
         (isPlatformiOS as jest.Mock).mockReturnValue(false);
-        const { getByLabelText } = render(<ShareDiagnosis />, {
-          wrapper: GPSWrapper,
+        const { getByLabelText } = render(<GPSWrapper />, {
+          initialState: {
+            featureFlags: {
+              flags: { [FeatureFlagOption.MOCK_EXPOSURE]: false },
+            },
+          },
         });
 
         const button = getByLabelText('Set up my phone');
@@ -46,8 +51,12 @@ describe('Home', () => {
           navigate: navigateMock,
         });
         (isPlatformiOS as jest.Mock).mockReturnValue(true);
-        const { getByLabelText } = render(<ShareDiagnosis />, {
-          wrapper: GPSWrapper,
+        const { getByLabelText } = render(<GPSWrapper />, {
+          initialState: {
+            featureFlags: {
+              flags: { [FeatureFlagOption.MOCK_EXPOSURE]: false },
+            },
+          },
         });
 
         const button = getByLabelText('Set up my phone');
@@ -61,10 +70,10 @@ describe('Home', () => {
   });
 });
 
-const GPSWrapper: FunctionComponent = ({ children }) => {
+const GPSWrapper: FunctionComponent = () => {
   return (
     <TracingStrategyProvider strategy={gpsStrategy}>
-      {children}
+      <ShareDiagnosis />
     </TracingStrategyProvider>
   );
 };
