@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
-import { render, cleanup } from '../tets-utils';
+import { render, cleanup } from './test-utils/redux-provider';
 import '@testing-library/jest-native/extend-expect';
 
 import {

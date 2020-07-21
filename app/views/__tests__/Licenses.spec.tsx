@@ -1,6 +1,6 @@
 import React from 'react';
 import 'react-native';
-import { render } from '../../../tets-utils';
+import { render } from '../../test-utils/redux-provider';
 import '@testing-library/jest-native/extend-expect';
 
 import { TracingStrategyProvider } from '../../TracingStrategyContext';

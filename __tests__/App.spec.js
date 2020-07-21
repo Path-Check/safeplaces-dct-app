@@ -5,7 +5,7 @@
 import 'react-native';
 import 'isomorphic-fetch';
 
-import { render } from '../tets-utils';
+import { render } from '../app/test-utils/redux-provider';
 import React from 'react';
 
 import { UnconnectedApp } from '../App';

@@ -7,7 +7,7 @@ import {
 } from '@testing-library/react-native';
 import { Store, createStore } from 'redux';
 import { Provider, DefaultRootState } from 'react-redux';
-import rootReducer from './app/store/reducers/rootReducer';
+import rootReducer from '../store/reducers/rootReducer';
 
 type ReduxRenderOptions = RenderOptions & {
   initialState: DefaultRootState;
