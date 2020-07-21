@@ -1,40 +1,14 @@
-name: Test
+name: Device Tests
 
 on:
   push:
     branches:
       - develop
-      - master
-      - gps-release
   pull_request:
     branches:
       - develop
-      - master
-      - gps-release
 
 jobs:
-  unit-test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - run: node --version
-
-      - name: Cache node_modules/
-        uses: actions/cache@v1
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-
-      - run: yarn --frozen-lockfile
-
-      - run: yarn test
-        env:
-          CI: true
-
   unit-test-ios-gps:
     runs-on: macOS-latest
     needs: unit-test
@@ -75,13 +49,11 @@ jobs:
       - run: pod install --repo-update
         working-directory: ./ios
 
-      # TODO(https://pathcheck.atlassian.net/browse/SAF-250): remove the skip on COVIDSafePathsTests/testRendersWelcomeScreen once it's passing
-      - run: |
+       - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Development \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-            -skip-testing GPSTests/COVIDSafePathsTests/testRendersWelcomeScreen
-        working-directory: ./ios
+         working-directory: ./ios
 
   # separate build job so that multiple test jobs can run on the same artifact
   e2e-ios-build:
@@ -174,10 +146,6 @@ jobs:
       - run: brew tap wix/brew
 
       - run: brew install applesimutils
-
-      # - run: xcrun simctl list devicetypes
-
-      # - run: xcrun simctl list runtimes
 
       - run: xcrun simctl create "iPhone SE (2nd generation)" com.apple.CoreSimulator.SimDeviceType.iPhone-SE com.apple.CoreSimulator.SimRuntime.iOS-13-5
 
