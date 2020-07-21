@@ -84,7 +84,9 @@ export default function UserInfo({
             'Content-Type': 'application/json',
             gov_do_token: GOV_DO_TOKEN,
           },
-          body: JSON.stringify(info),
+          body: JSON.stringify(
+            type === 'PositiveReport' ? { ...info, IamPositive: true } : info,
+          ),
         },
       );
       response = await response.json();
