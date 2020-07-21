@@ -21,12 +21,7 @@ import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
-import {
-  Buttons,
-  Colors,
-  Spacing,
-  Typography as TypographyStyles,
-} from '../../styles';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 import { FeatureFlagOption, RootState } from '../../store/types';
 import { useSelector } from 'react-redux';
 
@@ -193,17 +188,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.tertiaryViolet,
-  },
-  sectionPrimary: {
-    flex: 1,
-    margin: Spacing.medium,
-  },
-  button: {
-    ...Buttons.largeSecondaryBlue,
-    marginTop: Spacing.medium,
-  },
-  buttonText: {
-    ...TypographyStyles.buttonTextLight,
   },
   icon: {
     maxWidth: Spacing.icon,
