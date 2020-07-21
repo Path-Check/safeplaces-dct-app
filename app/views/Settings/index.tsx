@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
-  TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -19,16 +18,10 @@ import { getLocalNames } from '../../locales/languages';
 import FeatureFlag from '../../components/FeatureFlag';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
-import {
-  Buttons,
-  Colors,
-  Spacing,
-  Typography as TypographyStyles,
-} from '../../styles';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 import { FeatureFlagOption, RootState } from '../../store/types';
 import { useSelector } from 'react-redux';
 
@@ -38,11 +31,13 @@ interface SettingsScreenProps {
 
 interface LanguageSelectionListItemProps {
   icon: string;
+  iconLabel: string;
   label: string;
   onPress: () => void;
 }
 const LanguageSelectionListItem = ({
   icon,
+  iconLabel,
   label,
   onPress,
 }: LanguageSelectionListItemProps) => (
@@ -53,6 +48,8 @@ const LanguageSelectionListItem = ({
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
       <SvgXml
         xml={icon}
+        accessible
+        accessibilityLabel={iconLabel}
         style={[styles.icon, { marginRight: Spacing.small }]}
       />
       <Typography use={'body1'}>{label}</Typography>
@@ -108,25 +105,11 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
       title={t('navigation.more')}
       includeBackButton={false}>
       <ScrollView style={styles.container}>
-        {!isGPS && (
-          <View style={styles.sectionPrimary}>
-            <Typography>
-              {t('settings.share_test_result_description')}
-            </Typography>
-            <TouchableOpacity
-              onPress={navigateTo(Screens.ExportFlow)}
-              style={styles.button}>
-              <Typography style={styles.buttonText}>
-                {t('settings.share_test_result')}
-              </Typography>
-            </TouchableOpacity>
-          </View>
-        )}
-
         <View style={styles.section}>
           <LanguageSelectionListItem
             label={languageName || t('label.unknown')}
             icon={Icons.LanguagesIcon}
+            iconLabel={t('label.language_icon')}
             onPress={navigateTo(Screens.LanguageSelection)}
           />
         </View>
@@ -143,16 +126,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             style={styles.lastListItem}
           />
         </View>
-
-        {!isGPS ? (
-          <View style={styles.section}>
-            <SettingsListItem
-              label='EN Debug Menu'
-              onPress={navigateTo(Screens.ENDebugMenu)}
-              style={styles.lastListItem}
-            />
-          </View>
-        ) : null}
 
         {enableFlags && (
           <View style={styles.section}>
@@ -215,17 +188,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.tertiaryViolet,
-  },
-  sectionPrimary: {
-    flex: 1,
-    margin: Spacing.medium,
-  },
-  button: {
-    ...Buttons.largeSecondaryBlue,
-    marginTop: Spacing.medium,
-  },
-  buttonText: {
-    ...TypographyStyles.buttonTextLight,
   },
   icon: {
     maxWidth: Spacing.icon,

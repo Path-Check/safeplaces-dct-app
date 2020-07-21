@@ -21,7 +21,6 @@ export interface StrategyAssets {
   personalPrivacyIcon: string;
   notificationDetailsIcon: string;
   shareDiagnosisIcon: string;
-  exportPublishIcon: string;
 }
 
 export type StrategyCopyContentHook = (t: TFunction) => StrategyCopyContent;
@@ -31,18 +30,20 @@ export interface StrategyCopyContent {
   detailedHistoryWhatThisMeansPara: string;
   exportCompleteBody: string;
   exportPublishButtonSubtitle: string;
-  exportPublishTitle: string;
   exposureNotificationsNotAvailableHeader: string;
   exposureNotificationsNotAvailableSubheader: string;
   legalHeader: string;
   moreInfoHowContent: string;
   moreInfoWhyContent: string;
   personalPrivacyHeader: string;
+  personalPrivacyIconLabel: string;
   personalPrivacySubheader: string;
   notificationDetailsHeader: string;
+  notificationDetailsIconLabel: string;
   notificationDetailsSubheader: string;
   shareDiagnosisButton: string;
   shareDiagnosisHeader: string;
+  shareDiagnosisIconLabel: string;
   shareDiagnosisSubheader: string;
   settingsLoggingActive: string;
   settingsLoggingInactive: string;

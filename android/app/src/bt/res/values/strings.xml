@@ -8,7 +8,7 @@
   <string name="notification_channel_description">PathCheck BT notifications</string>
 <!--  TODO remove and put into build.gradle -->
   <!-- Server URI for diagnosis key upload -->
-  <string name="key_server_upload_uri">https://exposure-2kabcv6c4a-uc.a.run.app/</string>
+  <string name="key_server_upload_uri" translatable="false">https://exposure-2kabcv6c4a-uc.a.run.app/</string>
   <!-- Server URI for diagnosis key file download -->
-  <string name="key_server_download_base_uri">https://federationout-2kabcv6c4a-uc.a.run.app/</string>
+  <string name="key_server_download_base_uri" translatable="false">https://storage.googleapis.com/exposure-notification-export-svhfv/</string>
 </resources>

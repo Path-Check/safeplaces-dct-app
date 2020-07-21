@@ -20,6 +20,7 @@ NativeModules.ExposureEventEmitter = NativeModules.ExposureEventEmitter || {
 };
 
 jest.mock('react-native-pulse');
+jest.mock('react-native-linear-gradient');
 jest.mock('@mauron85/react-native-background-geolocation');
 
 // Silence YellowBox useNativeDriver warning
@@ -72,35 +73,5 @@ jest.mock('@react-navigation/stack', () => {
     CardStyleInterpolators: {
       forHorizontalIOS: jest.fn(),
     },
-  };
-});
-
-jest.mock('@react-navigation/native', () => {
-  return {
-    createAppContainer: jest
-      .fn()
-      .mockReturnValue(function NavigationContainer() {
-        return null;
-      }),
-    createDrawerNavigator: jest.fn(),
-    createMaterialTopTabNavigator: jest.fn(),
-    StackActions: {
-      push: jest
-        .fn()
-        .mockImplementation((x) => ({ ...x, type: 'Navigation/PUSH' })),
-      replace: jest
-        .fn()
-        .mockImplementation((x) => ({ ...x, type: 'Navigation/REPLACE' })),
-    },
-    NavigationActions: {
-      navigate: jest.fn().mockImplementation((x) => x),
-    },
-    useNavigation: () => {
-      return { navigate: jest.fn() };
-    },
-    useRoute: () => {
-      return {};
-    },
-    useFocusEffect: jest.fn(),
   };
 });

@@ -57,7 +57,13 @@ const NotificationsPermissions = (): JSX.Element => {
           alwaysBounceVertical={false}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={styles.iconCircle}>
-            <SvgXml xml={Icons.Bell} width={30} height={30} />
+            <SvgXml
+              xml={Icons.Bell}
+              accessible
+              accessibilityLabel={t('label.bell_icon')}
+              width={30}
+              height={30}
+            />
           </View>
           <Typography style={styles.headerText}>
             {t('onboarding.notification_header')}

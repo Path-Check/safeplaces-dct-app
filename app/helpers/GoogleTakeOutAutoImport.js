@@ -111,7 +111,7 @@ export async function importTakeoutData(filePath) {
         });
 
         let googleLocations = extractLocations(JSON.parse(contents));
-        await NativeModules.SecureStorageManager.importGoogleLocations(
+        await NativeModules.SecureStorageManager.importMockLocations(
           googleLocations,
         );
         console.log('[INFO] Imported file:', filepath);

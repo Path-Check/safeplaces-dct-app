@@ -15,6 +15,7 @@ const NotificationDetails = (): JSX.Element => {
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.notificationDetailsBackground,
     icon: StrategyAssets.notificationDetailsIcon,
+    iconLabel: StrategyCopy.notificationDetailsIconLabel,
     header: StrategyCopy.notificationDetailsHeader,
     body: StrategyCopy.notificationDetailsSubheader,
     primaryButtonLabel: t('label.launch_next'),

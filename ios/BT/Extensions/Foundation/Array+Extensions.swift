@@ -1,3 +1,4 @@
+import ExposureNotification
 import Foundation
 
 extension Array where Element == DownloadedPackage {
@@ -23,6 +24,19 @@ extension Array where Element == DownloadedPackage {
       throw GenericError.unknown
     }
 
+  }
+
+}
+
+extension Array where Element == ENTemporaryExposureKey {
+
+  func minRollingStartNumber() -> UInt32 {
+    let date = Calendar.current.date(byAdding: .hour, value: -Constants.exposureLifetimeHours, to: Date())!
+    return ENTemporaryExposureKey.rollingStartNumber(date)
+  }
+
+  func current() -> [ENTemporaryExposureKey] {
+    filter { $0.rollingStartNumber > self.minRollingStartNumber() }
   }
 
 }

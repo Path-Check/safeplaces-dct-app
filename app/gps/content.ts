@@ -9,7 +9,6 @@ export const gpsAssets: StrategyAssets = {
   notificationDetailsIcon: Icons.Heart,
   shareDiagnosisBackground: Images.MultipleCrossPathBackground,
   shareDiagnosisIcon: Icons.BellYellow,
-  exportPublishIcon: Icons.Publish,
 };
 
 export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
@@ -20,7 +19,6 @@ export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
     ),
     exportCompleteBody: t('export.complete_body'),
     exportPublishButtonSubtitle: t('export.consent_button_subtitle'),
-    exportPublishTitle: t('export.publish_consent_title'),
     exportStartBody: t('export.start_body'),
     exportStartTitle: t('export.start_title'),
     exposureNotificationsNotAvailableHeader: t(
@@ -33,11 +31,14 @@ export const useGPSCopyContent: StrategyCopyContentHook = (t) => {
     moreInfoHowContent: t('exposure_history.gps.how_does_this_work_para'),
     moreInfoWhyContent: t('exposure_history.gps.why_did_i_get_an_en_para'),
     personalPrivacyHeader: t('label.launch_screen2_header_location'),
+    personalPrivacyIconLabel: t('label.pin_icon'),
     personalPrivacySubheader: t('label.launch_screen2_subheader_location'),
     notificationDetailsHeader: t('label.launch_screen3_header_location'),
+    notificationDetailsIconLabel: t('label.heart_icon'),
     notificationDetailsSubheader: t('label.launch_screen3_subheader_location'),
     shareDiagnosisButton: t('label.launch_set_up_phone_location'),
     shareDiagnosisHeader: t('label.launch_screen4_header_location'),
+    shareDiagnosisIconLabel: t('label.bell_icon'),
     shareDiagnosisSubheader: t('label.launch_screen4_subheader_location'),
     settingsLoggingActive: t('label.logging_active_location'),
     settingsLoggingInactive: t('label.logging_inactive_location'),

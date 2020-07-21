@@ -7,7 +7,10 @@ import { Screens } from '../../navigation';
 export const ExportStart = ({ navigation }) => {
   const { t } = useTranslation();
 
-  const onNext = () => navigation.navigate(Screens.ExportFlow);
+  const onNext = () => {
+    navigation.navigate(Screens.ExportFlow);
+  };
+
   return (
     <ExportTemplate
       onNext={onNext}

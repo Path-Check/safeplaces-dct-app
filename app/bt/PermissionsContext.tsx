@@ -84,7 +84,6 @@ const PermissionsProvider = ({
 
   const checkENPermission = () => {
     const handleNativeResponse = (status: ENPermissionStatus) => {
-      console.log('checking ', status);
       setExposureNotificationsPermission(status);
     };
     BTNativeModule.getCurrentENPermissionsStatus(handleNativeResponse);

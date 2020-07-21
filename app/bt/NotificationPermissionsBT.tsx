@@ -40,6 +40,7 @@ const NotificationsPermissions = (): JSX.Element => {
   const explanationScreenContent = {
     backgroundImage: Images.BlueGradientBackground,
     icon: Icons.Bell,
+    iconLabel: t('label.bell_icon'),
     header: t('onboarding.notification_header'),
     body: t('onboarding.notification_subheader'),
     primaryButtonLabel: t('label.launch_enable_notif'),

@@ -31,7 +31,10 @@ const LanguageSelection = (): JSX.Element => {
   };
 
   return (
-    <NavigationBarWrapper title={' '} includeBackButton={false}>
+    <NavigationBarWrapper
+      title={'Choose Language'}
+      includeBackButton
+      onBackPress={navigation.goBack}>
       <FlatList
         keyExtractor={(_, i) => `${i}`}
         data={localeList}

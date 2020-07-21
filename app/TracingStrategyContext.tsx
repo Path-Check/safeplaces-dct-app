@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react';
+import React, { createContext, useContext, FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -23,14 +23,13 @@ const TracingStrategyContext = createContext<
 >(undefined);
 
 interface TracingStrategyProps {
-  children: JSX.Element;
   strategy: TracingStrategy;
 }
 
-export const TracingStrategyProvider = ({
+export const TracingStrategyProvider: FunctionComponent<TracingStrategyProps> = ({
   children,
   strategy,
-}: TracingStrategyProps): JSX.Element => {
+}) => {
   const StrategyPermissionsProvider = strategy.permissionsProvider;
 
   return (
