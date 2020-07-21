@@ -21,7 +21,9 @@ import NativePicker from '../../components/NativePicker';
 import { Typography } from '../../components/Typography';
 import Colors from '../../constants/colors';
 import fontFamily from '../../constants/fonts';
+import { LANG_OVERRIDE } from '../../constants/storage';
 import { Theme } from '../../constants/themes';
+import { SetStoreData } from '../../helpers/General';
 import { sharedStyles } from './styles';
 
 const width = Dimensions.get('window').width;
@@ -101,9 +103,10 @@ class Onboarding extends Component {
               </View>
               <View style={sharedStyles.footerContainer}>
                 <EulaModal
-                  continueFunction={() =>
-                    this.props.navigation.replace('Onboarding2')
-                  }
+                  continueFunction={async () => {
+                    this.props.navigation.replace('Onboarding2');
+                    await SetStoreData(LANG_OVERRIDE, this.state.locale);
+                  }}
                   selectedLocale={this.state.locale}
                 />
               </View>

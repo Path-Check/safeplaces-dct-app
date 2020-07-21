@@ -42,14 +42,19 @@ export const MonthGrid = ({
     throw new Error('renderDay and renderDayHeader are required');
   }
 
+  const locale = dayjs.locale();
   const headers = dayjs.localeData().weekdaysShort(); // 'mon', 'tue', ...
 
   const start = date
     .startOf('day')
     .startOf('week')
+    .subtract(locale !== 'en' && 1, 'day')
     .subtract(weeks - 1, 'week');
 
-  const end = date.startOf('day').endOf('week');
+  const end = date
+    .startOf('day')
+    .endOf('week')
+    .subtract(locale !== 'en' && 1, 'day');
 
   /** @type {dayjs.Dayjs[]} */
   const days = daysBetween(start, end, 'day');

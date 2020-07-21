@@ -109,9 +109,9 @@ export const EulaModal = ({ selectedLocale, continueFunction }) => {
                       : Colors.LIGHT_GRAY,
                   }}
                   disabled={!canContinue}
-                  onPress={() => {
+                  onPress={async () => {
                     setModalVisibility(false);
-                    continueFunction();
+                    await continueFunction();
                   }}>
                   <Text
                     style={{
