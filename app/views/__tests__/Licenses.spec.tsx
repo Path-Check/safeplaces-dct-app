@@ -2,6 +2,7 @@ import React from 'react';
 import 'react-native';
 import { render } from '../../test-utils/redux-provider';
 import '@testing-library/jest-native/extend-expect';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 
 import { TracingStrategyProvider } from '../../TracingStrategyContext';
 import { TracingStrategy } from '../../tracingStrategy';
@@ -23,6 +24,10 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
     },
   );
 };
+
+jest.mock('@react-navigation/native');
+(useNavigation as jest.Mock).mockReturnValue({ navigate: jest.fn() });
+(useFocusEffect as jest.Mock).mockReturnValue({ navigate: jest.fn() });
 
 describe('LicensesScreen', () => {
   it('renders correctly', () => {

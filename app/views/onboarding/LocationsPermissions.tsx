@@ -30,13 +30,12 @@ import {
 const LocationsPermissions = (): JSX.Element => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { authSubscription, location } = useContext(PermissionsContext);
+  const { location } = useContext(PermissionsContext);
 
   useStatusBarEffect('dark-content');
 
   const requestLocationAccess = async () => {
     await location.request();
-    authSubscription.request();
     completeOnboarding();
   };
 
@@ -46,8 +45,8 @@ const LocationsPermissions = (): JSX.Element => {
     dispatch(onboardingCompleteAction());
   };
 
-  const handleOnPressEnable = () => {
-    requestLocationAccess();
+  const handleOnPressEnable = async () => {
+    await requestLocationAccess();
     completeOnboarding();
   };
 
@@ -64,7 +63,13 @@ const LocationsPermissions = (): JSX.Element => {
           alwaysBounceVertical={false}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={styles.iconCircle}>
-            <SvgXml xml={Icons.LocationPin} width={30} height={30} />
+            <SvgXml
+              xml={Icons.LocationPin}
+              accessible
+              accessibilityLabel={t('label.pin_icon')}
+              width={30}
+              height={30}
+            />
           </View>
           <Typography style={styles.headerText}>
             {t('onboarding.location_header')}

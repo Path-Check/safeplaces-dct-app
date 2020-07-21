@@ -67,6 +67,14 @@ final class GPSSecureStorage: SafePathsSecureStorage {
     }
   }
 
+  @objc func removeAllLocations(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    queue.async {
+      autoreleasepool { [weak self] in
+        self?.removeAllLocationsImmediately(resolve: resolve, reject: reject)
+      }
+    }
+  }
+
   override func getRealmConfig() -> Realm.Configuration? {
     // TODO: Create appropriate migration blocks as needed
     if let key = getEncryptionKey() {
@@ -127,13 +135,8 @@ private extension GPSSecureStorage {
   func saveDeviceLocationImmediately(_ backgroundLocation: MAURLocation, backfill: Bool) {
     Log.storage.debug("Processing \(backgroundLocation)")
 
-    // The geolocation library sometimes returns nil times.
-    // Almost immediately after these locations, we receive an identical location containing a time.
-    guard backgroundLocation.hasTime() else {
-      return
-    }
-
-    guard let realm = getRealmInstance() else {
+    guard backgroundLocation.isValid, let realm = getRealmInstance() else {
+      Log.storage.debug("Ignoring invalid location")
       return
     }
 
@@ -217,6 +220,22 @@ private extension GPSSecureStorage {
           resolve(true)
         }
       },
+      reject: reject
+    )
+  }
+
+  /// This function should be called only on self.queue
+  func removeAllLocationsImmediately(resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock) {
+    guard let realm = getRealmInstance() else {
+      resolve(false)
+      return
+    }
+
+    Log.storage.debug("Removing all locations")
+
+    realm.delete(
+      locations: realm.previousLocations,
+      resolve: resolve,
       reject: reject
     )
   }

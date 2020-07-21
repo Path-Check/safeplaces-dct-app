@@ -1,9 +1,16 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  View,
+  Alert,
+  Linking,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
 
 import { ENPermissionStatus } from '../PermissionsContext';
 import { Typography } from '../../components/Typography';
+import { isPlatformiOS } from '../../Util';
 
 import {
   Layout,
@@ -37,8 +44,25 @@ const Home = ({
     : t('home.bluetooth.tracing_off_subheader');
   const buttonText = t('home.bluetooth.tracing_off_button');
 
+  const showUnauthorizedAlert = () => {
+    Alert.alert(
+      t('home.bluetooth.unauthorized_error_title'),
+      t('home.bluetooth.unauthorized_error_message'),
+      [
+        {
+          text: t('common.settings'),
+          onPress: () => Linking.openSettings(),
+        },
+      ],
+    );
+  };
+
   const handleRequestPermission = () => {
-    requestPermission();
+    if (isAuthorized) {
+      requestPermission();
+    } else if (isPlatformiOS()) {
+      showUnauthorizedAlert();
+    }
   };
 
   return (

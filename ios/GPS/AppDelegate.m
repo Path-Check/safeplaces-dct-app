@@ -24,7 +24,7 @@
   MAURBackgroundGeolocationFacade.locationTransform = ^(MAURLocation * location) {
     // The geolocation library sometimes returns nil times.
     // Almost immediately after these locations, we receive an identical location containing a time.
-    if (location.hasTime) {
+    if (location.isAcceptable) {
       [[GPSSecureStorage shared] saveDeviceLocation:[location copy] backfill:YES completion:nil];
     }
 

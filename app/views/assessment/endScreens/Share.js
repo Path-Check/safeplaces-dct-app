@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import env from 'react-native-config';
 
 import { Icons } from '../../../assets';
 import { Info } from '../Info';
@@ -8,7 +9,7 @@ import { Button } from '../components/Button';
 
 import { Colors } from '../../../styles';
 
-import { AUTHORITY_NAME as authority } from '../../../constants/authorities';
+const { GAEN_AUTHORITY_NAME: authority } = env;
 
 /** @type {React.FunctionComponent<{}>} */
 export const Share = ({ navigation }) => {
@@ -20,7 +21,7 @@ export const Share = ({ navigation }) => {
   return (
     <Info
       icon={Icons.AnonymizedDataInverted}
-      backgroundColor={Colors.invertedQuaternaryBackground}
+      backgroundColor={Colors.invertedSecondaryBackground}
       titleStyle='headline3'
       descriptionStyle='body4'
       footer={

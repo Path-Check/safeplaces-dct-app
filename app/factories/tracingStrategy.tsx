@@ -17,6 +17,7 @@ export default Factory.define<TracingStrategy>(() => ({
       return { remove: () => {} };
     },
     toExposureHistory: () => [],
+    getCurrentExposures: () => {},
   },
   permissionsProvider: PermissionsProvider,
   homeScreenComponent: HomeScreen,
@@ -46,7 +47,6 @@ export const testStrategyCopy: StrategyCopyContent = {
   detailedHistoryWhatThisMeansPara: 'detailedHistoryWhatThisMeansPara',
   exportCompleteBody: 'exportCompleteBody',
   exportPublishButtonSubtitle: 'exportPublishButtonSubtitle',
-  exportPublishTitle: 'exportPublishTitle',
   exposureNotificationsNotAvailableHeader:
     'exposureNotificationsNotAvailableHeader',
   exposureNotificationsNotAvailableSubheader:
@@ -55,11 +55,14 @@ export const testStrategyCopy: StrategyCopyContent = {
   moreInfoHowContent: 'moreInfoHowContent',
   moreInfoWhyContent: 'moreInfoWhyContent',
   personalPrivacyHeader: 'onboarding2Header',
+  personalPrivacyIconLabel: 'personalPrivacyIconLabel',
   personalPrivacySubheader: 'onboarding2Subheader',
   notificationDetailsHeader: 'onboarding3Header',
+  notificationDetailsIconLabel: 'notificationDetailsIconLabel',
   notificationDetailsSubheader: 'onboarding3Subheader',
   shareDiagnosisButton: 'onboarding4Button',
   shareDiagnosisHeader: 'onboarding4Header',
+  shareDiagnosisIconLabel: 'shareDiagnosisIconLabel',
   shareDiagnosisSubheader: 'onboarding4Subheader',
   settingsLoggingActive: 'settingsLoggingActive)',
   settingsLoggingInactive: 'settingsLoggingInactive',
@@ -72,5 +75,4 @@ export const testStrategyAssets: StrategyAssets = {
   notificationDetailsIcon: '',
   shareDiagnosisBackground: Images.BlueGradientBackground,
   shareDiagnosisIcon: '',
-  exportPublishIcon: '',
 };

@@ -29,6 +29,7 @@ export type Screen =
   | 'MoreInfo'
   | 'ENDebugMenu'
   | 'ENLocalDiagnosisKey'
+  | 'ExposureListDebugScreen'
   | 'Settings'
   | 'About'
   | 'Licenses'
@@ -73,6 +74,7 @@ export const Screens: { [key in Screen]: Screen } = {
   MoreInfo: 'MoreInfo',
   ENDebugMenu: 'ENDebugMenu',
   ENLocalDiagnosisKey: 'ENLocalDiagnosisKey',
+  ExposureListDebugScreen: 'ExposureListDebugScreen',
   Settings: 'Settings',
   About: 'About',
   Licenses: 'Licenses',

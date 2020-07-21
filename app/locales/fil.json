@@ -11,6 +11,8 @@
     "next": "Susunod"
   },
   "export": {
+    "code_input_button_cancel": "Magkansela",
+    "consent_button_cancel": "Magkansela",
     "exit_warning_cancel": "Magkansela"
   },
   "home": {

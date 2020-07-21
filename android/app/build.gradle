@@ -159,8 +159,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 304
-        versionName "ALPHA.1.0.0.b8"
+        versionCode 306
+        versionName "1.2.0b2"
     }
     splits {
         abi {
@@ -252,7 +252,7 @@ dependencies {
     btImplementation 'com.android.volley:volley:1.1.1'
     btImplementation 'commons-io:commons-io:2.5'
     // Google EN library not available via Maven
-    btImplementation project(path: ':play-services-nearby-18.0.2-eap')
+    btImplementation project(path: ':play-services-nearby-18.0.3-eap')
     // Stetho for debugging Realm
     btImplementation 'com.facebook.stetho:stetho:1.5.0'
     btImplementation 'com.uphyca:stetho_realm:2.3.0'

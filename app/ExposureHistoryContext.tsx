@@ -1,4 +1,15 @@
-import React, { createContext, useState, useEffect } from 'react';
+import { Dayjs } from 'dayjs';
+
+import { posixToDayjs } from './helpers/dateTimeUtils';
+import { fetchLastExposureDetectionDate } from './bt/nativeModule';
+
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  FunctionComponent,
+  useCallback,
+} from 'react';
 
 import {
   blankExposureHistory,
@@ -17,14 +28,18 @@ interface ExposureHistoryState {
   userHasNewExposure: boolean;
   observeExposures: () => void;
   resetExposures: () => void;
+  getCurrentExposures: () => void;
+  lastExposureDetectionDate: Dayjs | null;
 }
 
 const initialState = {
   exposureHistory: [],
   hasBeenExposed: false,
   userHasNewExposure: true,
-  observeExposures: () => {},
-  resetExposures: () => {},
+  observeExposures: (): void => {},
+  resetExposures: (): void => {},
+  getCurrentExposures: (): void => {},
+  lastExposureDetectionDate: null,
 };
 
 const ExposureHistoryContext = createContext<ExposureHistoryState>(
@@ -41,10 +56,10 @@ export interface ExposureEventsStrategy {
     exposureInfo: ExposureInfo,
     calendarOptions: ExposureCalendarOptions,
   ) => ExposureHistory;
+  getCurrentExposures: (cb: (exposureInfo: ExposureInfo) => void) => void;
 }
 
 interface ExposureHistoryProps {
-  children: JSX.Element;
   exposureEventsStrategy: ExposureEventsStrategy;
 }
 
@@ -58,10 +73,10 @@ const blankHistoryConfig: ExposureCalendarOptions = {
 const blankHistory = blankExposureHistory(blankHistoryConfig);
 const mockedHistory = blankHistory.map(mockPossible);
 
-const ExposureHistoryProvider = ({
+const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
   children,
   exposureEventsStrategy,
-}: ExposureHistoryProps): JSX.Element => {
+}) => {
   const {
     exposureInfoSubscription,
     toExposureHistory,
@@ -78,6 +93,28 @@ const ExposureHistoryProvider = ({
   );
 
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(false);
+  const [
+    lastExposureDetectionDate,
+    setLastExposureDetectionDate,
+  ] = useState<Dayjs | null>(null);
+
+  const getLastExposureDetectionDate = useCallback(() => {
+    fetchLastExposureDetectionDate().then((exposureDetectionDate) => {
+      exposureDetectionDate &&
+        setLastExposureDetectionDate(posixToDayjs(exposureDetectionDate));
+    });
+  }, []);
+
+  const getCurrentExposures = useCallback(() => {
+    const cb = (exposureInfo: ExposureInfo) => {
+      const exposureHistory = toExposureHistory(
+        exposureInfo,
+        blankHistoryConfig,
+      );
+      setExposureHistory(exposureHistory);
+    };
+    exposureEventsStrategy.getCurrentExposures(cb);
+  }, [toExposureHistory, exposureEventsStrategy]);
 
   useEffect(() => {
     // in theory, useSelector should solve this, but the calendar screen never gets unmounted
@@ -90,12 +127,23 @@ const ExposureHistoryProvider = ({
         const exposureHistory = mockExposureNotification
           ? mockedHistory
           : toExposureHistory(exposureInfo, blankHistoryConfig);
+        getLastExposureDetectionDate();
         setExposureHistory(exposureHistory);
       },
     );
+    getLastExposureDetectionDate();
 
     return subscription.remove;
-  }, [exposureInfoSubscription, toExposureHistory, mockExposureNotification]);
+  }, [
+    exposureInfoSubscription,
+    toExposureHistory,
+    mockExposureNotification,
+    getLastExposureDetectionDate,
+  ]);
+
+  useEffect(() => {
+    getCurrentExposures();
+  }, [toExposureHistory, getCurrentExposures]);
 
   const observeExposures = () => {
     setUserHasNewExposure(false);
@@ -114,11 +162,13 @@ const ExposureHistoryProvider = ({
         userHasNewExposure,
         observeExposures,
         resetExposures,
+        getCurrentExposures,
+        lastExposureDetectionDate,
       }}>
       {children}
     </ExposureHistoryContext.Provider>
   );
 };
 
-export { ExposureHistoryProvider };
+export { ExposureHistoryProvider, initialState };
 export default ExposureHistoryContext;

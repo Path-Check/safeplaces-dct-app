@@ -64,6 +64,7 @@
     "ok": "Ok",
     "something_went_wrong": "Something went wrong",
     "start": "Start",
+    "settings": "Open Settings",
     "submit": "Submit"
   },
   "export": {
@@ -125,9 +126,11 @@
       "what_next": "What should I do next?"
     },
     "no_known": {
+      "title": "No reports received at this time",
       "explanation": "Your exposure history will be updated if this changes in the future."
     },
     "no_data": {
+      "title": "No information available for this day",
       "explanation": "This happens when location access is disabled for your PathCheck app or the date selected was more than 14 days ago. No exposure notifications will be available for this day."
     }
   },
@@ -139,6 +142,7 @@
     "legend": {
       "exposure_likely": "Exposure very likely",
       "exposure_possible": "Exposure possible",
+      "new_exposure": "New possible exposure",
       "no_exposure_detected": "No exposure detected",
       "today": "Today"
     },
@@ -152,10 +156,10 @@
       "how_does_this_work_para": "Whenever location access is enabled for your PathCheck app, the app saves the following information about each place you take your phone: the GPS coordinates, date, and times your phone was at that location.\n\nThis information is stored in an encrypted list within your phone for 14 days. If one or more of your local or regional Health Departments has partnered with PathCheck, and you have elected to receive exposure notifications from them in your PathCheck app, they can send your app encrypted collections of anonymized GPS coordinates, dates, and times gathered from their community members who later received positive diagnoses and chose to share.\n\nYour phone then locally (within your app) compares your encrypted location history to the data shared by your selected local Health Departments to inform you about possible exposures."
     },
     "next_steps": {
-      "ha_self_assessment": "{{healthAuthority}} recommends you take a self-assessment",
-      "possible_crossed_paths": "It is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.",
+      "ha_self_assessment": "Follow the advice from {{healthAuthorityName}} about what to do next.",
+      "possible_crossed_paths": "Based on your location history, it is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.",
       "possible_infection_precaution": "This does not mean that you are infected, but you should take precautions anyway. People who don't exhibit symptoms can sometimes still be contagious.",
-      "button_text": "Take Self Assessment"
+      "button_text": "See Recommendations"
     }
   },
   "import": {
@@ -201,7 +205,9 @@
       "all_services_on_header": "PathCheck",
       "all_services_on_subheader": "Exposure notifications are on",
       "unavailable_header": "Exposure history notifications are not yet available",
-      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck"
+      "unavailable_subheader": "Your phone is not currently covered by Healthcare Authorities using PathCheck",
+      "unauthorized_error_title": "Please Update Settings",
+      "unauthorized_error_message": "You must authorize COVID-19 Exposure Logging in the Settings app to continue."
     },
     "shared": {
       "notifications_off_header": "Notifications Disabled",
@@ -222,6 +228,7 @@
     "about_header_bluetooth": "PathCheck BT",
     "about_header_location": "PathCheck GPS",
     "about_para": "The PathCheck app is made available by the PathCheck Foundation, a non-profit organization that is committed to providing free software to help stop the spread of COVID-19 and protect the privacy of individuals. \n\nFor more information, visit",
+    "assessment_icon": "Clipboard icon with checkmark inside",
     "authorities_add_button_label": "Add Healthcare Authority",
     "authorities_add_url": "Add authority via URL",
     "authorities_desc": "Select one or more Healthcare Authorities in your area for information about COVID-19 near you, if available. \n\nEither select a name from the global registry or enter a web address provided by a Healthcare Authority that has implemented PathCheck.",
@@ -240,14 +247,24 @@
     "authorities_removal_alert_proceed": "Proceed",
     "authorities_removal_alert_title": "Remove Authority",
     "auto_subscribe_checkbox": "Enable auto subscription",
+    "bell_icon": "Bell icon",
+    "bluetooth_icon": "Searching bluetooth device icon",
+    "calendar_icon": "Calendar icon",
+    "check_icon": "Checkmark icon",
     "choose_provider_subtitle": "Select a Healthcare Authority to learn about COVID-19 in your area, where available",
     "choose_provider_title": "Your Healthcare Authority",
+    "close_icon": "Close icon",
     "default_news_site_name": "PathCheck News",
+    "doctors_image": "Illustration of a doctor and nurse wearing masks",
     "enter_authority_url": "Enter or paste URL",
     "event_history_subtitle": "Understand your personal exposure based on information shared by health authorities.",
     "event_history_title": "Exposure history",
+    "exposure_icon": "Circle icon with eight dots surrounding it",
     "filter_authorities_by_gps_history": "Filter by your locations",
+    "heart_icon": "Heart icon with cross inside",
+    "home_icon": "Home icon",
     "import_success": "Imported successfully",
+    "language_icon": "Outlined icon of a globe",
     "latest_news": "Latest News",
     "launch_access_bluetooth": "Allow Contact Tracing",
     "launch_access_location": "Location access",
@@ -300,14 +317,18 @@
     "logging_active_location": "Location Active",
     "logging_inactive_bluetooth": "Exposure Notifications Inactive",
     "logging_inactive_location": "Location Inactive",
+    "more_icon": "Icon of three horizontal dots",
     "news_subtitle": "Find the latest updates from PathCheck and your local Healthcare Authorities, where available",
     "news_title": "Latest News",
     "no_data": "No data",
+    "pin_icon": "Pin point icon",
     "privacy_policy": "Privacy Policy",
     "push_at_risk_message": "You have crossed paths with a COVID-19 patient",
     "push_at_risk_title": "You may be at risk",
+    "question_icon": "Question mark icon",
     "see_exposure_history": "See exposure history",
     "settings_title": "Dashboard",
+    "shield_icon": "Shield icon with cross inside",
     "skip_this_step": "Skip this step",
     "team": "Team",
     "team_para": "Our team is composed of a consortium of epidemiologists, engineers, data scientists, digital privacy evangelists, professors and researchers from reputable institutions, including: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young and Link Ventures.",

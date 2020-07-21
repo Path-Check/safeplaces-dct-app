@@ -16,6 +16,7 @@ const PersonalPrivacy: FunctionComponent = () => {
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.personalPrivacyBackground,
     icon: StrategyAssets.personalPrivacyIcon,
+    iconLabel: StrategyCopy.personalPrivacyIconLabel,
     header: StrategyCopy.personalPrivacyHeader,
     body: StrategyCopy.personalPrivacySubheader,
     primaryButtonLabel: t('label.launch_next'),

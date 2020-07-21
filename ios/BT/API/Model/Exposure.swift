@@ -4,11 +4,11 @@ import RealmSwift
 
 @objcMembers
 class Exposure: Object, Codable {
-  var id: String!
-  var date: Int!
-  var duration: TimeInterval!
-  var totalRiskScore: ENRiskScore!
-  var transmissionRiskLevel: ENRiskLevel!
+  @objc dynamic var id: String = .default
+  @objc dynamic var date: Int = 0
+  @objc dynamic var duration: Double = 0.0
+  @objc dynamic var totalRiskScore: Int = 0
+  @objc dynamic var transmissionRiskLevel: Int = 0
 
   init(id: String,
        date: Int,
@@ -18,8 +18,8 @@ class Exposure: Object, Codable {
     self.id = id
     self.date = date
     self.duration = duration
-    self.totalRiskScore = totalRiskScore
-    self.transmissionRiskLevel = transmissionRiskLevel
+    self.totalRiskScore = Int(totalRiskScore)
+    self.transmissionRiskLevel = Int(transmissionRiskLevel)
     super.init()
   }
 
@@ -29,6 +29,16 @@ class Exposure: Object, Codable {
 
   override class func primaryKey() -> String? {
     "id"
+  }
+
+  var asDictionary : [String: Any] {
+    return [
+      "id": id,
+      "date": date,
+      "duration": duration,
+      "totalRiskScore": totalRiskScore,
+      "transmissionRiskLevel": transmissionRiskLevel
+    ]
   }
 
 }
