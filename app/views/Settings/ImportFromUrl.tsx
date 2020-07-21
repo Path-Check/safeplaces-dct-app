@@ -29,15 +29,15 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
   // TODO: add logic to filter mocked data. We should agree on flag name
 
   const importData = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       // Data must be an array of objects!
       const mockData = await importLocationsApi(url);
       await NativeModules.SecureStorageManager.importMockLocations(mockData);
-      setLoading(false)
+      setLoading(false);
       return navigation.goBack();
     } catch (e) {
-      setLoading(false)
+      setLoading(false);
       return Alert.alert(t('import.mockData.invalid_url'), e.message);
     }
   };
