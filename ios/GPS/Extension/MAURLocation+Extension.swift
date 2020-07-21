@@ -22,7 +22,7 @@ extension MAURLocation {
     }).reduce(into: Set<String>(), { (hashes, currentLocation) in
       hashes.insert(Geohash.encode(latitude: currentLocation.0, longitude: currentLocation.1, length: 8))
     }).reduce(into: [String](), { (hashes, hash) in
-      let timeWindow = timeWindows(interval: Double(60 * 5 * 1000))
+      let timeWindow = timeWindows(interval: 60 * 5 * 1000)
       hashes.append("\(hash)\(timeWindow.early)")
       hashes.append("\(hash)\(timeWindow.late)")
     })
@@ -55,13 +55,15 @@ extension MAURLocation {
   }
 
   /// Generates rounded time windows for interval before and after timestamp
-  /// https://pathcheck.atlassian.net/wiki/x/CoDXB
   /// - Parameters:
-  ///   - interval: location storage interval in seconds
-  public func timeWindows(interval: TimeInterval) -> (early: Int, late: Int) {
-    let time1 = Int(((time.timeIntervalSince1970 - interval / 2) / interval).rounded(.down) * interval)
-    let time2 = Int(((time.timeIntervalSince1970 + interval / 2) / interval).rounded(.down) * interval)
-    return (time1, time2)
+  ///   - interval: location storage interval in milliseconds
+  public func timeWindows(interval: Int64) -> (early: Int64, late: Int64) {
+    let ms = Int64(time.timeIntervalSince1970 * 1000.0)
+
+    let early = (ms - interval / 2) / interval * interval
+    let late = (ms + interval / 2) / interval * interval
+
+    return (early, late)
   }
 
   /// Apply scrypt hash algorithm on a String
