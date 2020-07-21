@@ -24,17 +24,20 @@ type ImportFromUrlProps = {
 const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // TODO: add logic to filter mocked data. We should agree on flag name
 
   const importData = async () => {
+    setLoading(true)
     try {
       // Data must be an array of objects!
       const mockData = await importLocationsApi(url);
-
       await NativeModules.SecureStorageManager.importMockLocations(mockData);
+      setLoading(false)
       return navigation.goBack();
     } catch (e) {
+      setLoading(false)
       return Alert.alert(t('import.mockData.invalid_url'), e.message);
     }
   };
@@ -65,6 +68,7 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
         />
         <Button
           disabled={!url}
+          loading={loading}
           invert
           label={t('common.add')}
           onPress={importData}
