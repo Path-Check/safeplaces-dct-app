@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   Alert,
+  NativeModules,
+  Platform,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -74,6 +76,8 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
   } = useTranslation();
   const languageName = getLocalNames()[localeCode];
   useStatusBarEffect('light-content');
+  // TODO: remove check when android logic for clearing realm storage gets implemented
+  const isiOS = Platform.OS === 'ios';
 
   const navigateTo = (screen: string) => {
     return () => navigation.navigate(screen);
@@ -125,12 +129,17 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         },
         {
           text: t('location.data.delete_warning_confirm'),
-          onPress: () => {},
+          onPress: onConfirmPress,
           style: 'destructive',
         },
       ],
       { cancelable: false },
     );
+  };
+
+  const onConfirmPress = async () => {
+    await NativeModules.SecureStorageManager.removeAllLocations();
+    return Alert.alert('Success', 'Location data has been deleted');
   };
 
   return (
@@ -185,13 +194,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-        <View style={styles.section}>
-          <SettingsListItem
-            label={t('screen_titles.delete_location_history')}
-            onPress={handleOnPressDeleteLocationHistory}
-            textColor={Colors.red}
-          />
-        </View>
+        {isiOS ? (
+          <View style={styles.section}>
+            <SettingsListItem
+              label={t('screen_titles.delete_location_history')}
+              onPress={handleOnPressDeleteLocationHistory}
+              textColor={Colors.red}
+            />
+          </View>
+        ) : null}
 
         {!isGPS ? (
           <View style={styles.section}>
