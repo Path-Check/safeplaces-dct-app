@@ -4,10 +4,7 @@ on:
   push:
     branches:
       - develop
-   pull_request:
-    branches:
-      - develop
- 
+
 jobs:
   build_staging_android_gps:
     runs-on: ubuntu-latest
