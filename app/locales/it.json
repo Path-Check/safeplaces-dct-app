@@ -67,7 +67,7 @@
     "code_input_body": "Il rappresentante di {{name}} fornirà un codice di verifica al telefono per collegare i tuoi dati con {{name}}.",
     "code_input_body_bluetooth": "Digita il codice di verifica fornito da {{name}} con il risultato del test per verificare la diagnosi.",
     "code_input_button_cancel": "Annulla",
-    "code_input_error": "Prova un codice diverso",
+    "code_input_error": "Verificare che il codice fornito dall'autorità sanitaria sia stato inserito correttamente",
     "code_input_title": "Inserisci il tuo codice di verifica",
     "code_input_title_bluetooth": "Verifica la tua diagnosi",
     "complete_body": "Condividendo, in modo anonimo, il tuo stato di salute e la cronologia delle posizioni con la tua comunità, sei attivo nel combattere la diffusione del COVID-19.",
@@ -81,7 +81,9 @@
     "consent_button_title": "Capisco e acconsento",
     "error": {
       "invalid_code": "Prova un codice diverso",
-      "unknown_code_verification_error": "Prova un codice diverso"
+      "unknown_code_verification_error": "Prova un codice diverso",
+      "network_error_title": "Problema di rete",
+      "network_error_message": "Controlla la tua connettività Internet"
     },
     "exit_warning_body": "Sarà necessario riavviare questo processo",
     "exit_warning_cancel": "Annulla",

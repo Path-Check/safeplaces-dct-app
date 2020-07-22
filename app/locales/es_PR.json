@@ -72,7 +72,7 @@
     "code_input_body_bluetooth": "Escriba el código de verificación proporcionado por {{name}} con el resultado de su prueba para verificar su diagnóstico.",
     "code_input_button_cancel": "Cancelar",
     "code_input_button_submit": "Enviar",
-    "code_input_error": "Intenta con un código diferente",
+    "code_input_error": "Verifique que el código proporcionado por su Autoridad de Salud se haya ingresado correctamente",
     "code_input_title": "Ingrese su código de verificación",
     "code_input_title_bluetooth": "Verifique su diagnóstico",
     "complete_body": "Al compartir su estado de salud y su historial de ubicaciones de forma anónima con su comunidad, está siendo proactivo en la lucha contra la propagación de COVID-19.",
@@ -87,7 +87,9 @@
     "error": {
       "invalid_code": "Intenta con un código diferente",
       "unknown_code_verification_error": "Intenta con un código diferente",
-      "verification_code_used": "Verificación de que el código ha sido ya usado"
+      "verification_code_used": "Verificación de que el código ha sido ya usado",
+      "network_error_title": "Problema de red",
+      "network_error_message": "Por favor revise su conectividad a internet"
     },
     "exit_warning_body": "Tendrá que reiniciar este proceso",
     "exit_warning_cancel": "Cancelar",

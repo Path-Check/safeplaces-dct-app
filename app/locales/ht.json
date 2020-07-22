@@ -67,7 +67,7 @@
     "code_input_body": "Reprezantan ki soti nan {{name}} ap bay yon kòd verifikasyon sou telefòn lan pou li konekte done ou yo ak {{name}} .",
     "code_input_body_bluetooth": "Tape kòd verifikasyon {{name}} ki bay rezilta tès la pou verifye dyagnostik ou.",
     "code_input_button_cancel": "Anile",
-    "code_input_error": "Eseye yon kòd diferan",
+    "code_input_error": "Tanpri tcheke kòd otorite sante ou bay yo kòrèkteman",
     "code_input_title": "Antre kòd verifikasyon ou",
     "code_input_title_bluetooth": "Verifye dyagnostik ou an",
     "complete_body": "Lè w pataje estati sante ou ak lis lokalizasyon ou anoniman ak kominote ou, ou patisite nan lit pou evite COVID-19 pwopaje.",
@@ -81,7 +81,9 @@
     "consent_button_title": "Mwen konprann epi mwen konsanti",
     "error": {
       "invalid_code": "Eseye yon kòd diferan",
-      "unknown_code_verification_error": "Eseye yon kòd diferan"
+      "unknown_code_verification_error": "Eseye yon kòd diferan",
+      "network_error_title": "Pwoblèm rezo a",
+      "network_error_message": "Tanpri tcheke koneksyon entènèt ou an"
     },
     "exit_warning_body": "Ou pral bezwen rekòmanse pwosesis sa a",
     "exit_warning_cancel": "Anile",

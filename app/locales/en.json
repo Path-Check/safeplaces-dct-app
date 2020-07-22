@@ -71,11 +71,13 @@
     "error": {
       "verification_code_used": "Verification code has already been used",
       "invalid_code": "Try a different code",
-      "unknown_code_verification_error": "Try a different code"
+      "unknown_code_verification_error": "Try a different code",
+      "network_error_title": "Network Issue",
+      "network_error_message": "Please check your internet connectivity"
     },
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
     "code_input_body_bluetooth": "Enter your verification code",
-    "code_input_error": "Try a different code",
+    "code_input_error": "Please check the code provided by your Health Authority has been entered correctly",
     "code_input_title": "Enter your verification code",
     "code_input_title_bluetooth": "Verify your diagnosis",
     "code_input_button_submit": "Submit",

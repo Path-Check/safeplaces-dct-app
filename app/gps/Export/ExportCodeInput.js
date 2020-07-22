@@ -152,7 +152,11 @@ export const ExportSelectHA = ({ route, navigation }) => {
       }
       setIsCheckingCode(false);
     } catch (e) {
-      Alert.alert(t('common.something_went_wrong'), e.message);
+      if (e.message === "Network request failed") {
+        Alert.alert(t('export.error.network_error_title'),t('export.error.network_error_message'));
+      } else {
+        Alert.alert(t('common.something_went_wrong'), e.message);
+      }
       setIsCheckingCode(false);
     }
   };

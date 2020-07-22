@@ -72,7 +72,7 @@
     "code_input_body_bluetooth": "Itala ang iyong verification code",
     "code_input_button_cancel": "Kanselahin",
     "code_input_button_submit": "Isumite",
-    "code_input_error": "Subukan ang ibang code",
+    "code_input_error": "Mangyaring suriin ang code na ibinigay ng iyong Health Authority ay naipasok nang wasto",
     "code_input_title": "Itala ang iyong verification code",
     "code_input_title_bluetooth": "Beripikahin ang iyong diagnosis o pagsusuri",
     "complete_body": "Sa pamamagitan ng anonimong pagbabahagi sa iyong kumunidad ng katayuan ng iyong kalusugan at kasaysayan ng lokasyon ng mga lugar mong binisita, ikaw ay nagiging maagap sa labanan ng pagkalat ng COVID-19.",
@@ -87,7 +87,9 @@
     "error": {
       "invalid_code": "Subukan ang ibang code",
       "unknown_code_verification_error": "Subukan ang ibang code",
-      "verification_code_used": "Nagamit na ang verification code"
+      "verification_code_used": "Nagamit na ang verification code",
+      "network_error_title": "Isyu ng Network",
+      "network_error_message": "Mangyaring suriin ang iyong koneksyon sa internet"
     },
     "exit_warning_body": "Kailangan mong umpisahan muli ang prosesong ito",
     "exit_warning_cancel": "Kanselahin",

@@ -67,7 +67,7 @@
     "code_input_body": "Zástupca z {{name}} poskytne overovací kód prostredníctvom telefónu na prepojenie dát s {{name}}.",
     "code_input_body_bluetooth": "Zadaj verifikačný kód, ktorý ti poskytol {{name}} s výsledkami testu na overenie tvojej diagnózy.",
     "code_input_button_cancel": "Ukončiť",
-    "code_input_error": "Skúsiť iný kód",
+    "code_input_error": "Skontrolujte, či bol správne zadaný kód, ktorý vám poskytol váš zdravotnícky úrad",
     "code_input_title": "Zadať overovací kód",
     "code_input_title_bluetooth": "Over si svoju diagnózu",
     "complete_body": "Zdieľaním svojho zdravotného stavu a histórie polohy anonymne vo svojej komunite, si proaktívny/a v boji proti šíreniu COVID-19.",
@@ -81,7 +81,9 @@
     "consent_button_title": "Rozumiem a súhlasím",
     "error": {
       "invalid_code": "Skúsiť iný kód",
-      "unknown_code_verification_error": "Skúsiť iný kód"
+      "unknown_code_verification_error": "Skúsiť iný kód",
+      "network_error_title": "Problém so sieťou",
+      "network_error_message": "Skontrolujte pripojenie k internetu"
     },
     "exit_warning_body": "Budeš musieť reštartovať tento proces",
     "exit_warning_cancel": "Ukončiť",
