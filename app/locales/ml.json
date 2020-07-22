@@ -22,6 +22,8 @@
     "ok": "ശരി"
   },
   "export": {
+    "code_input_button_cancel": "റദ്ദാക്കുക",
+    "consent_button_cancel": "റദ്ദാക്കുക",
     "exit_warning_cancel": "റദ്ദാക്കുക"
   },
   "history": {

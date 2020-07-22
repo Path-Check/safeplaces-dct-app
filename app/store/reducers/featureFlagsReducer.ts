@@ -5,10 +5,13 @@ import toggleAllowFeatureFlagsEnabledAction from '../actions/featureFlags/toggle
 import toggleFeatureFlagAction from '../actions/featureFlags/toggleFeatureFlagAction';
 
 const AllFlagsOff: Record<FeatureFlagOption, boolean> = {
-  [FeatureFlagOption.GOOGLE_IMPORT]: false,
+  [FeatureFlagOption.IMPORT_LOCATIONS_GOOGLE]: false,
+  [FeatureFlagOption.IMPORT_LOCATIONS_JSON_URL]: false,
   [FeatureFlagOption.CUSTOM_URL]: false,
   [FeatureFlagOption.DOWNLOAD_LOCALLY]: false,
   [FeatureFlagOption.DEV_LANGUAGES]: false,
+  [FeatureFlagOption.BYPASS_EXPORT_API]: false,
+  [FeatureFlagOption.MOCK_EXPOSURE]: false,
 };
 
 const initialState = {

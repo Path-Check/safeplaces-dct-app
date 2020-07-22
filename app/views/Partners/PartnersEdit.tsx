@@ -20,7 +20,7 @@ import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import FeatureFlag from '../../components/FeatureFlag';
 
 import { Icons } from '../../assets';
-import { Colors, Buttons, Spacing } from '../../styles';
+import { Colors, Spacing } from '../../styles';
 
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
@@ -122,9 +122,9 @@ const PartnersScreen = ({
       <FeatureFlag flag={FeatureFlagOption.CUSTOM_URL}>
         <View style={{ padding: Spacing.large }}>
           <Button
+            invert
             label={t('authorities.custom_url')}
             onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
-            style={styles.button}
           />
         </View>
       </FeatureFlag>
@@ -138,9 +138,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: Spacing.xLarge,
-  },
-  button: {
-    ...Buttons.largeBlue,
   },
 });
 export default PartnersScreen;

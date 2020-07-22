@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
-import { render, cleanup } from '@testing-library/react-native';
+import { render, cleanup } from './test-utils/redux-provider';
 import '@testing-library/jest-native/extend-expect';
 
 import {
@@ -16,6 +16,7 @@ import { factories } from './factories';
 import { Images } from '../app/assets/images/';
 
 import { TracingStrategy } from './tracingStrategy';
+import { FeatureFlagOption } from './store/types';
 
 afterEach(cleanup);
 
@@ -48,6 +49,11 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
     <TracingStrategyProvider strategy={strategy}>
       <TestTracingStrategyConsumer />
     </TracingStrategyProvider>,
+    {
+      initialState: {
+        featureFlags: { flags: { [FeatureFlagOption.MOCK_EXPOSURE]: false } },
+      },
+    },
   );
 };
 
