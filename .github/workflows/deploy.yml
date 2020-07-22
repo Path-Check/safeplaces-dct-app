@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - gps-release
-     paths-ignore:
+    paths-ignore:
       - 'package.json'
       - 'CHANGELOG.md'
 

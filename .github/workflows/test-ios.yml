@@ -51,7 +51,7 @@ jobs:
       - run: pod install --repo-update
         working-directory: ./ios
 
-       - run: |
+      - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Development \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
