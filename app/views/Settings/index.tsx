@@ -93,8 +93,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         style={[styles.listItem, style]}
         onPress={onPress}>
         <View>
-          <Typography
-            style={{ ...styles.listItemText, ...{ color: textColor } }}>
+          <Typography style={{ ...styles.listItemText, color: textColor }}>
             {label}
           </Typography>
           {description ? (
@@ -162,6 +161,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           <SettingsListItem
             label={t('screen_titles.delete_location_history')}
             onPress={handleOnPressDeleteLocationHistory}
+            style={styles.lastListItem}
             textColor={Colors.red}
           />
         </View>
