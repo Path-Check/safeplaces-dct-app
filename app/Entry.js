@@ -21,7 +21,6 @@ import PartnersCustomUrlScreen from './views/Partners/PartnersCustomUrlScreen';
 import { LicensesScreen } from './views/Licenses';
 import { ExportStart, ExportLocally } from './gps/Export';
 
-import NotificationPermissionsBT from './bt/NotificationPermissionsBT';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import NextSteps from './views/ExposureHistory/NextSteps';
 import MoreInfo from './views/ExposureHistory/MoreInfo';
@@ -231,10 +230,6 @@ const OnboardingStack = () => (
     <Stack.Screen
       name={Screens.OnboardingLocationPermissions}
       component={LocationsPermissions}
-    />
-    <Stack.Screen
-      name={Screens.NotificationPermissionsBT}
-      component={NotificationPermissionsBT}
     />
     <Stack.Screen
       name={Screens.EnableExposureNotifications}
