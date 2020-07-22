@@ -11,6 +11,8 @@
     "next": "Suivant"
   },
   "export": {
+    "code_input_button_cancel": "Annuler",
+    "consent_button_cancel": "Annuler",
     "exit_warning_cancel": "Annuler"
   },
   "home": {

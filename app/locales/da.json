@@ -13,6 +13,7 @@
     "agree_option_disagree": "Jeg er ikke enig",
     "agree_question_description": "Screeningen hjælper dig med at tage beslutninger om at søge passende medicinsk behandling. Den er ikke beregnet til diagnose eller behandling af sygdom eller andre tilstande.",
     "agree_question_text": "Formål med denne COVID-19-screening",
+    "agreement_description": "Screeningen hjælper dig med at tage beslutninger om at søge passende medicinsk behandling. Den er ikke beregnet til diagnose eller behandling af sygdom eller andre tilstande.",
     "cancel": "Annullér",
     "caregiver_cta": "Næste",
     "complete_cta": "Udført",
@@ -29,6 +30,8 @@
     "ok": "Ok"
   },
   "export": {
+    "code_input_button_cancel": "Annullér",
+    "consent_button_cancel": "Annullér",
     "exit_warning_cancel": "Annullér"
   },
   "history": {

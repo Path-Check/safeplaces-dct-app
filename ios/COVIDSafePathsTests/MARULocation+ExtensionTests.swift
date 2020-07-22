@@ -10,7 +10,7 @@ import XCTest
 class MAURLocation_ExtensionTests: XCTestCase {
 
   func testTimeWindow() {
-    let date = Date(timeIntervalSince1970: 1586865792000)
+    let date = Date(timeIntervalSince1970: 1586865792)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
     let windows = backgroundLocation.timeWindows(interval: 60 * 5 * 1000)
     XCTAssertEqual(windows.early, 1586865600000)
@@ -18,7 +18,7 @@ class MAURLocation_ExtensionTests: XCTestCase {
   }
 
   func testScryptHashSpec() {
-    let date = Date(timeIntervalSince1970: 1589117939000)
+    let date = Date(timeIntervalSince1970: 1589117939)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
     let scryptHashes = backgroundLocation.geoHashes
 
@@ -44,7 +44,7 @@ class MAURLocation_ExtensionTests: XCTestCase {
   }
 
   func testValidScrypt() {
-    let date = Date(timeIntervalSince1970: 1589117939000)
+    let date = Date(timeIntervalSince1970: 1589117939)
     let backgroundLocation = TestMAURLocation(latitude: 41.24060321, longitude: 14.91328448, date: date)
     let scryptHashes = backgroundLocation.scryptHashes
     let expectedHashes = [

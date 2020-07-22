@@ -18,6 +18,10 @@ import {
   ExposureInfo,
 } from './exposureHistory';
 
+import { useSelector } from 'react-redux';
+import { RootState, FeatureFlagOption } from './store/types';
+import { mockPossible } from './factories/exposureDatum';
+
 interface ExposureHistoryState {
   exposureHistory: ExposureHistory;
   hasBeenExposed: boolean;
@@ -67,6 +71,7 @@ const blankHistoryConfig: ExposureCalendarOptions = {
 };
 
 const blankHistory = blankExposureHistory(blankHistoryConfig);
+const mockedHistory = blankHistory.map(mockPossible);
 
 const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
   children,
@@ -76,9 +81,17 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
     exposureInfoSubscription,
     toExposureHistory,
   } = exposureEventsStrategy;
-  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
-    blankHistory,
+
+  const featureFlags = useSelector(
+    (state: RootState) => state.featureFlags?.flags || {},
   );
+  const mockExposureNotification = !!featureFlags[
+    FeatureFlagOption.MOCK_EXPOSURE
+  ];
+  const [exposureHistory, setExposureHistory] = useState<ExposureHistory>(
+    mockExposureNotification ? mockedHistory : blankHistory,
+  );
+
   const [userHasNewExposure, setUserHasNewExposure] = useState<boolean>(false);
   const [
     lastExposureDetectionDate,
@@ -104,14 +117,17 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
   }, [toExposureHistory, exposureEventsStrategy]);
 
   useEffect(() => {
+    // in theory, useSelector should solve this, but the calendar screen never gets unmounted
+    setExposureHistory(mockExposureNotification ? mockedHistory : blankHistory);
+  }, [mockExposureNotification]);
+
+  useEffect(() => {
     const subscription = exposureInfoSubscription(
       (exposureInfo: ExposureInfo) => {
-        const exposureHistory = toExposureHistory(
-          exposureInfo,
-          blankHistoryConfig,
-        );
+        const exposureHistory = mockExposureNotification
+          ? mockedHistory
+          : toExposureHistory(exposureInfo, blankHistoryConfig);
         getLastExposureDetectionDate();
-
         setExposureHistory(exposureHistory);
       },
     );
@@ -121,6 +137,7 @@ const ExposureHistoryProvider: FunctionComponent<ExposureHistoryProps> = ({
   }, [
     exposureInfoSubscription,
     toExposureHistory,
+    mockExposureNotification,
     getLastExposureDetectionDate,
   ]);
 

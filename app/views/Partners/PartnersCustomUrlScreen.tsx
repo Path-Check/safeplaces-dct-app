@@ -71,7 +71,7 @@ const PartnersScreen = ({
             },
           ]}
         />
-        <Button label={t('common.add')} onPress={searchForUrl} />
+        <Button invert label={t('common.add')} onPress={searchForUrl} />
       </View>
     </NavigationBarWrapper>
   );
