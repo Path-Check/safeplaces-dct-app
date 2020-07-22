@@ -8597,8 +8597,8 @@ test-exclude@^6.0.0:
 
 text-encoding-polyfill@^0.6.7:
   version "0.6.7"
-  resolved "https://indigoag.jfrog.io/indigoag/api/npm/npm/text-encoding-polyfill/-/text-encoding-polyfill-0.6.7.tgz#4d27de0153e4c86eb2631ffd74c2f3f57969a9ec"
-  integrity sha1-TSfeAVPkyG6yYx/9dMLz9Xlpqew=
+  resolved "https://registry.yarnpkg.com/text-encoding-polyfill/-/text-encoding-polyfill-0.6.7.tgz#4d27de0153e4c86eb2631ffd74c2f3f57969a9ec"
+  integrity sha512-/DZ1XJqhbqRkCop6s9ZFu8JrFRwmVuHg4quIRm+ziFkR3N3ec6ck6yBvJ1GYeEQZhLVwRW0rZE+C3SSJpy0RTg==
 
 text-hex@0.0.x:
   version "0.0.0"
