@@ -1,4 +1,3 @@
-import 'text-encoding-polyfill';
 import Joi from '@hapi/joi';
 const MockData = Joi.array()
   .items(
