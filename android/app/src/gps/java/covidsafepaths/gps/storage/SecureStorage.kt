@@ -49,4 +49,16 @@ object SecureStorage {
       secureStorage.getLocations(promise)
     }).start()
   }
+
+  fun removeAllLocations(promise: Promise) {
+    Thread(Runnable {
+      val ready = readyCountdown.await(10, SECONDS)
+      if (!ready) {
+        promise.reject(java.lang.Exception("Failed to get Realm instance with encryption"))
+        return@Runnable
+      }
+
+      secureStorage.removeAllLocations(promise)
+    }).start()
+  }
 }
