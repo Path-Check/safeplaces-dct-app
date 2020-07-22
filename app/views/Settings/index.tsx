@@ -128,7 +128,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
 
   const onConfirmPress = async () => {
     await NativeModules.SecureStorageManager.removeAllLocations();
-    return Alert.alert('Success', 'Location data has been deleted');
+    return;
   };
 
   return (
@@ -158,13 +158,13 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-          <View style={styles.section}>
-            <SettingsListItem
-              label={t('screen_titles.delete_location_history')}
-              onPress={handleOnPressDeleteLocationHistory}
-              textColor={Colors.red}
-            />
-          </View>
+        <View style={styles.section}>
+          <SettingsListItem
+            label={t('screen_titles.delete_location_history')}
+            onPress={handleOnPressDeleteLocationHistory}
+            textColor={Colors.red}
+          />
+        </View>
 
         {enableFlags && (
           <View style={styles.section}>
