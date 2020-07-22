@@ -48,11 +48,13 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
     }
   };
 
-  // refreshes state 
+  // refreshes state
   useEffect(() => {
-    const updatedExposureHistory: any = exposureHistory.find(datum => datum.date === selectedDatum?.date);
+    const updatedExposureHistory: ExposureDatum | null =
+      exposureHistory.find((datum) => datum.date === selectedDatum?.date) ||
+      null;
     setSelectedDatum(updatedExposureHistory);
-  },[exposureHistory])
+  }, [exposureHistory]);
 
   const handleOnPressMoreInfo = () => {
     navigation.navigate(Screens.MoreInfo);
