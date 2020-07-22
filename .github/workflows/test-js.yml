@@ -11,7 +11,7 @@ on:
       - 'app/**'
 
 jobs:
-  unit-test:
+  unit-test-js:
     runs-on: ubuntu-latest
 
     steps:

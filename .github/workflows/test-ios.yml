@@ -11,9 +11,8 @@ on:
       - 'ios/**'
 
 jobs:
-  unit-test-ios-gps:
+  unit-test-ios:
     runs-on: macOS-latest
-    needs: unit-test
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@master
