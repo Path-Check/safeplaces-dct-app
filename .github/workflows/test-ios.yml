@@ -7,8 +7,8 @@ on:
   pull_request:
     branches:
       - develop
-    paths:
-      - 'ios/**'
+    # paths:
+    #   - 'ios/**'
 
 jobs:
   unit-test-ios:
