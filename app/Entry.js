@@ -24,9 +24,7 @@ import { ExportStart, ExportLocally } from './gps/Export';
 import ExposureHistoryScreen from './views/ExposureHistory';
 import NextSteps from './views/ExposureHistory/NextSteps';
 import MoreInfo from './views/ExposureHistory/MoreInfo';
-import ENDebugMenu from './views/Settings/ENDebugMenu';
 import ImportFromUrl from './views/Settings/ImportFromUrl';
-import { ENLocalDiagnosisKeyScreen } from './views/Settings/ENLocalDiagnosisKeyScreen';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
 import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
@@ -93,11 +91,6 @@ const MoreTabStack = () => (
     <Stack.Screen name={Screens.FeatureFlags} component={FeatureFlagsScreen} />
     <Stack.Screen name={Screens.ImportFromGoogle} component={ImportScreen} />
     <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
-    <Stack.Screen name={Screens.ENDebugMenu} component={ENDebugMenu} />
-    <Stack.Screen
-      name={Screens.ENLocalDiagnosisKey}
-      component={ENLocalDiagnosisKeyScreen}
-    />
     <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
   </Stack.Navigator>
 );
