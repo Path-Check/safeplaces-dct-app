@@ -4,13 +4,11 @@ on:
   push:
     branches:
       - develop
-    paths:
-      - app/**
   pull_request:
     branches:
       - develop
     paths:
-      - app/**
+      - 'app/**'
 
 jobs:
   unit-test:

@@ -4,13 +4,11 @@ on:
   push:
     branches:
       - develop
-    paths:
-      - ios/**
   pull_request:
     branches:
       - develop
     paths:
-      - ios/**
+      - 'ios/**'
 
 jobs:
   unit-test-ios-gps:
