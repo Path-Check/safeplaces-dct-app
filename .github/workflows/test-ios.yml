@@ -4,18 +4,15 @@ on:
   push:
     branches:
       - develop
-    paths:
-      - ios/**
   pull_request:
     branches:
       - develop
     paths:
-      - ios/**
+      - "ios/**"
 
 jobs:
-  unit-test-ios-gps:
-    runs-on: macOS-latest
-    needs: unit-test
+  unit-test-ios:
+    runs-on: macos-latest
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@master
@@ -53,8 +50,8 @@ jobs:
       - run: pod install --repo-update
         working-directory: ./ios
 
-       - run: |
+      - run: |
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Development \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-         working-directory: ./ios
+        working-directory: ./ios
