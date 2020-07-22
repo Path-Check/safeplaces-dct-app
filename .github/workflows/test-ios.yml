@@ -55,4 +55,4 @@ jobs:
           xcodebuild test -workspace COVIDSafePaths.xcworkspace \
             -scheme GPS_Development \
             -destination 'platform=iOS Simulator,name=iPhone 8' \
-         working-directory: ./ios
+        working-directory: ./ios
