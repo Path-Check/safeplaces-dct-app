@@ -56,7 +56,7 @@ One of the important aspects of the Safe Paths open source project is that it's 
 
 [COVID Safe Paths Slack](covidsafepaths.slack.com) - Where the community lives. 
 
-[Path-Check/gaen-mobile] - PathCheck's GAEN based contract tracing solution.
+[Path-Check/gaen-mobile](https://github.com/Path-Check/gaen-mobile) - PathCheck's GAEN based contract tracing solution.
 
 ### Downloads for COVID Safe Paths
 
