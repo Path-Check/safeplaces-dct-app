@@ -383,6 +383,47 @@ class RealmSecureStorageTest {
     assertEquals(0, assumedLocations.size)
   }
 
+  @Test
+  fun removeAllLocations() {
+    // Insert mock data
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.DAY_OF_YEAR, -15)
+    val location1Time =calendar.timeInMillis
+    val backgroundLocation1 = BackgroundLocation().apply {
+      latitude = 40.730610
+      longitude = -73.935242
+      time = location1Time
+    }
+    val calendar2 = Calendar.getInstance()
+    calendar2.add(Calendar.DAY_OF_YEAR, -13)
+    val location2Time =calendar2.timeInMillis
+    val backgroundLocation2 = BackgroundLocation().apply {
+      latitude = 40.730610
+      longitude = -73.935242
+      time = location2Time
+    }
+    secureStorage.saveDeviceLocation(backgroundLocation1)
+    secureStorage.saveDeviceLocation(backgroundLocation2)
+
+    assertEquals(2, secureStorage.getRealmInstance().where<Location>().findAll().size)
+
+    // Remove locations
+    val promiseLatch = CountDownLatch(1)
+    val promise = object : TestPromise() {
+      override fun resolve(value: Any?) {
+        super.resolve(value)
+        assertNull(value)
+        promiseLatch.countDown()
+      }
+    }
+
+    secureStorage.removeAllLocations(promise)
+
+    assertEquals(0, secureStorage.getRealmInstance().where<Location>().findAll().size)
+
+    assertTrue(promiseLatch.await(1, SECONDS))
+  }
+
   private fun createWritableMapLocation(latitude: Double, longitude: Double, time: Long): WritableMap {
     return WritableNativeMap().apply {
       putDouble("latitude", latitude)
