@@ -4,11 +4,11 @@ on:
   push:
     branches: [develop]
     paths:
-      - 'dev_setup.sh'
+      - "dev_setup.sh"
   pull_request:
     branches: [develop]
     paths:
-      - 'dev_setup.sh'
+      - "dev_setup.sh"
 
 jobs:
   test-ubuntu:
@@ -32,7 +32,7 @@ jobs:
         run: npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/ --verbose
 
   test-mac:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
 
