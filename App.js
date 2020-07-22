@@ -41,6 +41,8 @@ export const UnconnectedApp = () => (
 );
 
 const App = () => {
+  const foo = 1;
+  console.log(foo);
   useEffect(() => {
     SplashScreen.hide();
     VersionCheckService.start();
