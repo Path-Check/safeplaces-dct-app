@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -47,6 +47,14 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
       setSelectedDatum(datum);
     }
   };
+
+  // refreshes state
+  useEffect(() => {
+    const updatedExposureHistory: ExposureDatum | null =
+      exposureHistory.find((datum) => datum.date === selectedDatum?.date) ||
+      null;
+    setSelectedDatum(updatedExposureHistory);
+  }, [exposureHistory]);
 
   const handleOnPressMoreInfo = () => {
     navigation.navigate(Screens.MoreInfo);
