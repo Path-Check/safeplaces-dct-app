@@ -1,7 +1,13 @@
 import { Card } from 'native-base';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  Linking,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
@@ -9,19 +15,12 @@ import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
 import Colors from '../../../constants/colors';
 import { sponsorsList } from './List';
 
-export default function Index({ navigation: { navigate, goBack } }) {
+export default function Index({ navigation: { goBack } }) {
   const { t } = useTranslation();
 
-  const CreateCard = (img, url, navigate) => {
+  const CreateCard = (img, url) => {
     return (
-      <TouchableOpacity
-        onPress={() =>
-          navigate('Details', {
-            source: { uri: url },
-            textFirstDialog: t('label.dialog_advice'),
-            isSponsorsScreen: true,
-          })
-        }>
+      <TouchableOpacity onPress={() => Linking.openURL(url)} key={url}>
         <Card style={styles.imageContainer}>
           <Image source={img} style={styles.images} />
         </Card>
@@ -32,7 +31,7 @@ export default function Index({ navigation: { navigate, goBack } }) {
     const allCards = [];
     for (let sponsor in sponsorsList) {
       const { img, url } = sponsorsList[sponsor];
-      allCards.push(CreateCard(img, url, navigate));
+      allCards.push(CreateCard(img, url));
     }
 
     return allCards;

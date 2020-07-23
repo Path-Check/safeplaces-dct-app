@@ -6,6 +6,7 @@ import { WebView } from 'react-native-webview';
 
 import activityIndicatorLoadingView from '../../../components/DR/ActivityIndicator';
 import NavigationBarWrapper from '../../../components/NavigationBarWrapper';
+import Colors from '../../../constants/colors';
 import DialogAdvices from '../../DialogAdvices';
 
 // This is to make the images responsive in the page of a new
@@ -19,18 +20,12 @@ const fixerImage = `
 const Details = ({
   navigation,
   route: {
-    params: {
-      source,
-      switchScreenTo = 'WebView',
-      textFirstDialog,
-      isSponsorsScreen = false,
-    },
+    params: { source, switchScreenTo = 'WebView' },
   },
 }) => {
   navigation.setOptions({ headerShown: false });
 
   const { t } = useTranslation();
-  const [timer, setNewTimer] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const [dialogText, setDialogText] = useState('');
   const closeDialog = () => {
@@ -70,9 +65,9 @@ const Details = ({
           style={{
             width: Dimensions.get('window').width,
             height: Dimensions.get('window').height,
-            backgroundColor: 'white',
+            backgroundColor: Colors.WHITE,
           }}
-          activityIndicator={activityIndicatorLoadingView(isSponsorsScreen)}
+          activityIndicator={activityIndicatorLoadingView(true)}
         />
       )}
       {switchScreenTo === 'WebView' && (
@@ -80,22 +75,7 @@ const Details = ({
           source={source}
           startInLoadingState
           injectedJavaScript={fixerImage}
-          renderLoading={() => activityIndicatorLoadingView(isSponsorsScreen)}
-          onLoadStart={() => {
-            if (textFirstDialog) {
-              setShowDialog(true);
-              setDialogText(textFirstDialog);
-            }
-            setNewTimer(
-              setTimeout(() => {
-                setDialogText(t('label.dialog_interval_advice'));
-                setShowDialog(true);
-              }, 30000),
-            );
-          }}
-          onLoadEnd={() => {
-            clearTimeout(timer);
-          }}
+          renderLoading={() => activityIndicatorLoadingView()}
           onError={() => {
             setDialogText(t('label.dialog_error_advice'));
             setShowDialog(true);
