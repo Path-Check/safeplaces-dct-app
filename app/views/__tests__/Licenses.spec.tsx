@@ -7,7 +7,6 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { TracingStrategyProvider } from '../../TracingStrategyContext';
 import { TracingStrategy } from '../../tracingStrategy';
 import gpsStrategy from '../../gps';
-import btStrategy from '../../bt';
 
 import { LicensesScreen } from '../Licenses';
 import { FeatureFlagOption } from '../../store/types';
@@ -41,16 +40,6 @@ describe('LicensesScreen', () => {
 
       expect(getByTestId('licenses-legal-header')).toHaveTextContent(
         'PathCheck GPS',
-      );
-    });
-  });
-
-  describe('when the tracing strategy is bt', () => {
-    it('displays PathCheck BT', () => {
-      const { getByTestId } = renderTracingStrategyProvider(btStrategy);
-
-      expect(getByTestId('licenses-legal-header')).toHaveTextContent(
-        'PathCheck BT',
       );
     });
   });
