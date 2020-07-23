@@ -35,7 +35,7 @@ const CodeInput = ({ code, length, setCode }) => {
   useEffect(() => {
     characterRefs.current = characterRefs.current.slice(0, length);
   }, [length]);
-    
+
   const focus = (i) => {
     characterRefs.current[i].focus();
   };
@@ -60,7 +60,7 @@ const CodeInput = ({ code, length, setCode }) => {
 
   // Adding characters
   const onChangeCharacter = (d) => {
-    if (d.length) { 
+    if (d.length) {
       setCode(code.slice(0, currentIndex) + d);
       const nextIndex = currentIndex + 1;
       if (nextIndex < length) {
