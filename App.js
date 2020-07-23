@@ -3,6 +3,7 @@ import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import 'text-encoding-polyfill';
 import 'array-flat-polyfill';
 
 import { Entry } from './app/Entry';

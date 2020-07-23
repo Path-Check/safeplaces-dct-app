@@ -7,7 +7,7 @@ on:
 
 jobs:
   e2e-ios-build:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     # while this job doesn't depend on the previous job explicitly
     # this will force them not to run in parallel. If they're run in parallel,
     # the node_modules caches will conflict
@@ -66,10 +66,10 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app
+          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
 
   e2e-iphone-se:
-    runs-on: macOS-latest
+    runs-on: macos-latest
     needs: e2e-ios-build
     timeout-minutes: 15
     env:
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: e2e-ios-bin
-          path: ios/build/Build/Products/Release-GPS-iphonesimulator/GPS.app
+          path: ios/build/Build/Products/Release-iphonesimulator/GPS.app
 
       - run: yarn test:e2e:iphone-se
 

@@ -4,13 +4,13 @@ on:
   push:
     branches:
       - gps-release
-     paths-ignore:
-      - 'package.json'
-      - 'CHANGELOG.md'
+    paths-ignore:
+      - "package.json"
+      - "CHANGELOG.md"
 
 jobs:
   version_bump:
-    name: 'Bump version'
+    name: "Bump version"
     runs-on: ubuntu-latest
 
     steps:
@@ -22,10 +22,10 @@ jobs:
         uses: TriPSs/conventional-changelog-action@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          git-message: 'chore(release): {version}'
-          preset: 'angular'
-          tag-prefix: ''
-          output-file: 'CHANGELOG.md'
+          git-message: "chore(release): {version}"
+          preset: "angular"
+          tag-prefix: ""
+          output-file: "CHANGELOG.md"
 
   deploy_android_gps:
     # gps-release branch only
@@ -118,21 +118,21 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
           GITHUB_RUN_NUMBER: ${{ github.run_number }}
         with:
-          lane: 'release_gps'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+          lane: "release_gps"
+          subdirectory: "android"
+          bundle-install-path: "vendor/bundle"
 
       - name: Upload to Google Play beta track
         uses: maierj/fastlane-action@v1.4.0
         with:
-          lane: 'play_store_gps'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
+          lane: "play_store_gps"
+          subdirectory: "android"
+          bundle-install-path: "vendor/bundle"
 
   deploy_ios_gps:
     # gps-release branch only
     if: github.event_name == 'push' && github.ref == 'refs/heads/gps-release'
-    runs-on: macOS-latest
+    runs-on: macos-latest
     needs: version_bump
     steps:
       - uses: actions/checkout@master
@@ -197,9 +197,9 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'release'
-          subdirectory: 'ios'
-          bundle-install-path: 'vendor/bundle'
+          lane: "release"
+          subdirectory: "ios"
+          bundle-install-path: "vendor/bundle"
 
       - name: Deploy to testflight
         uses: maierj/fastlane-action@v1.4.0
@@ -212,6 +212,6 @@ jobs:
           MATCH_GIT_BASIC_AUTH: ${{ secrets.MATCH_GIT_BASIC_AUTH }}
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         with:
-          lane: 'deploy'
-          subdirectory: 'ios'
-          bundle-install-path: 'vendor/bundle'
+          lane: "deploy"
+          subdirectory: "ios"
+          bundle-install-path: "vendor/bundle"
