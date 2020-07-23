@@ -1,0 +1,17 @@
+//
+//  Staging.xcconfig
+//  COVIDSafePaths
+//
+//  Created by Rob Visentin on 6/26/20.
+//  Copyright © 2020 Path Check Inc. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+#include "Version.xcconfig"
+
+ASSETCATALOG_COMPILER_APPICON_NAME = AppIconStaging
+PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.covid-safepaths.staging
+
+ALLOW_INSECURE_HTTP = NO

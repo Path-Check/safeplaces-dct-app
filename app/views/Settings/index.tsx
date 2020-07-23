@@ -5,6 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
+  Alert,
+  NativeModules,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -75,6 +77,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     onPress: () => void;
     description?: string;
     style?: ViewStyle;
+    textColor?: string;
   }
 
   const SettingsListItem = ({
@@ -82,6 +85,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     onPress,
     description,
     style,
+    textColor,
   }: SettingsListItemProps) => {
     return (
       <TouchableHighlight
@@ -89,7 +93,9 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         style={[styles.listItem, style]}
         onPress={onPress}>
         <View>
-          <Typography style={styles.listItemText}>{label}</Typography>
+          <Typography style={{ ...styles.listItemText, color: textColor }}>
+            {label}
+          </Typography>
           {description ? (
             <Typography style={styles.descriptionText}>
               {description}
@@ -98,6 +104,30 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         </View>
       </TouchableHighlight>
     );
+  };
+
+  const handleOnPressDeleteLocationHistory = () => {
+    return Alert.alert(
+      t('location.data.delete_warning_title'),
+      t('location.data.delete_warning_body'),
+      [
+        {
+          text: t('location.data.delete_warning_cancel'),
+          onPress: () => {},
+        },
+        {
+          text: t('location.data.delete_warning_confirm'),
+          onPress: onConfirmPress,
+          style: 'destructive',
+        },
+      ],
+      { cancelable: false },
+    );
+  };
+
+  const onConfirmPress = async () => {
+    await NativeModules.SecureStorageManager.removeAllLocations();
+    return;
   };
 
   return (
@@ -124,6 +154,15 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             label={t('screen_titles.legal')}
             onPress={() => navigation.navigate(Screens.Licenses)}
             style={styles.lastListItem}
+          />
+        </View>
+
+        <View style={styles.section}>
+          <SettingsListItem
+            label={t('screen_titles.delete_location_history')}
+            onPress={handleOnPressDeleteLocationHistory}
+            style={styles.lastListItem}
+            textColor={Colors.red}
           />
         </View>
 
