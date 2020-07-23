@@ -109,7 +109,6 @@ const CodeInput = ({ code, length, setCode }) => {
           returnKeyType={'done'}
           onChangeText={onChangeCharacter}
           onKeyPress={onKeyPress}
-          blurOnSubmit={true}
           onFocus={() => onFocus(i)}
         />
       ))}
