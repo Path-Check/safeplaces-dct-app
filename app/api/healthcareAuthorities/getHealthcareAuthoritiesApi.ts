@@ -1,22 +1,9 @@
 import Yaml from 'js-yaml';
 import env from 'react-native-config';
-
-type Coordinates = {
-  latitude: number;
-  longitude: number;
-};
-
-export type HealthcareAuthority = {
-  name: string;
-  bounds: {
-    ne: Coordinates;
-    sw: Coordinates;
-  };
-  org_id: string;
-  cursor_url: string;
-  public_api: string;
-  internal_id: string;
-};
+import {
+  HealthcareAuthority,
+  ApiHealthcareAuthority,
+} from '../../common/types';
 
 const { AUTHORITIES_YAML_ROUTE } = env;
 
@@ -30,7 +17,7 @@ const getHealthcareAuthoritiesApi = async (
   if (!Array.isArray(authorities)) {
     throw new Error('authorities yaml did not return an array of authorities');
   }
-  return authorities.map((ha: HealthcareAuthority) => ({
+  return authorities.map((ha: ApiHealthcareAuthority) => ({
     ...ha,
     // HAs have public facing Ids in the yaml. We construct a unique identifier
     // based on the base route and the org. This guarantees uniqueness.
