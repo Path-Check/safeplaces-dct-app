@@ -3,3 +3,5 @@
 "NSLocationAlwaysUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";
 "NSLocationWhenInUseUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";
 "NSMotionUsageDescription" = "We use your accelerometer for accurate location history.";
+"NSCameraUsageDescription" = "You may take a picture to upload with a support request.";
+"NSPhotoLibraryUsageDescription" =  "You may choose a picture to upload with a support request.";

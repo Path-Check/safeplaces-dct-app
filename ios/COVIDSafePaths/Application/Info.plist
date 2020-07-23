@@ -41,6 +41,10 @@
 		<key>NSExceptionDomains</key>
 		<dict/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>You may take a picture to upload with a support request.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>You may choose a picture to upload with a support request.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Your location history will be saved on your device, and only shared with others if you choose to do so.</string>
 	<key>NSLocationAlwaysUsageDescription</key>

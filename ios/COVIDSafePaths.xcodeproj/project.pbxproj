@@ -71,6 +71,10 @@
 		D4B4A8A624C8A1A700E00A99 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89B24C8A1A700E00A99 /* Staging.xcconfig */; };
 		D4B4A8A724C8A1A700E00A99 /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */; };
 		D4B4A8A824C8A1A700E00A99 /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */; };
+		D4B4A8C224C9895800E00A99 /* SupportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A8C124C9895800E00A99 /* SupportManager.m */; };
+		D4B4A8C424C98A1D00E00A99 /* SupportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A8C324C98A1D00E00A99 /* SupportManager.swift */; };
+		D4B4A8C624C994A600E00A99 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A8C524C994A600E00A99 /* UIViewController+Extensions.swift */; };
+		D4B4A8C824C994BD00E00A99 /* UIApplication+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A8C724C994BC00E00A99 /* UIApplication+Extensions.swift */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
 		D7E714F18C9C4172BC01ADF8 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */; };
 		DED6BB86437B4610B1CD3302 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
@@ -269,6 +273,10 @@
 		D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureStorageManager.m; sourceTree = "<group>"; };
 		D4B4A89E24C8A1A700E00A99 /* GPS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPS-Bridging-Header.h"; sourceTree = "<group>"; };
 		D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
+		D4B4A8C124C9895800E00A99 /* SupportManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupportManager.m; sourceTree = "<group>"; };
+		D4B4A8C324C98A1D00E00A99 /* SupportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportManager.swift; sourceTree = "<group>"; };
+		D4B4A8C524C994A600E00A99 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		D4B4A8C724C994BC00E00A99 /* UIApplication+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extensions.swift"; sourceTree = "<group>"; };
 		D5A05B8E61DC402E8753A057 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLightItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		D5CD9AD3FED744E6B5F0CEF9 /* IBMPlexMono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = IBMPlexMono.ttf; path = ../app/assets/fonts/IBMPlexMono.ttf; sourceTree = "<group>"; };
 		D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ThinItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -607,6 +615,8 @@
 				D4B4A89624C8A1A700E00A99 /* Array+Extension.swift */,
 				D4B4A89424C8A1A700E00A99 /* MAURLocation+Extension.swift */,
 				D4B4A89524C8A1A700E00A99 /* String+Extension.swift */,
+				D4B4A8C724C994BC00E00A99 /* UIApplication+Extensions.swift */,
+				D4B4A8C524C994A600E00A99 /* UIViewController+Extensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -626,8 +636,10 @@
 			isa = PBXGroup;
 			children = (
 				D4B4A89E24C8A1A700E00A99 /* GPS-Bridging-Header.h */,
-				D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */,
 				D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */,
+				D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */,
+				D4B4A8C124C9895800E00A99 /* SupportManager.m */,
+				D4B4A8C324C98A1D00E00A99 /* SupportManager.swift */,
 			);
 			path = Bridge;
 			sourceTree = "<group>";
@@ -999,9 +1011,13 @@
 				D4B4A8A224C8A1A700E00A99 /* Array+Extension.swift in Sources */,
 				D4B4A8A124C8A1A700E00A99 /* String+Extension.swift in Sources */,
 				D4B4A85F24C8A16400E00A99 /* Log.swift in Sources */,
+				D4B4A8C824C994BD00E00A99 /* UIApplication+Extensions.swift in Sources */,
 				68D8970F24809CEB0091A254 /* Geohash.swift in Sources */,
+				D4B4A8C624C994A600E00A99 /* UIViewController+Extensions.swift in Sources */,
+				D4B4A8C424C98A1D00E00A99 /* SupportManager.swift in Sources */,
 				D4B4A86124C8A16400E00A99 /* AppDelegate.m in Sources */,
 				B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */,
+				D4B4A8C224C9895800E00A99 /* SupportManager.m in Sources */,
 				D4B4A8A024C8A1A700E00A99 /* MAURLocation+Extension.swift in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				D4B4A86024C8A16400E00A99 /* main.m in Sources */,
