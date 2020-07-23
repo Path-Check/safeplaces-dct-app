@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
       - develop
-    paths:
-      - 'app/**'
 
 jobs:
   unit-test-js:
@@ -19,7 +17,24 @@ jobs:
 
       - run: node --version
 
+      - name: Check if run is needed
+        run: |
+          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          FILES=$(curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -s -X GET -G $URL |  jq -r '.[] | .filename')
+          echo "Checking Files: $FILES"
+          REGEX="\.js\|\.jsx\|\.ts\|\.tsx"
+          if echo $FILES | grep -q $REGEX; then
+            echo "Detected iOS changes. Running tests!"
+            echo "Changed Files:"
+            echo $FILES | grep $REGEX
+            echo "::set-env name=RUN_TESTS::1"
+          else
+            echo "No iOS changed detected. Skipping tests."
+            echo "::set-env name=RUN_TESTS::0"
+          fi
+
       - name: Cache node_modules/
+        if: env.RUN_TESTS == 1
         uses: actions/cache@v1
         with:
           path: node_modules
@@ -28,7 +43,10 @@ jobs:
             ${{ runner.OS }}-yarn-cache-
 
       - run: yarn --frozen-lockfile
+        if: env.RUN_TESTS == 1
 
       - run: yarn test
+        if: env.RUN_TESTS == 1
+
         env:
           CI: true
