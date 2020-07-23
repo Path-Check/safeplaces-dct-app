@@ -289,6 +289,20 @@ PODS:
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
   - Yoga (1.14.0)
+  - ZendeskCommonUISDK (5.0.0):
+    - ZendeskSDKConfigurationsSDK (~> 1.1.5)
+  - ZendeskCoreSDK (2.4.0)
+  - ZendeskMessagingAPISDK (3.6.0):
+    - ZendeskSDKConfigurationsSDK (~> 1.1.5)
+  - ZendeskMessagingSDK (3.6.0):
+    - ZendeskCommonUISDK (~> 5.0.0)
+    - ZendeskMessagingAPISDK (~> 3.6.0)
+  - ZendeskSDKConfigurationsSDK (1.1.5)
+  - ZendeskSupportProvidersSDK (5.0.5):
+    - ZendeskCoreSDK (~> 2.4.0)
+  - ZendeskSupportSDK (5.0.5):
+    - ZendeskMessagingSDK (~> 3.6.0)
+    - ZendeskSupportProvidersSDK (~> 5.0.5)
 
 DEPENDENCIES:
   - "@mauron85_react-native-background-geolocation (from `../node_modules/@mauron85/react-native-background-geolocation`)"
@@ -351,6 +365,7 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
+  - ZendeskSupportSDK
 
 SPEC REPOS:
   trunk:
@@ -358,6 +373,13 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SSZipArchive
+    - ZendeskCommonUISDK
+    - ZendeskCoreSDK
+    - ZendeskMessagingAPISDK
+    - ZendeskMessagingSDK
+    - ZendeskSDKConfigurationsSDK
+    - ZendeskSupportProvidersSDK
+    - ZendeskSupportSDK
 
 EXTERNAL SOURCES:
   "@mauron85_react-native-background-geolocation":
@@ -531,7 +553,14 @@ SPEC CHECKSUMS:
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
+  ZendeskCommonUISDK: 0b5ae632c28545c6f7e0791902f5672494d5ccd0
+  ZendeskCoreSDK: 804aff5229ae9500b8057b65fe53ad869856f427
+  ZendeskMessagingAPISDK: 29ce93e76b4833a2257d837de17a0efaeef867e5
+  ZendeskMessagingSDK: bdb534cc75853fab1bc201ce97faadf9accdd1ab
+  ZendeskSDKConfigurationsSDK: 0c610c22c9e3cafcd31591344b8cc3b4398e49b2
+  ZendeskSupportProvidersSDK: d21ce8eb3df1066338c7d3875bb818b32c3f124e
+  ZendeskSupportSDK: 7e29a825e862aba217b7b89f7d3397f7deef586a
 
-PODFILE CHECKSUM: a70cd2a7867b1a342049fd907a0dace84082799b
+PODFILE CHECKSUM: 6490a38bab6a444812c0953722db10fef2bc38be
 
 COCOAPODS: 1.9.1
