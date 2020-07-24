@@ -5,11 +5,11 @@ import PushNotification from 'react-native-push-notification';
 
 import {
   COVID_BASE_ID,
-  GOV_DO_TOKEN,
   MEPYD_C5I_API_URL,
   MEPYD_C5I_SERVICE,
 } from '../constants/DR/baseUrls';
 import { CROSSED_PATHS, PARTICIPATE } from '../constants/storage';
+import validateResponse from '../helpers/DR/validateResponse';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
 
@@ -197,33 +197,22 @@ export default class LocationServices {
     });
 
     BackgroundGeolocation.on('location', async location => {
-      GetStoreData('shareLocation', true).then(isPositive => {
-        if (isPositive) {
-          const body = JSON.stringify({
-            latitude: location.latitude,
-            longitude: location.longitude,
-            time: location.time,
-            covidId: COVID_BASE_ID,
-          });
-          fetch(`${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/UserTrace`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              gov_do_token: GOV_DO_TOKEN,
-            },
-            body,
-          })
-            .then(function(response) {
-              return response.json();
-            })
-            .then(data => {
-              return data;
-            })
-            .catch(error => {
-              console.error('[ERROR] ' + error);
-            });
-        }
-      });
+      const isPositive = await GetStoreData('shareLocation', true);
+
+      if (isPositive) {
+        const body = JSON.stringify({
+          latitude: location.latitude,
+          longitude: location.longitude,
+          time: location.time,
+          covidId: COVID_BASE_ID,
+        });
+
+        return await validateResponse(
+          `${MEPYD_C5I_SERVICE}/${MEPYD_C5I_API_URL}/UserTrace`,
+          'POST',
+          body,
+        );
+      }
     });
 
     BackgroundGeolocation.on('abort_requested', () => {

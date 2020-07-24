@@ -12,7 +12,4 @@ export const COVID_BASE_ID = (env.COVID_BASE_ID || '').replace(
   '" #ignoreline',
   '',
 );
-export const GOV_DO_TOKEN = (env.GOV_DO_TOKEN || '').replace(
-  '" #ignoreline',
-  '',
-);
+export const TOKEN_KEY = (env.TOKEN_KEY || '').replace('" #ignoreline', '');

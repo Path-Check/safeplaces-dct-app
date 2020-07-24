@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Wizard from 'react-native-wizard';
 
 import {
-  GOV_DO_TOKEN,
   MEPYD_C5I_API_URL,
   MEPYD_C5I_SERVICE,
 } from './../../../constants/DR/baseUrls';
@@ -21,6 +20,7 @@ import styles from '../../../components/DR/Header/style';
 import context from '../../../components/DR/Reduces/context';
 import Colors from '../../../constants/colors';
 import { COVID_ID } from '../../../constants/storage';
+import validateResponse from '../../../helpers/DR/validateResponse';
 import { SetStoreData } from '../../../helpers/General';
 import StepAdress from './sections/SetpAdress';
 import StepAge from './sections/StepAge';
@@ -54,31 +54,20 @@ export default function ReportScreenQuestions({ navigation }) {
   }, [navigation]);
 
   const sendDataToApi = async () => {
-    try {
-      let merged = {};
-      if (answers.usage === 'mySelf') {
-        let userInfo = await AsyncStorage.getItem('UserPersonalInfo');
-        userInfo = await JSON.parse(userInfo);
-        merged = { ...userInfo, ...answers };
-      } else {
-        merged = answers;
-      }
-      const response = await fetch(
-        `${MEPYD_C5I_SERVICE}:443/${MEPYD_C5I_API_URL}/Form`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            gov_do_token: GOV_DO_TOKEN,
-          },
-          body: JSON.stringify(merged),
-        },
-      );
-      const data = await response.json();
-      return data;
-    } catch (e) {
-      console.log('[error] ', e);
+    let merged = {};
+    if (answers.usage === 'mySelf') {
+      let userInfo = await AsyncStorage.getItem('UserPersonalInfo');
+      userInfo = await JSON.parse(userInfo);
+      merged = { ...userInfo, ...answers };
+    } else {
+      merged = answers;
     }
+
+    return await validateResponse(
+      `${MEPYD_C5I_SERVICE}:443/${MEPYD_C5I_API_URL}/Form`,
+      'POST',
+      merged,
+    );
   };
 
   const stepList = [
