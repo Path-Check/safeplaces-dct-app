@@ -58,7 +58,7 @@ export const AboutScreen = ({ navigation }) => {
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
         <TouchableWithoutFeedback
-          touchSoundDisabled={true}
+          touchSoundDisabled
           onPress={incrementClickCount}>
           <View>
             <Typography use='headline2' style={styles.heading}>
