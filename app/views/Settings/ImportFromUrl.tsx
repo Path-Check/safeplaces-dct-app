@@ -15,7 +15,7 @@ import { Typography } from '../../components/Typography';
 import { Button } from '../../components/Button';
 import { NavigationProp } from '../../navigation';
 
-import { Forms } from '../../styles';
+import { Forms, Spacing } from '../../styles';
 
 type ImportFromUrlProps = {
   navigation: NavigationProp;
@@ -24,17 +24,20 @@ type ImportFromUrlProps = {
 const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // TODO: add logic to filter mocked data. We should agree on flag name
 
   const importData = async () => {
+    setLoading(true);
     try {
       // Data must be an array of objects!
       const mockData = await importLocationsApi(url);
-
-      await NativeModules.SecureStorageManager.importGoogleLocations(mockData);
+      await NativeModules.SecureStorageManager.importMockLocations(mockData);
+      setLoading(false);
       return navigation.goBack();
     } catch (e) {
+      setLoading(false);
       return Alert.alert(t('import.mockData.invalid_url'), e.message);
     }
   };
@@ -49,7 +52,7 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
         <Typography use={'headline2'}>
           {t('import.mockData.url_instructions')}
         </Typography>
-        <Typography use={'body2'}>
+        <Typography style={{ paddingTop: Spacing.small }} use={'body2'}>
           {t('import.mockData.instruction_info')}
         </Typography>
         <TextInput
@@ -63,7 +66,13 @@ const ImportFromUrl = ({ navigation }: ImportFromUrlProps): JSX.Element => {
             },
           ]}
         />
-        <Button label={t('common.add')} onPress={importData} />
+        <Button
+          disabled={!url}
+          loading={loading}
+          invert
+          label={t('common.add')}
+          onPress={importData}
+        />
       </View>
     </NavigationBarWrapper>
   );

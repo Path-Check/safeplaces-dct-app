@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-raw-text */
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback, useRef } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 
 import {
@@ -10,7 +10,7 @@ import {
 } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
 import toggleFeatureFlagAction from '../store/actions/featureFlags/toggleFeatureFlagAction';
-import { Spacing } from '../styles';
+import { Spacing, Colors } from '../styles';
 import { FeatureFlagOption } from '../store/types';
 import { initDevLanguages, initProdLanguages } from '../locales/languages';
 import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleAllowFeatureFlagsEnabledAction';
@@ -21,10 +21,16 @@ const flagToName = (flag) => {
       return 'Custom Yaml URL';
     case FeatureFlagOption.DOWNLOAD_LOCALLY:
       return 'Download Locally';
-    case FeatureFlagOption.GOOGLE_IMPORT:
-      return 'Import from Google';
+    case FeatureFlagOption.IMPORT_LOCATIONS_GOOGLE:
+      return 'Import Locations (Google)';
+    case FeatureFlagOption.IMPORT_LOCATIONS_JSON_URL:
+      return 'Import Locations (JSON URL)';
     case FeatureFlagOption.DEV_LANGUAGES:
       return 'All Language Options';
+    case FeatureFlagOption.BYPASS_EXPORT_API:
+      return 'Bypass Export API Check';
+    case FeatureFlagOption.MOCK_EXPOSURE:
+      return 'Exposure Mode';
     // For development ease:
     default:
       return flag;
@@ -51,17 +57,28 @@ export const FlagToggleRow = ({ flag }) => {
 
 export const FeatureFlagsScreen = ({ navigation }) => {
   const flagMap = useSelector((state) => state.featureFlags.flags);
-  const flags = Object.keys(flagMap);
+  const flagOptions = Object.keys(FeatureFlagOption);
   const devLanguagesEnabled = flagMap[FeatureFlagOption.DEV_LANGUAGES];
+  const isLoaded = useRef(true);
 
-  // Dev languages requires an init step, not just conditional render
-  useEffect(() => {
+  // Only runs when language flag is toggled
+  const toggleLanguages = useCallback(() => {
     if (devLanguagesEnabled) {
       initDevLanguages();
     } else {
       initProdLanguages();
     }
   }, [devLanguagesEnabled]);
+
+  // Dev languages requires an init step, not just conditional render
+  useEffect(() => {
+    if (isLoaded.current) {
+      isLoaded.current = false;
+      return;
+    } else {
+      toggleLanguages();
+    }
+  }, [toggleLanguages]);
   const dispatch = useDispatch();
 
   const disableFeatureFlags = () => {
@@ -83,11 +100,16 @@ export const FeatureFlagsScreen = ({ navigation }) => {
         <View style={{ height: Spacing.large }} />
         <FlatList
           alwaysBounceVertical={false}
-          data={flags}
+          data={flagOptions}
           keyExtractor={(_, i) => `${i}`}
           renderItem={({ item: flag }) => <FlagToggleRow flag={flag} />}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
-        <Button label='Disable Feature Flags' onPress={disableFeatureFlags} />
+        <Button
+          invert
+          label='Disable Feature Flags'
+          onPress={disableFeatureFlags}
+        />
       </View>
     </NavigationBarWrapper>
   );
@@ -104,9 +126,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     paddingHorizontal: 5,
-    justifyContent: 'flex-start',
   },
   toggleRowText: {
     paddingLeft: 15,
+  },
+  separator: {
+    backgroundColor: Colors.formInputBorder,
+    height: StyleSheet.hairlineWidth,
+    width: '100%',
   },
 });

@@ -29,6 +29,7 @@ export enum IconStyle {
 
 type ExplanationScreenContent = {
   icon: string;
+  iconLabel: string;
   header: string;
   body: string;
   primaryButtonLabel: string;
@@ -116,7 +117,11 @@ const ExplanationScreen = ({
           style={styles.innerContainer}
           contentContainerStyle={{ paddingBottom: Spacing.large }}>
           <View style={determineIconStyle(explanationScreenStyles.iconStyle)}>
-            <SvgXml xml={explanationScreenContent.icon} />
+            <SvgXml
+              xml={explanationScreenContent.icon}
+              accessible
+              accessibilityLabel={explanationScreenContent.iconLabel}
+            />
           </View>
           <Typography style={headerStyles}>
             {explanationScreenContent.header}

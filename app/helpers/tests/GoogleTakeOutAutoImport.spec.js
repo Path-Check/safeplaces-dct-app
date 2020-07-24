@@ -68,7 +68,7 @@ describe('importTakeoutData', () => {
   });
 
   it(`locations successfully added to local store`, async () => {
-    const importGoogleLocations = jest.fn();
+    const importMockLocations = jest.fn();
     jest.doMock('react-native', () => {
       return {
         Platform: {
@@ -77,7 +77,7 @@ describe('importTakeoutData', () => {
         NativeModules: {
           ...ReactNative.NativeModules,
           SecureStorageManager: {
-            importGoogleLocations: importGoogleLocations,
+            importMockLocations: importMockLocations,
           },
         },
       };
@@ -121,8 +121,8 @@ describe('importTakeoutData', () => {
 
     const { importTakeoutData } = require('../GoogleTakeOutAutoImport');
     await importTakeoutData('file://test.zip');
-    expect(importGoogleLocations).toHaveBeenCalledWith([location1, location2]);
-    expect(importGoogleLocations).toHaveBeenCalledWith([location3, location4]);
+    expect(importMockLocations).toHaveBeenCalledWith([location1, location2]);
+    expect(importMockLocations).toHaveBeenCalledWith([location3, location4]);
   });
 });
 

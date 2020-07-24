@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - develop
-      - master
-  pull_request:
-    branches:
-      - develop
-      - master
 
 jobs:
   build_staging_android_gps:
@@ -16,18 +11,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Checkout submodules
-        uses: actions/checkout@v2
-        with:
-          repository: Path-Check/pathcheck-mobile-resources
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: pathcheck-mobile-resources
-          ref: master
-
-      - name: Setup env
-        run: sh ./setup_env.sh github
-        shell: bash
 
       - name: Cache node_modules/
         uses: actions/cache@v1
@@ -77,6 +60,9 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
         working-directory: ./android
+
+      - name: Setup env
+        run: ruby bin/fetch_ha_env_github.sh $ACCESS_TOKEN
 
       - name: Build android Staging artifact
         uses: maierj/fastlane-action@v1.4.0
@@ -90,83 +76,3 @@ jobs:
         with:
           name: app-gps-staging
           path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
-
-  build_staging_android_bt:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Checkout submodules
-        uses: actions/checkout@v2
-        with:
-          repository: Path-Check/pathcheck-mobile-resources
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: pathcheck-mobile-resources
-          ref: master
-
-      - name: Setup env
-        run: sh ./setup_env.sh github
-        shell: bash
-
-      - name: Cache node_modules/
-        uses: actions/cache@v1
-        id: node_cache
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-yarn-cache-
-
-      - name: Install Node Dependencies
-        if: steps.node_cache.outputs.cache-hit != 'true'
-        run: yarn --frozen-lockfile
-
-      - name: Setup kernel for react native, increase watchers for release versions.
-        run: echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
-
-      - name: Cache gradle
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6
-
-      - name: Install bundler for ruby package management
-        run: gem install bundler -v "$(grep -A 1 "BUNDLED WITH" ./Gemfile.lock | tail -n 1)"
-        working-directory: ./android
-
-      - name: Cache ruby gems
-        uses: actions/cache@v1
-        id: ruby_cache
-        with:
-          path: android/vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/android/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - name: Install Ruby Dependencies
-        if: steps.ruby_cache.outputs.cache-hit != 'true'
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
-        working-directory: ./android
-
-      - name: Build android Staging artifact
-        uses: maierj/fastlane-action@v1.4.0
-        with:
-          lane: 'staging_bt'
-          subdirectory: 'android'
-          bundle-install-path: 'vendor/bundle'
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-bt-staging
-          path: android/app/build/outputs/apk/bt/staging/app-bt-staging.apk

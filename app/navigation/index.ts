@@ -27,13 +27,12 @@ export type Screen =
   | 'ExportLocally'
   | 'NextSteps'
   | 'MoreInfo'
-  | 'ENDebugMenu'
-  | 'ENLocalDiagnosisKey'
+  | 'ExposureListDebugScreen'
   | 'Settings'
   | 'About'
   | 'Licenses'
   | 'FeatureFlags'
-  | 'Import'
+  | 'ImportFromGoogle'
   | 'ImportFromUrl'
   | 'Welcome'
   | 'PersonalPrivacy'
@@ -41,7 +40,6 @@ export type Screen =
   | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
-  | 'NotificationPermissionsBT'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
@@ -71,13 +69,12 @@ export const Screens: { [key in Screen]: Screen } = {
   ExportLocally: 'ExportLocally',
   NextSteps: 'NextSteps',
   MoreInfo: 'MoreInfo',
-  ENDebugMenu: 'ENDebugMenu',
-  ENLocalDiagnosisKey: 'ENLocalDiagnosisKey',
+  ExposureListDebugScreen: 'ExposureListDebugScreen',
   Settings: 'Settings',
   About: 'About',
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
-  Import: 'Import',
+  ImportFromGoogle: 'ImportFromGoogle',
   ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   PersonalPrivacy: 'PersonalPrivacy',
@@ -85,7 +82,6 @@ export const Screens: { [key in Screen]: Screen } = {
   ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
-  NotificationPermissionsBT: 'NotificationPermissionsBT',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',

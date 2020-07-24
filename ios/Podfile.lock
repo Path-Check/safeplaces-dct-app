@@ -1,7 +1,6 @@
 PODS:
   - "@mauron85_react-native-background-geolocation (0.6.3)":
     - React
-  - Alamofire (4.9.1)
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
     - React
@@ -265,6 +264,8 @@ PODS:
     - React
   - RNDateTimePicker (2.3.2):
     - React
+  - RNDeviceInfo (5.6.2):
+    - React
   - RNFS (2.16.6):
     - React
   - RNGestureHandler (1.6.1):
@@ -288,11 +289,9 @@ PODS:
     - SSZipArchive (= 2.2.2)
   - SSZipArchive (2.2.2)
   - Yoga (1.14.0)
-  - ZIPFoundation (0.9.11)
 
 DEPENDENCIES:
   - "@mauron85_react-native-background-geolocation (from `../node_modules/@mauron85/react-native-background-geolocation`)"
-  - Alamofire (~> 4.9.1)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -342,6 +341,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPushNotificationIOS (from `../node_modules/@react-native-community/push-notification-ios`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
@@ -351,16 +351,13 @@ DEPENDENCIES:
   - RNSVG (from `../node_modules/react-native-svg`)
   - RNZipArchive (from `../node_modules/react-native-zip-archive`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
-  - ZIPFoundation
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - boost-for-react-native
     - Realm
     - RealmSwift
     - SSZipArchive
-    - ZIPFoundation
 
 EXTERNAL SOURCES:
   "@mauron85_react-native-background-geolocation":
@@ -453,6 +450,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/push-notification-ios"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNFS:
     :path: "../node_modules/react-native-fs"
   RNGestureHandler:
@@ -474,7 +473,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   "@mauron85_react-native-background-geolocation": fa34ab82e94212be16ef6e75c32bcb707b0a1524
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
@@ -522,6 +520,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: dd13f9f7b146a9ad82f9b7eb6c9b5548fcf6e990
   RNCPushNotificationIOS: 4d9ffd08f00ef6c1029ebbf4d72fc711eca3ff01
   RNDateTimePicker: 4bd49e09f91ca73d69119a9e1173b0d43b82f5e5
+  RNDeviceInfo: ed8557a8bd6443cbc0ab5d375e6808a38a279744
   RNFS: 2bd9eb49dc82fa9676382f0585b992c424cd59df
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
@@ -532,8 +531,7 @@ SPEC CHECKSUMS:
   RNZipArchive: ab51bc004a31657f34010254a9182014c6a81217
   SSZipArchive: fa16b8cc4cdeceb698e5e5d9f67e9558532fbf23
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
-  ZIPFoundation: b1f0de4eed33e74a676f76e12559ab6b75990197
 
-PODFILE CHECKSUM: d641f53b267b5fdc2398388c8211cf0739401d29
+PODFILE CHECKSUM: a70cd2a7867b1a342049fd907a0dace84082799b
 
 COCOAPODS: 1.9.1

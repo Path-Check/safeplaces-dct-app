@@ -18,6 +18,8 @@
     "next": "Volgende"
   },
   "export": {
+    "code_input_button_cancel": "Annuleer",
+    "consent_button_cancel": "Annuleer",
     "exit_warning_cancel": "Annuleer"
   },
   "history": {

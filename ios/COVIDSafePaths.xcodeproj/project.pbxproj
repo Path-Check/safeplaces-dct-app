@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
 		0814DA4E882656978623FE96 /* libPods-GPS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D04E3B4F6078718D8B62A9D /* libPods-GPS.a */; };
-		0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */; };
 		08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
 		08445F4E24283B0B008754AC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
 		08445F50242849C1008754AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4F242849C1008754AC /* CoreGraphics.framework */; };
@@ -27,134 +26,51 @@
 		08445F6824284A52008754AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
 		12922BC2C16E4BCCB3F4EA44 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 668BDA050EF549C6B0759425 /* IBMPlexSans-Bold.ttf */; };
 		1360D7CA70F14549967C9912 /* IBMPlexMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3918820E06534ED8B0C3323C /* IBMPlexMono-ThinItalic.ttf */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
 		2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
 		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
 		271881C02461AF76001DE067 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		271881C32461BF19001DE067 /* RealmSecureStorageTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */; };
 		276AB15C245291DE00D39B58 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276AB15B245291DE00D39B58 /* Location.swift */; };
-		27F931572459E28800E1024C /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F931562459E28800E1024C /* SecureStorageManager.m */; };
-		27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F931592459E2BD00E1024C /* SecureStorageManager.swift */; };
 		3AD7E092BBC64F37879D040B /* IBMPlexMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08F2A97BB10A459D962AB877 /* IBMPlexMono.ttf */; };
 		3C14AE6C1C3B4428A17E7616 /* IBMPlexSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98841A50F7B43E5987C2D4A /* IBMPlexSans-LightItalic.ttf */; };
 		3E97D87FD88C42B79836C314 /* IBMPlexMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CA5CB7E2A134220AB62370B /* IBMPlexMono-Italic.ttf */; };
-		49C5264730115D459DEB65DA /* libPods-BT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7372C03D7AA19943931FCE4 /* libPods-BT.a */; };
 		4B96C998B698BEF36609E7BA /* libPods-GPSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A9CA53C8BA83132D03AD65C /* libPods-GPSTests.a */; };
 		522B6187A48A4AF3A676D5A0 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
 		527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */; };
 		57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
 		6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
 		68D8970624809AA50091A254 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68D8970524809AA50091A254 /* Scrypt */; };
-		68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */; };
 		68D8970F24809CEB0091A254 /* Geohash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8970E24809CEB0091A254 /* Geohash.swift */; };
-		68D8971224809DAE0091A254 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971124809DAE0091A254 /* Array+Extension.swift */; };
-		68D8971524809E4B0091A254 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971424809E4B0091A254 /* String+Extension.swift */; };
 		68D8971824809F5C0091A254 /* MARULocation+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */; };
 		68D8971A24809F9C0091A254 /* GeohashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971924809F9C0091A254 /* GeohashTests.swift */; };
 		68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */; };
-		68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */ = {isa = PBXBuildFile; productRef = 68EFB21224856EC6003D84F3 /* Scrypt */; };
-		68EFB215248570C2003D84F3 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB214248570C2003D84F3 /* Log.swift */; };
 		7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
 		8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
 		8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
 		966BF87C9654448280E34CD8 /* IBMPlexSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 210E5F50B07048118538B796 /* IBMPlexSans-Italic.ttf */; };
 		A0DE2282B6A14351BC318062 /* IBMPlexMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF7DA7FE28F84E9EA7A6E4D4 /* IBMPlexMono-Thin.ttf */; };
 		A5EA4480D4CC4B468D4B4DDC /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 997AE6137471448A99893BC8 /* IBMPlexMono-SemiBoldItalic.ttf */; };
-		B01CF5299E2C4108F39C1232 /* libPods-BTTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D74339326986C2F8EE1F59BA /* libPods-BTTests.a */; };
-		B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B2A5821B244CE80C000F39A6 /* InfoPlist.strings */; };
-		B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */; };
-		B507AA0724A2533200E039D5 /* DownloadPackage+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */; };
-		B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */; };
 		B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */; };
-		B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */; };
-		B54CBF26249A72E700218477 /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CBF25249A72E700218477 /* Region.swift */; };
-		B54CBF32249A738500218477 /* IndexFileRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54CBF31249A738500218477 /* IndexFileRequests.swift */; };
-		B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = B5582D43249943DE001458A9 /* ExposureEventEmitter.m */; };
-		B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */; };
-		B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */; };
-		B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B596C0712488127D00943B79 /* ENPermissionsModule.m */; };
-		B59F4C3524BDF879007B09D5 /* ExposureHistoryModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */; };
-		B59F4C3724BE0658007B09D5 /* List+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59F4C3624BE0658007B09D5 /* List+Extensions.swift */; };
-		B5A6FD6E24BC9E69007D328C /* ExposureManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */; };
-		B5C9723024B8A909007F4C0B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5C9722F24B8A909007F4C0B /* Constants.swift */; };
-		B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */; };
-		B5E79437249E666B00BD8596 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E79436249E666B00BD8596 /* Array+Extensions.swift */; };
-		B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */; };
-		B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */; };
-		B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0CE24916A4C00433980 /* DebugAction.swift */; };
-		B5FBB0D124916A7200433980 /* Persisted.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D024916A7200433980 /* Persisted.swift */; };
-		B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D224916B3600433980 /* String+Extensions.swift */; };
-		B5FBB0D524916D8900433980 /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D424916D8900433980 /* UserState.swift */; };
-		B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FBB0D624916DE100433980 /* Notification+Extensions.swift */; };
-		B5FC37C12489B075006474EB /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C02489B075006474EB /* APIClient.swift */; };
-		B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C52489B1B3006474EB /* APIRequest.swift */; };
-		B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37C92489B1C1006474EB /* JSON.swift */; };
-		B5FC37CC2489B251006474EB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CB2489B251006474EB /* Result.swift */; };
-		B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CD2489B359006474EB /* TypeAliases.swift */; };
-		B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37CF2489B3DE006474EB /* StructuredError.swift */; };
-		B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */; };
-		B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DC248A78D2006474EB /* ExposureKey.swift */; };
-		B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */; };
-		B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */; };
-		B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37E2248A82AE006474EB /* Exposure.swift */; };
-		B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */; };
 		BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
 		BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
-		C53FD08B24719AD1006D3268 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
-		C53FD08C24719AD1006D3268 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6524284A42008754AC /* SystemConfiguration.framework */; };
-		C53FD08D24719AD1006D3268 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6324284A36008754AC /* QuartzCore.framework */; };
-		C53FD08E24719AD1006D3268 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6124284A2C008754AC /* OpenGLES.framework */; };
-		C53FD08F24719AD1006D3268 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F5F24284A22008754AC /* libz.tbd */; };
-		C53FD09024719AD1006D3268 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F5D24284A15008754AC /* libc++.tbd */; };
-		C53FD09124719AD1006D3268 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F5B24284A08008754AC /* ImageIO.framework */; };
-		C53FD09224719AD1006D3268 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F59242849FD008754AC /* GLKit.framework */; };
-		C53FD09324719AD1006D3268 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F57242849F1008754AC /* CoreText.framework */; };
-		C53FD09424719AD1006D3268 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F55242849E5008754AC /* CoreTelephony.framework */; };
-		C53FD09524719AD1006D3268 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F53242849D8008754AC /* CoreLocation.framework */; };
-		C53FD09624719AD1006D3268 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F51242849CF008754AC /* CoreImage.framework */; };
-		C53FD09724719AD1006D3268 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4F242849C1008754AC /* CoreGraphics.framework */; };
-		C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4D24283B0B008754AC /* CoreData.framework */; };
-		C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F4B24283AFF008754AC /* Accelerate.framework */; };
-		C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
-		C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */; };
-		C53FD0A024719AD1006D3268 /* IBMPlexMono-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B4A262ECA724F9CAB9A2C70 /* IBMPlexMono-BoldItalic.ttf */; };
-		C53FD0A124719AD1006D3268 /* IBMPlexMono-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3053DF05D78949A09366B85D /* IBMPlexMono-ExtraLight.ttf */; };
-		C53FD0A224719AD1006D3268 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 167DF82F84E242A39CBEB042 /* IBMPlexMono-ExtraLightItalic.ttf */; };
-		C53FD0A324719AD1006D3268 /* IBMPlexMono-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CA5CB7E2A134220AB62370B /* IBMPlexMono-Italic.ttf */; };
-		C53FD0A424719AD1006D3268 /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
-		C53FD0A524719AD1006D3268 /* IBMPlexMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CF0DA9BBE69043D2BD80FF3B /* IBMPlexMono-LightItalic.ttf */; };
-		C53FD0A624719AD1006D3268 /* IBMPlexMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */; };
-		C53FD0A724719AD1006D3268 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
-		C53FD0A824719AD1006D3268 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */; };
-		C53FD0A924719AD1006D3268 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 997AE6137471448A99893BC8 /* IBMPlexMono-SemiBoldItalic.ttf */; };
-		C53FD0AA24719AD1006D3268 /* IBMPlexMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF7DA7FE28F84E9EA7A6E4D4 /* IBMPlexMono-Thin.ttf */; };
-		C53FD0AB24719AD1006D3268 /* IBMPlexMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3918820E06534ED8B0C3323C /* IBMPlexMono-ThinItalic.ttf */; };
-		C53FD0AC24719AD1006D3268 /* IBMPlexMono.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08F2A97BB10A459D962AB877 /* IBMPlexMono.ttf */; };
-		C53FD0AD24719AD1006D3268 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 668BDA050EF549C6B0759425 /* IBMPlexSans-Bold.ttf */; };
-		C53FD0AE24719AD1006D3268 /* IBMPlexSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6CBA4DBBF104AC1AB920555 /* IBMPlexSans-BoldItalic.ttf */; };
-		C53FD0AF24719AD1006D3268 /* IBMPlexSans-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36B22BAB357B44949D2E168C /* IBMPlexSans-ExtraLight.ttf */; };
-		C53FD0B024719AD1006D3268 /* IBMPlexSans-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3A582C62ABAC478BBD976037 /* IBMPlexSans-ExtraLightItalic.ttf */; };
-		C53FD0B124719AD1006D3268 /* IBMPlexSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 210E5F50B07048118538B796 /* IBMPlexSans-Italic.ttf */; };
-		C53FD0B224719AD1006D3268 /* IBMPlexSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */; };
-		C53FD0B324719AD1006D3268 /* IBMPlexSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C98841A50F7B43E5987C2D4A /* IBMPlexSans-LightItalic.ttf */; };
-		C53FD0B424719AD1006D3268 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */; };
-		C53FD0B524719AD1006D3268 /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
-		C53FD0B624719AD1006D3268 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */; };
-		C53FD0B724719AD1006D3268 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */; };
-		C53FD0B824719AD1006D3268 /* IBMPlexSans-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */; };
-		C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
-		C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D241005D9647C4B0586127 /* IBMPlexSans.ttf */; };
-		C550A66624B7906F002CA7F2 /* ExposureKeyModule.m in Sources */ = {isa = PBXBuildFile; fileRef = C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */; };
-		C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58463E32486C51100BCB842 /* ExposureManager.swift */; };
-		C5850A64247D5A41007A596B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5850A63247D5A41007A596B /* Images.xcassets */; };
-		C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */; };
-		C5C850C7248014F700A494CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C6248014F700A494CA /* main.m */; };
-		C5C850CA2480156200A494CA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5C850C92480156200A494CA /* AppDelegate.m */; };
-		C5EF723724864F8500AA39D5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EF72202485D0E600AA39D5 /* main.m */; };
 		D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */; };
+		D4B4A85F24C8A16400E00A99 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A85A24C8A16400E00A99 /* Log.swift */; };
+		D4B4A86024C8A16400E00A99 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A85B24C8A16400E00A99 /* main.m */; };
+		D4B4A86124C8A16400E00A99 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A85D24C8A16400E00A99 /* AppDelegate.m */; };
+		D4B4A88B24C8A17300E00A99 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A86424C8A17300E00A99 /* Localizable.strings */; };
+		D4B4A88C24C8A17300E00A99 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A86624C8A17300E00A99 /* InfoPlist.strings */; };
+		D4B4A89124C8A18E00E00A99 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A88E24C8A18E00E00A99 /* LaunchScreen.xib */; };
+		D4B4A89224C8A18E00E00A99 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89024C8A18E00E00A99 /* Images.xcassets */; };
+		D4B4A8A024C8A1A700E00A99 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89424C8A1A700E00A99 /* MAURLocation+Extension.swift */; };
+		D4B4A8A124C8A1A700E00A99 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89524C8A1A700E00A99 /* String+Extension.swift */; };
+		D4B4A8A224C8A1A700E00A99 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89624C8A1A700E00A99 /* Array+Extension.swift */; };
+		D4B4A8A324C8A1A700E00A99 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89824C8A1A700E00A99 /* Debug.xcconfig */; };
+		D4B4A8A424C8A1A700E00A99 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89924C8A1A700E00A99 /* Release.xcconfig */; };
+		D4B4A8A524C8A1A700E00A99 /* Version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89A24C8A1A700E00A99 /* Version.xcconfig */; };
+		D4B4A8A624C8A1A700E00A99 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89B24C8A1A700E00A99 /* Staging.xcconfig */; };
+		D4B4A8A724C8A1A700E00A99 /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */; };
+		D4B4A8A824C8A1A700E00A99 /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
 		D7E714F18C9C4172BC01ADF8 /* IBMPlexMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */; };
 		DED6BB86437B4610B1CD3302 /* IBMPlexSans-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FF7D8132928346A2904ED363 /* IBMPlexSans-ThinItalic.ttf */; };
@@ -180,13 +96,6 @@
 			remoteGlobalIDString = 3D7682761D8E76B80014119E;
 			remoteInfo = SplashScreen;
 		};
-		C5AA24E32476901700BA0A99 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C53FD07D24719AD1006D3268;
-			remoteInfo = BT;
-		};
 		C5C850E024804A0300A494CA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */;
@@ -197,11 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* GPSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GPSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* COVIDSafePathsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = COVIDSafePathsTests.m; sourceTree = "<group>"; };
-		0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		08445F4324283A2F008754AC /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = "GoogleMaps-3.8.0/Base/Frameworks/GoogleMapsBase.framework"; sourceTree = "<group>"; };
 		08445F4524283A40008754AC /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
 		08445F4724283A46008754AC /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = "GoogleMaps-3.8.0/Maps/Frameworks/GoogleMapsCore.framework"; sourceTree = "<group>"; };
@@ -224,12 +131,8 @@
 		08F2A97BB10A459D962AB877 /* IBMPlexMono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = IBMPlexMono.ttf; path = ../shared/assets/fonts/IBMPlexMono.ttf; sourceTree = "<group>"; };
 		0AB0A08F38494307BF6F0EBC /* IBMPlexMono-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ThinItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-ThinItalic.ttf"; sourceTree = "<group>"; };
 		0DD29292C60B45029B7823D6 /* IBMPlexSans-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLight.ttf"; sourceTree = "<group>"; };
+		0EA86B049D0BB9D221E6F627 /* Pods-GPSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.debug.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* GPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		141B3702EDB77175BCFE1BA2 /* Pods-BTTests.release-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.release-bt.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.release-bt.xcconfig"; sourceTree = "<group>"; };
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		145476A32A7724DCC004C292 /* Pods-GPS.staging-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.staging-gps.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.staging-gps.xcconfig"; sourceTree = "<group>"; };
@@ -241,8 +144,6 @@
 		271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafePathsSecureStorage.swift; sourceTree = "<group>"; };
 		271881C22461BF19001DE067 /* RealmSecureStorageTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmSecureStorageTest.swift; sourceTree = "<group>"; };
 		276AB15B245291DE00D39B58 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		27F931562459E28800E1024C /* SecureStorageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecureStorageManager.m; sourceTree = "<group>"; };
-		27F931592459E2BD00E1024C /* SecureStorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
 		2CE99177C2D5C9E6462639A1 /* Pods-GPS.staging-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.staging-bt.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.staging-bt.xcconfig"; sourceTree = "<group>"; };
 		2E9077612439A903005C98DE /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		2F42C67AFB6A35F87118053B /* Pods-GPSTests.release-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.release-gps.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.release-gps.xcconfig"; sourceTree = "<group>"; };
@@ -257,6 +158,7 @@
 		450B58D199444B7D8DEE6A0A /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../app/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
 		4904B061CC24439783E20928 /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4E3ED4D343165DDCF8CF6F14 /* Pods-GPS.debug-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.debug-bt.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.debug-bt.xcconfig"; sourceTree = "<group>"; };
+		500296CFBBD33FA70F4403EF /* Pods-GPS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.debug.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.debug.xcconfig"; sourceTree = "<group>"; };
 		530526E48807C46118B2B9B7 /* Pods-GPSTests.staging-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.staging-bt.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.staging-bt.xcconfig"; sourceTree = "<group>"; };
 		53A0C1C57CED4660822FE560 /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../app/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
 		542F7FB7FF534DC2A7D428AE /* IBMPlexSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = IBMPlexSans.ttf; path = ../app/assets/fonts/IBMPlexSans.ttf; sourceTree = "<group>"; };
@@ -265,17 +167,15 @@
 		56E8CDA04E244E24A9781CA8 /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		5D1446DDD4674BFAA520C0E8 /* IBMPlexMono-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLight.ttf"; path = "../app/assets/fonts/IBMPlexMono-ExtraLight.ttf"; sourceTree = "<group>"; };
 		5D98D5DA5B77459FACDD673D /* IBMPlexSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Light.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Light.ttf"; sourceTree = "<group>"; };
+		606EB844E7D64AB33707A02E /* Pods-GPSTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.staging.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.staging.xcconfig"; sourceTree = "<group>"; };
 		667ABCBB6E3FBF03F44D3672 /* Pods-GPS.debug-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.debug-gps.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.debug-gps.xcconfig"; sourceTree = "<group>"; };
 		668BDA050EF549C6B0759425 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		67DC43BDE1EF8997F26F2108 /* Pods-BT.release-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.release-bt.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.release-bt.xcconfig"; sourceTree = "<group>"; };
-		68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MAURLocation+Extension.swift"; sourceTree = "<group>"; };
 		68D8970E24809CEB0091A254 /* Geohash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geohash.swift; sourceTree = "<group>"; };
-		68D8971124809DAE0091A254 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
-		68D8971424809E4B0091A254 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		68D8971724809F5C0091A254 /* MARULocation+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MARULocation+ExtensionTests.swift"; sourceTree = "<group>"; };
 		68D8971924809F9C0091A254 /* GeohashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeohashTests.swift; sourceTree = "<group>"; };
 		68D8971B24809FB50091A254 /* Array+ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+ExtensionTests.swift"; sourceTree = "<group>"; };
-		68EFB214248570C2003D84F3 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		69C0CB99A1291E1928585D63 /* Pods-GPS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.release.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.release.xcconfig"; sourceTree = "<group>"; };
 		6A9CA53C8BA83132D03AD65C /* libPods-GPSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GPSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BA94CE8425944B8990A49B3 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Bold.ttf"; path = "../app/assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; };
 		6C8CF282C4264C88A4ED8ABF /* IBMPlexMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Medium.ttf"; sourceTree = "<group>"; };
@@ -283,6 +183,7 @@
 		71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-MediumItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-MediumItalic.ttf"; sourceTree = "<group>"; };
 		747AA5DBBC684319A8273F2C /* IBMPlexSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		751F8AE184B9709A8C3817BF /* Pods-BTTests.staging-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.staging-gps.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.staging-gps.xcconfig"; sourceTree = "<group>"; };
+		78335934CC8BDA43BF1F4759 /* Pods-GPS.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.staging.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.staging.xcconfig"; sourceTree = "<group>"; };
 		844C843F62B5585C2F2346EA /* Pods-BT.staging-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.staging-bt.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.staging-bt.xcconfig"; sourceTree = "<group>"; };
 		89D241005D9647C4B0586127 /* IBMPlexSans.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = IBMPlexSans.ttf; path = ../shared/assets/fonts/IBMPlexSans.ttf; sourceTree = "<group>"; };
 		8CA5CB7E2A134220AB62370B /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
@@ -295,107 +196,85 @@
 		A74024E269FF63C56B1025EA /* Pods-BTTests.release-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.release-gps.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.release-gps.xcconfig"; sourceTree = "<group>"; };
 		AE25A1CE9ED048DC83FAE7B0 /* IBMPlexMono-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Bold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Bold.ttf"; sourceTree = "<group>"; };
 		B27E26E7076641EFB4386943 /* IBMPlexSans-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ExtraLightItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		B2A58213244CE76C000F39A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A58216244CE778000F39A6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A5821A244CE80C000F39A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A5821C244CE8D6000F39A6 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A5821D244CE988000F39A6 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A5821E244CE988000F39A6 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A5821F244CE9EB000F39A6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A58220244CE9EB000F39A6 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A58221244CE9F7000F39A6 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A58222244CE9F7000F39A6 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A58223244CEA20000F39A6 /* fr-HT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-HT"; path = "fr-HT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B2A58224244CEA20000F39A6 /* fr-HT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-HT"; path = "fr-HT.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B2A58225244CEA6C000F39A6 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B2A58226244CEA6C000F39A6 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		B2A58227244CEA7B000F39A6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A58228244CEA7B000F39A6 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A58229244CEA84000F39A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A5822A244CEA84000F39A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A5822B244CEA8F000F39A6 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B2A5822C244CEA8F000F39A6 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2A5822D244CEA9F000F39A6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		B2A5822E244CEA9F000F39A6 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		B3D0B8224679467D85423742 /* IBMPlexMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Italic.ttf"; path = "../app/assets/fonts/IBMPlexMono-Italic.ttf"; sourceTree = "<group>"; };
 		B3ED5E905B1401FCBA420CFF /* Pods-GPSTests.debug-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.debug-gps.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.debug-gps.xcconfig"; sourceTree = "<group>"; };
-		B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedPackage.swift; sourceTree = "<group>"; };
-		B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DownloadPackage+Helpers.swift"; sourceTree = "<group>"; };
 		B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPSSecureStorage.swift; sourceTree = "<group>"; };
-		B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BTSecureStorage.swift; sourceTree = "<group>"; };
-		B54CBF25249A72E700218477 /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
-		B54CBF31249A738500218477 /* IndexFileRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexFileRequests.swift; sourceTree = "<group>"; };
-		B5582D43249943DE001458A9 /* ExposureEventEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExposureEventEmitter.m; sourceTree = "<group>"; };
-		B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
-		B596C0712488127D00943B79 /* ENPermissionsModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ENPermissionsModule.m; sourceTree = "<group>"; };
-		B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureHistoryModule.m; sourceTree = "<group>"; };
-		B59F4C3624BE0658007B09D5 /* List+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Extensions.swift"; sourceTree = "<group>"; };
 		B5A6FD6A24BC9E54007D328C /* ExposureManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManagerTests.swift; sourceTree = "<group>"; };
 		B5C490A72498F84000588A5F /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Region.swift; sourceTree = "<group>"; };
-		B5C9722F24B8A909007F4C0B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExposureManager+Extensions.swift"; sourceTree = "<group>"; };
-		B5E79436249E666B00BD8596 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
-		B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DebugMenuModule.m; sourceTree = "<group>"; };
-		B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyUrlRequests.swift; sourceTree = "<group>"; };
-		B5FBB0CE24916A4C00433980 /* DebugAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugAction.swift; sourceTree = "<group>"; };
-		B5FBB0D024916A7200433980 /* Persisted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persisted.swift; sourceTree = "<group>"; };
-		B5FBB0D224916B3600433980 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		B5FBB0D424916D8900433980 /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
-		B5FBB0D624916DE100433980 /* Notification+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extensions.swift"; sourceTree = "<group>"; };
-		B5FC37C02489B075006474EB /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		B5FC37C52489B1B3006474EB /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
-		B5FC37C92489B1C1006474EB /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
-		B5FC37CB2489B251006474EB /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		B5FC37CD2489B359006474EB /* TypeAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
-		B5FC37CF2489B3DE006474EB /* StructuredError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredError.swift; sourceTree = "<group>"; };
-		B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisKeyRequests.swift; sourceTree = "<group>"; };
-		B5FC37DC248A78D2006474EB /* ExposureKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureKey.swift; sourceTree = "<group>"; };
-		B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfiguration.swift; sourceTree = "<group>"; };
-		B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureConfigurationRequests.swift; sourceTree = "<group>"; };
-		B5FC37E2248A82AE006474EB /* Exposure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exposure.swift; sourceTree = "<group>"; };
-		B5FC37E7248A8302006474EB /* TestResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestResult.swift; sourceTree = "<group>"; };
-		B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ENTemporaryExposureKey+Extensions.swift"; sourceTree = "<group>"; };
 		B7372C03D7AA19943931FCE4 /* libPods-BT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6254720C1D4A3288ECE351 /* IBMPlexMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBold.ttf"; path = "../shared/assets/fonts/IBMPlexMono-SemiBold.ttf"; sourceTree = "<group>"; };
 		BFBEC306069776E19FE33586 /* Pods-BT.debug-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.debug-gps.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.debug-gps.xcconfig"; sourceTree = "<group>"; };
 		C42F32AF52974EE8ADEE67B5 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
-		C504FDC1249D15260024219C /* BT-Production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BT-Production.entitlements"; sourceTree = "<group>"; };
-		C504FDC4249D155D0024219C /* BT-Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BT-Development.entitlements"; sourceTree = "<group>"; };
-		C504FDC5249D15990024219C /* GPS-Production.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "GPS-Production.entitlements"; sourceTree = "<group>"; };
-		C53FD0C124719AD1006D3268 /* BT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BT.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C53FD0C224719AD2006D3268 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExposureKeyModule.m; sourceTree = "<group>"; };
-		C56190A12485332E009A6756 /* BT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BT-Bridging-Header.h"; sourceTree = "<group>"; };
-		C58463E32486C51100BCB842 /* ExposureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExposureManager.swift; sourceTree = "<group>"; };
-		C5850A63247D5A41007A596B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C5AA24E124768FFF00BA0A99 /* BTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5C850C6248014F700A494CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C5C850C92480156200A494CA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
 		C5C850DC24804A0300A494CA /* RCTBackgroundGeolocation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBackgroundGeolocation.xcodeproj; path = "../node_modules/@mauron85/react-native-background-geolocation/ios/RCTBackgroundGeolocation.xcodeproj"; sourceTree = "<group>"; };
 		C5C850E324804A5200A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5C850F8248125A800A494CA /* libBackgroundGeolocation.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBackgroundGeolocation.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GPS-Bridging-Header.h"; sourceTree = "<group>"; };
-		C5EF72202485D0E600AA39D5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bridge/main.m; sourceTree = "<group>"; };
 		C6CBA4DBBF104AC1AB920555 /* IBMPlexSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-BoldItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C840FB7884D64E6FA97ECC2C /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Medium.ttf"; path = "../app/assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; };
 		C98841A50F7B43E5987C2D4A /* IBMPlexSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-LightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		CC1EBAC6486247BFA5EF04EB /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-SemiBold.ttf"; path = "../app/assets/fonts/IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		CF0DA9BBE69043D2BD80FF3B /* IBMPlexMono-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-LightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-LightItalic.ttf"; sourceTree = "<group>"; };
 		D04E298A8C92F0D267143C3A /* Pods-BTTests.staging-bt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BTTests.staging-bt.xcconfig"; path = "Target Support Files/Pods-BTTests/Pods-BTTests.staging-bt.xcconfig"; sourceTree = "<group>"; };
-		D4CB500824A66A2900405D61 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		D4CB500924A66ACB00405D61 /* Debug-GPS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-GPS.xcconfig"; sourceTree = "<group>"; };
-		D4CB500A24A66B6400405D61 /* Staging-GPS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Staging-GPS.xcconfig"; sourceTree = "<group>"; };
-		D4CB500B24A66B8700405D61 /* Release-GPS.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-GPS.xcconfig"; sourceTree = "<group>"; };
-		D4CB502824A66C5D00405D61 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		D4CB502A24A66C7500405D61 /* Debug-BT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug-BT.xcconfig"; sourceTree = "<group>"; };
-		D4CB502B24A66C7500405D61 /* Release-BT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release-BT.xcconfig"; sourceTree = "<group>"; };
-		D4CB502C24A66C7500405D61 /* Staging-BT.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Staging-BT.xcconfig"; sourceTree = "<group>"; };
+		D4B4A85924C8A16400E00A99 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D4B4A85A24C8A16400E00A99 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		D4B4A85B24C8A16400E00A99 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D4B4A85C24C8A16400E00A99 /* GPS-Production.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "GPS-Production.entitlements"; sourceTree = "<group>"; };
+		D4B4A85D24C8A16400E00A99 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D4B4A85E24C8A16400E00A99 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4B4A86524C8A17300E00A99 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A86724C8A17300E00A99 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A86824C8A17300E00A99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A86924C8A17300E00A99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A86A24C8A17300E00A99 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A86B24C8A17300E00A99 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A86C24C8A17300E00A99 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A86D24C8A17300E00A99 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A86E24C8A17300E00A99 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A86F24C8A17300E00A99 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A87024C8A17300E00A99 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A87124C8A17300E00A99 /* sk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sk; path = sk.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A87224C8A17300E00A99 /* ml */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A87324C8A17300E00A99 /* ml */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ml; path = ml.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A87424C8A17300E00A99 /* fr-HT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-HT"; path = "fr-HT.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4B4A87524C8A17300E00A99 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4B4A87624C8A17300E00A99 /* es-PR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-PR"; path = "es-PR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4B4A87724C8A17300E00A99 /* es-PR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-PR"; path = "es-PR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D4B4A87824C8A17300E00A99 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A87924C8A17300E00A99 /* pl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pl; path = pl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A87A24C8A17300E00A99 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4B4A87B24C8A17300E00A99 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D4B4A87C24C8A17300E00A99 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A87D24C8A17300E00A99 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A87E24C8A17300E00A99 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A87F24C8A17300E00A99 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A88024C8A17300E00A99 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A88124C8A17300E00A99 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A88224C8A17300E00A99 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A88324C8A17300E00A99 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A88424C8A17300E00A99 /* zz-ZZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zz-ZZ"; path = "zz-ZZ.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D4B4A88524C8A17300E00A99 /* zz-ZZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zz-ZZ"; path = "zz-ZZ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		D4B4A88624C8A17300E00A99 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A88724C8A17300E00A99 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A88824C8A17300E00A99 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A88924C8A17300E00A99 /* tl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tl; path = tl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4B4A88A24C8A17300E00A99 /* tl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tl; path = tl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4B4A88F24C8A18E00E00A99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D4B4A89024C8A18E00E00A99 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D4B4A89424C8A1A700E00A99 /* MAURLocation+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MAURLocation+Extension.swift"; sourceTree = "<group>"; };
+		D4B4A89524C8A1A700E00A99 /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		D4B4A89624C8A1A700E00A99 /* Array+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		D4B4A89824C8A1A700E00A99 /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		D4B4A89924C8A1A700E00A99 /* Release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		D4B4A89A24C8A1A700E00A99 /* Version.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		D4B4A89B24C8A1A700E00A99 /* Staging.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecureStorageManager.m; sourceTree = "<group>"; };
+		D4B4A89E24C8A1A700E00A99 /* GPS-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GPS-Bridging-Header.h"; sourceTree = "<group>"; };
+		D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureStorageManager.swift; sourceTree = "<group>"; };
 		D5A05B8E61DC402E8753A057 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLightItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
 		D5CD9AD3FED744E6B5F0CEF9 /* IBMPlexMono.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = file; name = IBMPlexMono.ttf; path = ../app/assets/fonts/IBMPlexMono.ttf; sourceTree = "<group>"; };
 		D5DFB90A472F4881A3C888C3 /* IBMPlexSans-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-ThinItalic.ttf"; path = "../app/assets/fonts/IBMPlexSans-ThinItalic.ttf"; sourceTree = "<group>"; };
 		D74339326986C2F8EE1F59BA /* libPods-BTTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BTTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7DA7FE28F84E9EA7A6E4D4 /* IBMPlexMono-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Thin.ttf"; sourceTree = "<group>"; };
+		E2D33B0C827A4C85EDDD6272 /* Pods-GPSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPSTests.release.xcconfig"; path = "Target Support Files/Pods-GPSTests/Pods-GPSTests.release.xcconfig"; sourceTree = "<group>"; };
 		E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-Light.ttf"; path = "../shared/assets/fonts/IBMPlexMono-Light.ttf"; sourceTree = "<group>"; };
 		E872D3374DDA4AA29E3D8511 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../app/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		EB49F7B51E4014329A4AA36D /* Pods-BT.staging-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BT.staging-gps.xcconfig"; path = "Target Support Files/Pods-BT/Pods-BT.staging-gps.xcconfig"; sourceTree = "<group>"; };
@@ -444,38 +323,6 @@
 				08445F4C24283AFF008754AC /* Accelerate.framework in Frameworks */,
 				68D8970624809AA50091A254 /* Scrypt in Frameworks */,
 				0814DA4E882656978623FE96 /* libPods-GPS.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FD08A24719AD1006D3268 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C53FD08B24719AD1006D3268 /* UIKit.framework in Frameworks */,
-				C53FD08C24719AD1006D3268 /* SystemConfiguration.framework in Frameworks */,
-				C53FD08D24719AD1006D3268 /* QuartzCore.framework in Frameworks */,
-				C53FD08E24719AD1006D3268 /* OpenGLES.framework in Frameworks */,
-				C53FD08F24719AD1006D3268 /* libz.tbd in Frameworks */,
-				C53FD09024719AD1006D3268 /* libc++.tbd in Frameworks */,
-				C53FD09124719AD1006D3268 /* ImageIO.framework in Frameworks */,
-				C53FD09224719AD1006D3268 /* GLKit.framework in Frameworks */,
-				C53FD09324719AD1006D3268 /* CoreText.framework in Frameworks */,
-				C53FD09424719AD1006D3268 /* CoreTelephony.framework in Frameworks */,
-				C53FD09524719AD1006D3268 /* CoreLocation.framework in Frameworks */,
-				C53FD09624719AD1006D3268 /* CoreImage.framework in Frameworks */,
-				C53FD09724719AD1006D3268 /* CoreGraphics.framework in Frameworks */,
-				C53FD09824719AD1006D3268 /* CoreData.framework in Frameworks */,
-				C53FD09924719AD1006D3268 /* Accelerate.framework in Frameworks */,
-				68EFB21324856EC6003D84F3 /* Scrypt in Frameworks */,
-				49C5264730115D459DEB65DA /* libPods-BT.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5AA24D924768FFF00BA0A99 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B01CF5299E2C4108F39C1232 /* libPods-BTTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +379,12 @@
 				2F42C67AFB6A35F87118053B /* Pods-GPSTests.release-gps.xcconfig */,
 				530526E48807C46118B2B9B7 /* Pods-GPSTests.staging-bt.xcconfig */,
 				FF44B2971AD1FA3EB0E99224 /* Pods-GPSTests.staging-gps.xcconfig */,
+				500296CFBBD33FA70F4403EF /* Pods-GPS.debug.xcconfig */,
+				69C0CB99A1291E1928585D63 /* Pods-GPS.release.xcconfig */,
+				78335934CC8BDA43BF1F4759 /* Pods-GPS.staging.xcconfig */,
+				0EA86B049D0BB9D221E6F627 /* Pods-GPSTests.debug.xcconfig */,
+				E2D33B0C827A4C85EDDD6272 /* Pods-GPSTests.release.xcconfig */,
+				606EB844E7D64AB33707A02E /* Pods-GPSTests.staging.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -602,34 +455,26 @@
 		13B07FAE1A68108700A75B9A /* COVIDSafePaths */ = {
 			isa = PBXGroup;
 			children = (
-				B52D88BF248F0F130071ED51 /* Common */,
-				C53FD0C324719C25006D3268 /* BT */,
-				C53FD07C247199A4006D3268 /* GPS */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				B2A58212244CE76C000F39A6 /* Localizable.strings */,
+				D4B4A85824C8A16400E00A99 /* Application */,
+				D4B4A89C24C8A1A700E00A99 /* Bridge */,
+				D4B4A89724C8A1A700E00A99 /* Config */,
+				D4B4A89324C8A1A700E00A99 /* Extension */,
+				D4B4A86324C8A17300E00A99 /* Localization */,
+				D4B4A88D24C8A18E00E00A99 /* Resources */,
+				276F786C245B6CB400312927 /* Storage */,
 			);
-			name = COVIDSafePaths;
+			path = COVIDSafePaths;
 			sourceTree = "<group>";
 		};
-		276F786A245B6C8A00312927 /* bridge */ = {
+		276F786C245B6CB400312927 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				27F931562459E28800E1024C /* SecureStorageManager.m */,
-				27F931592459E2BD00E1024C /* SecureStorageManager.swift */,
-			);
-			path = bridge;
-			sourceTree = "<group>";
-		};
-		276F786C245B6CB400312927 /* storage */ = {
-			isa = PBXGroup;
-			children = (
-				276AB15B245291DE00D39B58 /* Location.swift */,
 				68D8970E24809CEB0091A254 /* Geohash.swift */,
 				B52D88C1248F0FD90071ED51 /* GPSSecureStorage.swift */,
+				276AB15B245291DE00D39B58 /* Location.swift */,
+				271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */,
 			);
-			path = storage;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -670,16 +515,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		68D8970A24809B2D0091A254 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				68D8970B24809B4E0091A254 /* MAURLocation+Extension.swift */,
-				68D8971124809DAE0091A254 /* Array+Extension.swift */,
-				68D8971424809E4B0091A254 /* String+Extension.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -697,8 +532,8 @@
 				08445F4524283A40008754AC /* GoogleMaps.framework */,
 				08445F4324283A2F008754AC /* GoogleMapsBase.framework */,
 				13B07FAE1A68108700A75B9A /* COVIDSafePaths */,
-				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* COVIDSafePathsTests */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				08CFC7C2232A41A8F8E9E0B0 /* Pods */,
@@ -715,26 +550,8 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* GPS.app */,
 				00E356EE1AD99517003FC87E /* GPSTests.xctest */,
-				C53FD0C124719AD1006D3268 /* BT.app */,
-				C5AA24E124768FFF00BA0A99 /* BTTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		B507AA0524A2531000E039D5 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				B507AA0624A2533200E039D5 /* DownloadPackage+Helpers.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		B52D88BF248F0F130071ED51 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				271881BF2461AF76001DE067 /* SafePathsSecureStorage.swift */,
-			);
-			path = Common;
 			sourceTree = "<group>";
 		};
 		B562F041249A64400006647B /* Recovered References */ = {
@@ -745,149 +562,6 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
-		B5E29D4A249E3A7D00E686DC /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				B5FBB0D224916B3600433980 /* String+Extensions.swift */,
-				B5E79436249E666B00BD8596 /* Array+Extensions.swift */,
-				B576CC3D24993F4C00CDD9D9 /* Date+Extensions.swift */,
-				B576CC4024993F4C00CDD9D9 /* Encodable+Extensions.swift */,
-				B59F4C3624BE0658007B09D5 /* List+Extensions.swift */,
-				B5FBB0D624916DE100433980 /* Notification+Extensions.swift */,
-			);
-			path = Foundation;
-			sourceTree = "<group>";
-		};
-		B5E29D4D249E3A8700E686DC /* Exposure Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				B5FC37F5248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift */,
-			);
-			path = "Exposure Notifications";
-			sourceTree = "<group>";
-		};
-		B5E29D4E249E3A8F00E686DC /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				B5E29D53249E3BE100E686DC /* ExposureManager+Extensions.swift */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		B5FC37BD2489B05F006474EB /* API */ = {
-			isa = PBXGroup;
-			children = (
-				B507AA0524A2531000E039D5 /* Helpers */,
-				B5FC37DB248A78C3006474EB /* Model */,
-				B5FC37D12489C25D006474EB /* Requests */,
-				B5FC37C02489B075006474EB /* APIClient.swift */,
-				B5FC37CF2489B3DE006474EB /* StructuredError.swift */,
-				B5FC37CB2489B251006474EB /* Result.swift */,
-				B5FC37CD2489B359006474EB /* TypeAliases.swift */,
-				B5FC37C52489B1B3006474EB /* APIRequest.swift */,
-				B5FC37C92489B1C1006474EB /* JSON.swift */,
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
-		B5FC37D12489C25D006474EB /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				B5FC37D7248A784F006474EB /* DiagnosisKeyRequests.swift */,
-				B5FBB0BC2490339900433980 /* DiagnosisKeyUrlRequests.swift */,
-				B54CBF31249A738500218477 /* IndexFileRequests.swift */,
-				B5FC37E0248A7EED006474EB /* ExposureConfigurationRequests.swift */,
-			);
-			path = Requests;
-			sourceTree = "<group>";
-		};
-		B5FC37DB248A78C3006474EB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B5FC37DC248A78D2006474EB /* ExposureKey.swift */,
-				B507A9ED24A197FF00E039D5 /* DownloadedPackage.swift */,
-				B5FC37DE248A78FC006474EB /* ExposureConfiguration.swift */,
-				B5FC37E7248A8302006474EB /* TestResult.swift */,
-				B54CBF25249A72E700218477 /* Region.swift */,
-				B5FC37E2248A82AE006474EB /* Exposure.swift */,
-				B5FBB0D424916D8900433980 /* UserState.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B5FC37E4248A82D6006474EB /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				B52D88C3248F10FD0071ED51 /* BTSecureStorage.swift */,
-				B5FBB0D024916A7200433980 /* Persisted.swift */,
-			);
-			path = Storage;
-			sourceTree = "<group>";
-		};
-		B5FC37F2248A9934006474EB /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				B5E29D4E249E3A8F00E686DC /* Other */,
-				B5E29D4D249E3A8700E686DC /* Exposure Notifications */,
-				B5E29D4A249E3A7D00E686DC /* Foundation */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		C53FD07C247199A4006D3268 /* GPS */ = {
-			isa = PBXGroup;
-			children = (
-				D4CB500524A66A1A00405D61 /* Config */,
-				68D8970A24809B2D0091A254 /* Extension */,
-				276F786C245B6CB400312927 /* storage */,
-				276F786A245B6C8A00312927 /* bridge */,
-				13B07FB01A68108700A75B9A /* AppDelegate.m */,
-				68EFB214248570C2003D84F3 /* Log.swift */,
-				C5EF72202485D0E600AA39D5 /* main.m */,
-				B2A5821B244CE80C000F39A6 /* InfoPlist.strings */,
-				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				0835F8902441054900E95AE3 /* RNBackgroundFetch+AppDelegate.m */,
-				C5C850FB24812AAB00A494CA /* GPS-Bridging-Header.h */,
-				C504FDC5249D15990024219C /* GPS-Production.entitlements */,
-			);
-			path = GPS;
-			sourceTree = "<group>";
-		};
-		C53FD0C324719C25006D3268 /* BT */ = {
-			isa = PBXGroup;
-			children = (
-				D4CB502524A66C5D00405D61 /* Config */,
-				B5FC37F2248A9934006474EB /* Extensions */,
-				B5FC37E4248A82D6006474EB /* Storage */,
-				B5FC37BD2489B05F006474EB /* API */,
-				C57BDFB124883EF400CE62B1 /* bridge */,
-				C5C850C92480156200A494CA /* AppDelegate.m */,
-				C5C850C6248014F700A494CA /* main.m */,
-				C53FD0C224719AD2006D3268 /* Info.plist */,
-				C5850A63247D5A41007A596B /* Images.xcassets */,
-				C56190A12485332E009A6756 /* BT-Bridging-Header.h */,
-				C58463E32486C51100BCB842 /* ExposureManager.swift */,
-				B5C9722F24B8A909007F4C0B /* Constants.swift */,
-				B5FBB0CE24916A4C00433980 /* DebugAction.swift */,
-				C504FDC1249D15260024219C /* BT-Production.entitlements */,
-				C504FDC4249D155D0024219C /* BT-Development.entitlements */,
-			);
-			path = BT;
-			sourceTree = "<group>";
-		};
-		C57BDFB124883EF400CE62B1 /* bridge */ = {
-			isa = PBXGroup;
-			children = (
-				B596C0712488127D00943B79 /* ENPermissionsModule.m */,
-				C550A66524B7906F002CA7F2 /* ExposureKeyModule.m */,
-				B59F4C3424BDF879007B09D5 /* ExposureHistoryModule.m */,
-				B5FB3B42248BD61A001DB1D5 /* DebugMenuModule.m */,
-				B5582D43249943DE001458A9 /* ExposureEventEmitter.m */,
-			);
-			path = bridge;
-			sourceTree = "<group>";
-		};
 		C5C850DD24804A0300A494CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -896,26 +570,66 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D4CB500524A66A1A00405D61 /* Config */ = {
+		D4B4A85824C8A16400E00A99 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				D4CB500924A66ACB00405D61 /* Debug-GPS.xcconfig */,
-				D4CB500B24A66B8700405D61 /* Release-GPS.xcconfig */,
-				D4CB500A24A66B6400405D61 /* Staging-GPS.xcconfig */,
-				D4CB500824A66A2900405D61 /* Version.xcconfig */,
+				D4B4A85924C8A16400E00A99 /* AppDelegate.h */,
+				D4B4A85D24C8A16400E00A99 /* AppDelegate.m */,
+				D4B4A85C24C8A16400E00A99 /* GPS-Production.entitlements */,
+				D4B4A85E24C8A16400E00A99 /* Info.plist */,
+				D4B4A85A24C8A16400E00A99 /* Log.swift */,
+				D4B4A85B24C8A16400E00A99 /* main.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D4B4A86324C8A17300E00A99 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4A86624C8A17300E00A99 /* InfoPlist.strings */,
+				D4B4A86424C8A17300E00A99 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		D4B4A88D24C8A18E00E00A99 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4A89024C8A18E00E00A99 /* Images.xcassets */,
+				D4B4A88E24C8A18E00E00A99 /* LaunchScreen.xib */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D4B4A89324C8A1A700E00A99 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4A89624C8A1A700E00A99 /* Array+Extension.swift */,
+				D4B4A89424C8A1A700E00A99 /* MAURLocation+Extension.swift */,
+				D4B4A89524C8A1A700E00A99 /* String+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		D4B4A89724C8A1A700E00A99 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				D4B4A89824C8A1A700E00A99 /* Debug.xcconfig */,
+				D4B4A89924C8A1A700E00A99 /* Release.xcconfig */,
+				D4B4A89B24C8A1A700E00A99 /* Staging.xcconfig */,
+				D4B4A89A24C8A1A700E00A99 /* Version.xcconfig */,
 			);
 			path = Config;
 			sourceTree = "<group>";
 		};
-		D4CB502524A66C5D00405D61 /* Config */ = {
+		D4B4A89C24C8A1A700E00A99 /* Bridge */ = {
 			isa = PBXGroup;
 			children = (
-				D4CB502A24A66C7500405D61 /* Debug-BT.xcconfig */,
-				D4CB502B24A66C7500405D61 /* Release-BT.xcconfig */,
-				D4CB502C24A66C7500405D61 /* Staging-BT.xcconfig */,
-				D4CB502824A66C5D00405D61 /* Version.xcconfig */,
+				D4B4A89E24C8A1A700E00A99 /* GPS-Bridging-Header.h */,
+				D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */,
+				D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */,
 			);
-			path = Config;
+			path = Bridge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -964,49 +678,6 @@
 			productReference = 13B07F961A680F5B00A75B9A /* GPS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C53FD07D24719AD1006D3268 /* BT */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C53FD0BC24719AD1006D3268 /* Build configuration list for PBXNativeTarget "BT" */;
-			buildPhases = (
-				B8B3F66D67BD3E6B2C9A66F0 /* [CP] Check Pods Manifest.lock */,
-				C53FD07F24719AD1006D3268 /* Start Packager */,
-				C53FD08024719AD1006D3268 /* Sources */,
-				C53FD08A24719AD1006D3268 /* Frameworks */,
-				C53FD09B24719AD1006D3268 /* Resources */,
-				D447FDBA24BF332B00250621 /* Configure ATS */,
-				C53FD0BB24719AD1006D3268 /* Bundle React Native code and images */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BT;
-			packageProductDependencies = (
-				68EFB21224856EC6003D84F3 /* Scrypt */,
-			);
-			productName = COVIDSafePaths;
-			productReference = C53FD0C124719AD1006D3268 /* BT.app */;
-			productType = "com.apple.product-type.application";
-		};
-		C5AA24D124768FFF00BA0A99 /* BTTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C5AA24DC24768FFF00BA0A99 /* Build configuration list for PBXNativeTarget "BTTests" */;
-			buildPhases = (
-				C7E79764B7E41310387F475F /* [CP] Check Pods Manifest.lock */,
-				C5AA24D524768FFF00BA0A99 /* Sources */,
-				C5AA24D924768FFF00BA0A99 /* Frameworks */,
-				C5AA24DB24768FFF00BA0A99 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C5AA24E42476901700BA0A99 /* PBXTargetDependency */,
-			);
-			name = BTTests;
-			productName = COVIDSafePathsTests;
-			productReference = C5AA24E124768FFF00BA0A99 /* BTTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1025,9 +696,6 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1130;
-					};
-					C5AA24D124768FFF00BA0A99 = {
-						TestTargetID = C53FD07D24719AD1006D3268;
 					};
 				};
 			};
@@ -1050,6 +718,15 @@
 				"zh-Hant",
 				sk,
 				"pt-BR",
+				ar,
+				da,
+				"es-PR",
+				pl,
+				nl,
+				"zz-ZZ",
+				ht,
+				tl,
+				fil,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			packageReferences = (
@@ -1071,8 +748,6 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* GPS */,
 				00E356ED1AD99517003FC87E /* GPSTests */,
-				C53FD07D24719AD1006D3268 /* BT */,
-				C5AA24D124768FFF00BA0A99 /* BTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1106,26 +781,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				B2A58219244CE80C000F39A6 /* InfoPlist.strings in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				E815ED8FD59D4635AD64CCB3 /* IBMPlexMono-Bold.ttf in Resources */,
 				F4A4CE1B537D4CDA9FED9458 /* IBMPlexMono-BoldItalic.ttf in Resources */,
 				8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */,
 				FB74D96D942D4B9FBECB1175 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
 				3E97D87FD88C42B79836C314 /* IBMPlexMono-Italic.ttf in Resources */,
+				D4B4A8A524C8A1A700E00A99 /* Version.xcconfig in Resources */,
 				D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */,
 				F4E13CA171B74075A5EECD71 /* IBMPlexMono-LightItalic.ttf in Resources */,
 				527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */,
 				25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */,
 				D7E714F18C9C4172BC01ADF8 /* IBMPlexMono-SemiBold.ttf in Resources */,
 				A5EA4480D4CC4B468D4B4DDC /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
+				D4B4A88B24C8A17300E00A99 /* Localizable.strings in Resources */,
 				A0DE2282B6A14351BC318062 /* IBMPlexMono-Thin.ttf in Resources */,
 				1360D7CA70F14549967C9912 /* IBMPlexMono-ThinItalic.ttf in Resources */,
 				3AD7E092BBC64F37879D040B /* IBMPlexMono.ttf in Resources */,
+				D4B4A89224C8A18E00E00A99 /* Images.xcassets in Resources */,
 				12922BC2C16E4BCCB3F4EA44 /* IBMPlexSans-Bold.ttf in Resources */,
 				F3B14B1B97834BBC886F10D5 /* IBMPlexSans-BoldItalic.ttf in Resources */,
 				8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */,
+				D4B4A8A424C8A1A700E00A99 /* Release.xcconfig in Resources */,
 				57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */,
 				966BF87C9654448280E34CD8 /* IBMPlexSans-Italic.ttf in Resources */,
 				BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */,
@@ -1133,54 +809,14 @@
 				BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */,
 				2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */,
 				D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */,
+				D4B4A8A624C8A1A700E00A99 /* Staging.xcconfig in Resources */,
+				D4B4A8A324C8A1A700E00A99 /* Debug.xcconfig in Resources */,
 				6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
 				522B6187A48A4AF3A676D5A0 /* IBMPlexSans-Thin.ttf in Resources */,
 				DED6BB86437B4610B1CD3302 /* IBMPlexSans-ThinItalic.ttf in Resources */,
+				D4B4A89124C8A18E00E00A99 /* LaunchScreen.xib in Resources */,
 				7A2281C376904F23BCA10FCA /* IBMPlexSans.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FD09B24719AD1006D3268 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C53FD09E24719AD1006D3268 /* LaunchScreen.xib in Resources */,
-				C53FD09F24719AD1006D3268 /* IBMPlexMono-Bold.ttf in Resources */,
-				C53FD0A024719AD1006D3268 /* IBMPlexMono-BoldItalic.ttf in Resources */,
-				C53FD0A124719AD1006D3268 /* IBMPlexMono-ExtraLight.ttf in Resources */,
-				C5850A64247D5A41007A596B /* Images.xcassets in Resources */,
-				C53FD0A224719AD1006D3268 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
-				C53FD0A324719AD1006D3268 /* IBMPlexMono-Italic.ttf in Resources */,
-				C53FD0A424719AD1006D3268 /* IBMPlexMono-Light.ttf in Resources */,
-				C53FD0A524719AD1006D3268 /* IBMPlexMono-LightItalic.ttf in Resources */,
-				C53FD0A624719AD1006D3268 /* IBMPlexMono-Medium.ttf in Resources */,
-				C53FD0A724719AD1006D3268 /* IBMPlexMono-MediumItalic.ttf in Resources */,
-				C53FD0A824719AD1006D3268 /* IBMPlexMono-SemiBold.ttf in Resources */,
-				C53FD0A924719AD1006D3268 /* IBMPlexMono-SemiBoldItalic.ttf in Resources */,
-				C53FD0AA24719AD1006D3268 /* IBMPlexMono-Thin.ttf in Resources */,
-				C53FD0AB24719AD1006D3268 /* IBMPlexMono-ThinItalic.ttf in Resources */,
-				C53FD0AC24719AD1006D3268 /* IBMPlexMono.ttf in Resources */,
-				C53FD0AD24719AD1006D3268 /* IBMPlexSans-Bold.ttf in Resources */,
-				C53FD0AE24719AD1006D3268 /* IBMPlexSans-BoldItalic.ttf in Resources */,
-				C53FD0AF24719AD1006D3268 /* IBMPlexSans-ExtraLight.ttf in Resources */,
-				C53FD0B024719AD1006D3268 /* IBMPlexSans-ExtraLightItalic.ttf in Resources */,
-				C53FD0B124719AD1006D3268 /* IBMPlexSans-Italic.ttf in Resources */,
-				C53FD0B224719AD1006D3268 /* IBMPlexSans-Light.ttf in Resources */,
-				C53FD0B324719AD1006D3268 /* IBMPlexSans-LightItalic.ttf in Resources */,
-				C53FD0B424719AD1006D3268 /* IBMPlexSans-Medium.ttf in Resources */,
-				C53FD0B524719AD1006D3268 /* IBMPlexSans-MediumItalic.ttf in Resources */,
-				C53FD0B624719AD1006D3268 /* IBMPlexSans-SemiBold.ttf in Resources */,
-				C53FD0B724719AD1006D3268 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
-				C53FD0B824719AD1006D3268 /* IBMPlexSans-Thin.ttf in Resources */,
-				C53FD0B924719AD1006D3268 /* IBMPlexSans-ThinItalic.ttf in Resources */,
-				C53FD0BA24719AD1006D3268 /* IBMPlexSans.ttf in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5AA24DB24768FFF00BA0A99 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				D4B4A88C24C8A17300E00A99 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1245,102 +881,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B8B3F66D67BD3E6B2C9A66F0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BT-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C53FD07F24719AD1006D3268 /* Start Packager */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Start Packager";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		C53FD0BB24719AD1006D3268 /* Bundle React Native code and images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native code and images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
-		};
-		C7E79764B7E41310387F475F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-BTTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		D447FDB724BF310000250621 /* Configure ATS */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Configure ATS";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/libexec/PlistBuddy -c \"Set :NSAppTransportSecurity:NSAllowsArbitraryLoads ${ALLOW_INSECURE_HTTP}\" ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\n";
-		};
-		D447FDBA24BF332B00250621 /* Configure ATS */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1397,73 +938,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5EF723724864F8500AA39D5 /* main.m in Sources */,
+				D4B4A8A824C8A1A700E00A99 /* SecureStorageManager.swift in Sources */,
+				D4B4A8A724C8A1A700E00A99 /* SecureStorageManager.m in Sources */,
 				271881C02461AF76001DE067 /* SafePathsSecureStorage.swift in Sources */,
-				0835F8922441054A00E95AE3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
-				68EFB215248570C2003D84F3 /* Log.swift in Sources */,
-				68D8971224809DAE0091A254 /* Array+Extension.swift in Sources */,
+				D4B4A8A224C8A1A700E00A99 /* Array+Extension.swift in Sources */,
+				D4B4A8A124C8A1A700E00A99 /* String+Extension.swift in Sources */,
+				D4B4A85F24C8A16400E00A99 /* Log.swift in Sources */,
 				68D8970F24809CEB0091A254 /* Geohash.swift in Sources */,
-				27F931572459E28800E1024C /* SecureStorageManager.m in Sources */,
-				68D8971524809E4B0091A254 /* String+Extension.swift in Sources */,
-				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				D4B4A86124C8A16400E00A99 /* AppDelegate.m in Sources */,
 				B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */,
-				68D8970C24809B4E0091A254 /* MAURLocation+Extension.swift in Sources */,
+				D4B4A8A024C8A1A700E00A99 /* MAURLocation+Extension.swift in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
-				27F9315A2459E2BD00E1024C /* SecureStorageManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C53FD08024719AD1006D3268 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5FBB0D524916D8900433980 /* UserState.swift in Sources */,
-				B5FBB0D724916DE100433980 /* Notification+Extensions.swift in Sources */,
-				B54CBF26249A72E700218477 /* Region.swift in Sources */,
-				C550A66624B7906F002CA7F2 /* ExposureKeyModule.m in Sources */,
-				B54CBF32249A738500218477 /* IndexFileRequests.swift in Sources */,
-				B52D88C4248F10FD0071ED51 /* BTSecureStorage.swift in Sources */,
-				B5FC37CC2489B251006474EB /* Result.swift in Sources */,
-				C58463E42486C51100BCB842 /* ExposureManager.swift in Sources */,
-				B5FC37C62489B1B3006474EB /* APIRequest.swift in Sources */,
-				B5FBB0D124916A7200433980 /* Persisted.swift in Sources */,
-				B5FBB0BD2490339900433980 /* DiagnosisKeyUrlRequests.swift in Sources */,
-				C5C850CA2480156200A494CA /* AppDelegate.m in Sources */,
-				B5FC37E3248A82AE006474EB /* Exposure.swift in Sources */,
-				B576CC4324993F5200CDD9D9 /* Date+Extensions.swift in Sources */,
-				B52D88C0248F0FC00071ED51 /* SafePathsSecureStorage.swift in Sources */,
-				B5FB3B43248BD61A001DB1D5 /* DebugMenuModule.m in Sources */,
-				B5582D47249943E5001458A9 /* ExposureEventEmitter.m in Sources */,
-				C5C850C7248014F700A494CA /* main.m in Sources */,
-				B59F4C3524BDF879007B09D5 /* ExposureHistoryModule.m in Sources */,
-				B596C0722488127D00943B79 /* ENPermissionsModule.m in Sources */,
-				B5FC37D8248A784F006474EB /* DiagnosisKeyRequests.swift in Sources */,
-				B59F4C3724BE0658007B09D5 /* List+Extensions.swift in Sources */,
-				B5FBB0D324916B3600433980 /* String+Extensions.swift in Sources */,
-				B507A9EE24A197FF00E039D5 /* DownloadedPackage.swift in Sources */,
-				B5FC37F6248A9968006474EB /* ENTemporaryExposureKey+Extensions.swift in Sources */,
-				B5E29D54249E3BE100E686DC /* ExposureManager+Extensions.swift in Sources */,
-				B5FC37C12489B075006474EB /* APIClient.swift in Sources */,
-				B5FC37CE2489B359006474EB /* TypeAliases.swift in Sources */,
-				B507AA0724A2533200E039D5 /* DownloadPackage+Helpers.swift in Sources */,
-				B576CC4424993F5200CDD9D9 /* Encodable+Extensions.swift in Sources */,
-				B5FBB0CF24916A4C00433980 /* DebugAction.swift in Sources */,
-				B5FC37E1248A7EED006474EB /* ExposureConfigurationRequests.swift in Sources */,
-				B5FC37DD248A78D2006474EB /* ExposureKey.swift in Sources */,
-				B5FC37DF248A78FC006474EB /* ExposureConfiguration.swift in Sources */,
-				B5E79437249E666B00BD8596 /* Array+Extensions.swift in Sources */,
-				B5FC37CA2489B1C1006474EB /* JSON.swift in Sources */,
-				B5FC37D02489B3DE006474EB /* StructuredError.swift in Sources */,
-				B5C9723024B8A909007F4C0B /* Constants.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C5AA24D524768FFF00BA0A99 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B5A6FD6E24BC9E69007D328C /* ExposureManagerTests.swift in Sources */,
-				C5AA24D824768FFF00BA0A99 /* COVIDSafePathsTests.m in Sources */,
+				D4B4A86024C8A16400E00A99 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1476,291 +962,74 @@
 			target = 13B07F861A680F5B00A75B9A /* GPS */;
 			targetProxy = 271881CB2461C95F001DE067 /* PBXContainerItemProxy */;
 		};
-		C5AA24E42476901700BA0A99 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			platformFilter = ios;
-			target = C53FD07D24719AD1006D3268 /* BT */;
-			targetProxy = C5AA24E32476901700BA0A99 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
+		D4B4A86424C8A17300E00A99 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = COVIDSafePaths;
-			sourceTree = "<group>";
-		};
-		B2A58212244CE76C000F39A6 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B2A58213244CE76C000F39A6 /* en */,
-				B2A58216244CE778000F39A6 /* it */,
-				B2A5821E244CE988000F39A6 /* sk */,
-				B2A58220244CE9EB000F39A6 /* ro */,
-				B2A58222244CE9F7000F39A6 /* id */,
-				B2A58224244CEA20000F39A6 /* fr-HT */,
-				B2A58226244CEA6C000F39A6 /* pt-BR */,
-				B2A58228244CEA7B000F39A6 /* ru */,
-				B2A5822A244CEA84000F39A6 /* es */,
-				B2A5822C244CEA8F000F39A6 /* vi */,
-				B2A5822E244CEA9F000F39A6 /* zh-Hant */,
+				D4B4A86524C8A17300E00A99 /* ar */,
+				D4B4A86824C8A17300E00A99 /* en */,
+				D4B4A86A24C8A17300E00A99 /* es */,
+				D4B4A86C24C8A17300E00A99 /* da */,
+				D4B4A86E24C8A17300E00A99 /* it */,
+				D4B4A87024C8A17300E00A99 /* sk */,
+				D4B4A87224C8A17300E00A99 /* ml */,
+				D4B4A87424C8A17300E00A99 /* fr-HT */,
+				D4B4A87524C8A17300E00A99 /* zh-Hant */,
+				D4B4A87624C8A17300E00A99 /* es-PR */,
+				D4B4A87824C8A17300E00A99 /* pl */,
+				D4B4A87A24C8A17300E00A99 /* pt-BR */,
+				D4B4A87C24C8A17300E00A99 /* vi */,
+				D4B4A87D24C8A17300E00A99 /* ru */,
+				D4B4A87F24C8A17300E00A99 /* fr */,
+				D4B4A88124C8A17300E00A99 /* id */,
+				D4B4A88224C8A17300E00A99 /* nl */,
+				D4B4A88424C8A17300E00A99 /* zz-ZZ */,
+				D4B4A88624C8A17300E00A99 /* ht */,
+				D4B4A88824C8A17300E00A99 /* ro */,
+				D4B4A88924C8A17300E00A99 /* tl */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		B2A5821B244CE80C000F39A6 /* InfoPlist.strings */ = {
+		D4B4A86624C8A17300E00A99 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B2A5821A244CE80C000F39A6 /* en */,
-				B2A5821C244CE8D6000F39A6 /* it */,
-				B2A5821D244CE988000F39A6 /* sk */,
-				B2A5821F244CE9EB000F39A6 /* ro */,
-				B2A58221244CE9F7000F39A6 /* id */,
-				B2A58223244CEA20000F39A6 /* fr-HT */,
-				B2A58225244CEA6C000F39A6 /* pt-BR */,
-				B2A58227244CEA7B000F39A6 /* ru */,
-				B2A58229244CEA84000F39A6 /* es */,
-				B2A5822B244CEA8F000F39A6 /* vi */,
-				B2A5822D244CEA9F000F39A6 /* zh-Hant */,
+				D4B4A86724C8A17300E00A99 /* ar */,
+				D4B4A86924C8A17300E00A99 /* en */,
+				D4B4A86B24C8A17300E00A99 /* es */,
+				D4B4A86D24C8A17300E00A99 /* da */,
+				D4B4A86F24C8A17300E00A99 /* it */,
+				D4B4A87124C8A17300E00A99 /* sk */,
+				D4B4A87324C8A17300E00A99 /* ml */,
+				D4B4A87724C8A17300E00A99 /* es-PR */,
+				D4B4A87924C8A17300E00A99 /* pl */,
+				D4B4A87B24C8A17300E00A99 /* pt-BR */,
+				D4B4A87E24C8A17300E00A99 /* ru */,
+				D4B4A88024C8A17300E00A99 /* fr */,
+				D4B4A88324C8A17300E00A99 /* nl */,
+				D4B4A88524C8A17300E00A99 /* zz-ZZ */,
+				D4B4A88724C8A17300E00A99 /* ht */,
+				D4B4A88A24C8A17300E00A99 /* tl */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D4B4A88E24C8A18E00E00A99 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4B4A88F24C8A18E00E00A99 /* Base */,
+			);
+			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug-BT */ = {
+		D4CB500C24A66BB800405D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6854A5E4C5120F2760E0E62 /* Pods-GPSTests.debug-bt.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
-			};
-			name = "Debug-BT";
-		};
-		00E356F71AD99517003FC87E /* Release-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B644EE0F2C85738FCD937EA /* Pods-GPSTests.release-bt.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
-			};
-			name = "Release-BT";
-		};
-		13B07F941A680F5B00A75B9A /* Debug-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E3ED4D343165DDCF8CF6F14 /* Pods-GPS.debug-bt.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = NO;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
-				INFOPLIST_FILE = GPS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = GPS;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Debug-BT";
-		};
-		13B07F951A680F5B00A75B9A /* Release-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 977BE49F665F3E0768AD52E3 /* Pods-GPS.release-bt.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
-				INFOPLIST_FILE = GPS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = GPS;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Release-BT";
-		};
-		83CBBA201A601CBA00E9B192 /* Debug-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4CB502A24A66C7500405D61 /* Debug-BT.xcconfig */;
+			baseConfigurationReference = D4B4A89824C8A1A700E00A99 /* Debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -1811,240 +1080,14 @@
 				SDKROOT = iphoneos;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = "Debug-BT";
+			name = Debug;
 		};
-		83CBBA211A601CBA00E9B192 /* Release-BT */ = {
+		D4CB500D24A66BB800405D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4CB502B24A66C7500405D61 /* Release-BT.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Release-BT";
-		};
-		C53FD0BD24719AD1006D3268 /* Debug-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB93AEF93E757536F638DE58 /* Pods-BT.debug-bt.xcconfig */;
+			baseConfigurationReference = 500296CFBBD33FA70F4403EF /* Pods-GPS.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = NO;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 6R7GW6VJ2A;
-				INFOPLIST_FILE = BT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -D DEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.mn.bt;
-				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "PathCheck Dev";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Debug-BT";
-		};
-		C53FD0BF24719AD1006D3268 /* Release-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 67DC43BDE1EF8997F26F2108 /* Pods-BT.release-bt.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 6R7GW6VJ2A;
-				INFOPLIST_FILE = BT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
-				PRODUCT_BUNDLE_IDENTIFIER = org.pathcheck.mn.bt;
-				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "pathcheck-mn-bt-appstore";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Release-BT";
-		};
-		C5AA24DD24768FFF00BA0A99 /* Debug-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 323E903F3DAB2E4C925FECBD /* Pods-BTTests.debug-bt.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
-			};
-			name = "Debug-BT";
-		};
-		C5AA24DF24768FFF00BA0A99 /* Release-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 141B3702EDB77175BCFE1BA2 /* Pods-BTTests.release-bt.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
-			};
-			name = "Release-BT";
-		};
-		D4CB500C24A66BB800405D61 /* Debug-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4CB500924A66ACB00405D61 /* Debug-GPS.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Debug-GPS";
-		};
-		D4CB500D24A66BB800405D61 /* Debug-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 667ABCBB6E3FBF03F44D3672 /* Pods-GPS.debug-gps.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(PROJECT_NAME)/Application/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = NO;
@@ -2055,7 +1098,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
-				INFOPLIST_FILE = GPS/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2115,15 +1158,15 @@
 				);
 				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Bridge/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
-			name = "Debug-GPS";
+			name = Debug;
 		};
-		D4CB500E24A66BB800405D61 /* Debug-GPS */ = {
+		D4CB500E24A66BB800405D61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B3ED5E905B1401FCBA420CFF /* Pods-GPSTests.debug-gps.xcconfig */;
+			baseConfigurationReference = 0EA86B049D0BB9D221E6F627 /* Pods-GPSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -2147,79 +1190,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
-			name = "Debug-GPS";
+			name = Debug;
 		};
-		D4CB500F24A66BB800405D61 /* Debug-GPS */ = {
+		D4CB501B24A66BD400405D61 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BFBEC306069776E19FE33586 /* Pods-BT.debug-gps.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = NO;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\" -D DEBUG";
-				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Debug-GPS";
-		};
-		D4CB501024A66BB800405D61 /* Debug-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 93396F628DA498595B93956B /* Pods-BTTests.debug-gps.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
-			};
-			name = "Debug-GPS";
-		};
-		D4CB501624A66BCE00405D61 /* Staging-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4CB502C24A66C7500405D61 /* Staging-BT.xcconfig */;
+			baseConfigurationReference = D4B4A89B24C8A1A700E00A99 /* Staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2263,14 +1242,14 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = "Staging-BT";
+			name = Staging;
 		};
-		D4CB501724A66BCE00405D61 /* Staging-BT */ = {
+		D4CB501C24A66BD400405D61 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CE99177C2D5C9E6462639A1 /* Pods-GPS.staging-bt.xcconfig */;
+			baseConfigurationReference = 78335934CC8BDA43BF1F4759 /* Pods-GPS.staging.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(PROJECT_NAME)/Application/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
@@ -2281,7 +1260,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
-				INFOPLIST_FILE = GPS/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2341,14 +1320,14 @@
 				);
 				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Bridge/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
-			name = "Staging-BT";
+			name = Staging;
 		};
-		D4CB501824A66BCE00405D61 /* Staging-BT */ = {
+		D4CB501D24A66BD400405D61 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 530526E48807C46118B2B9B7 /* Pods-GPSTests.staging-bt.xcconfig */;
+			baseConfigurationReference = 606EB844E7D64AB33707A02E /* Pods-GPSTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -2369,73 +1348,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
-			name = "Staging-BT";
+			name = Staging;
 		};
-		D4CB501924A66BCE00405D61 /* Staging-BT */ = {
+		D4CB502024A66BFA00405D61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 844C843F62B5585C2F2346EA /* Pods-BT.staging-bt.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
-				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Staging-BT";
-		};
-		D4CB501A24A66BCE00405D61 /* Staging-BT */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D04E298A8C92F0D267143C3A /* Pods-BTTests.staging-bt.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
-			};
-			name = "Staging-BT";
-		};
-		D4CB501B24A66BD400405D61 /* Staging-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4CB500A24A66B6400405D61 /* Staging-GPS.xcconfig */;
+			baseConfigurationReference = D4B4A89924C8A1A700E00A99 /* Release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -2479,14 +1399,14 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
-			name = "Staging-GPS";
+			name = Release;
 		};
-		D4CB501C24A66BD400405D61 /* Staging-GPS */ = {
+		D4CB502124A66BFA00405D61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 145476A32A7724DCC004C292 /* Pods-GPS.staging-gps.xcconfig */;
+			baseConfigurationReference = 69C0CB99A1291E1928585D63 /* Pods-GPS.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "$(PROJECT_NAME)/Application/GPS-Production.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEAD_CODE_STRIPPING = YES;
@@ -2497,7 +1417,7 @@
 					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
 				);
-				INFOPLIST_FILE = GPS/Info.plist;
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Application/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2557,14 +1477,14 @@
 				);
 				PRODUCT_NAME = GPS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_NAME)/Bridge/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
-			name = "Staging-GPS";
+			name = Release;
 		};
-		D4CB501D24A66BD400405D61 /* Staging-GPS */ = {
+		D4CB502224A66BFA00405D61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FF44B2971AD1FA3EB0E99224 /* Pods-GPSTests.staging-gps.xcconfig */;
+			baseConfigurationReference = E2D33B0C827A4C85EDDD6272 /* Pods-GPSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
@@ -2585,285 +1505,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
 			};
-			name = "Staging-GPS";
-		};
-		D4CB501E24A66BD400405D61 /* Staging-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB49F7B51E4014329A4AA36D /* Pods-BT.staging-gps.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
-				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Staging-GPS";
-		};
-		D4CB501F24A66BD400405D61 /* Staging-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 751F8AE184B9709A8C3817BF /* Pods-BTTests.staging-gps.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
-			};
-			name = "Staging-GPS";
-		};
-		D4CB502024A66BFA00405D61 /* Release-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4CB500B24A66B8700405D61 /* Release-GPS.xcconfig */;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = "Release-GPS";
-		};
-		D4CB502124A66BFA00405D61 /* Release-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22E0DA6B2DECC1B29A4C7B64 /* Pods-GPS.release-gps.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "GPS/GPS-Production.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
-					"$(SRCROOT)/../node_modules/@mauron85/react-native-background-geolocation/ios/common/BackgroundGeolocation",
-				);
-				INFOPLIST_FILE = GPS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/BVLinearGradient\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-LocationAlways\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Permission-Notifications\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCAsyncStorage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCMaskedView\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPushNotificationIOS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNFS\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNGestureHandler\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNPermissions\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNReanimated\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNSVG\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNScreens\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNShare\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTActionSheet\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-background-timer\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				PRODUCT_NAME = GPS;
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Release-GPS";
-		};
-		D4CB502224A66BFA00405D61 /* Release-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F42C67AFB6A35F87118053B /* Pods-GPSTests.release-gps.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GPS/GPS-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GPS.app/GPS";
-			};
-			name = "Release-GPS";
-		};
-		D4CB502324A66BFA00405D61 /* Release-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A5B812656CA17568F2153FC2 /* Pods-BT.release-gps.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "BT/BT-Production.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEAD_CODE_STRIPPING = YES;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = BT/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-lc++",
-				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/Alamofire/Alamofire.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/RealmSwift/RealmSwift.modulemap\" -Xcc -fmodule-map-file=\"${PODS_CONFIGURATION_BUILD_DIR}/ZIPFoundation/ZIPFoundation.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Private/Realm/Realm.modulemap\" -Xcc -fmodule-map-file=\"${PODS_ROOT}/Headers/Public/SSZipArchive/SSZipArchive.modulemap\"";
-				PRODUCT_NAME = BT;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.pathcheck.bt";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-			};
-			name = "Release-GPS";
-		};
-		D4CB502424A66BFA00405D61 /* Release-GPS */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A74024E269FF63C56B1025EA /* Pods-BTTests.release-gps.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 79Z8HUPGC3;
-				INFOPLIST_FILE = COVIDSafePathsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "BT/BT-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BT.app/BT";
-			};
-			name = "Release-GPS";
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2871,67 +1516,32 @@
 		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GPSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug-BT */,
-				D4CB500E24A66BB800405D61 /* Debug-GPS */,
-				00E356F71AD99517003FC87E /* Release-BT */,
-				D4CB502224A66BFA00405D61 /* Release-GPS */,
-				D4CB501824A66BCE00405D61 /* Staging-BT */,
-				D4CB501D24A66BD400405D61 /* Staging-GPS */,
+				D4CB500E24A66BB800405D61 /* Debug */,
+				D4CB502224A66BFA00405D61 /* Release */,
+				D4CB501D24A66BD400405D61 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-BT";
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GPS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				13B07F941A680F5B00A75B9A /* Debug-BT */,
-				D4CB500D24A66BB800405D61 /* Debug-GPS */,
-				13B07F951A680F5B00A75B9A /* Release-BT */,
-				D4CB502124A66BFA00405D61 /* Release-GPS */,
-				D4CB501724A66BCE00405D61 /* Staging-BT */,
-				D4CB501C24A66BD400405D61 /* Staging-GPS */,
+				D4CB500D24A66BB800405D61 /* Debug */,
+				D4CB502124A66BFA00405D61 /* Release */,
+				D4CB501C24A66BD400405D61 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-BT";
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "COVIDSafePaths" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				83CBBA201A601CBA00E9B192 /* Debug-BT */,
-				D4CB500C24A66BB800405D61 /* Debug-GPS */,
-				83CBBA211A601CBA00E9B192 /* Release-BT */,
-				D4CB502024A66BFA00405D61 /* Release-GPS */,
-				D4CB501624A66BCE00405D61 /* Staging-BT */,
-				D4CB501B24A66BD400405D61 /* Staging-GPS */,
+				D4CB500C24A66BB800405D61 /* Debug */,
+				D4CB502024A66BFA00405D61 /* Release */,
+				D4CB501B24A66BD400405D61 /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-BT";
-		};
-		C53FD0BC24719AD1006D3268 /* Build configuration list for PBXNativeTarget "BT" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C53FD0BD24719AD1006D3268 /* Debug-BT */,
-				D4CB500F24A66BB800405D61 /* Debug-GPS */,
-				C53FD0BF24719AD1006D3268 /* Release-BT */,
-				D4CB502324A66BFA00405D61 /* Release-GPS */,
-				D4CB501924A66BCE00405D61 /* Staging-BT */,
-				D4CB501E24A66BD400405D61 /* Staging-GPS */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-BT";
-		};
-		C5AA24DC24768FFF00BA0A99 /* Build configuration list for PBXNativeTarget "BTTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C5AA24DD24768FFF00BA0A99 /* Debug-BT */,
-				D4CB501024A66BB800405D61 /* Debug-GPS */,
-				C5AA24DF24768FFF00BA0A99 /* Release-BT */,
-				D4CB502424A66BFA00405D61 /* Release-GPS */,
-				D4CB501A24A66BCE00405D61 /* Staging-BT */,
-				D4CB501F24A66BD400405D61 /* Staging-GPS */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release-BT";
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
@@ -2948,11 +1558,6 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		68D8970524809AA50091A254 /* Scrypt */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
-			productName = Scrypt;
-		};
-		68EFB21224856EC6003D84F3 /* Scrypt */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 68D8970424809AA40091A254 /* XCRemoteSwiftPackageReference "swift-scrypt" */;
 			productName = Scrypt;
