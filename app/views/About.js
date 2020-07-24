@@ -57,7 +57,9 @@ export const AboutScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
-        <TouchableWithoutFeedback onPress={incrementClickCount}>
+        <TouchableWithoutFeedback
+          touchSoundDisabled
+          onPress={incrementClickCount}>
           <View>
             <Typography use='headline2' style={styles.heading}>
               {StrategyCopy.aboutHeader}
