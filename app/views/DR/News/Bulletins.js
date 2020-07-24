@@ -9,10 +9,10 @@ import {
   View,
 } from 'react-native';
 
-import iconImgBulletin from '../../../assets/images/bulletin.jpg';
 import imgBulletins from '../../../assets/images/bulletins.jpg';
 import HeaderImage from '../../../components/DR/ActionCards/HeaderImage';
-import List from '../../../components/DR/ActionCards/List';
+import List from '../../../components/DR/List';
+import Colors from '../../../constants/colors-dr';
 import { FIREBASE_SERVICE } from '../../../constants/DR/baseUrls';
 import buttonStyle from '../../../constants/DR/buttonStyles';
 import fetch from '../../../helpers/Fetch';
@@ -33,7 +33,7 @@ export default function BulletinsScreen({ navigation }) {
   const addImgToBulletin = bulletinList => {
     return bulletinList.map(item => ({
       ...item,
-      img: { source: iconImgBulletin },
+      icon: { iconName: 'copy', color: Colors.BLUE_RIBBON },
     }));
   };
 

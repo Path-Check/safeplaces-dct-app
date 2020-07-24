@@ -1,13 +1,13 @@
 import * as React from 'react';
 import {
   ActivityIndicator,
-  Image,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import fontFamily from '../../constants/fonts';
 
@@ -28,7 +28,7 @@ export default function DataList({
         (
           {
             url = '#',
-            img: { source },
+            icon: { iconName, color },
             title = '',
             dateLabel = '',
             content = '',
@@ -44,7 +44,12 @@ export default function DataList({
             }
             key={String(index)}
             style={styles.itemContainer}>
-            <Image style={styles.image} source={source} />
+            <Icon
+              name={iconName}
+              size={30}
+              color={color}
+              style={{ marginLeft: 10 }}
+            />
             <View style={styles.right}>
               <Text
                 numberOfLines={titleLinesNum}
