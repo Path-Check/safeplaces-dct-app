@@ -14,7 +14,6 @@ afterEach(cleanup);
 
 jest.mock('@react-navigation/native');
 jest.mock('../../Util');
-jest.mock('../../COVIDSafePathsConfig', () => ({ isGPS: true }));
 
 describe('Home', () => {
   describe('When tracing strategy is GPS', () => {
