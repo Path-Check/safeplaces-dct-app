@@ -20,14 +20,14 @@ jobs:
           URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
           FILES=$(curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -s -X GET -G $URL |  jq -r '.[] | .filename')
           echo "Checking Files: $FILES"
-          REGEX="\.js\|\.jsx\|\.ts\|\.tsx"
+          REGEX="\ios*"
           if echo $FILES | grep -q $REGEX; then
-            echo "Detected JavaScript changes. Running tests!"
+            echo "Detected iOS changes. Running tests!"
             echo "Changed Files:"
             echo $FILES | grep $REGEX
             echo "::set-env name=RUN_TESTS::1"
           else
-            echo "No JavaScript changed detected. Skipping tests."
+            echo "No iOS changed detected. Skipping tests."
             echo "::set-env name=RUN_TESTS::0"
           fi
 

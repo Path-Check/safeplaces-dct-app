@@ -24,12 +24,12 @@ jobs:
           echo "Checking Files: $FILES"
           REGEX="\.js\|\.jsx\|\.ts\|\.tsx"
           if echo $FILES | grep -q $REGEX; then
-            echo "Detected iOS changes. Running tests!"
+            echo "Detected JavaScript changes. Running tests!"
             echo "Changed Files:"
             echo $FILES | grep $REGEX
             echo "::set-env name=RUN_TESTS::1"
           else
-            echo "No iOS changed detected. Skipping tests."
+            echo "No JavaScript changed detected. Skipping tests."
             echo "::set-env name=RUN_TESTS::0"
           fi
 
