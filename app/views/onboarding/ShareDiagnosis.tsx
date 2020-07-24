@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
 import { useStrategyContent } from '../../TracingStrategyContext';
@@ -13,7 +12,7 @@ const ShareDiagnosis: FunctionComponent = () => {
   const { t } = useTranslation();
   const { StrategyCopy, StrategyAssets } = useStrategyContent();
 
-  const gpsNext = () => {
+  const onNext = () => {
     return navigation.navigate(
       // Skip notification permissions on android
       isPlatformiOS()
@@ -21,15 +20,6 @@ const ShareDiagnosis: FunctionComponent = () => {
         : Screens.OnboardingLocationPermissions,
     );
   };
-
-  const btNext = () => {
-    navigation.navigate(
-      isPlatformiOS()
-        ? Screens.NotificationPermissionsBT
-        : Screens.EnableExposureNotifications,
-    );
-  };
-  const handleOnPressNext = isGPS ? gpsNext : btNext;
 
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
@@ -40,14 +30,12 @@ const ShareDiagnosis: FunctionComponent = () => {
     primaryButtonLabel: t('label.launch_set_up_phone_location'),
   };
 
-  const iconStyle = isGPS ? IconStyle.Gold : IconStyle.Blue;
-
   const explanationScreenStyles = {
-    iconStyle: iconStyle,
+    iconStyle: IconStyle.Blue,
   };
 
   const explanationScreenActions = {
-    primaryButtonOnPress: handleOnPressNext,
+    primaryButtonOnPress: onNext,
   };
 
   return (
