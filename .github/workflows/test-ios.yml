@@ -17,7 +17,7 @@ jobs:
 
       - name: Check if run is needed
         run: |
-          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files"
+          URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${{ github.event.pull_request.number }}/files?per_page=100"
           FILES=$(curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" -s -X GET -G $URL |  jq -r '.[] | .filename')
           echo "Checking Files: $FILES"
           REGEX="\ios*"
