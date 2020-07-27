@@ -1,7 +1,7 @@
 import { Dispatch, Middleware, AnyAction, MiddlewareAPI } from 'redux';
 import IntersectService from '../../services/IntersectService';
 import toggleSelectedHealthcareAuthorityAction from '../actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
-import { HealthcareAuthority } from '../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
+import { HealthcareAuthority } from '../../common/types';
 
 const areHaListsEqual = (
   listA: HealthcareAuthority[],
