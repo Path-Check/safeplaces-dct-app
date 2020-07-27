@@ -18,7 +18,6 @@ import {
   Colors,
   Spacing,
 } from '../../styles';
-import { isGPS } from '../../COVIDSafePathsConfig';
 
 interface ExposureDatumDetailsProps {
   exposureDatum: ExposureDatum;
@@ -53,14 +52,9 @@ const PossibleExposureDetail = ({
   const exposureTime = t('exposure_datum.possible.duration', {
     duration: exposureDurationText,
   });
-  const explanationContent = t(
-    isGPS
-      ? 'exposure_datum.possible.explanation.gps'
-      : 'exposure_datum.possible.explanation.bt',
-    {
-      duration: exposureDurationText,
-    },
-  );
+  const explanationContent = t('exposure_datum.possible.explanation.gps', {
+    duration: exposureDurationText,
+  });
 
   return (
     <View style={styles.container}>

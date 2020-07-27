@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 import { Screens } from '../../navigation';
@@ -21,10 +20,8 @@ const NotificationDetails = (): JSX.Element => {
     primaryButtonLabel: t('label.launch_next'),
   };
 
-  const iconStyle = isGPS ? IconStyle.Blue : IconStyle.Gold;
-
   const explanationScreenStyles = {
-    iconStyle: iconStyle,
+    iconStyle: IconStyle.Blue,
   };
 
   const explanationScreenActions = {
