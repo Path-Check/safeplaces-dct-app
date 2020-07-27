@@ -29,7 +29,7 @@ module.exports = {
     mjs: ['JavascriptLexer'],
     js: ['JsxLexer'], // if you're writing jsx inside .js files, change this to JsxLexer
     jsx: ['JsxLexer'],
-    ts: ['JavascriptLexer'],
+    ts: ['JsxLexer'],
     tsx: ['JsxLexer'],
 
     default: ['JavascriptLexer'],
@@ -50,7 +50,7 @@ module.exports = {
   // Supports JSON (.json) and YAML (.yml) file formats
   // Where to write the locale files relative to process.cwd()
 
-  input: ['app/**/*.js'],
+  input: ['app/**/*.js', 'app/**/*.tsx', 'app/**/*.jsx', 'app/**/*.ts'],
   // An array of globs that describe where to look for source files
   // relative to the location of the configuration file
 

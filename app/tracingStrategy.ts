@@ -1,7 +1,5 @@
 import { ImageSourcePropType } from 'react-native';
 
-import { TFunction } from 'i18next';
-
 import { ExposureEventsStrategy } from './ExposureHistoryContext';
 
 export interface TracingStrategy {
@@ -11,7 +9,6 @@ export interface TracingStrategy {
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
   affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
-  useCopy: StrategyCopyContentHook;
 }
 
 export interface StrategyAssets {
@@ -21,30 +18,4 @@ export interface StrategyAssets {
   personalPrivacyIcon: string;
   notificationDetailsIcon: string;
   shareDiagnosisIcon: string;
-}
-
-export type StrategyCopyContentHook = (t: TFunction) => StrategyCopyContent;
-
-export interface StrategyCopyContent {
-  aboutHeader: string;
-  detailedHistoryWhatThisMeansPara: string;
-  exportCompleteBody: string;
-  exportPublishButtonSubtitle: string;
-  exposureNotificationsNotAvailableHeader: string;
-  exposureNotificationsNotAvailableSubheader: string;
-  legalHeader: string;
-  moreInfoHowContent: string;
-  moreInfoWhyContent: string;
-  personalPrivacyHeader: string;
-  personalPrivacyIconLabel: string;
-  personalPrivacySubheader: string;
-  notificationDetailsHeader: string;
-  notificationDetailsIconLabel: string;
-  notificationDetailsSubheader: string;
-  shareDiagnosisButton: string;
-  shareDiagnosisHeader: string;
-  shareDiagnosisIconLabel: string;
-  shareDiagnosisSubheader: string;
-  settingsLoggingActive: string;
-  settingsLoggingInactive: string;
 }
