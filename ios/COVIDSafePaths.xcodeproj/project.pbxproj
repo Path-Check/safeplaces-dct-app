@@ -1133,8 +1133,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+ 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
@@ -1295,8 +1294,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+ 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
@@ -1452,8 +1450,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+ 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
