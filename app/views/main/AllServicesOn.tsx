@@ -1,5 +1,11 @@
 import React from 'react';
-import { Dimensions, ImageBackground, StatusBar, View } from 'react-native';
+import {
+  Dimensions,
+  ImageBackground,
+  StatusBar,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
@@ -20,6 +26,9 @@ export const AllServicesOnScreen = ({
   const { t } = useTranslation();
 
   const size = Dimensions.get('window').height;
+
+  // TODO: change this
+  const healthAuthorityName = 'placeholder name';
 
   return (
     <View style={{ flex: 1 }}>
@@ -63,6 +72,30 @@ export const AllServicesOnScreen = ({
             </Typography>
           )}
         </View>
+      </View>
+
+      <View style={styles.bottomSheet}>
+        <Typography
+          style={{
+            color: Colors.primaryViolet,
+          }}>
+          <>
+            {t('home.gps.auto_subscribe_text', {
+              healthAuthorityName,
+            })}
+            <Typography
+              style={styles.hyperlink}
+              // TODO: change this
+              onPress={() => console.log('Click')}>
+              {t('home.gps.auto_subscribe_link_text')}
+            </Typography>
+          </>
+        </Typography>
+        <View style={{ width: 24 }} />
+        {/* TODO: change this */}
+        <TouchableOpacity onPress={() => console.log('Click')}>
+          <SvgXml xml={Icons.ChevronRight} />
+        </TouchableOpacity>
       </View>
     </View>
   );

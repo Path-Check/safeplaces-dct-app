@@ -204,7 +204,9 @@
       "all_services_on_subheader": "PathCheck is saving the places you visit to create your private location diary",
       "all_services_on_no_ha_available": "You will not receive exposure notifications while you are outside a region served by Health Department partners",
       "auto_start_header": "Auto Start Disabled",
-      "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings"
+      "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings",
+      "auto_subscribe_text": "You’ve been auto-subscribed to {{healthAuthorityName}}. ",
+      "auto_subscribe_link_text": "Click here to change."
     },
     "bluetooth": {
       "tracing_off_header": "Exposure Notifications Disabled",
