@@ -1,5 +1,11 @@
 import React from 'react';
-import { Dimensions, ImageBackground, View, Text } from 'react-native';
+import {
+  Dimensions,
+  ImageBackground,
+  View,
+  Text,
+  StatusBar,
+} from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Typography } from '../../../components/Typography';
@@ -33,6 +39,11 @@ export const ServiceOffScreen = ({
       <ImageBackground
         source={Images.BlueGradientBackground}
         style={styles.backgroundImage}>
+        <StatusBar
+          barStyle='light-content'
+          backgroundColor='transparent'
+          translucent
+        />
         <View style={styles.pulseContainer}>
           <SvgXml
             xml={Icons.StateUnknown}
