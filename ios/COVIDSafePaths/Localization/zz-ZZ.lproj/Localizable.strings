@@ -1,4 +1,0 @@
-/* Body text of notification when app is closed on iOS */
-"ios.app_closed_alert_text" = "PathCheck requires to be running.";
-/* Title of notification when app is closed on iOS */
-"ios.app_closed_alert_title" = "PathCheck Was Closed";
