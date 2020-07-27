@@ -32,7 +32,7 @@ const LocationsPermissions = (): JSX.Element => {
   const dispatch = useDispatch();
   const { location } = useContext(PermissionsContext);
 
-  useStatusBarEffect('dark-content');
+  useStatusBarEffect('light-content');
 
   const requestLocationAccess = async () => {
     await location.request();
