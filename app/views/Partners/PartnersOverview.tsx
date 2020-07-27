@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Image,
@@ -22,6 +22,10 @@ import { Typography } from '../../components/Typography';
 import { Images, Icons } from '../../assets';
 import { Colors } from '../../styles';
 
+import { useSelector, useDispatch } from 'react-redux';
+import toggleHealthcareAuthorityAutoSubscription from '../../store/actions/healthcareAuthorities/toggleHealthcareAuthorityAutoSubscription';
+import isAutoSubscriptionEnabledSelector from '../../store/selectors/isAutoSubscriptionEnabledSelector';
+
 // For fixing image width issues
 const win = Dimensions.get('window');
 
@@ -31,8 +35,19 @@ type PartnersScreenProps = {
 
 const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const [toggleActive, setToggleActive] = useState(false); // mocked
+  const dispatch = useDispatch();
   const navigateToViewHAs = () => navigation.navigate('PartnersEdit');
+
+  const autoSubscriptionEnabled = useSelector(
+    isAutoSubscriptionEnabledSelector,
+  );
+  const onToggleAutoSubscription = (value: boolean) => {
+    dispatch(
+      toggleHealthcareAuthorityAutoSubscription({
+        autoSubscriptionEnabled: value,
+      }),
+    );
+  };
 
   return (
     <NavigationBarWrapper
@@ -97,8 +112,8 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
               true: Colors.switchEnabled,
               false: Colors.switchDisabled,
             }}
-            value={toggleActive}
-            onValueChange={setToggleActive}
+            value={autoSubscriptionEnabled}
+            onValueChange={onToggleAutoSubscription}
           />
         </View>
       )}

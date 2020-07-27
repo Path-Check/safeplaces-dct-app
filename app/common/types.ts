@@ -1,4 +1,13 @@
-type Coordinates = {
+import { Posix } from '../helpers/dateTimeUtils';
+
+export type LocalDataPoint = {
+  latitude: number;
+  longitude: number;
+  time: Posix;
+  hashes: string[];
+};
+
+export type Coordinates = {
   latitude: number;
   longitude: number;
 };

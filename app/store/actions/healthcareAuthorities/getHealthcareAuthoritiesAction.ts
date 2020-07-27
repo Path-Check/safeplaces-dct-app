@@ -3,9 +3,10 @@ import { createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { AppThunk } from '../../types';
-import getHealthcareAuthoritiesApi, {
-  HealthcareAuthority,
-} from '../../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
+import getHealthcareAuthoritiesApi from '../../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
+import { Coordinates, HealthcareAuthority } from '../../../common/types';
+import { isLocationWithinBounds } from '../../../helpers/autoSubscribe';
+import healthcareAuthorityAutoSubscribeAction from './healthcareAuthorityAutoSubscribeAction';
 
 const GET_HEALTHCARE_AUTHORITIES_STARTED = 'GET_HEALTHCARE_AUTHORITIES_STARTED';
 const GET_HEALTHCARE_AUTHORITIES_SUCCESS = 'GET_HEALTHCARE_AUTHORITIES_SUCCESS';
@@ -33,6 +34,7 @@ const getHealthcareAuthorities_failure = createAction(
 
 const getHealthcareAuthoritiesAction = (
   customYamlUrl?: string,
+  autoSubscriptionLocation?: Coordinates,
 ): AppThunk<void> => async (dispatch: Dispatch): Promise<void> => {
   dispatch(getHealthcareAuthorities_started());
   try {
@@ -45,6 +47,24 @@ const getHealthcareAuthoritiesAction = (
         usesCustomUrl: !!customYamlUrl, // Hack to hijack this action for custom YAML configs. This is for testing only.
       }),
     );
+
+    console.log('LOCATION:::::', autoSubscriptionLocation);
+
+    if (autoSubscriptionLocation) {
+      const localHealthAuthority = healthcareAuthorities.find((ha) =>
+        isLocationWithinBounds(ha, autoSubscriptionLocation),
+      );
+
+      console.log('LOCAL_HA:::::', localHealthAuthority);
+
+      if (localHealthAuthority) {
+        dispatch(
+          healthcareAuthorityAutoSubscribeAction({
+            authority: localHealthAuthority,
+          }),
+        );
+      }
+    }
   } catch (error) {
     dispatch(getHealthcareAuthorities_failure({ error }));
   }
