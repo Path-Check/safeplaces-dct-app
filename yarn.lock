@@ -7022,10 +7022,6 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
 
-react-native-app-intro-slider@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-app-intro-slider/-/react-native-app-intro-slider-3.0.0.tgz#c3620b967503ce410b3d767252392bb6fb2edf97"
-
 react-native-background-fetch@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-native-background-fetch/-/react-native-background-fetch-3.0.4.tgz#0b1e8b282e482343ce7f478ffb94cb72dfde054a"
@@ -7088,10 +7084,6 @@ react-native-local-resource@^0.1.6:
 react-native-permissions@^2.0.10:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-2.1.4.tgz#b0663839d28444d8ea6b5302303b2151ea70d2da"
-
-react-native-popup-menu@^0.15.7:
-  version "0.15.7"
-  resolved "https://registry.yarnpkg.com/react-native-popup-menu/-/react-native-popup-menu-0.15.7.tgz#ddffa8aa6e5d7d11533947921e9bdf94cd7fc7d0"
 
 react-native-pulse@^1.0.7:
   version "1.0.7"
