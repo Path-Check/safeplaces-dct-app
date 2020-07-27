@@ -147,6 +147,8 @@
     "logging_active": "Localización activada",
     "logging_inactive": "Localización desactivada",
     "more_info": "Más Información",
+    "new_bulletin_available_title": "Nuevo boletin disponible",
+    "new_bulletin_available_message": "Ve al apartado de boletines para ver el nuevo boletin!",
     "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
     "news_title": "Noticias",
     "no_data": "No hay datos",
