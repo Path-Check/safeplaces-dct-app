@@ -10,8 +10,6 @@ exports[`renders correctly 1`] = `
     }
   }
 >
-  <MenuProvider>
-    <Entry />
-  </MenuProvider>
+  <Entry />
 </View>
 `;
