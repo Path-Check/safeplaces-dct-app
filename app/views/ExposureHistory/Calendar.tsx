@@ -15,6 +15,7 @@ import {
   Spacing,
   Typography as TypographyStyles,
 } from '../../styles';
+import { daysAgo, isInFuture } from '../../helpers/dateTimeUtils';
 
 interface CalendarProps {
   exposureHistory: ExposureHistory;
@@ -49,13 +50,18 @@ const Calendar = ({
       <View style={styles.calendarRow}>
         {week.map((datum: ExposureDatum) => {
           const isSelected = datum.date === selectedDatum?.date;
+          const isOlderThan14Days = datum.date < daysAgo(14);
+          const isFuture = isInFuture(datum.date);
+          const disabled = isOlderThan14Days || isFuture;
 
           return (
             <TouchableOpacity
+              disabled={disabled}
               key={`calendar-day-${datum.date}`}
               testID={`calendar-day-${datum.date}`}
               onPress={() => onSelectDate(datum)}>
               <ExposureDatumIndicator
+                disabled={disabled}
                 isSelected={isSelected}
                 exposureDatum={datum}
               />
