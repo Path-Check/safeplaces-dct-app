@@ -6,8 +6,8 @@ import * as Colors from './colors';
 
 // Device Spesific
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const isSmallDevice = (normalSize, smallSize) => {
-  return DEVICE_WIDTH < 400 ? smallSize : normalSize;
+export const isSmallDevice = (normalSize: TextStyle, smallSize: TextStyle) => {
+  return DEVICE_WIDTH < 400 ? { ...smallSize } : { ...normalSize };
 };
 
 // Font Sizes
@@ -163,7 +163,7 @@ export const footer: TextStyle = {
 
 // Content
 export const mainContent: TextStyle = {
-  ...mediumFont,
+  ...isSmallDevice(mediumFont, smallFont),
   color: Colors.primaryText,
 };
 
