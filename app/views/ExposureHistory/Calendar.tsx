@@ -32,14 +32,17 @@ const Calendar = ({
 }: CalendarProps): JSX.Element => {
   const { t } = useTranslation();
   const [legendModal, setLegendModal] = useState<ModalState>('Closed');
-  const lastMonth = dayjs().subtract(1, 'month');
-  const title = `${lastMonth.format('MMMM')} | ${dayjs().format(
-    'MMMM',
-  )}`.toUpperCase();
 
   const week1 = exposureHistory.slice(0, 7);
   const week2 = exposureHistory.slice(7, 14);
   const week3 = exposureHistory.slice(14, 21);
+
+  const firstDate = dayjs(week1[0].date);
+  const lastDate = dayjs(week3[6].date);
+
+  const title = `${firstDate.format('MMMM')} | ${lastDate.format(
+    'MMMM',
+  )}`.toUpperCase();
 
   interface CalendarRowProps {
     week: ExposureHistory;
