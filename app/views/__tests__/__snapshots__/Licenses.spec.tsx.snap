@@ -82,6 +82,7 @@ exports[`LicensesScreen renders correctly 1`] = `
                 "fontSize": 19,
                 "fontWeight": "500",
                 "lineHeight": 32,
+                "textAlign": "center",
                 "textTransform": "uppercase",
               },
             ]
