@@ -120,11 +120,11 @@
       "all_services_on_subheader": "PathCheck is saving the places you visit to create your private location diary",
       "auto_start_header": "Auto Start Disabled",
       "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings",
+      "auto_subscribe_link_text": "Click here to change.",
+      "auto_subscribe_text": "You’ve been auto-subscribed to {{healthAuthorityName}}. ",
       "tracing_off_button": "Allow Location Access",
       "tracing_off_header": "Location Access Disabled",
-      "tracing_off_subheader": "PathCheck needs location access in Settings to privately save the places you visit",
-      "auto_subscribe_text": "You’ve been auto-subscribed to {{healthAuthorityName}}. ",
-      "auto_subscribe_link_text": "Click here to change."
+      "tracing_off_subheader": "PathCheck needs location access in Settings to privately save the places you visit"
     },
     "shared": {
       "no_authorities_header": "No local Health Department",
