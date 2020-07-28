@@ -44,7 +44,13 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         contentContainerStyle={{ flexGrow: 1 }}>
         <Image
           // Hard code to the dimensions of the image. Fixes ScrollView issues
-          style={{ width: win.width, height: (win.width * 900) / 1125 }}
+          style={{
+            width: win.width,
+            height:
+              win.width < 400
+                ? (win.width * 900) / 1125 - 100
+                : (win.width * 900) / 1125,
+          }}
           resizeMode={'contain'}
           source={Images.Doctors}
           accessible

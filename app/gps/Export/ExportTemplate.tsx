@@ -204,7 +204,10 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   exportSectionTitles: {
-    ...TypographyStyles.header2,
+    ...TypographyStyles.isSmallDevice(
+      TypographyStyles.header2,
+      TypographyStyles.header3,
+    ),
     color: Colors.white,
   },
   contentText: {

@@ -1,6 +1,14 @@
-import { TextStyle } from 'react-native';
+import { TextStyle, Dimensions } from 'react-native';
 
+export const DEVICE_WIDTH = Dimensions.get(`window`).width;
+export const DEVICE_HEIGHT = Dimensions.get(`window`).height;
 import * as Colors from './colors';
+
+// Device Spesific
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const isSmallDevice = (normalSize, smallSize) => {
+  return DEVICE_WIDTH < 400 ? smallSize : normalSize;
+};
 
 // Font Sizes
 export const tiny = 11;
@@ -142,7 +150,7 @@ export const header7: TextStyle = {
 };
 
 export const title: TextStyle = {
-  ...largeFont,
+  ...isSmallDevice(largeFont, mediumFont),
   fontWeight: heaviestWeight,
   color: Colors.primaryText,
 };
@@ -217,10 +225,11 @@ export const primaryTextInput: TextStyle = {
 
 // Navigation
 export const navHeader: TextStyle = {
-  ...largeFont,
+  ...isSmallDevice(largeFont, mediumFont),
   ...bold,
   color: Colors.white,
   textTransform: 'uppercase',
+  textAlign: 'center',
 };
 
 // Tappables
