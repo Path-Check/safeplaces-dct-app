@@ -11,14 +11,14 @@ const PersonalPrivacy: FunctionComponent = () => {
   const navigation = useNavigation();
   useStatusBarEffect('dark-content');
   const { t } = useTranslation();
-  const { StrategyAssets, StrategyCopy } = useStrategyContent();
+  const { StrategyAssets } = useStrategyContent();
 
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.personalPrivacyBackground,
     icon: StrategyAssets.personalPrivacyIcon,
-    iconLabel: StrategyCopy.personalPrivacyIconLabel,
-    header: StrategyCopy.personalPrivacyHeader,
-    body: StrategyCopy.personalPrivacySubheader,
+    header: t('label.launch_screen2_header_location'),
+    iconLabel: t('label.pin_icon'),
+    body: t('label.launch_screen2_subheader_location'),
     primaryButtonLabel: t('label.launch_next'),
   };
 

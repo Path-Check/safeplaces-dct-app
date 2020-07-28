@@ -65,10 +65,6 @@
 		D4B4A8A024C8A1A700E00A99 /* MAURLocation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89424C8A1A700E00A99 /* MAURLocation+Extension.swift */; };
 		D4B4A8A124C8A1A700E00A99 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89524C8A1A700E00A99 /* String+Extension.swift */; };
 		D4B4A8A224C8A1A700E00A99 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89624C8A1A700E00A99 /* Array+Extension.swift */; };
-		D4B4A8A324C8A1A700E00A99 /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89824C8A1A700E00A99 /* Debug.xcconfig */; };
-		D4B4A8A424C8A1A700E00A99 /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89924C8A1A700E00A99 /* Release.xcconfig */; };
-		D4B4A8A524C8A1A700E00A99 /* Version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89A24C8A1A700E00A99 /* Version.xcconfig */; };
-		D4B4A8A624C8A1A700E00A99 /* Staging.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = D4B4A89B24C8A1A700E00A99 /* Staging.xcconfig */; };
 		D4B4A8A724C8A1A700E00A99 /* SecureStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */; };
 		D4B4A8A824C8A1A700E00A99 /* SecureStorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */; };
 		D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E5C8EDCCEFCE4874A747E404 /* IBMPlexMono-Light.ttf */; };
@@ -250,8 +246,6 @@
 		D4B4A88124C8A17300E00A99 /* id */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = id; path = id.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4B4A88224C8A17300E00A99 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4B4A88324C8A17300E00A99 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D4B4A88424C8A17300E00A99 /* zz-ZZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zz-ZZ"; path = "zz-ZZ.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D4B4A88524C8A17300E00A99 /* zz-ZZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zz-ZZ"; path = "zz-ZZ.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		D4B4A88624C8A17300E00A99 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D4B4A88724C8A17300E00A99 /* ht */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ht; path = ht.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4B4A88824C8A17300E00A99 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -723,7 +717,6 @@
 				"es-PR",
 				pl,
 				nl,
-				"zz-ZZ",
 				ht,
 				tl,
 				fil,
@@ -786,7 +779,6 @@
 				8CB0C49FEC0F493D95420B30 /* IBMPlexMono-ExtraLight.ttf in Resources */,
 				FB74D96D942D4B9FBECB1175 /* IBMPlexMono-ExtraLightItalic.ttf in Resources */,
 				3E97D87FD88C42B79836C314 /* IBMPlexMono-Italic.ttf in Resources */,
-				D4B4A8A524C8A1A700E00A99 /* Version.xcconfig in Resources */,
 				D668C3DAB08B4FCBB01E8C2D /* IBMPlexMono-Light.ttf in Resources */,
 				F4E13CA171B74075A5EECD71 /* IBMPlexMono-LightItalic.ttf in Resources */,
 				527CA705E5514AF9BEAC9A2F /* IBMPlexMono-Medium.ttf in Resources */,
@@ -801,7 +793,6 @@
 				12922BC2C16E4BCCB3F4EA44 /* IBMPlexSans-Bold.ttf in Resources */,
 				F3B14B1B97834BBC886F10D5 /* IBMPlexSans-BoldItalic.ttf in Resources */,
 				8A5B44AA7D724388B70F100B /* IBMPlexSans-ExtraLight.ttf in Resources */,
-				D4B4A8A424C8A1A700E00A99 /* Release.xcconfig in Resources */,
 				57693D8BEF8A40C289F7168A /* IBMPlexSans-ExtraLightItalic.ttf in Resources */,
 				966BF87C9654448280E34CD8 /* IBMPlexSans-Italic.ttf in Resources */,
 				BB916399F2D64D8D89249A05 /* IBMPlexSans-Light.ttf in Resources */,
@@ -809,8 +800,6 @@
 				BEA401E86568452A9E8FF210 /* IBMPlexSans-Medium.ttf in Resources */,
 				2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */,
 				D43E27B6F1E045D798270A11 /* IBMPlexSans-SemiBold.ttf in Resources */,
-				D4B4A8A624C8A1A700E00A99 /* Staging.xcconfig in Resources */,
-				D4B4A8A324C8A1A700E00A99 /* Debug.xcconfig in Resources */,
 				6858E21561F14E61A6A85280 /* IBMPlexSans-SemiBoldItalic.ttf in Resources */,
 				522B6187A48A4AF3A676D5A0 /* IBMPlexSans-Thin.ttf in Resources */,
 				DED6BB86437B4610B1CD3302 /* IBMPlexSans-ThinItalic.ttf in Resources */,
@@ -985,7 +974,6 @@
 				D4B4A87F24C8A17300E00A99 /* fr */,
 				D4B4A88124C8A17300E00A99 /* id */,
 				D4B4A88224C8A17300E00A99 /* nl */,
-				D4B4A88424C8A17300E00A99 /* zz-ZZ */,
 				D4B4A88624C8A17300E00A99 /* ht */,
 				D4B4A88824C8A17300E00A99 /* ro */,
 				D4B4A88924C8A17300E00A99 /* tl */,
@@ -1009,7 +997,6 @@
 				D4B4A87E24C8A17300E00A99 /* ru */,
 				D4B4A88024C8A17300E00A99 /* fr */,
 				D4B4A88324C8A17300E00A99 /* nl */,
-				D4B4A88524C8A17300E00A99 /* zz-ZZ */,
 				D4B4A88724C8A17300E00A99 /* ht */,
 				D4B4A88A24C8A17300E00A99 /* tl */,
 			);
@@ -1146,8 +1133,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+ 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
@@ -1308,8 +1294,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+ 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
@@ -1465,8 +1450,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-uuid-generator\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+ 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);

@@ -1,12 +1,6 @@
 import React, { createContext, useContext, FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import {
-  TracingStrategy,
-  StrategyCopyContent,
-  StrategyCopyContentHook,
-  StrategyAssets,
-} from './tracingStrategy';
+import { TracingStrategy, StrategyAssets } from './tracingStrategy';
 
 import { ExposureHistoryProvider } from './ExposureHistoryContext';
 
@@ -15,7 +9,6 @@ interface TracingStrategyContextState {
   homeScreenComponent: ({ testID }: { testID: string }) => JSX.Element;
   affectedUserFlow: () => JSX.Element;
   assets: StrategyAssets;
-  useCopy: StrategyCopyContentHook;
 }
 
 const TracingStrategyContext = createContext<
@@ -39,7 +32,6 @@ export const TracingStrategyProvider: FunctionComponent<TracingStrategyProps> = 
         homeScreenComponent: strategy.homeScreenComponent,
         affectedUserFlow: strategy.affectedUserFlow,
         assets: strategy.assets,
-        useCopy: strategy.useCopy,
       }}>
       <StrategyPermissionsProvider>
         <ExposureHistoryProvider
@@ -60,12 +52,9 @@ export const useTracingStrategyContext = (): TracingStrategyContextState => {
 };
 
 export const useStrategyContent = (): {
-  StrategyCopy: StrategyCopyContent;
   StrategyAssets: StrategyAssets;
 } => {
-  const { t } = useTranslation();
-  const { useCopy, assets } = useTracingStrategyContext();
-  const StrategyCopy = useCopy(t);
+  const { assets } = useTracingStrategyContext();
   const StrategyAssets = assets;
-  return { StrategyCopy, StrategyAssets };
+  return { StrategyAssets };
 };

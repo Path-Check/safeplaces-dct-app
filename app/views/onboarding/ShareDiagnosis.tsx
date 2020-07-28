@@ -10,7 +10,7 @@ import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 const ShareDiagnosis: FunctionComponent = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
-  const { StrategyCopy, StrategyAssets } = useStrategyContent();
+  const { StrategyAssets } = useStrategyContent();
 
   const onNext = () => {
     return navigation.navigate(
@@ -24,9 +24,9 @@ const ShareDiagnosis: FunctionComponent = () => {
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
     icon: StrategyAssets.shareDiagnosisIcon,
-    iconLabel: StrategyCopy.shareDiagnosisIconLabel,
-    header: StrategyCopy.shareDiagnosisHeader,
-    body: StrategyCopy.shareDiagnosisSubheader,
+    header: t('label.launch_screen4_header_location'),
+    iconLabel: t('label.bell_icon'),
+    body: t('label.launch_screen4_subheader_location'),
     primaryButtonLabel: t('label.launch_set_up_phone_location'),
   };
 
