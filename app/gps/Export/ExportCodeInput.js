@@ -104,11 +104,11 @@ const CodeInput = ({ code, length, setCode }) => {
                 : Colors.quaternaryViolet,
             },
           ]}
+          maxLength={1}
           keyboardType={'number-pad'}
           returnKeyType={'done'}
           onChangeText={onChangeCharacter}
           onKeyPress={onKeyPress}
-          blurOnSubmit={false}
           onFocus={() => onFocus(i)}
         />
       ))}

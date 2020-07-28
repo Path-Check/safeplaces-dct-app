@@ -6,9 +6,7 @@ import {
 
 import { ENPermissionStatus } from './PermissionsContext';
 import { ExposureInfo, Posix } from '../exposureHistory';
-import { ENDiagnosisKey } from '../views/Settings/ENLocalDiagnosisKeyScreen';
 import { RawExposure, toExposureInfo } from './exposureNotifications';
-import { ExposureKey } from './AffectedUserFlow/exposureKey';
 
 // Event Subscriptions
 export const subscribeToExposureEvents = (
@@ -89,81 +87,4 @@ export const fetchLastExposureDetectionDate = async (): Promise<Posix | null> =>
   } catch {
     return null;
   }
-};
-
-// Exposure Key Module
-const exposureKeyModule = NativeModules.ExposureKeyModule;
-
-interface RawExposureKey {
-  key: null | string;
-  rollingPeriod: number;
-  rollingStartNumber: number;
-  transmissionRisk: number;
-}
-
-export const getExposureKeys = async (): Promise<ExposureKey[]> => {
-  const keys: RawExposureKey[] = await exposureKeyModule.fetchExposureKeys();
-  return keys.map(toExposureKey);
-};
-
-const toExposureKey = (rawExposureKey: RawExposureKey): ExposureKey => {
-  return {
-    key: rawExposureKey.key || '',
-    rollingPeriod: rawExposureKey.rollingPeriod,
-    rollingStartNumber: rawExposureKey.rollingStartNumber,
-    transmissionRisk: rawExposureKey.transmissionRisk,
-  };
-};
-
-export const submitDiagnosisKeys = async (
-  certificate: string,
-  hmacKey: string,
-): Promise<string> => {
-  return exposureKeyModule.postDiagnosisKeys(certificate, hmacKey);
-};
-
-// Debug Module
-const debugModule = NativeModules.DebugMenuModule;
-
-export const fetchDiagnosisKeys = async (): Promise<ENDiagnosisKey[]> => {
-  return debugModule.fetchDiagnosisKeys();
-};
-
-export type ENModuleErrorMessage = string | null;
-export type ENModuleSuccessMessage = string | null;
-
-export const detectExposuresNow = async (): Promise<string> => {
-  return debugModule.detectExposuresNow();
-};
-
-export const simulateExposure = async (): Promise<'success'> => {
-  return debugModule.simulateExposure();
-};
-
-export const fetchExposures = async (): Promise<RawExposure[]> => {
-  return debugModule.fetchExposures();
-};
-
-export const showLastProcessedFilePath = async (): Promise<string> => {
-  return debugModule.showLastProcessedFilePath();
-};
-
-export const resetExposure = async (): Promise<'success'> => {
-  return debugModule.resetExposure();
-};
-
-export const toggleExposureNotifications = async (): Promise<'success'> => {
-  return debugModule.toggleExposureNotifications();
-};
-
-export const submitExposureKeys = async (): Promise<'success'> => {
-  return debugModule.submitExposureKeys();
-};
-
-export const simulateExposureDetectionError = async (): Promise<'success'> => {
-  return debugModule.simulateExposureDetectionError();
-};
-
-export const resetExposures = async (): Promise<'success'> => {
-  return debugModule.resetExposures();
 };

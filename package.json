@@ -10,7 +10,7 @@
     "format": "yarn prettier --write",
     "lint": "eslint ./",
     "validate": "yarn prettier --list-different && yarn tsc && yarn lint",
-    "run-android": "react-native run-android --variant=gpsDebug --appId=org.pathcheck.covidsafepaths",
+    "run-android": "react-native run-android --variant=debug --appId=org.pathcheck.covidsafepaths",
     "run-ios": "yarn install:pod && react-native run-ios --scheme \"GPS_Development\" --configuration \"Debug\"",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
     "install:pod": "cd ios && bundle install --quiet && bundle exec pod install --silent",
@@ -114,6 +114,7 @@
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.12.0",
     "semver": "^7.3.2",
+    "text-encoding-polyfill": "^0.6.7",
     "typesafe-actions": "^5.1.0",
     "valid-url": "^1.0.9",
     "victory-native": "^34.1.0"

@@ -10,6 +10,7 @@ import { LANG_OVERRIDE } from '../constants/storage';
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
 import da from './da.json';
+import el from './el.json';
 import en from './en.json';
 import es_419 from './es_419.json';
 import es_PR from './es_PR.json';
@@ -96,6 +97,7 @@ const PROD_RESOURCES = {
 const DEV_RESOURCES = {
   ar: { label: ar._display_name, translation: ar },
   da: { label: da._display_name, translation: da },
+  el: { label: el._display_name, translation: el },
   es: { label: es._display_name, translation: es },
   es_419: { label: es_419._display_name, translation: es_419 },
   fil: { label: fil._display_name, translation: fil },
