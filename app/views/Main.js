@@ -14,15 +14,16 @@ import {
 import PermissionsContext from '../gps/PermissionsContext';
 import { PermissionStatus } from '../permissionStatus';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import isAutoSubscriptionEnabledSelector from '../store/selectors/isAutoSubscriptionEnabledSelector';
-import getHealthcareAuthoritiesAction from '../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
+import getHealthcareAuthorities from '../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import { useStatusBarEffect } from '../navigation';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const { notification, location } = useContext(PermissionsContext);
   const selectedAuthorities = useSelector(
     selectedHealthcareAuthoritiesSelector,
@@ -47,11 +48,15 @@ export const Main = () => {
       location.status === PermissionStatus.GRANTED
     ) {
       Geolocation.getCurrentPosition(({ coords }) => {
-        console.log(coords);
-        getHealthcareAuthoritiesAction(undefined, coords);
+        dispatch(getHealthcareAuthorities(undefined, coords));
       });
     }
-  }, [autoSubscriptionEnabled, selectedAuthorities, location.status]);
+  }, [
+    autoSubscriptionEnabled,
+    selectedAuthorities.length,
+    location.status,
+    dispatch,
+  ]);
 
   useEffect(() => {
     updateStateInfo();

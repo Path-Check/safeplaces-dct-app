@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -9,22 +9,44 @@ import {
 import { useTranslation } from 'react-i18next';
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 import { Icons, Images } from '../../assets';
 import { Typography } from '../../components/Typography';
 
 import { styles } from './style';
 import { Colors } from '../../styles';
+import { Screens } from '../../navigation';
 
 type AllServicesOnProps = {
   noHaAvailable: boolean;
+  showAutoSubscribeBanner?: boolean;
+};
+
+const useAutoSubscriptionBanner = (showAutoSubscribeBanner: boolean) => {
+  const navigation = useNavigation();
+  const [showBanner, setShowBanner] = useState(showAutoSubscribeBanner);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('blur', () =>
+      setShowBanner(false),
+    );
+
+    return unsubscribe;
+  }, [navigation]);
+
+  return {
+    showBanner,
+  };
 };
 
 export const AllServicesOnScreen = ({
   noHaAvailable,
+  showAutoSubscribeBanner = true,
 }: AllServicesOnProps): JSX.Element => {
   const { t } = useTranslation();
-
+  const navigation = useNavigation();
+  const { showBanner } = useAutoSubscriptionBanner(showAutoSubscribeBanner);
   const size = Dimensions.get('window').height;
 
   // TODO: change this
@@ -74,29 +96,32 @@ export const AllServicesOnScreen = ({
         </View>
       </View>
 
-      <View style={styles.bottomSheet}>
-        <Typography
-          style={{
-            color: Colors.primaryViolet,
-          }}>
-          <>
-            {t('home.gps.auto_subscribe_text', {
-              healthAuthorityName,
-            })}
-            <Typography
-              style={styles.hyperlink}
-              // TODO: change this
-              onPress={() => console.log('Click')}>
-              {t('home.gps.auto_subscribe_link_text')}
-            </Typography>
-          </>
-        </Typography>
-        <View style={{ width: 24 }} />
-        {/* TODO: change this */}
-        <TouchableOpacity onPress={() => console.log('Click')}>
-          <SvgXml xml={Icons.ChevronRight} />
-        </TouchableOpacity>
-      </View>
+      {showBanner && (
+        <View style={styles.bottomSheet}>
+          <Typography
+            style={{
+              color: Colors.primaryViolet,
+            }}>
+            <>
+              {t('home.gps.auto_subscribe_text', {
+                healthAuthorityName,
+              })}
+              <Typography
+                style={styles.hyperlink}
+                // TODO: change this
+                onPress={() => navigation.navigate(Screens.PartnersEdit)}>
+                {t('home.gps.auto_subscribe_link_text')}
+              </Typography>
+            </>
+          </Typography>
+          <View style={{ width: 24 }} />
+          {/* TODO: change this */}
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Screens.PartnersEdit)}>
+            <SvgXml xml={Icons.ChevronRight} />
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
