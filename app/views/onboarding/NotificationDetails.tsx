@@ -2,7 +2,6 @@ import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { useStrategyContent } from '../../TracingStrategyContext';
 import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 import { Screens } from '../../navigation';
@@ -10,21 +9,19 @@ import { Screens } from '../../navigation';
 const NotificationDetails = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { StrategyCopy, StrategyAssets } = useStrategyContent();
+  const { StrategyAssets } = useStrategyContent();
 
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.notificationDetailsBackground,
     icon: StrategyAssets.notificationDetailsIcon,
-    iconLabel: StrategyCopy.notificationDetailsIconLabel,
-    header: StrategyCopy.notificationDetailsHeader,
-    body: StrategyCopy.notificationDetailsSubheader,
+    header: t('label.launch_screen3_header_location'),
+    iconLabel: t('label.heart_icon'),
+    body: t('label.launch_screen3_subheader_location'),
     primaryButtonLabel: t('label.launch_next'),
   };
 
-  const iconStyle = isGPS ? IconStyle.Blue : IconStyle.Gold;
-
   const explanationScreenStyles = {
-    iconStyle: iconStyle,
+    iconStyle: IconStyle.Blue,
   };
 
   const explanationScreenActions = {

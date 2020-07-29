@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ImageBackground, StyleSheet } from 'react-native';
-import { render, cleanup } from '@testing-library/react-native';
+import { render, cleanup } from './test-utils/redux-provider';
 import '@testing-library/jest-native/extend-expect';
 
 import {
@@ -8,14 +8,12 @@ import {
   TracingStrategyProvider,
   useStrategyContent,
 } from './TracingStrategyContext';
-import {
-  testStrategyAssets,
-  testStrategyCopy,
-} from './factories/tracingStrategy';
+import { testStrategyAssets } from './factories/tracingStrategy';
 import { factories } from './factories';
 import { Images } from '../app/assets/images/';
 
 import { TracingStrategy } from './tracingStrategy';
+import { FeatureFlagOption } from './store/types';
 
 afterEach(cleanup);
 
@@ -26,7 +24,7 @@ jest.mock('react-i18next', () => ({
 const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
   const TestTracingStrategyConsumer = () => {
     const { name, homeScreenComponent } = useTracingStrategyContext();
-    const { StrategyAssets, StrategyCopy } = useStrategyContent();
+    const { StrategyAssets } = useStrategyContent();
 
     const HomeScreen = homeScreenComponent;
 
@@ -38,7 +36,6 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
           testID={'tracing-strategy-assets'}
           style={styles.background}
         />
-        <Text testID={'tracing-strategy-copy'}>{StrategyCopy.aboutHeader}</Text>
         <HomeScreen testID={'home-screen'} />
       </View>
     );
@@ -48,6 +45,11 @@ const renderTracingStrategyProvider = (strategy: TracingStrategy) => {
     <TracingStrategyProvider strategy={strategy}>
       <TestTracingStrategyConsumer />
     </TracingStrategyProvider>,
+    {
+      initialState: {
+        featureFlags: { flags: { [FeatureFlagOption.MOCK_EXPOSURE]: false } },
+      },
+    },
   );
 };
 
@@ -94,30 +96,21 @@ describe('TracingStrategyProvider', () => {
 
     it('provides the correct strategy content', () => {
       const expectedAsset = Images.BlueGradientBackground;
-      const expectedCopy = 'Test About Header';
 
       const strategy = factories.tracingStrategy.build({
         assets: {
           ...testStrategyAssets,
           personalPrivacyBackground: expectedAsset,
         },
-        useCopy: () => {
-          return {
-            ...testStrategyCopy,
-            aboutHeader: expectedCopy,
-          };
-        },
       });
 
       const { getByTestId } = renderTracingStrategyProvider(strategy);
 
       const assets = getByTestId('tracing-strategy-assets');
-      const copy = getByTestId('tracing-strategy-copy');
 
       expect(assets).toHaveProp('source', {
         testUri: '../../../app/assets/images/blueGradientBackground.png',
       });
-      expect(copy).toHaveTextContent(expectedCopy);
     });
 
     describe('when the user is on the HomeScreen', () => {

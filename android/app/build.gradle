@@ -5,19 +5,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    btdebug: ".env.bt",
-    btstaging: ".env.bt.staging",
-    btrelease: ".env.bt.release",
-
-    gpsdebug: ".env.gps",
-    gpsstaging: ".env.gps.staging",
-    gpsrelease: ".env.gps.release",
+    debug: ".env.gps",
+    staging: ".env.gps.staging",
+    release: ".env.gps.release",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-
-import com.android.build.OutputFile
-
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -93,12 +86,9 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
-    bundleInGpsDebug: false,
-    bundleInBtDebug: false,
-    bundleInGpsStaging: true,
-    bundleInBtStaging: true,
-    devDisabledInGpsStaging: true,
-    devDisabledInBtStaging: true,
+    bundleInDebug: false,
+    bundleInStaging: true,
+    devDisabledInStaging: true,
     enableHermes: false,  // clean and rebuild if changing
 ]
 
@@ -159,8 +149,8 @@ android {
         testBuildType System.getProperty('testBuildType', 'debug')
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        versionCode 11
-        versionName "1.0.8"
+        versionCode 306
+        versionName "1.2.0b2"
     }
     splits {
         abi {
@@ -206,18 +196,6 @@ android {
         }
     }
 
-    flavorDimensions "version"
-    productFlavors {
-        gps {
-            applicationId 'org.pathcheck.covidsafepaths'
-            dimension "version"
-        }
-        bt {
-            applicationId 'org.pathcheck.covidsafepathsBt'
-            dimension "version"
-        }
-    }
-
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -232,7 +210,7 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation "androidx.annotation:annotation:1.1.0"
-    gpsImplementation project(':@mauron85_react-native-background-geolocation-common')
+    implementation project(':@mauron85_react-native-background-geolocation-common')
     implementation 'com.bottlerocketstudios:vault:1.4.2'
     implementation 'com.google.android.gms:play-services-gcm:15.0.1'
     implementation 'com.google.android.gms:play-services-location:15.0.1'
@@ -240,22 +218,6 @@ dependencies {
     // Imports to support Exposure Notifications implementation based on Google sample
     // Annotation processing
     kapt 'com.google.auto.value:auto-value:1.7'
-    // Libraries
-    btImplementation 'androidx.work:work-runtime:2.3.4'
-    btImplementation 'androidx.concurrent:concurrent-futures:1.0.0'
-    btImplementation 'com.google.android.gms:play-services-base:17.2.1'
-    btImplementation 'com.google.android.gms:play-services-basement:17.2.1'
-    btImplementation 'com.google.android.gms:play-services-tasks:17.0.2'
-    btImplementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
-    btImplementation 'com.google.guava:guava:29.0-android'
-    btImplementation 'com.google.auto.value:auto-value-annotations:1.7'
-    btImplementation 'com.android.volley:volley:1.1.1'
-    btImplementation 'commons-io:commons-io:2.5'
-    // Google EN library not available via Maven
-    btImplementation project(path: ':play-services-nearby-18.0.3-eap')
-    // Stetho for debugging Realm
-    btImplementation 'com.facebook.stetho:stetho:1.5.0'
-    btImplementation 'com.uphyca:stetho_realm:2.3.0'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/"

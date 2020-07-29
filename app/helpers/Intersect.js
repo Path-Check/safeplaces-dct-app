@@ -510,7 +510,7 @@ async function getPageData(authority, page) {
   // this function should always return an object.
   // if there's no data, return an empty object.
   const cacheKey = authority.internal_id + '|page:' + page.id;
-  let pageData = await GetStoreData(cacheKey);
+  let pageData = await GetStoreData(cacheKey, false);
   if (!pageData && (await shouldDownloadPageData())) {
     try {
       pageData = await retrieveUrlAsJson(page.filename);

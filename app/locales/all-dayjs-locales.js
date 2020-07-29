@@ -131,3 +131,6 @@ import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/zh-hk';
 import 'dayjs/locale/zh-tw';
 import 'dayjs/locale/zh';
+// TODO: switch these once dayjs lib gets updated
+import './../helpers/locales/es-pr';
+import './../helpers/locales/ht';

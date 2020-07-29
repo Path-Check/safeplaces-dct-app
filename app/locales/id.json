@@ -11,6 +11,8 @@
     "next": "Selanjutnya"
   },
   "export": {
+    "code_input_button_cancel": "Batal",
+    "consent_button_cancel": "Batal",
     "exit_warning_cancel": "Batal"
   },
   "history": {

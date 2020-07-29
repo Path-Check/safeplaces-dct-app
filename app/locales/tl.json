@@ -9,32 +9,36 @@
   "assessment": {
     "agree_alert_description": "Upang gamitin ang SafePaths COVID-19 Screening o Pagsisiyasat, Sumangayon at ipahiwatig na naiintindihan mo ang layunin nito.",
     "agree_alert_title": "Kailangan ng Pagsangayon",
-    "agree_option_agree": "Sumasangayon ako",
-    "agree_option_disagree": "Hindi ako sumasangayon",
-    "agree_question_description": "Ang screening ay makakatulong sa iyong paggawa ng desisyon ukol sa kinakailangang pangangalagang medikal. Hindi ito para sa dyagnosis o paggamot ng karamdaman o ano mang ibang kundisyon.",
-    "agree_question_text": "Ang Layunin ng COVID-19 Screening o Pagsisiyasat",
+    "agree_option_agree": "<1> Ako ay </1> nakararanas ng isa sa mga sintomas",
+    "agree_option_disagree": "<1> Hindi ako </1> nakararanas ng alinman sa mga sintomas na ito",
+    "agree_question_description": "Huminto at tumawag sa mga serbisyong pang-emergency kung nakakaranas ka:\n• Malubha, palagiang sakit sa dibdib o presyon\n• Labis na kahirapan sa paghinga\n• Malubhang, palaging lightheadedness\n• Malubhang pagkabagabag o hindi pagkakasundo",
+    "agree_question_text": "Emergency ba ito?",
+    "agreement_cta": "Naiintindihan ko at sumasangayon ako",
+    "agreement_description": "Ang screening ay makakatulong sa iyong paggawa ng desisyon ukol sa kinakailangang pangangalagang medikal. Hindi ito para sa dyagnosis o paggamot ng karamdaman o ano mang ibang kundisyon.",
+    "agreement_footer": "Kung magpapatuloy, sumasangayon ka na ang  mga resulta ng iyong survey ay hindi ukol sa diagnosis o paggamot.",
+    "agreement_title": "Hindi ito para sa diagnosis",
     "cancel": "Kanselahin",
     "caregiver_cta": "Sa susunod",
-    "caregiver_description": "Ipagbigay-alam sa doktor o healthcare provider sa iyong long-term care facility. Ang pagtira sa long-term care facility, nursing home o home for the aged ay posibleng maglagay sa iyo sa peligro at magdulot ng malubhang sakit.\n\n<1>Sabihin sa caregiver o tagapagalaga</1> sa pasilidad na ikaw ay may sakit at kailangang sumangguni sa doktor o medical provider sa lalo't madaling panahon.",
+    "caregiver_description": "Ipagbigay-alam sa doktor o healthcare provider sa iyong long-term care facility. Na ang pagtira sa long-term care facility, nursing home o home for the aged ay posibleng maglagay sa iyo sa peligro at magdulot ng malubhang sakit.\n\nSabihin sa caregiver o tagapagalaga sa pasilidad na ikaw ay may sakit at kailangang sumangguni sa doktor o medical provider sa lalo't madaling panahon.",
     "caregiver_title": "Ipagbigay-alam sa Caregiver o Tagapagalaga",
     "complete_cta": "Tapos",
-    "complete_description": "Ipagpatuloy ang paggamit ng app na ito at gamitin ang screening <1>ulit sa susunod na linggo</1>para makatulong na protektahan ka at ang iyong komunidad.",
-    "complete_title": "Tapos na!",
+    "complete_description": "Sa pamamagitan ng pagbabahagi ng iyong katayuan sa kalusugan at kasaysayan ng lokasyon o location history nang hindi nagpapakilala sa iyong komunidad, ikaw ay aktibo ukol sa paglaban sa pagkalat ng COVID-19.",
+    "complete_title": "Salamat sa iyong pagpapanatili na ligtas ang iyong komunidad!",
     "distancing_cta": "Sa susunod",
-    "distancing_description": "Sundin ang mga alituntunin sa iyong lokal, estado or pamahalaan sa social distancing o pagdistansya ng layo sa iba, at Personal Protection Equipment (PPE), Kagamitang pang-proteksyon sa sarili, kagaya ng takip sa mukha, face mask, at/o guwantes. Walang ibang aksyon ang kailangan sa ngayon.",
+    "distancing_description": "Sundin ang mga alituntunin sa iyong lokal, estado o pamahalaan sa social distancing o pagdistansya ng layo sa iba, at Personal Protection Equipment (PPE), Kagamitang Pang-proteksyon sa Sarili, kagaya ng takip sa mukha, face mask, at/o guwantes. Walang ibang aksyon ang kailangan sa ngayon.",
     "distancing_title": "Paglayo at PPE/Kagamitang pang-proteksyon sa sarili",
-    "emergency_cta": "Tumawag sa Emergency Services o 911",
-    "emergency_description": "Maaaring ikaw ay nakararanas ng emergency na pang-medikal. Agarang lunas ay kinakailangan.\n\nSabihin sa emergency operator kung ikaw ay posibleng nahawa o nakasalamuha ng taong mayroong COVID-19 o kung ikaw ay kamakailan lang nanggaling sa lugar kung saan laganap ang COVID-19.",
-    "emergency_title": "Serbisyong Pang-emergency o Emergency Services",
+    "emergency_cta": "Tumawag sa Emergency 911",
+    "emergency_description": "Batay sa iyong naiulat na mga sintomas, dapat kang humingi ng agarang pangangalaga.",
+    "emergency_title": "Tumawag sa Serbisyong Pang-emergency o Emergency Services",
     "isolate_cta": "Sa susunod",
-    "isolate_description": "Ikaw <1>ay may mga sintomas</1> na posibleng may kaugnayan sa COVID-19. Tawagan ang iyong doktor o healthcare provider kung ang mga sintomas mo ay lumalala. Simula ngayon ay manantiling mag-isa sa iyong tahanan.",
+    "isolate_description": "Maaring mayroon kang mga sintomas na posibleng may kaugnayan sa COVID-19. Tawagan ang iyong doktor o healthcare provider kung ang mga sintomas mo ay lumalala. Simula ngayon ay manantiling mag-isa sa iyong tahanan.",
     "isolate_title": "Manatiling mag-isa sa iyong tahanan",
     "next": "Sa susunod",
     "settings_subtitle": "Self reporting survey o Pagsisyasat na Pag-uulat sa Sarili",
     "settings_title": "Survey o Pagsisiyasat",
     "share_cta": "Naiintindihan ko at pumapayag ako",
     "share_cta_skip": "Salamat na lang, ayaw ko'ng magbahagi ng data",
-    "share_description": "Ang anonimong, o walang pangalan na, na data ay tumutulong sa Boston Public Health Commission sa paganalisa, pagsubaybay at pagpigil sa paglaganap ng COVID-19. Ang iyong data ay isasama sa impormasyon ng ibang gumagamit ng PathCheck na pinili na makipagbigay-alam.\n\nAng iyong data ay naglalaman ng iyong mga sagot sa survey, o pagsisiyasat, at zip code. Walang halong personal na impormasyon na maaring magamit sa pagkilala sa iyo ang isasama rito.\n\nAng anonimong data mo ay mamalagi sa Boston Public Health Commission sa loob ng tinakdang panahon lamang.",
+    "share_description": "Ang anonimong, o walang pangalan na, na data ay tumutulong sa {{authority}} sa paganalisa, pagsubaybay at pagpigil sa paglaganap ng COVID-19. Ang iyong data ay isasama sa impormasyon ng ibang gumagamit ng PathCheck na pinili na makipagbigay-alam.\n\nAng iyong data ay naglalaman ng iyong mga sagot sa survey, o pagsisiyasat, at zip code. Walang halong personal na impormasyon na maaring magamit sa pagkilala sa iyo ang isasama rito.\n\nAng anonimong data mo ay mamalagi sa {{authority}} sa loob ng tinakdang panahon lamang.",
     "share_screening_description": "Ipamahagi ang anonimo, o walang pangalan, na sagot sa mga screening questions sa iyong Departamentong Pangkalusugan.",
     "share_screening_title": "Anonimong, o walang pangalan na, Data ng Screening",
     "share_title": "I-Publish and anonimong data",
@@ -58,12 +62,16 @@
     "done": "Tapos",
     "next": "Sa susunod",
     "ok": "Ok",
+    "settings": "Buksan ang settings",
     "something_went_wrong": "May maling nangyari",
-    "start": "Simula"
+    "start": "Simula",
+    "submit": "Isumite"
   },
   "export": {
     "code_input_body": "Ang kinatawan mula sa {{name}} ay magbibigay ng verification code sa pamamagitan ng pag-tawag upang i-link o iugnay ang iyong data sa {{name}}.",
-    "code_input_body_bluetooth": "I-type ang iyonv verification code na binigay ng {{name}} kasama ng resulta ng iyong pagsuri upang beripikahin ang iyong diagnosis",
+    "code_input_body_bluetooth": "Itala ang iyong verification code",
+    "code_input_button_cancel": "Kanselahin",
+    "code_input_button_submit": "Isumite",
     "code_input_error": "Subukan ang ibang code",
     "code_input_title": "Itala ang iyong verification code",
     "code_input_title_bluetooth": "Beripikahin ang iyong diagnosis o pagsusuri",
@@ -73,8 +81,14 @@
     "confirm_upload_body": "Makakatulong ito sa pinagsisikapang pagsubabay sa posibilidad na nalapatan ng virus o contact tracing efforts.\n\nKung pipiliin mong huwag ipadala ang iyong Kasaysayan ng Lokasyon o Location History sa {{name}}, pinipili mong huwag sumali sa pinagsisikapang pagsubaybay sa posibiladad na nalapatan ng virus o contact tracing efforts na makakatulong na panatilihing ligtas ang iyong komunidad.",
     "confirm_upload_button": "Ipadala ang Location History",
     "confirm_upload_title": "Ipadala ang iyong Location History sa iyong HA",
+    "consent_button_cancel": "Kanselahin",
     "consent_button_subtitle": "Sa pagpapatuloy, sumasangayon ka na ang iyong Healthcare Authority o Awtoridad sa Pangangalagang Pangkalusugan ay maaaring itago at tandaan ang iyong data sa loob ng tinakdang panahon.",
     "consent_button_title": "Naiintindihan ko at sumasangayon ako",
+    "error": {
+      "invalid_code": "Subukan ang ibang code",
+      "unknown_code_verification_error": "Subukan ang ibang code",
+      "verification_code_used": "Nagamit na ang verification code"
+    },
     "exit_warning_body": "Kailangan mong umpisahan muli ang prosesong ito",
     "exit_warning_cancel": "Kanselahin",
     "exit_warning_confirm": "Oo, ako ay sigurado",
@@ -92,18 +106,44 @@
     "start_title": "Ipabahagi ang iyong Location History sa pamamagitan ng anonimong paglahad sa iyong kumunidad kung ikaw ay nasuri at pumositibo sa COVID-19.",
     "start_title_bluetooth": "Tulungang pigilan ang paglaganap ng virus at protektakan ang mamamayan sa iyong kumunidad kung ikaw ay nasuri na o pumositibo sa COVID-19."
   },
+  "exposure_datum": {
+    "no_data": {
+      "explanation": "Nangyayari ito kapag ang location access ay hindi pinagana para sa iyong PathCheck app o ang petsa na napili ay higit pa kaysa sa 14 na araw na ang nakalipas. Walang mga notipikasyon ukol sa posibleng pagkahawa o exposure ang lalabas para sa araw na ito."
+    },
+    "no_known": {
+      "explanation": "Ang iyong kasaysayan ng posibleng pagkahawa o exposure history ay maa-update kung magbabago ang mga ito sa hinaharap."
+    },
+    "possible": {
+      "duration": "Posibleng exposure o Pagkahawa: {{duration}}",
+      "explanation": "Para sa {{duration}}, ang iyong cellphone o device ay nasa loob ng 10 talampakan ng isang tao na kalaunan ay nakatanggap ng isang kumpirmadong positibong diagnosis ng COVID-19.",
+      "what_next": "Ano ang dapat kong susunod na gagawin?"
+    }
+  },
   "exposure_history": {
     "bt": {
       "how_does_this_work": "Paano ito gumagana?",
-      "how_does_this_work_para": "Kapag ang Mga Abiso ng Pagkakalantad sa Posibleng Pagkalanit o Exposure Notifications ay nakabukas o pinagagana, ang iyong cellphone o device ay gumagamit ng Bluetooth upang makipagpalitan at i-save ang mga random string ng mganumero(na tinatawag na random ID) mula sa anumang mga cellphone o device na nakatagpo nito na mayroon ding pinaganang Mga Abiso ng Pagkakalantad sa Posibleng Pagkalanit o Exposure Notifications. Ang mga Random na ID ay hindi mo makilala nang personal sa ibang mga gumagamit at magbabago nang maraming beses sa isang araw upang maprotektahan ang iyong privacy. Ang petsa at tagal ng engkwentro ay naitala kasama ang isang pagtatantya kung gaano kalapit ang dalawang telepono. Kapag ang isang tao ay nagulat ng isang positibong pagsusuri, ang mga kamakailang random na ID ng kanilang telepono ay anonimong na-fa-flag o naaabisuhan. Walang mga lokasyon o personal na impormasyon ay ibinabahagi.",
+      "how_does_this_work_para": "Kapag ang Mga Abiso ng Pagkakalantad sa Posibleng Pagkalanit o Exposure Notifications ay nakabukas, ang iyong cellphone o device ay gumagamit ng Bluetooth upang makipagpalitan at ipunin ang mga random string ng mganumero (na tinatawag na random ID) mula sa anumang mga cellphone o device na nakatagpo nito na mayroon ding pinaganang Mga Abiso ng Pagkakalantad sa Posibleng Pagkalanit o Exposure Notifications. Ang mga Random na ID ay hindi mo makikilala nang personal sa ibang mga gumagamit at magbabago nang maraming beses sa isang araw upang maprotektahan ang iyong privacy. Ang petsa at tagal ng engkwentro ay naitala, kasama ang pagtantya kung gaano kalapit ang dalawang cellphone o device. Kapag ang isang tao ay nagulat ng isang positibong pagsusuri, ang mga kamakailang random na ID ng kanilang cellphone o device ay anonimong na-fa-flag o naaabisuhan. Walang mga lokasyon o personal na impormasyon ay ibinabahagi.",
       "why_did_i_get_an_en_para": "Makakatanggap ka ng isang abiso sa pagkakalantad sa posibleng pagkalanit o exposure notification kapag ang isang tao na tumawid sa iyong landas na kalaunan ay nakatanggap ng isang nakumpirmado, dyagnosis o positibong pagsusuri para sa COVID-19 at pinipiling abisuhan ang iba"
     },
     "gps": {
-      "how_does_this_work_para": "Kung kailan ang location access ay inaktiba para sa iyong PathCheck app ay tinatandaan ang mga impormasyon sa bawat mga lugar na iyong dala ang iyong cellphone o device: mga coordinate ng GPS , petsa, at oras na naroon ang cellphone o device mo sa lokayson iyon. \n\nAng impormasyong ito ay nakaimbak na encrypted na listahan lamang sa iyong cellphone o device sa loob ng 14 na araw. Kung isa o mahigit sa isa sa iyong mga lokal o rehiyonal na mga Departamentong Pangkalusugan ay nakipag-partner sa iyong PathCheck app, at iyong piniliping makatanggap ng exposure notifications galing sa kanila pamamagitan ng iyong PathCheck app, ay maari nilang ipadala ang app mo ng mga koleksyon ng encrypted na anonimong mga coordinate ng GPS, mga petsa, at mga oras na nakolekta mula sa mga miyembro ng iyong kumunidad na sa kalaunan ay sinuri at makatatanggap ng positibong dyagnosis at piniling magbigayalam.\n\nIkinukumpara ng iyong cellphone o device (sa loob ng iyong app) ang iyong encrypted na kasaysayan ng lokasyon o Location History na ipinadala ng iyong lokal na Kagawaran ng Kalusugan upang matukoy kung dapat kang makatanggap ng isang abiso sa posibleng pagkakalanit."
+      "how_does_this_work_para": "Kung kailan ang location access ay inaktiba para sa iyong PathCheck app ay tinatandaan ang mga impormasyon sa bawat mga lugar na iyong dala ang iyong cellphone o device: mga coordinate ng GPS , petsa, at oras na naroon ang cellphone o device mo sa lokayson iyon. \n\nAng impormasyong ito ay nakaimbak na encrypted na listahan lamang sa iyong cellphone o device sa loob ng 14 na araw. Kung isa o mahigit sa isa sa iyong mga lokal o rehiyonal na mga Departamentong Pangkalusugan ay nakipag-partner sa iyong PathCheck app, at iyong piniliping makatanggap ng exposure notifications galing sa kanila pamamagitan ng iyong PathCheck app, ay maari nilang ipadala ang app mo ng mga koleksyon ng encrypted na anonimong mga coordinate ng GPS, mga petsa, at mga oras na nakolekta mula sa mga miyembro ng iyong kumunidad na sa kalaunan ay sinuri at makatatanggap ng positibong dyagnosis at piniling magbigayalam.\n\nIkinukumpara ng iyong cellphone o device (sa loob ng iyong app) ang iyong encrypted na kasaysayan ng lokasyon o Location History na ipinadala ng iyong lokal na Kagawaran ng Kalusugan upang matukoy kung dapat kang makatanggap ng isang abiso sa posibleng pagkakalanit.",
+      "why_did_i_get_an_en_para": "Makakatanggap ka ng mga abiso sa posibleng pagkahawa o exposure notifications kapag tinantiya ng iyong PathCheck app na ang iyong cellphone o device ay, sa loob ng pinalawig na panahon, sa loob ng 100 talampakan ng isa pang indibidwal na kalaunan ay nakatanggap ng positibong pagsusuri at pinili nilang ibahagi ang kanilang talaarawan sa lokasyon o location diary sa kanilang lokal na Kagawaran ng Kalusugan."
     },
     "how_does_this_work": "Paano ito gumagana?",
     "last_days": "Huling 21 (dalawampu't isang) araw",
     "legend_button": "LEYENDA O LEGEND",
+    "legend": {
+      "exposure_possible": "May posibleng exposure o pagkahawa",
+      "new_exposure": "May bagong posibleng exposure o pagkahawa",
+      "no_exposure_detected": "Walang exposure o posibleng pagkahawa ang natuklasan",
+      "today": "Ngayong Araw na Ito"
+    },
+    "next_steps": {
+      "button_text": "Tingnan ang mga rekomendasyon",
+      "ha_self_assessment": "Sundin ang payo mula sa {{healthAuthorityName}} tungkol sa susunod na gagawin.",
+      "possible_crossed_paths": "Batay sa kasaysayan ng iyong lokasyon o location history, posible na ikaw ay maaaring nakahalubilo ang isang tao na nasuri at na-diagnose na may COVID-19.",
+      "possible_infection_precaution": "Hindi ito nangangahulugang nahawaan ka, ngunit dapat ka pa ring mag-ingat. Ang mga taong hindi nagpapakita ng mga sintomas ay maaari pa ring makahawa."
+    },
     "why_did_i_get_an_en": "Bakit ako nakatanggap ng exposure notification?"
   },
   "history": {
@@ -123,6 +163,8 @@
       "tracing_off_button": "Payagan ang Exposure Notifications",
       "tracing_off_header": "Huwag paganahin ang Exposure Notifications",
       "tracing_off_subheader": "Paganahin ang Exposure Notifications o Pagklantad sa Posibleng Pagkahawa upang makatanggap ng impormasyon tungkol sa posibleng pagkahawa or pagkasalamuha sa mayroong virus",
+      "unauthorized_error_message": "Dapat mong pahintulutan ang COVID-19 Exposure Logging sa Mga Setting ng app upang magpatuloy.",
+      "unauthorized_error_title": "Mangyaring I-update ang Mga Setting",
       "unavailable_header": "Wala pang ipormasyong ang nakuha tungkol sa mga Exposure history notifications o Mga Abiso sa Kasaysayan sa Posibleng Pagkahawa o pagkasalamuha sa mayroong may virus",
       "unavailable_subheader": "Ang iyong cellphone ay hindi sakop ng mga Awtoridad sa Pangangalagang Pangkalusugan na gumagamit ng PathCheck"
     },
@@ -162,6 +204,12 @@
       "title": "Google Maps",
       "visit_button_text": "Bisitahin ang Google Takeout"
     },
+    "mockData": {
+      "custom_url_title": "Iangkat o i-import galing sa URL",
+      "instruction_info": "Ang data ay dapat nasa format ng JSON!",
+      "invalid_url": "Walang bisang  JSON URL!",
+      "url_instructions": "Itala ang URL para sa lokasyon na isinagawa ang test o pagsusuri na nais mong idagdag"
+    },
     "subtitle": "Upang makita kung mayroong kang nakahalubilong tao na mayroong COVID-19 bago nai-download ang app na ito, maari mong i-import ang iyong personal na kasaysayan ng lokasyon o location history.",
     "success": "Ang mga pinakabagong lokasyon ay matagumpay na naitala!",
     "title": "Iangkat o i-import ang mga Lokasyon"
@@ -174,6 +222,12 @@
     "authorities_add_url": "Idagdag ang awtoridad gamit ang URL",
     "authorities_desc": "Pumili ng isa o higit pa na Awtoridad sa Pangangalagang Pangkalusugan sa iyong lugar para sa impormasyon tungkol sa COVID-19 na malapit sa iyo, kung may magagamit.\n\nMaaring pumili ng isang pangalan mula sa pandaigdigang pagpapatala/global registry o magpasok ng isang web address na ibinigay ng isang Healthcare Authority na gumagamit ng PathCheck.",
     "authorities_input_placeholder": "I-Paste ang iyong URL dito",
+    "authorities_new_in_area_msg_0": "Mag-subscribe sa walang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_1": "Mag-subscribe sa isang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_2": "Mag-subscribe sa dalawang bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_3": "Mag-subscribe sa kaunting bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_4": "Mag-subscribe sa maraming bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
+    "authorities_new_in_area_msg_5": "Mag-subscribe sa ibang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
     "authorities_new_in_area_title_0": "Walang Bagong Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authorities",
     "authorities_new_in_area_title_1": "Isang Bagong Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authorities",
     "authorities_new_in_area_title_2": "Dalawang mga Bagong Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authorities",
@@ -194,12 +248,6 @@
     "authorities_new_subscription_title_5": "Iba pang Bagong Suskripsyon",
     "authorities_no_sources": "Walang Mga Departamentong Pangkalusugan o Health Departments",
     "authorities_removal_alert_cancel": "Kanselahin",
-    "authorities_new_in_area_msg_0": "Mag-subscribe sa walang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_1": "Mag-subscribe sa isang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_2": "Mag-subscribe sa dalawang bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_3": "Mag-subscribe sa kaunting bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_4": "Mag-subscribe sa maraming bagong pinagkakatiwalaang mga Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
-    "authorities_new_in_area_msg_5": "Mag-subscribe sa ibang bagong pinagkakatiwalaang Awtoridad sa Pangangalagang Pangkalusugan o Healthcare Authority sa iyong lokasyon",
     "authorities_removal_alert_desc": "Sigurado ka bang gusto mong alisin ang authority data source na ito?",
     "authorities_removal_alert_proceed": "Ituloy",
     "authorities_removal_alert_title": "Tanggalin ang Awtoridad",
@@ -302,11 +350,12 @@
     "faq": "Madalas na Tanong",
     "legal": "Ligal",
     "more": "Higit pa",
+    "more_info": "Karagdagang Impormasyon",
     "report_issue": "Magsumbong ng isyu"
   },
   "settings": {
     "share_test_result": "Ipagbigay-alam ang postibong resulta ng pagsusuri",
-    "share_test_result_description": "Ipabahagi ang impormasyon tungkol sa posibleng pagkahawa o pagkasalamuha sa tao, gamit o lugar na mayroong may COVID-19 sa iyong Awtoridad sa Pangangalagang Pangkalusugan, sa gamit ang nakalaang code"
+    "share_test_result_description": "Ipabahagi ang impormasyon tungkol sa kamakailang pangyayari na posibleng pagkahawa o pagkasalamuha sa tao, gamit o lugar na mayroong may COVID-19"
   },
   "share": {
     "button_text": "Ibahagi ang Kasaysayan ng iyong Lokasyon o Location History",
