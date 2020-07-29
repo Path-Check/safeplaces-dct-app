@@ -126,6 +126,7 @@ export default class LocationServices {
 
     BackgroundGeolocation.on('stop', () => {
       PushNotification.localNotification({
+        id: LOCATION_DISABLED_NOTIFICATION_ID,
         title: languages.t('label.location_disabled_title'),
         message: languages.t('label.location_disabled_message'),
       });
@@ -147,13 +148,13 @@ export default class LocationServices {
       locationServicesEnabled,
     );
     console.log('[INFO] BackgroundGeolocation auth status: ' + authorization);
-
     BackgroundGeolocation.start(); //triggers start on start event
     isBackgroundGeolocationConfigured = true;
   }
 
   static async stop() {
     PushNotification.localNotification({
+      id: LOCATION_DISABLED_NOTIFICATION_ID,
       title: languages.t('label.location_disabled_title'),
       message: languages.t('label.location_disabled_message'),
     });
