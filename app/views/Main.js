@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState, useContext } from 'react';
 import { AppState } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Geolocation from '@react-native-community/geolocation';
 
 import LocationServices from '../services/LocationService';
 import NotificationService from '../services/NotificationService';
@@ -14,22 +13,16 @@ import {
 import PermissionsContext from '../gps/PermissionsContext';
 import { PermissionStatus } from '../permissionStatus';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
-import isAutoSubscriptionEnabledSelector from '../store/selectors/isAutoSubscriptionEnabledSelector';
-import getHealthcareAuthorities from '../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import { useStatusBarEffect } from '../navigation';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const { notification, location } = useContext(PermissionsContext);
+  const { notification } = useContext(PermissionsContext);
   const selectedAuthorities = useSelector(
     selectedHealthcareAuthoritiesSelector,
-  );
-  const autoSubscriptionEnabled = useSelector(
-    isAutoSubscriptionEnabledSelector,
   );
   const [canTrack, setCanTrack] = useState(true);
 
@@ -40,27 +33,8 @@ export const Main = () => {
     NotificationService.configure(notification.status);
   }, [setCanTrack, notification]);
 
-  const autoSubscribe = useCallback(async () => {
-    console.log('AUTO_SUBSCRIBE_METHOD_START');
-    if (
-      autoSubscriptionEnabled &&
-      selectedAuthorities.length === 0 &&
-      location.status === PermissionStatus.GRANTED
-    ) {
-      Geolocation.getCurrentPosition(({ coords }) => {
-        dispatch(getHealthcareAuthorities(undefined, coords));
-      });
-    }
-  }, [
-    autoSubscriptionEnabled,
-    selectedAuthorities.length,
-    location.status,
-    dispatch,
-  ]);
-
   useEffect(() => {
     updateStateInfo();
-    autoSubscribe();
     // refresh state if user backgrounds app
     AppState.addEventListener('change', updateStateInfo);
 
@@ -71,7 +45,7 @@ export const Main = () => {
       AppState.removeEventListener('change', updateStateInfo);
       unsubscribe();
     };
-  }, [navigation, updateStateInfo, autoSubscribe]);
+  }, [navigation, updateStateInfo]);
 
   if (!canTrack) {
     return <TracingOffScreen />;

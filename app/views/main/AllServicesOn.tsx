@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -10,17 +10,21 @@ import { useTranslation } from 'react-i18next';
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import Geolocation from '@react-native-community/geolocation';
 
 import { Icons, Images } from '../../assets';
 import { Typography } from '../../components/Typography';
 
 import { styles } from './style';
 import { Colors } from '../../styles';
-import { Screens } from '../../navigation';
+import { Stacks } from '../../navigation';
+import { useSelector, useDispatch } from 'react-redux';
+import isAutoSubscriptionEnabledSelector from '../../store/selectors/isAutoSubscriptionEnabledSelector';
+import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
+import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 
 type AllServicesOnProps = {
   noHaAvailable: boolean;
-  showAutoSubscribeBanner?: boolean;
 };
 
 const useAutoSubscriptionBanner = (showAutoSubscribeBanner: boolean) => {
@@ -42,15 +46,36 @@ const useAutoSubscriptionBanner = (showAutoSubscribeBanner: boolean) => {
 
 export const AllServicesOnScreen = ({
   noHaAvailable,
-  showAutoSubscribeBanner = true,
 }: AllServicesOnProps): JSX.Element => {
+  const size = Dimensions.get('window').height;
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { showBanner } = useAutoSubscriptionBanner(showAutoSubscribeBanner);
-  const size = Dimensions.get('window').height;
+  const dispatch = useDispatch();
 
-  // TODO: change this
-  const healthAuthorityName = 'placeholder name';
+  const { showBanner } = useAutoSubscriptionBanner(true);
+  const autoSubscriptionEnabled = useSelector(
+    isAutoSubscriptionEnabledSelector,
+  );
+  const selectedAuthorities = useSelector(
+    selectedHealthcareAuthoritiesSelector,
+  );
+
+  const [haName, setHAName] = useState('');
+  const autoSubscribe = useCallback(async () => {
+    if (autoSubscriptionEnabled && noHaAvailable) {
+      Geolocation.getCurrentPosition(({ coords }) => {
+        dispatch(getHealthcareAuthorities(undefined, coords));
+      });
+    }
+  }, [autoSubscriptionEnabled, noHaAvailable, dispatch]);
+
+  useEffect(() => {
+    autoSubscribe().then(() => {
+      if (selectedAuthorities[0]) {
+        setHAName(selectedAuthorities[0].name);
+      }
+    });
+  }, [autoSubscribe, selectedAuthorities]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -104,12 +129,12 @@ export const AllServicesOnScreen = ({
             }}>
             <>
               {t('home.gps.auto_subscribe_text', {
-                healthAuthorityName,
+                healthAuthorityName: haName,
               })}
               <Typography
                 style={styles.hyperlink}
                 // TODO: change this
-                onPress={() => navigation.navigate(Screens.PartnersEdit)}>
+                onPress={() => navigation.navigate(Stacks.Partners)}>
                 {t('home.gps.auto_subscribe_link_text')}
               </Typography>
             </>
@@ -117,7 +142,7 @@ export const AllServicesOnScreen = ({
           <View style={{ width: 24 }} />
           {/* TODO: change this */}
           <TouchableOpacity
-            onPress={() => navigation.navigate(Screens.PartnersEdit)}>
+            onPress={() => navigation.navigate(Stacks.Partners)}>
             <SvgXml xml={Icons.ChevronRight} />
           </TouchableOpacity>
         </View>
