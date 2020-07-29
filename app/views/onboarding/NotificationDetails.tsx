@@ -9,14 +9,14 @@ import { Screens } from '../../navigation';
 const NotificationDetails = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
-  const { StrategyCopy, StrategyAssets } = useStrategyContent();
+  const { StrategyAssets } = useStrategyContent();
 
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.notificationDetailsBackground,
     icon: StrategyAssets.notificationDetailsIcon,
-    iconLabel: StrategyCopy.notificationDetailsIconLabel,
-    header: StrategyCopy.notificationDetailsHeader,
-    body: StrategyCopy.notificationDetailsSubheader,
+    header: t('label.launch_screen3_header_location'),
+    iconLabel: t('label.heart_icon'),
+    body: t('label.launch_screen3_subheader_location'),
     primaryButtonLabel: t('label.launch_next'),
   };
 
