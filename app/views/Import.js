@@ -15,7 +15,6 @@ import {
   NoRecentLocationsError,
   importTakeoutData,
 } from '../helpers/GoogleTakeOutAutoImport';
-import { Screens } from '../navigation';
 
 import {
   Typography as TypographyStyles,
@@ -32,7 +31,7 @@ const makeImportResults = (label = '', error = false) => ({
 const ImportScreen = (props) => {
   const { t } = useTranslation();
   const {
-    navigation: { goBack, navigate },
+    navigation: { goBack },
   } = props;
   const [importResults, _setImportResults] = useState(makeImportResults());
   const setImportResults = (...args) =>
@@ -66,10 +65,6 @@ const ImportScreen = (props) => {
     }
   }
 
-  const handleImportMockData = () => {
-    navigate(Screens.ImportFromUrl);
-  };
-
   return (
     <NavigationBarWrapper title={t('import.title')} onBackPress={goBack}>
       <ScrollView style={styles.container}>
@@ -83,7 +78,6 @@ const ImportScreen = (props) => {
         <Typography style={styles.sectionDescription}>
           {t('import.google.instructions_detailed')}
         </Typography>
-
         <TouchableOpacity
           testID='google-takeout-link'
           onPress={() =>
@@ -96,23 +90,12 @@ const ImportScreen = (props) => {
             {t('import.google.visit_button_text')}
           </Typography>
         </TouchableOpacity>
-
         <TouchableOpacity
           testID='google-takeout-import-btn'
           onPress={importPickFile}
           style={styles.button}>
           <Typography style={styles.buttonText}>{t('import.title')}</Typography>
         </TouchableOpacity>
-
-        <TouchableOpacity
-          // TODO: add testID
-          onPress={handleImportMockData}
-          style={styles.button}>
-          <Typography style={styles.buttonText}>
-            {t('import.mockData.custom_url_title')}
-          </Typography>
-        </TouchableOpacity>
-
         {importResults.label ? (
           <Typography
             style={{

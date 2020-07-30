@@ -37,19 +37,6 @@ jest.mock('react-native-background-timer', () => ({
   runBackgroundTimer: () => {},
   stopBackgroundTimer: () => {},
 }));
-jest.mock('react-native-popup-menu', () => ({
-  Menu: 'Menu',
-  MenuProvider: 'MenuProvider',
-  MenuOptions: 'MenuOptions',
-  MenuOption: 'MenuOption',
-  MenuTrigger: 'MenuTrigger',
-}));
-
-jest.mock('redux', () => ({
-  createStore: () => {},
-  combineReducers: () => {},
-  applyMiddleware: () => {},
-}));
 
 jest.mock('redux-persist', () => ({
   createMigrate: () => {},

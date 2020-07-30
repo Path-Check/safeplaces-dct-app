@@ -2,7 +2,6 @@ import React, { FunctionComponent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigation } from '@react-navigation/native';
 
-import { isGPS } from '../../COVIDSafePathsConfig';
 import { Screens } from '../../navigation';
 import { isPlatformiOS } from '../../Util';
 import { useStrategyContent } from '../../TracingStrategyContext';
@@ -11,9 +10,9 @@ import ExplanationScreen, { IconStyle } from '../common/ExplanationScreen';
 const ShareDiagnosis: FunctionComponent = () => {
   const navigation = useNavigation();
   const { t } = useTranslation();
-  const { StrategyCopy, StrategyAssets } = useStrategyContent();
+  const { StrategyAssets } = useStrategyContent();
 
-  const gpsNext = () => {
+  const onNext = () => {
     return navigation.navigate(
       // Skip notification permissions on android
       isPlatformiOS()
@@ -22,32 +21,21 @@ const ShareDiagnosis: FunctionComponent = () => {
     );
   };
 
-  const btNext = () => {
-    navigation.navigate(
-      isPlatformiOS()
-        ? Screens.NotificationPermissionsBT
-        : Screens.EnableExposureNotifications,
-    );
-  };
-  const handleOnPressNext = isGPS ? gpsNext : btNext;
-
   const explanationScreenContent = {
     backgroundImage: StrategyAssets.shareDiagnosisBackground,
     icon: StrategyAssets.shareDiagnosisIcon,
-    iconLabel: StrategyCopy.shareDiagnosisIconLabel,
-    header: StrategyCopy.shareDiagnosisHeader,
-    body: StrategyCopy.shareDiagnosisSubheader,
+    header: t('label.launch_screen4_header_location'),
+    iconLabel: t('label.bell_icon'),
+    body: t('label.launch_screen4_subheader_location'),
     primaryButtonLabel: t('label.launch_set_up_phone_location'),
   };
 
-  const iconStyle = isGPS ? IconStyle.Gold : IconStyle.Blue;
-
   const explanationScreenStyles = {
-    iconStyle: iconStyle,
+    iconStyle: IconStyle.Blue,
   };
 
   const explanationScreenActions = {
-    primaryButtonOnPress: handleOnPressNext,
+    primaryButtonOnPress: onNext,
   };
 
   return (

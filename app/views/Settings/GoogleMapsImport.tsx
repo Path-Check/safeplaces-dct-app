@@ -24,7 +24,7 @@ const GoogleMapsImport = ({
   const { t } = useTranslation();
 
   const handleImportPressed = () => {
-    navigation.navigate(Screens.Import);
+    navigation.navigate(Screens.ImportFromGoogle);
   };
 
   return (

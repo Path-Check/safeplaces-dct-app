@@ -18,6 +18,8 @@
     "next": "التالى"
   },
   "export": {
+    "code_input_button_cancel": "إلغاء",
+    "consent_button_cancel": "إلغاء",
     "exit_warning_cancel": "إلغاء"
   },
   "history": {

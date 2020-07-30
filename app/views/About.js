@@ -10,9 +10,8 @@ import {
   Alert,
   TouchableWithoutFeedback,
 } from 'react-native';
+import { getVersion, getBuildNumber } from 'react-native-device-info';
 
-import { useStrategyContent } from '../TracingStrategyContext';
-import packageJson from '../../package.json';
 import { NavigationBarWrapper, Typography } from '../components';
 
 import { useDispatch } from 'react-redux';
@@ -20,6 +19,15 @@ import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleA
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
+const VERSION = getVersion();
+
+// Append "ALPHA" to our iOS builds that are 1.0.0, as we use
+// a separate Alpha TestFlight that is always 1.0.0.
+// On android we include "ALPHA" directly in the version name.
+const isAlpha = VERSION === '1.0.0';
+const APP_VERSION = `${
+  isAlpha && Platform.OS === 'ios' ? 'ALPHA ' : ''
+}${VERSION} (${getBuildNumber()})`;
 
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -35,7 +43,6 @@ export const AboutScreen = ({ navigation }) => {
   const incrementClickCount = () => setClickCount(clickCount + 1);
 
   const { t } = useTranslation();
-  const { StrategyCopy } = useStrategyContent();
 
   const backToMain = () => {
     navigation.goBack();
@@ -48,10 +55,12 @@ export const AboutScreen = ({ navigation }) => {
       <ScrollView
         contentContainerStyle={styles.contentContainer}
         alwaysBounceVertical={false}>
-        <TouchableWithoutFeedback onPress={incrementClickCount}>
+        <TouchableWithoutFeedback
+          touchSoundDisabled
+          onPress={incrementClickCount}>
           <View>
             <Typography use='headline2' style={styles.heading}>
-              {StrategyCopy.aboutHeader}
+              {t('label.about_header_location')}
             </Typography>
           </View>
         </TouchableWithoutFeedback>
@@ -71,7 +80,7 @@ export const AboutScreen = ({ navigation }) => {
             </Typography>
 
             <Typography style={styles.aboutSectionParaContent}>
-              {packageJson.version}
+              {APP_VERSION}
             </Typography>
           </View>
           <View style={styles.row}>

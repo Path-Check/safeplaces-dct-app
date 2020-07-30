@@ -29,7 +29,7 @@ const NotificationsPermissions = (): JSX.Element => {
   const { t } = useTranslation();
   const { notification } = useContext(PermissionsContext);
 
-  useStatusBarEffect('dark-content');
+  useStatusBarEffect('light-content');
 
   const requestPermission = async () => {
     await notification.request();

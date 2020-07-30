@@ -6,6 +6,7 @@ on:
       - develop
       - release-candidate
       - master
+      - gps-release**
 
 jobs:
   validate:

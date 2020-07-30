@@ -4,5 +4,4 @@ export { LocationsActive, LocationsInactive } from './Locations';
 export { MoreActive, MoreInactive } from './More';
 export { ShieldActive, ShieldInactive } from './Shield';
 export { NotificationIcon } from './NotificationIcon';
-export { SelfAssessmentActive, SelfAssessmentInactive } from './SelfAssessment';
 export { CalendarActive, CalendarInactive } from './Calendar';

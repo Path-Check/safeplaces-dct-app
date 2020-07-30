@@ -6,7 +6,6 @@ import { SvgXml } from 'react-native-svg';
 
 import { Icons, Images } from '../../assets';
 import { Typography } from '../../components/Typography';
-import { isGPS } from '../../COVIDSafePathsConfig';
 
 import { styles } from './style';
 import { Colors } from '../../styles';
@@ -33,16 +32,14 @@ export const AllServicesOnScreen = ({
           translucent
         />
         <View style={styles.pulseContainer}>
-          {isGPS && (
-            <Pulse
-              image={{ exportImage: Images.Export }}
-              color={Colors.lightestGray}
-              numPulses={3}
-              diameter={400}
-              speed={20}
-              duration={2000}
-            />
-          )}
+          <Pulse
+            image={{ exportImage: Images.Export }}
+            color={Colors.lightestGray}
+            numPulses={3}
+            diameter={400}
+            speed={20}
+            duration={2000}
+          />
           <SvgXml
             xml={Icons.StateNoContact}
             width={size ? size : 80}

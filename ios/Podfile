@@ -2,12 +2,11 @@ platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 project 'COVIDSafePaths.xcodeproj',
-'Debug-BT' => :debug,
-'Debug-GPS' => :debug,
-'Release-BT' => :release,
-'Release-GPS' => :release,
-'Staging-BT' => :release,
-'Staging-GPS' => :release
+'Debug' => :debug,
+'Release' => :release,
+'Staging' => :release
+
+inhibit_all_warnings!
 
 def shared_pods
   # Pods for COVIDSafePaths
@@ -46,8 +45,7 @@ def shared_pods
 
   pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
 
-  permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
+  pod 'Permission-Notifications', :path => "../node_modules/react-native-permissions/ios/Notifications.podspec"
 
   pod 'Realm', :modular_headers => true
   pod 'RealmSwift', :modular_headers => true
@@ -56,16 +54,7 @@ def shared_pods
 end
 
 def gps_pods
-  permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
-end
-
-def bt_pods
-  ### These should be removed in a future commit
-  permissions_path = '../node_modules/react-native-permissions/ios'
-  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
-  pod 'Alamofire', '~> 4.9.1'
-  pod 'ZIPFoundation'
+  pod 'Permission-LocationAlways', :path => "../node_modules/react-native-permissions/ios/LocationAlways.podspec"
 end
 
 target 'GPS' do
@@ -73,19 +62,8 @@ target 'GPS' do
   shared_pods
 end
 
-target 'BT' do
-  bt_pods
-  shared_pods
-end
-
 target 'GPSTests' do
   inherit! :search_paths
   gps_pods
-  shared_pods
-end
-
-target 'BTTests' do
-  inherit! :search_paths
-  bt_pods
   shared_pods
 end
