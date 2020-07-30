@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  StatusBar,
   StyleSheet,
   TouchableHighlight,
   View,
@@ -19,7 +18,7 @@ import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
 
-import { Screens } from '../../navigation';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing } from '../../styles';
@@ -49,13 +48,10 @@ export const ExportSelectHA = ({ navigation }) => {
     }
   };
 
+  useStatusBarEffect('dark-content');
+
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar
-        barStyle='dark-content'
-        backgroundColor={Colors.primaryBackgroundFaintShade}
-        translucent={false}
-      />
       <View style={styles.wrapper}>
         <SafeAreaView style={{ flex: 1, paddingBottom: 0 }}>
           <View style={{ paddingHorizontal: 24, paddingBottom: 20 }}>

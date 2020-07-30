@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   middleContent: {
-    flex: 3,
+    flex: 5,
     alignItems: 'center',
   },
   rightContent: {
