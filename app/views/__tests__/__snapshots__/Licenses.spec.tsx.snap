@@ -15,7 +15,6 @@ exports[`LicensesScreen renders correctly 1`] = `
       Object {
         "backgroundColor": "#1f2c9b",
         "flex": 1,
-        "paddingTop": 0,
       }
     }
   >
@@ -27,6 +26,7 @@ exports[`LicensesScreen renders correctly 1`] = `
           "flexDirection": "row",
           "justifyContent": "flex-start",
           "paddingHorizontal": 16,
+          "paddingTop": undefined,
           "paddingVertical": 8,
         }
       }
