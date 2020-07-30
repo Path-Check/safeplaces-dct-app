@@ -54,8 +54,8 @@ export const Main = () => {
   } else if (selectedAuthorities.length === 0) {
     // TODO: enable this for testing versions of app
     // return <SelectAuthorityScreen />;
-    return <AllServicesOnScreen noHaAvailable />;
+    return <AllServicesOnScreen navigation={navigation} noHaAvailable />;
   } else {
-    return <AllServicesOnScreen />;
+    return <AllServicesOnScreen navigation={navigation} />;
   }
 };

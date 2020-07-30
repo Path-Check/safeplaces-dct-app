@@ -9,7 +9,6 @@ import {
 import { useTranslation } from 'react-i18next';
 import Pulse from 'react-native-pulse';
 import { SvgXml } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 
 import { Icons, Images } from '../../assets';
@@ -17,7 +16,7 @@ import { Typography } from '../../components/Typography';
 
 import { styles } from './style';
 import { Colors } from '../../styles';
-import { Stacks } from '../../navigation';
+import { Stacks, NavigationProp } from '../../navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import isAutoSubscriptionEnabledSelector from '../../store/selectors/isAutoSubscriptionEnabledSelector';
 import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
@@ -25,18 +24,19 @@ import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/
 
 type AllServicesOnProps = {
   noHaAvailable: boolean;
+  navigation: NavigationProp;
 };
 
-const useAutoSubscriptionBanner = (showAutoSubscribeBanner: boolean) => {
-  const navigation = useNavigation();
+const useAutoSubscriptionBanner = (
+  showAutoSubscribeBanner: boolean,
+  navigation: NavigationProp,
+) => {
   const [showBanner, setShowBanner] = useState(showAutoSubscribeBanner);
 
   useEffect(() => {
-    const unsubscribe = navigation.addListener('blur', () =>
-      setShowBanner(false),
-    );
+    const listener = navigation.addListener('blur', () => setShowBanner(false));
 
-    return unsubscribe;
+    return listener.remove;
   }, [navigation]);
 
   return {
@@ -46,13 +46,13 @@ const useAutoSubscriptionBanner = (showAutoSubscribeBanner: boolean) => {
 
 export const AllServicesOnScreen = ({
   noHaAvailable,
+  navigation,
 }: AllServicesOnProps): JSX.Element => {
   const size = Dimensions.get('window').height;
   const { t } = useTranslation();
-  const navigation = useNavigation();
   const dispatch = useDispatch();
 
-  const { showBanner } = useAutoSubscriptionBanner(true);
+  const { showBanner } = useAutoSubscriptionBanner(true, navigation);
   const autoSubscriptionEnabled = useSelector(
     isAutoSubscriptionEnabledSelector,
   );
