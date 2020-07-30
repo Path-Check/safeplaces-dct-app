@@ -48,14 +48,10 @@ const getHealthcareAuthoritiesAction = (
       }),
     );
 
-    console.log('LOCATION:::::', autoSubscriptionLocation);
-
     if (autoSubscriptionLocation) {
       const localHealthAuthority = healthcareAuthorities.find((ha) =>
         isLocationWithinBounds(ha, autoSubscriptionLocation),
       );
-
-      console.log('LOCAL_HA:::::', localHealthAuthority);
 
       if (localHealthAuthority) {
         dispatch(

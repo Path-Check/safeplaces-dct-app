@@ -342,7 +342,6 @@ export async function checkIntersect(healthcareAuthorities) {
  * Returns the array of day bins (mostly for debugging purposes)
  */
 async function asyncCheckIntersect(healthcareAuthorities) {
-  console.log(healthcareAuthorities);
   const gpsPeriodMS = MIN_LOCATION_UPDATE_MS;
 
   let { locationArray, dayBins } = await getTransformedLocalDataAndDayBins(
