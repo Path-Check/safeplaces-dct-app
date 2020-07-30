@@ -94,7 +94,11 @@ const PartnersScreen = ({
                 flexDirection: 'row',
               }}>
               <Typography
-                style={{ fontWeight: '500', paddingRight: 30 }}
+                style={{ 
+                  fontWeight: '500', 
+                  paddingRight: 30,
+                  maxWidth: "85%"
+                 }}
                 use='body1'>
                 {HA.name}
               </Typography>
@@ -102,6 +106,7 @@ const PartnersScreen = ({
               <View
                 style={{
                   opacity: isSelected(HA) ? 1 : 0,
+                  justifyContent: 'center'
                 }}>
                 <SvgXml xml={Icons.Checkmark} width={24} height={24} />
               </View>

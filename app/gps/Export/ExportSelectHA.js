@@ -93,12 +93,19 @@ export const ExportSelectHA = ({ navigation }) => {
                     flexDirection: 'row',
                   }}>
                   <Typography
-                    style={{ fontWeight: '500', paddingRight: 30 }}
+                    style={{ 
+                      fontWeight: '500', 
+                      paddingRight: 30,
+                      maxWidth: "85%"
+                     }}
                     use='body1'>
                     {HA.name}
                   </Typography>
                   {/* Preserve icon positioning to prevent adding wrapping  */}
-                  <View style={{ opacity: selectedAuthority === HA ? 1 : 0 }}>
+                  <View style={{ 
+                      opacity: selectedAuthority === HA ? 1 : 0,
+                      justifyContent: 'center'
+                     }}>
                     <SvgXml xml={Icons.Checkmark} width={24} height={24} />
                   </View>
                 </View>
