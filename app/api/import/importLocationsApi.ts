@@ -8,7 +8,7 @@ const MockData = Joi.array()
       hashes: Joi.array()
         .items(Joi.string().required())
         .min(2)
-        .max(8)
+        .max(20)
         .required(),
     }),
   )
