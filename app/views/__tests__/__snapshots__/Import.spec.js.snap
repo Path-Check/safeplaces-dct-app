@@ -52,7 +52,7 @@ exports[`Import component renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "flex": 3,
+          "flex": 5,
         }
       }
     >

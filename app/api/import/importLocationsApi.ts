@@ -5,7 +5,11 @@ const MockData = Joi.array()
       latitude: Joi.number().required(),
       longitude: Joi.number().required(),
       time: Joi.number().required(),
-      hashes: Joi.array().items(Joi.string().required()).length(4).required(),
+      hashes: Joi.array()
+        .items(Joi.string().required())
+        .min(2)
+        .max(20)
+        .required(),
     }),
   )
   .required();

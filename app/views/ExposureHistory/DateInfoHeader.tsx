@@ -13,10 +13,6 @@ const DateInfoHeader: FunctionComponent = () => {
   const { t } = useTranslation();
   const { lastExposureDetectionDate } = useContext(ExposureHistoryContext);
 
-  if (lastExposureDetectionDate === null) {
-    return null;
-  }
-
   const lastDaysText = t('exposure_history.last_days');
   const updated = t('exposure_history.updated');
   let updatedAtText = '';

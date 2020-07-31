@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import { getVersion, getBuildNumber } from 'react-native-device-info';
 
-import { useStrategyContent } from '../TracingStrategyContext';
 import { NavigationBarWrapper, Typography } from '../components';
 
 import { useDispatch } from 'react-redux';
@@ -44,7 +43,6 @@ export const AboutScreen = ({ navigation }) => {
   const incrementClickCount = () => setClickCount(clickCount + 1);
 
   const { t } = useTranslation();
-  const { StrategyCopy } = useStrategyContent();
 
   const backToMain = () => {
     navigation.goBack();
@@ -62,7 +60,7 @@ export const AboutScreen = ({ navigation }) => {
           onPress={incrementClickCount}>
           <View>
             <Typography use='headline2' style={styles.heading}>
-              {StrategyCopy.aboutHeader}
+              {t('label.about_header_location')}
             </Typography>
           </View>
         </TouchableWithoutFeedback>
