@@ -94,6 +94,7 @@ export default class LocationServices {
               id: LOCATION_DISABLED_NOTIFICATION_ID,
               title: languages.t('label.location_disabled_title'),
               message: languages.t('label.location_disabled_message'),
+              smallIcon: "ic_notificationicon"
             });
           } else {
             PushNotification.cancelLocalNotifications({
@@ -128,6 +129,7 @@ export default class LocationServices {
       PushNotification.localNotification({
         title: languages.t('label.location_disabled_title'),
         message: languages.t('label.location_disabled_message'),
+        smallIcon: "ic_notificationicon"
       });
       console.log('[INFO] stop');
     });
@@ -156,6 +158,7 @@ export default class LocationServices {
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
       message: languages.t('label.location_disabled_message'),
+      smallIcon: "ic_notificationicon"
     });
 
     BackgroundGeolocation.removeAllListeners();
