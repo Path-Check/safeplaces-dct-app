@@ -1,5 +1,11 @@
 import React from 'react';
-import { SafeAreaView, TouchableOpacity, View, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  StatusBar,
+} from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { useStatusBarEffect } from '../navigation';
@@ -69,7 +75,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.navBar,
-    paddingTop: isPlatformAndroid() ? Spacing.xSmall : 0,
   },
   headerContainer: {
     flexDirection: 'row',
@@ -78,6 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.navBar,
     paddingVertical: Spacing.xxSmall,
     paddingHorizontal: Spacing.small,
+    paddingTop: isPlatformAndroid() ? StatusBar.currentHeight : undefined,
   },
   leftContent: {
     flex: 1,
