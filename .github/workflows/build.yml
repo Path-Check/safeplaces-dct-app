@@ -75,4 +75,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app-gps-staging
-          path: android/app/build/outputs/apk/gps/staging/app-gps-staging.apk
+          path: android/app/build/outputs/apk/staging/app-staging.apk
