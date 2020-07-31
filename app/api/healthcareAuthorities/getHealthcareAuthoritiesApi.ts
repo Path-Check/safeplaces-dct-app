@@ -13,6 +13,7 @@ const HaList = Joi.array().items(
       ne: Coords.required(),
       sw: Coords.required(),
     }),
+    name: Joi.string().required(),
     org_id: Joi.string().required(),
     public_api: Joi.string().required(),
     cursor_url: Joi.string().required(),
