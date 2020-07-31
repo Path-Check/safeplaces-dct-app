@@ -19,8 +19,8 @@ import { Colors } from '../../styles';
 import { Stacks, NavigationProp } from '../../navigation';
 import { useSelector, useDispatch } from 'react-redux';
 import isAutoSubscriptionEnabledSelector from '../../store/selectors/isAutoSubscriptionEnabledSelector';
-import selectedHealthcareAuthoritiesSelector from '../../store/selectors/selectedHealthcareAuthoritiesSelector';
 import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
+import { RootState } from '../../store/types';
 
 type AllServicesOnProps = {
   noHaAvailable: boolean;
@@ -53,29 +53,28 @@ export const AllServicesOnScreen = ({
   const dispatch = useDispatch();
 
   const { showBanner } = useAutoSubscriptionBanner(true, navigation);
+  const haName = useSelector(
+    (state: RootState) =>
+      state.healthcareAuthorities.selectedAuthorities[0]?.name,
+  );
+
   const autoSubscriptionEnabled = useSelector(
     isAutoSubscriptionEnabledSelector,
   );
-  const selectedAuthorities = useSelector(
-    selectedHealthcareAuthoritiesSelector,
-  );
 
-  const [haName, setHAName] = useState('');
   const autoSubscribe = useCallback(async () => {
     if (autoSubscriptionEnabled && noHaAvailable) {
       Geolocation.getCurrentPosition(({ coords }) => {
-        dispatch(getHealthcareAuthorities(undefined, coords));
+        dispatch(
+          getHealthcareAuthorities({ autoSubscriptionLocation: coords }),
+        );
       });
     }
   }, [autoSubscriptionEnabled, noHaAvailable, dispatch]);
 
   useEffect(() => {
-    autoSubscribe().then(() => {
-      if (selectedAuthorities[0]) {
-        setHAName(selectedAuthorities[0].name);
-      }
-    });
-  }, [autoSubscribe, selectedAuthorities]);
+    autoSubscribe();
+  }, [autoSubscribe]);
 
   return (
     <View style={{ flex: 1 }}>
@@ -133,14 +132,12 @@ export const AllServicesOnScreen = ({
               })}
               <Typography
                 style={styles.hyperlink}
-                // TODO: change this
                 onPress={() => navigation.navigate(Stacks.Partners)}>
                 {t('home.gps.auto_subscribe_link_text')}
               </Typography>
             </>
           </Typography>
           <View style={{ width: 24 }} />
-          {/* TODO: change this */}
           <TouchableOpacity
             onPress={() => navigation.navigate(Stacks.Partners)}>
             <SvgXml xml={Icons.ChevronRight} />

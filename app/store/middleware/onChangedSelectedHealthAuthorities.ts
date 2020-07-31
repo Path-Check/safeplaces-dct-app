@@ -29,6 +29,7 @@ const onChangedSelectedHealthAuthorities: Middleware<Dispatch> = (
   try {
     if (
       action.type === toggleSelectedHealthcareAuthorityAction.type &&
+      action.meta?.triggerIntersect &&
       !areHaListsEqual(haListBefore, haListAfter)
     ) {
       IntersectService.checkIntersect(haListAfter);

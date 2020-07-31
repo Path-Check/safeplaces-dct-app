@@ -9,7 +9,6 @@ import {
 } from '../actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import toggleSelectedHealthcareAuthorityAction from '../actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
 import toggleHealthcareAuthorityAutoSubscription from '../actions/healthcareAuthorities/toggleHealthcareAuthorityAutoSubscription';
-import healthcareAuthorityAutoSubscribeAction from '../actions/healthcareAuthorities/healthcareAuthorityAutoSubscribeAction';
 
 type HealthCareReducerState = {
   // Because we control this list to be super small and have type safety, we use the full models
@@ -87,12 +86,6 @@ const healthcareAuthoritiesReducer = createReducer(initialState, (builder) =>
       toggleHealthcareAuthorityAutoSubscription,
       (state, { payload: { autoSubscriptionEnabled } }) => {
         state.autoSubscriptionEnabled = autoSubscriptionEnabled;
-      },
-    )
-    .addCase(
-      healthcareAuthorityAutoSubscribeAction,
-      (state, { payload: { authority } }) => {
-        state.selectedAuthorities.push(authority);
       },
     ),
 );

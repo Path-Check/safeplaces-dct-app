@@ -6,7 +6,7 @@ import { AppThunk } from '../../types';
 import getHealthcareAuthoritiesApi from '../../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
 import { Coordinates, HealthcareAuthority } from '../../../common/types';
 import { isLocationWithinBounds } from '../../../helpers/autoSubscribe';
-import healthcareAuthorityAutoSubscribeAction from './healthcareAuthorityAutoSubscribeAction';
+import toggleSelectedHealthcareAuthorityAction from './toggleSelectedHealthcareAuthorityAction';
 
 const GET_HEALTHCARE_AUTHORITIES_STARTED = 'GET_HEALTHCARE_AUTHORITIES_STARTED';
 const GET_HEALTHCARE_AUTHORITIES_SUCCESS = 'GET_HEALTHCARE_AUTHORITIES_SUCCESS';
@@ -21,6 +21,11 @@ type Payload = {
   usesCustomUrl: boolean;
 };
 
+type GetHAActionOptions = {
+  customYamlUrl?: string;
+  autoSubscriptionLocation?: Coordinates;
+};
+
 const getHealthcareAuthorities_success = createAction(
   GET_HEALTHCARE_AUTHORITIES_SUCCESS,
   ({ healthcareAuthorities, usesCustomUrl }: Payload) => ({
@@ -33,10 +38,11 @@ const getHealthcareAuthorities_failure = createAction(
 );
 
 const getHealthcareAuthoritiesAction = (
-  customYamlUrl?: string,
-  autoSubscriptionLocation?: Coordinates,
+  actionOptions?: GetHAActionOptions,
 ): AppThunk<void> => async (dispatch: Dispatch): Promise<void> => {
   dispatch(getHealthcareAuthorities_started());
+  const { customYamlUrl, autoSubscriptionLocation } = actionOptions || {};
+
   try {
     const healthcareAuthorities = await getHealthcareAuthoritiesApi(
       customYamlUrl,
@@ -55,9 +61,10 @@ const getHealthcareAuthoritiesAction = (
 
       if (localHealthAuthority) {
         dispatch(
-          healthcareAuthorityAutoSubscribeAction({
-            authority: localHealthAuthority,
-          }),
+          toggleSelectedHealthcareAuthorityAction(
+            { authority: localHealthAuthority, overrideValue: true },
+            { triggerIntersect: false },
+          ),
         );
       }
     }
