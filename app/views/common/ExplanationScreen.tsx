@@ -7,11 +7,11 @@ import {
   ScrollView,
   ImageSourcePropType,
   ViewStyle,
+  StatusBar,
 } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { Button } from '../../components/Button';
-import { useStatusBarEffect } from '../../navigation';
 import { Typography } from '../../components/Typography';
 
 import {
@@ -64,8 +64,6 @@ const ExplanationScreen = ({
   explanationScreenStyles,
   explanationScreenActions,
 }: ExplanationScreenProps): JSX.Element => {
-  useStatusBarEffect('dark-content');
-
   const determineIconStyle = (iconStyle: IconStyle): ViewStyle => {
     switch (iconStyle) {
       case IconStyle.Blue:
@@ -107,6 +105,11 @@ const ExplanationScreen = ({
 
   return (
     <View style={styles.outerContainer}>
+      <StatusBar
+        barStyle='dark-content'
+        backgroundColor={Colors.primaryBackground}
+        translucent
+      />
       <ImageBackground
         source={explanationScreenContent.backgroundImage}
         style={[styles.background, explanationScreenStyles.backgroundStyle]}

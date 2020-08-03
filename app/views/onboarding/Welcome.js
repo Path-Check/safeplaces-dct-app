@@ -34,7 +34,7 @@ const Welcome = ({ navigation }) => {
         style={styles.backgroundImage}>
         <StatusBar
           barStyle='light-content'
-          backgroundColor='transparent'
+          backgroundColor={Colors.cornflowerBlue}
           translucent
         />
         <View style={styles.mainContainer}>
