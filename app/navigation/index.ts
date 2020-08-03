@@ -114,11 +114,17 @@ export const Stacks: { [key in Stack]: Stack } = {
 
 type BarStyle = 'dark-content' | 'light-content';
 
-export const useStatusBarEffect = (barStyle: BarStyle): void => {
+export const useStatusBarEffect = (
+  barStyle: BarStyle,
+  backgroundColor?: string,
+): void => {
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle(barStyle);
-      Platform.OS === 'android' && StatusBar.setTranslucent(true);
-    }, [barStyle]),
+      Platform.OS === 'android' &&
+        StatusBar.setTranslucent(true) &&
+        backgroundColor &&
+        StatusBar.setBackgroundColor(backgroundColor);
+    }, [barStyle, backgroundColor]),
   );
 };
