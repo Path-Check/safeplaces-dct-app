@@ -52,6 +52,8 @@ export const AllServicesOnScreen = ({
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  const [userAutoSubscribed, setUserAutoSubscribed] = useState(false);
+
   const { showBanner } = useAutoSubscriptionBanner(true, navigation);
   const haName = useSelector(
     (state: RootState) =>
@@ -63,14 +65,15 @@ export const AllServicesOnScreen = ({
   );
 
   const autoSubscribe = useCallback(async () => {
-    if (autoSubscriptionEnabled && noHaAvailable) {
+    if (autoSubscriptionEnabled && noHaAvailable && !userAutoSubscribed) {
       Geolocation.getCurrentPosition(({ coords }) => {
         dispatch(
           getHealthcareAuthorities({ autoSubscriptionLocation: coords }),
         );
+        setUserAutoSubscribed(true);
       });
     }
-  }, [autoSubscriptionEnabled, noHaAvailable, dispatch]);
+  }, [autoSubscriptionEnabled, noHaAvailable, userAutoSubscribed, dispatch]);
 
   useEffect(() => {
     autoSubscribe();
