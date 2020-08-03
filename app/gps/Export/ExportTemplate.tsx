@@ -5,11 +5,12 @@ import {
   View,
   TextStyle,
   TouchableOpacity,
-  SafeAreaView,
+  StatusBar,
 } from 'react-native';
 import { BackHandler } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { SvgXml } from 'react-native-svg';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
@@ -19,6 +20,7 @@ import { Icons } from '../../assets';
 import { Colors, Typography as TypographyStyles } from '../../styles';
 import { useStatusBarEffect } from '../../navigation';
 import { useFocusEffect } from '@react-navigation/native';
+import { isPlatformAndroid } from '../../Util';
 
 interface BackgroundContainerProps {
   lightTheme?: string;
@@ -94,6 +96,13 @@ export const ExportTemplate = ({
 
   return (
     <View style={{ flex: 1 }}>
+      {!ignoreModalStyling && isPlatformAndroid() && (
+        <StatusBar
+          backgroundColor={
+            lightTheme ? Colors.primaryBackground : Colors.primaryBlue
+          }
+        />
+      )}
       <BackgroundContainer lightTheme={lightTheme}>
         <SafeAreaView style={{ flex: 1, marginBottom: 24 }}>
           {onClose && (

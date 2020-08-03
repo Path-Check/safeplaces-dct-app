@@ -16,7 +16,7 @@ export const ExportComplete = ({ navigation }) => {
       onNext={onClose}
       nextButtonLabel={t('common.done')}
       headline={t('export.complete_title')}
-      body={'export.complete_body'}
+      body={t('export.complete_body')}
     />
   );
 };
