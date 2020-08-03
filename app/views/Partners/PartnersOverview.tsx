@@ -75,7 +75,7 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
       <ScrollView
         style={styles.backgroundWrapper}
         alwaysBounceVertical={false}
- contentContainerStyle={{
+        contentContainerStyle={{
           flexGrow: 1,
         }}>
         {win.height < 600 ? (
