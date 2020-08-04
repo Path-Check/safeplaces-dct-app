@@ -36,7 +36,10 @@
     "test:dev_setup": "bats __tests__/dev_setup.test.bats",
     "version:bump:major": "version --premajor",
     "version:bump:minor": "version --preminor",
-    "version:bump:patch": "version --prepatch"
+    "version:bump:patch": "version --prepatch",
+    "wdio:package-android": "",
+    "wdio:package-ios": "",
+    "wdio:test"
   },
   "husky": {
     "hooks": {
@@ -124,6 +127,11 @@
     "@types/react-test-renderer": "^16.9.2",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
+    "@wdio/appium-service": "^6.1.16",
+    "@wdio/cli": "^6.3.6",
+    "@wdio/sauce-service": "^6.3.6",
+    "@wdio/spec-reporter": "^6.3.6",
+    "@wdio/sync": "^6.3.6",
     "babel-jest": "^25.1.0",
     "bats": "^1.1.0",
     "detox": "^16.1.1",
@@ -154,7 +162,9 @@
     "react-native-version": "^4.0.0",
     "react-test-renderer": "^16.13.1",
     "reactotron-react-native": "^5.0.0",
-    "typescript": "^3.9.3"
+    "saucelabs": "^4.4.3",
+    "typescript": "^3.9.3",
+    "webdriverio": "^6.3.6"
   },
   "importSort": {
     ".js, .jsx, .es6, .es, .mjs, .ts, .tsx": {
