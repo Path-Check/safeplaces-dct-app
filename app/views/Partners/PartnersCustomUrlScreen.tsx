@@ -26,8 +26,8 @@ const PartnersScreen = ({
   const dispatch = useDispatch();
 
   // This is testing code only,we omit selector:
-  const fetchCustomStatus = useSelector(
-    (state: RootState) => state.healthcareAuthorities.request.status,
+  const { status: fetchCustomStatus, errorMessage } = useSelector(
+    (state: RootState) => state.healthcareAuthorities.request,
   );
 
   const onRequestComplete = useCallback(() => {
@@ -38,12 +38,12 @@ const PartnersScreen = ({
       if (fetchCustomStatus === 'SUCCESS') {
         navigation.goBack();
       } else if (fetchCustomStatus === 'FAILURE') {
-        Alert.alert(t('authorities.invalid_url'));
+        Alert.alert(t('authorities.invalid_url'), errorMessage || undefined);
       }
     } else {
       didMountRef.current = true;
     }
-  }, [navigation, fetchCustomStatus, t]);
+  }, [navigation, fetchCustomStatus, t, errorMessage]);
 
   useEffect(onRequestComplete, [onRequestComplete, fetchCustomStatus]);
 

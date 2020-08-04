@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  StyleSheet,
-  TouchableHighlight,
-  View,
-  FlatList,
-  SafeAreaView,
-} from 'react-native';
+import { StyleSheet, TouchableHighlight, View, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
@@ -89,7 +84,7 @@ export const ExportSelectHA = ({ navigation }) => {
                     flexDirection: 'row',
                   }}>
                   <Typography
-                    style={{ fontWeight: '500', paddingRight: 30 }}
+                    style={{ fontWeight: '500', paddingRight: 30, flex: 1 }}
                     use='body1'>
                     {HA.name}
                   </Typography>
@@ -113,20 +108,18 @@ export const ExportSelectHA = ({ navigation }) => {
           />
         </SafeAreaView>
         <View style={styles.card}>
-          <SafeAreaView style={{ marginVertical: 44 }}>
-            <View style={{ paddingHorizontal: 24 }}>
-              <Button
-                invert
-                label={t('common.next')}
-                onPress={() =>
-                  navigation.navigate(Screens.ExportCodeInput, {
-                    selectedAuthority,
-                  })
-                }
-                disabled={!selectedAuthority}
-              />
-            </View>
-          </SafeAreaView>
+          <View style={{ paddingHorizontal: 24, marginVertical: 44 }}>
+            <Button
+              invert
+              label={t('common.next')}
+              onPress={() =>
+                navigation.navigate(Screens.ExportCodeInput, {
+                  selectedAuthority,
+                })
+              }
+              disabled={!selectedAuthority}
+            />
+          </View>
         </View>
       </View>
     </View>

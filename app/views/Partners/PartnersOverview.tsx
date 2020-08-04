@@ -63,7 +63,7 @@ const PartnersIllustration = (): JSX.Element => {
           position: 'absolute',
           bottom: 0,
         }}
-        resizeMode={'contain'}
+        resizeMode={'cover'}
       />
     </View>
   );
