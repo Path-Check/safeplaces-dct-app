@@ -1,4 +1,4 @@
-import { HealthcareAuthority } from '../healthcareAuthorities/getHealthcareAuthoritiesApi';
+import { HealthcareAuthority } from '../../common/types';
 
 // Concern Point should be defined outside of this module.
 // Currently the concern point generation is done in JS, and the contract is changing.

@@ -1,4 +1,4 @@
-import type { HealthcareAuthority } from './getHealthcareAuthoritiesApi';
+import { HealthcareAuthority } from '../../common/types';
 
 export type Configuration = {
   name: string;

@@ -4,7 +4,7 @@ import { StateType } from 'typesafe-actions';
 import { ThunkAction } from 'redux-thunk';
 import { Action } from 'redux';
 // Our internal store representation is the same as the API representation
-export type { HealthcareAuthority } from '../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
+export type { HealthcareAuthority } from '../common/types';
 
 export type RootState = ReturnType<typeof rootReducer>;
 export type Store = StateType<typeof store>;

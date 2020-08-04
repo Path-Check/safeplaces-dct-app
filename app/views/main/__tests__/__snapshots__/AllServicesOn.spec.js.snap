@@ -174,6 +174,80 @@ exports[`all services on matches snapshot 1`] = `
         </Text>
       </View>
     </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#ffffff",
+          "borderTopColor": "#d3d3d3",
+          "borderTopWidth": 0.5,
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "padding": 24,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#2e2e2e",
+              "fontFamily": "IBMPlexSans",
+              "fontSize": 17,
+              "lineHeight": 24,
+            },
+            Object {
+              "writingDirection": "ltr",
+            },
+            Object {
+              "color": "#1f2c9b",
+            },
+          ]
+        }
+      >
+        You’ve been auto-subscribed to . 
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#2e2e2e",
+                "fontFamily": "IBMPlexSans",
+                "fontSize": 17,
+                "lineHeight": 24,
+              },
+              Object {
+                "writingDirection": "ltr",
+              },
+              Object {
+                "color": "#1f2c9b",
+                "position": "relative",
+                "textDecorationLine": "underline",
+              },
+            ]
+          }
+        >
+          Click here to change.
+        </Text>
+      </Text>
+      <View
+        style={
+          Object {
+            "width": 24,
+          }
+        }
+      />
+      <TouchableOpacity
+        activeOpacity={0.2}
+      >
+        <SvgXml
+          xml="
+<svg width=\\"11\\" height=\\"20\\" viewBox=\\"0 0 11 20\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\">
+<path d=\\"M0.487629 19.832L0.170103 19.5185C-0.0567011 19.2945 -0.0567011 18.981 0.170103 18.757L9.01546 10.0224L0.170101 1.243C-0.0567027 1.01904 -0.0567027 0.705486 0.170101 0.481522L0.487627 0.167973C0.714431 -0.0559922 1.03196 -0.0559922 1.25876 0.167972L10.8299 9.61926C11.0567 9.84322 11.0567 10.1568 10.8299 10.3807L1.25876 19.832C1.03196 20.056 0.714433 20.056 0.487629 19.832Z\\" fill=\\"#4051DB\\"/>
+</svg>
+"
+        />
+      </TouchableOpacity>
+    </View>
   </View>
 </View>
 `;

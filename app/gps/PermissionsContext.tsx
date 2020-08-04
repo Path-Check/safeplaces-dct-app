@@ -38,11 +38,6 @@ const initialState = {
     check: () => {},
     request: () => {},
   },
-  authSubscription: {
-    status: PermissionStatus.UNKNOWN,
-    check: () => {},
-    request: () => {},
-  },
   requestLocationSettings: () => {},
   requestNotificationSettings: () => {},
 };
