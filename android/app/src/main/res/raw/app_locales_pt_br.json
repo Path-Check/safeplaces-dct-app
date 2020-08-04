@@ -1,0 +1,203 @@
+{
+  "_display_name": "Português do Brasil",
+  "about": {
+    "dimensions": "Dimensões:",
+    "operating_system_abbr": "SO:",
+    "tracing_strategy": "Estratégia de rastreamento:",
+    "version": "Versão:"
+  },
+  "assessment": {
+    "cancel": "Cancelar",
+    "caregiver_cta": "Próximo",
+    "complete_cta": "Feito",
+    "distancing_cta": "Próximo",
+    "isolate_cta": "Próximo",
+    "next": "Próximo"
+  },
+  "authorities": {
+    "automatically_follow": "Seguir automaticamente os Departamentos de Saúde próximos",
+    "custom_url": "Adicionar manualmente via URL",
+    "custom_url_title": "Adicionar via URL",
+    "info_body": "Os departamentos de saúde locais e regionais podem compartilhar informações e recursos sobre a COVID-19 para sua área, incluindo dados verificados que permitem a PathCheck estimar quando você pode ter cruzado os caminhos com o vírus.",
+    "invalid_url": "URL inválido do YAML",
+    "invalid_url_body": "A URL que você inseriu era inválida, por favor tente novamente",
+    "title": "Departamentos de Saúde",
+    "url_instructions": "Digite um URL para o Departamento de Saúde que você gostaria de adicionar",
+    "view_button_label": "Veja os seus Departamentos de Saúde"
+  },
+  "common": {
+    "add": "Adicionar",
+    "done": "Feito",
+    "next": "Próximo",
+    "ok": "Ok"
+  },
+  "export": {
+    "code_input_button_cancel": "Cancelar",
+    "consent_button_cancel": "Cancelar",
+    "exit_warning_cancel": "Cancelar",
+    "location_consent_body": "Seu histórico de localização é usado por um(a) representantes de {{name}} para entrevistá-lo(a) sobre lugares que você visitou e quando você esteve lá.\n\nUma vez que você enviar seu histórico de localização para {{name}}, eles reterão seus dados por um período específico de tempo.",
+    "location_consent_title": "Uso do histórico de localização"
+  },
+  "history": {
+    "no_exposure": "Sem exposição conhecida",
+    "possible_exposure": "Exposição possível",
+    "possible_exposure_para": "É possível que você tenha tido proximidade ou contato com uma pessoa que testou positivo para COVID-19",
+    "what_does_this_mean": "O que isso significa?",
+    "what_does_this_mean_para_bluetooth": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém diagnosticado com COVID-19. Isso não significa, necessariamente, que você tenha se infectado, apesar de ser possível.\n\nPara mais orientações, consulte o site da Mayo Clinic (site em inglês).",
+    "what_does_this_mean_para_location": "Baseado no seu histórico de localização por GPS, é possível que você tenha estado próximo ou em contato com alguém diagnosticado com COVID-19. Isso não significa, necessariamente, que você tenha se infectado, apesar de ser possível.\n\nPara mais orientações, consulte o site da Mayo Clinic (site em inglês).",
+    "what_if_no_symptoms": "E se eu não tiver sintomas?",
+    "what_if_no_symptoms_para": "Caso queira fazer um teste, você pode verificar a disponibilidade em sua região para testes em pessoas assintomáticas.\n\nPessoas sem sintomas também podem transmitir a doença. Cuidados quanto ao distanciamento social, evitar aglomerações ou contato com grupos de risco (idosos e aqueles com problemas de saúde) são importantes para diminuir o seu risco e o dos outros."
+  },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck",
+      "unavailable_header": "As notificações do histórico de exposição ainda não estão disponíveis",
+      "unavailable_subheader": "Seu telefone não está coberto atualmente pelas autoridades de saúde usando PathCheck."
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    },
+    "shared": {
+      "no_authorities_header": "Nenhum Departamento de Saúde local",
+      "no_authorities_subheader": "Seu telefone está fora das áreas cobertas pelos Departamentos de Saúde listados no PathCheck \n\nVocê será notificado quando Departamentos de Saúde próximos forem adicionados",
+      "notifications_off_button": "Permitir notificações",
+      "select_authority_button": "Adicionar Departamento de Saúde",
+      "select_authority_header": "Nenhum Departamento de Saúde local selecionado",
+      "select_authority_subheader": "Permita que o PathCheck adicione seu Departamento de Saúde local ou selecione um para receber informações sobre o COVID-19 em sua área"
+    }
+  },
+  "import": {
+    "button_text": "Importar localizações anteriores",
+    "error": "Algo deu errado ao importar seus dados.",
+    "google": {
+      "already_imported": "O arquivo Takeout fornecido já foi importado.",
+      "disclaimer": "PathCheck não tem ligação com Google e nunca compartilha os seus dados.",
+      "file_open_error": "Não consegui abrir o arquivo. \nPor favor, certifique-se de que o arquivo está aberto a partir do Google Drive",
+      "instructions_detailed": "Visite o Google Takeout e exporte seu Histórico de Localização usando as seguintes configurações: \n 1. Método de entrega: \"Adicionar ao Drive\" \n 2. Frequência: \"Exportar uma vez\" \n 3. Tipo e tamanho do arquivo: \".zip\" e \"1GB\" \n 4. O Google envia um e-mail quando a exportação estiver pronta \n 5. Volte aqui para importar localizações do Google Drive",
+      "instructions_first": "A adição de dados de localização do Google irá te colocar um passo a frente na criação dos seus locais recentes.",
+      "instructions_second": "Antes de poder importar, você deve primeiro \"retirar\" seus dados de localização do Google.",
+      "invalid_file_format": "O formato de arquivo fornecido não é suportado. \n Formatos suportados: \".zip\".",
+      "no_recent_locations": "Takeout não tem nenhuma localização recente.",
+      "title": "Google Maps",
+      "visit_button_text": "Visite Google Takeout"
+    },
+    "subtitle": "Para saber se você encontrou com alguém com COVID-19 antes de instalar esse aplicativo, você pode importar seu histórico de localizações pessoais.",
+    "success": "Locais recentes foram importados com sucesso!",
+    "title": "Importar Localizações"
+  },
+  "label": {
+    "about_header_bluetooth": "BT do Pathcheck",
+    "about_header_location": "GPS do PathCheck",
+    "authorities_add_button_label": "Adicionar Fonte Confiável",
+    "authorities_add_url": "Adicionar autoridade por URL",
+    "authorities_desc": "Escolha autoridades de saúde de sua região para obter dados de exposição. Selecione o nome a partir do registro mundial, ou entre o endereço da web fornecido pela autoridade que implementou PathCheck.",
+    "authorities_input_placeholder": "Cole o endereço URL aqui",
+    "authorities_new_in_area_msg": "Se inscreva em {{count}} nova autoridade de saúde de confiança em sua área.",
+    "authorities_new_in_area_title": "{\"one\":\"Nova Autoridade de Sa\\u00fade\",\"other\":\"Novas Autoridades de Sa\\u00fade\"}",
+    "authorities_new_subscription_msg": "{\"one\":\"Voce foi inscrito(a) em [%1$s:count] nova autoridade em sua localiza\\u00e7\\u00e3o\",\"other\":\"Voce foi inscrito(a) em [%1$s:count] novas autoridades em sua localiza\\u00e7\\u00e3o\"}",
+    "authorities_new_subscription_title": "{\"one\":\"Nova Inscri\\u00e7\\u00e3o\",\"other\":\"Novas Inscri\\u00e7\\u00f5es\"}",
+    "authorities_no_sources": "Sem dados até o momento",
+    "authorities_removal_alert_cancel": "Cancelar",
+    "authorities_removal_alert_desc": "Confirma a exclusão da autoridade de saúde como fonte de dados?",
+    "authorities_removal_alert_proceed": "Confirmar",
+    "authorities_removal_alert_title": "Excluir autoridade",
+    "auto_subscribe_checkbox": "Permitir inscrição automática",
+    "choose_provider_subtitle": "Para ser informado sobre exposições, você precisará selecionar uma autoridade de saúde.",
+    "choose_provider_title": "Escolha uma autoridade de saúde",
+    "default_news_site_name": "Notícias PathCheck",
+    "enter_authority_url": "Digite ou cole o URL",
+    "event_history_subtitle": "Entenda a sua exposição pessoal a partir de informações compartilhadas com as autoridades de saúde.",
+    "event_history_title": "Histórico de exposição",
+    "filter_authorities_by_gps_history": "Filtrar por suas localizações",
+    "import_success": "Importado com sucesso",
+    "latest_news": "Últimas Notícias",
+    "launch_access_bluetooth": "Permita o rastreamento de contato",
+    "launch_access_location": "Acesso à localização",
+    "launch_authority_access": "Inscrever-se nas Autoridades de Saúde próximas.",
+    "launch_authority_header": "As autoridades de saúde fornecerão ao seu dispositivo os dados locais para saber se você cruzou o caminho com uma pessoa infectada",
+    "launch_authority_subheader": "Inscreva-se automaticamente para receber as atualizações mais recentes das autoridades de saúde em sua área.",
+    "launch_done_header": "Tudo pronto",
+    "launch_done_subheader": "Você está pronto para começar. Lembre-se, você sempre poderá alterar suas preferências, quando quiser.",
+    "launch_enable_auto_subscription": "Permitir inscrição automática",
+    "launch_enable_bluetooth": "Habilite o Bluetooth",
+    "launch_enable_notif": "Permitir Notificações",
+    "launch_finish_set_up": "Concluir definições",
+    "launch_get_started": "Começar",
+    "launch_header_bluetooth": "Para saber com quem você tem estado em contato, seu telefone precisa acessar seu Bluetooth.",
+    "launch_header_location": "Para lembrar onde você esteve, o seu celular precisa salvar a sua localização.",
+    "launch_next": "Próximo",
+    "launch_notif_header": "As notificações avisam se você cruzou com alguém infectado.",
+    "launch_notif_subheader": "O aplicativo somente envia notificações sobre o seu risco de exposição, nada mais.",
+    "launch_notification_access": "Permitir Notificações",
+    "launch_screen1_header": "Bem-vindo ao PathCheck",
+    "launch_screen2_header_location": "Seja notificado se você cruzou com alguém que veio a ser diagnosticado com COVID-19.",
+    "launch_screen2_subheader_bluetooth": "A data e a duração do encontro são registradas juntamente com uma estimativa de quão próximos os dois telefones podem ter estado.",
+    "launch_screen2_subheader_location": "Conhecimento é poder.",
+    "launch_screen3_header_bluetooth": "Todos os dados são criptografados e armazenados de forma privada no seu telefone.",
+    "launch_screen3_header_location": "Se você testar positivo, poderá optar por fornecer os seus dados de forma anônima",
+    "launch_screen3_subheader_bluetooth": "Seu telefone não irá compartilhar nenhuma informação pessoal com outros usuários do PathCheck a menos que você opte por relatar anonimamente um diagnóstico positivo.",
+    "launch_screen3_subheader_location": "Isso ajuda a manter toda a sua comunidade protegida.",
+    "launch_screen4_header_bluetooth": "Seja notificado se o proprietário(a) de um telefone que você encontrou for diagnosticado(a) com COVID-19 e optar por compartilhar anonimamente o seu estado de saúde.",
+    "launch_screen4_header_location": "Você tem total controle. Os dados são salvos somente no seu celular.",
+    "launch_screen4_subheader_bluetooth": "Neste caso, encontre informações da autoridade de saúde local sobre o que fazer a seguir.",
+    "launch_screen4_subheader_location": "Se você testar positivo, somente você pode tomar a decisão sobre o compartilhamento.",
+    "launch_set_up_phone_bluetooth": "Feito",
+    "launch_set_up_phone_location": "Configurar meu celular",
+    "launch_subheader": "Não se preocupe, a informação não sai do seu aparelho, a não ser que você decida compartilhar.",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street \nBox 441621 \nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "BT do PathCheck",
+    "legal_page_header_location": "GPS do PathCheck",
+    "loading_public_data": "carregando dados...",
+    "location_disabled_message": "PathCheck requer serviços de localização.",
+    "location_disabled_title": "Localização Foi Desabilitada",
+    "location_enabled_message": "PathCheck está salvando de forma segura as suas coordenadas GPS nesse aparelho, a cada 5 minutos.",
+    "location_enabled_title": "PathCheck Habilitado",
+    "logging_active_bluetooth": "Notificações de exposição ativas",
+    "logging_active_location": "Localização Ativa",
+    "logging_inactive_bluetooth": "Notificações de exposição inativas",
+    "logging_inactive_location": "Localização Inativa",
+    "news_subtitle": "Leia as últimas atualizações sobre COVID de sua autoridade de saúde e em geral.",
+    "news_title": "Últimas notícias",
+    "no_data": "Sem dados",
+    "privacy_policy": "Política de Privacidade",
+    "push_at_risk_message": "Você cruzou com um paciente COVID-19",
+    "push_at_risk_title": "Você pode estar em risco",
+    "see_exposure_history": "Veja seu histórico de exposição",
+    "settings_title": "Painel de controle",
+    "skip_this_step": "Pule este passo",
+    "team": "Equipe",
+    "team_para": "Nossa equipe é formada por epidemiologistas, engenheiros, cientistas de dados, especialistas em privacidade digital, professores e pesquisadores de instituições renomadas, como: MIT, Harvard, The Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young, e Link Ventures.",
+    "terms_of_use": "Termos de uso",
+    "unknown": "desconhecido",
+    "authorities_new_in_area_msg_plural": "Se inscreva em {{count}} novas autoridades de saúde de confiança em sua área."
+  },
+  "onboarding": {
+    "eula_checkbox": "Eu aceito o acordo de licenciamento",
+    "eula_continue": "Continuar",
+    "eula_message": "*Você deve aceitar para usar PathCheck"
+  },
+  "screen_titles": {
+    "about": "Sobre",
+    "legal": "Legal",
+    "more": "Mais"
+  },
+  "settings": {
+    "share_test_result": "Relatar um resultado positivo no teste",
+    "share_test_result_description": "Compartilhe as informações de exportação do Covid-19 com a sua autoridade sanitária com um código fornecido"
+  },
+  "share": {
+    "button_text": "Compartilhar dados de localização",
+    "paragraph_first": "Se você testar positivo para COVID-19, por favor, faça sua parte compartilhando seu histórico de localização com as autoridades locais.",
+    "paragraph_second": "A localização é compartilhada como uma lista simples de horários e lugares, sem informações adicionais.",
+    "subtitle": "Seus dados privados podem ser transferidos para autoridades de saúde, salvos em backup, ou compartilhados.",
+    "title": "Compartilhar histórico de localização"
+  },
+  "version_update": {
+    "alert_label": "PathCheck está desatualizado",
+    "alert_sublabel": "Atualizar para uma nova versão?",
+    "later": "Mais tarde",
+    "push_notification_message": "Por favor atualize seu aplicativo",
+    "push_notification_title": "Aplicativo desatualizado",
+    "update": "Atualizar"
+  }
+}

@@ -205,7 +205,7 @@ android {
 
 dependencies {
     // loading html files
-    compile project(':react-native-local-resource')
+    implementation project(':react-native-local-resource')
     implementation project(':react-native-reanimated')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

@@ -1,0 +1,292 @@
+{
+  "_display_name": "Español",
+  "about": {
+    "dimensions": "Dimensiones:",
+    "operating_system_abbr": "OS:",
+    "tracing_strategy": "Estrategia de rastreo:",
+    "version": "Versión:"
+  },
+  "assessment": {
+    "agree_alert_description": "Para usar el análisis de SafePaths COVID-19, por favor indique que está de acuerdo y entiende su propósito.",
+    "agree_alert_title": "Se requiere un acuerdo",
+    "agree_option_agree": "Estoy de acuerdo.",
+    "agree_option_disagree": "No estoy de acuerdo",
+    "agree_question_description": "La evaluación le ayuda a tomar decisiones sobre la búsqueda de atención médica apropiada. No está destinada al diagnóstico o tratamiento de enfermedades u otras condiciones.",
+    "agree_question_text": "El propósito de este cernimiento de COVID-19",
+    "agreement_cta": "Entiendo y consiento",
+    "agreement_description": "La evaluación le ayuda a tomar decisiones sobre la búsqueda de atención médica apropiada. No está destinada al diagnóstico o tratamiento de enfermedades u otras condiciones.",
+    "agreement_footer": "Si continuas, estarás de acuerdo con que los resultados de la encuesta no se usarán para diagnóstico o tratamiento.",
+    "agreement_title": "Esto no es para diagnóstico",
+    "cancel": "Cancelar",
+    "caregiver_cta": "Siguiente",
+    "caregiver_description": "Notifique a un proveedor de atención médica en su centro de cuidados a largo plazo. Vivir en un centro de cuidados a largo plazo o en un asilo puede ponerle en riesgo de padecer una enfermedad grave.\n\nDígale<1> a un</1> cuidador del centro que está enfermo y que necesita ver a un proveedor médico lo antes posible.",
+    "caregiver_title": "Notificar al cuidador",
+    "complete_cta": "Hecho",
+    "complete_description": "Continúe usando esta aplicación y vuelva a hacer esta prueba la <1>próxima semana</1> para ayudar a protegerse a sí mismo y a su comunidad.",
+    "complete_title": "¡Todo listo!",
+    "distancing_cta": "Siguiente",
+    "distancing_description": "Por favor, siga las directrices locales, estatales o nacionales de distanciamiento <1>social</1> y equipo de protección personal (PPE) como máscaras y/o guantes. No se necesita ninguna acción adicional en este momento.",
+    "distancing_title": "Distanciamiento y PPE",
+    "emergency_cta": "Llamar a servicios de emergencia",
+    "emergency_description": "Puede que tenga una emergencia <1>médica</1>. Se necesita atención médica inmediata.\n\nDígale al operador de emergencias si ha estado en contacto con alguien con COVID-19 o si ha estado recientemente en una zona donde se está propagando COVID-19.",
+    "emergency_title": "Servicios de emergencia",
+    "isolate_cta": "Siguiente",
+    "isolate_description": "Usted <1> tiene algunos síntomas </1> que pueden estar relacionados con COVID-19. Llame a su proveedor de atención médica si sus síntomas empeoran. Comience el aislamiento en el hogar.",
+    "isolate_title": "Aislarse",
+    "next": "Siguiente",
+    "settings_subtitle": "Encuesta de autoinforme",
+    "settings_title": "Encuesta",
+    "share_cta": "Entiendo y consiento",
+    "share_cta_skip": "No gracias, no quiero compartir datos",
+    "share_description": "Sus datos anónimos ayudan a la Comisión de Salud Pública de Boston a analizar, rastrear y contener la propagación de COVID-19. Sus datos serán agregados a los de otros usuarios de PathCheck que elijan compartir.\n\nSus datos contienen sus respuestas a la encuesta y el código postal, pero ninguna información adicional o de identificación personal.\n\nLa Comisión de Salud Pública de Boston retendrá sus datos anónimos por un período de tiempo específico.",
+    "share_screening_description": "Comparta las respuestas anónimas a las preguntas de detección con su autoridad sanitaria local.",
+    "share_screening_title": "Datos de cernimiento anónimos",
+    "start_description": "Su información es privada, anónima y encriptada. Ningún dato sale de su dispositivo a menos que usted lo autorice.",
+    "start_title": "Responda preguntas sobre sus síntomas e historial médico para saber qué hacer a continuación sobre COVID-19"
+  },
+  "authorities": {
+    "invalid_url_body": "La URL que introdujo no era válida, por favor inténtelo de nuevo",
+    "url_instructions": "Introduce la URL del Departamento de Salud que te gustaría añadir"
+  },
+  "common": {
+    "done": "Hecho",
+    "next": "Siguiente",
+    "ok": "Ok",
+    "settings": "Abrir Opciones de Configuración",
+    "submit": "Enviar"
+  },
+  "export": {
+    "code_input_body_bluetooth": "Escriba el código de verificación proporcionado por {{name}} con el resultado de su prueba para verificar su diagnóstico.",
+    "code_input_button_cancel": "Cancelar",
+    "code_input_button_submit": "Enviar",
+    "code_input_title_bluetooth": "Verifique su diagnóstico",
+    "complete_body_bluetooth": "Al elegir compartir su estatus y notificar anónimamente a otros, está ayudando a contener la propagación del virus y a proteger a otros en su comunidad.",
+    "consent_button_cancel": "Cancelar",
+    "error": {
+      "verification_code_used": "El código de Verificación ha sido ya usado"
+    },
+    "exit_warning_cancel": "Cancelar",
+    "publish_consent_body_bluetooth": "Compartir su diagnóstico positivo es opcional y sólo puede hacerse con su consentimiento.\n\nSi decides hacerlo, estarás ayudando a otras personas de tu comunidad a tomar decisiones informadas sobre su salud y a desempeñar tu papel para contener la propagación del virus.\n\nLa única información que se compartirá será el conjunto aleatorio de números que tu teléfono intercambió por Bluetooth con otros teléfonos que estuvieron cerca durante los últimos 14 días, junto con una puntuación de riesgo ponderada basada en el momento en que se desarrollaron los síntomas.",
+    "publish_consent_title_bluetooth": "Notifique a otros en su comunidad",
+    "start_body_bluetooth": "Elija notificar anónimamente a otras personas que pueda haber encontrado y ayude a su comunidad a contener la propagación del virus.",
+    "start_title_bluetooth": "Ayude a contener la propagación del virus y a proteger a los demás en su comunidad si se le diagnostica o da positivo en la prueba de COVID-19."
+  },
+  "exposure_datum": {
+    "no_data": {
+      "explanation": "Esto ocurre cuando el acceso a la localización está deshabilitado para un PathCheck app o cuando la fecha tiene más de 14 días de anterioridad. Para esa fecha no habrá notificaciones relativas a exposición."
+    },
+    "no_known": {
+      "explanation": "Tu historial de exposición será actualizada si esto cambia en el futuro."
+    },
+    "possible": {
+      "duration": "Posible duración de la exposición: {{duration}}",
+      "explanation": "Para la {{duration}}, si tu teléfono estaba en un radio de 10 pies de alguien que más tarde dió positivo por COVID-19.",
+      "what_next": "Qué debería hacer a continuación?"
+    }
+  },
+  "exposure_history": {
+    "bt": {
+      "how_does_this_work_para": "Cuando las Notificaciones de Exposición están activadas, tu teléfono usará Bluetooth para intercambiar y guardar cadenas de carácteres aleatorias (llamados IDs aleatorios/random IDs) de aquellos teléfonos que tengan también las Notificaciones de Exposición activadas. Estas cadenas de caracteres aleatorias no te identificarán a tí personalmente con respecto a los otros usuarios y variarån muchas veces al día para proteger tu privacidad. La fecha y la duración del encuento serán grabadas así como la distancia entre los dos teléfonos. Cuando una persona reporta un diagnóstico positivo, la cadena aleatoria de caracteres o random ID de su teléfono es marcada para anónimamente notificar al resto de usuarios. No se compartirá la información sobre su localización ni ninguna información personal.",
+      "why_did_i_get_an_en_para": "Recibirás una notificación de exposición cuando te hayas cruzado con una persona que más taerde haya recibido un diagnóstico confirmado o haya dado positivo en un test por COVID-19 siempre y cuando elija notificar al resto."
+    },
+    "gps": {
+      "how_does_this_work_para": "Cuando el acceso a la localización está habilitado para tu PathCheck app, la aplicación guardará información sobre cada sitio al que vayas con el teléfono: coordenadas GPS, fecha, hora en la que tu teléfono estaba en ese sitio.\n\nEsta información está almacenada en una lista encriptada en tu teléfono durante 14 días. Si uno o más Departamento de Salud local o regional se ha asociado con PathCheck, y tu has decidido habilitar, para ellos, las Notificaciones de Exposición en tu app PathCheck, ellos pueden enviarte a la aplicación colecciones de datos anónimas con coordenadas GPS, fechas y horas recolectadas de los miembros de su comunidad, que después recibieron un diagnóstico positivo y decidieron compartirlo. \n\nTu teléfono entonces comparará localmente (en tu app) tu historial de localización encriptado contra los datos del Departamento de Salud que elegiste para informarte de posibles exposiciones.",
+      "why_did_i_get_an_en_para": "Recibirás una notificación de exposición cuando tu PathCheck app estime que tu teléfono estaba, por un período continuado, a una distancia menor de 100 pies de otro individuo que más tarde recibió un diagnóstico positivo y elegió compartir su diario de localización con el Departamento de Salud local."
+    },
+    "legend_button": "Leyenda (historial)",
+    "legend": {
+      "exposure_possible": "Posible Exposición",
+      "new_exposure": "Nueva posible exposición"
+    },
+    "next_steps": {
+      "button_text": "Ver recomendaciones",
+      "ha_self_assessment": "Seguir las recomendaciones del {{healthAuthorityName}} sobre qué hacer a continuación",
+      "possible_crossed_paths": "Basado en tu historial de localización, es posible que te hayas cruzado con alguien que ha sido diagnosticado con COVID-19",
+      "possible_infection_precaution": "Esto no significa que estés infectado, pero, de todos modos, deberías tomar precauciones. Las personas asintomáticas pueden a veces ser contagiosas."
+    }
+  },
+  "history": {
+    "no_exposure": "No ha habido contacto",
+    "possible_exposure": "Posible",
+    "possible_exposure_para": "Es posible que hayas estado en contacto o cerca de alguien que ha dado positivo en COVID-19.",
+    "what_does_this_mean": "¿Qué significa esto?",
+    "what_does_this_mean_para_bluetooth": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
+    "what_does_this_mean_para_location": "Según tu historial de ubicaciones, es posible que hayas estado en contacto o cerca de alguien con COVID-19. Esto no significa que te hayas infectado, pero sí que podrías estarlo.\n\nPara obtener más información sobre lo que debes hacer, puedes consultar el sitio web de Mayo Clinic.",
+    "what_if_no_symptoms": "¿Qué pasa si no tengo síntomas?",
+    "what_if_no_symptoms_para": "Si no tienes síntomas, pero quieres hacerte la prueba, puedes ir al punto de pruebas más cercano. \n\nLas personas sin síntomas también pueden tener el COVID e infectar a otros. Respetar el distanciamiento social y evitar el contacto con grupos grandes o personas en riesgo (ancianos, personas con otros problemas médicos) es importante para controlar tanto tú riesgo como el de los demás."
+  },
+  "home": {
+    "bluetooth": {
+      "all_services_on_header": "PathCheck",
+      "unauthorized_error_message": "Para continuar, debes autorizar logueo de exposición para COVID-19 en el apartado de opciones de configuración de la aplicación.",
+      "unauthorized_error_title": "Por favor, actualiza las Opciones de Configuración.",
+      "unavailable_header": "Las notificaciones del historial de exposición no están aún disponibles",
+      "unavailable_subheader": "Su teléfono no está cubierto por las Autoridades de Salud que utilizan PathCheck."
+    },
+    "gps": {
+      "all_services_on_header": "PathCheck",
+      "all_services_on_no_ha_available": "No recibirás notificaciones de exposición si estás en una región que no está cubierta por algún partner del Departamento de Salud",
+      "auto_start_header": "Auto Arranque deshabilitado",
+      "auto_start_subheader": "PathCheck necesita ser capaz de auto arrancar para guardar privadamente los lugares que has visitado. Por favor, habilítalo en tus opciones de configuración"
+    }
+  },
+  "import": {
+    "button_text": "Importar ubicaciones",
+    "error": "Algo salió mal al importar sus datos.",
+    "google": {
+      "already_imported": "El archivo de Takeout ya se ha importado.",
+      "disclaimer": "PathCheck no está afiliado con Google y nunca compartirá tus datos.",
+      "file_open_error": "No se pudo abrir el archivo. \nPor favor, asegúrese de que el archivo se abra desde Google Drive",
+      "instructions_detailed": "Visita Google Takeout y exporta tu historial de ubicaciones siguiendo estos pasos: \n1. Método de entrega: \"Añadir al Drive\" \n2. Frecuencia: \"Exportar una vez\" \n3. Tipo y tamaño del archivo: \".zip\" y \"1GB\"\n4. Google envía un email cuando la exportación está lista \n5. Regresa aquí para importar ubicaciones de Google Drive",
+      "instructions_first": "Agregar datos de tu ubicación de Google ayudará a elaborar un reporte del historial de ubicaciones recientes",
+      "instructions_second": "Para poder importar, primero debes \"Extraer\" sus datos de ubicación de Google.",
+      "invalid_file_format": "El formato de archivo no es compatible. \nFormatos admitidos: \".zip\".",
+      "no_recent_locations": "La aplicación no tiene ubicaciones recientes.",
+      "title": "Google Maps",
+      "visit_button_text": "Accede a Google Takeout"
+    },
+    "mockData": {
+      "custom_url_title": "Importar desde URL",
+      "instruction_info": "Los datos deben estar en formato JSON.",
+      "invalid_url": "URL JSON inválida.",
+      "url_instructions": "Introduce una URL que contenga datos de localización de test que te gustaría añadir"
+    },
+    "subtitle": "Para saber si has estado con alguien con COVID-19 antes de descargar esta app, puedes importar tu historial personal de ubicaciones.",
+    "success": "¡Las ubicaciones recientes se han importado con éxito!",
+    "title": "Importar historial"
+  },
+  "label": {
+    "about_header_bluetooth": "PathCheck Bluetooth",
+    "about_header_location": "PathCheck GPS",
+    "about_para": "La app PathCheck está creada por la fundación PathCheck, una organización sin ánimo de lucro que está comprometida con la aportación de software libre para ayudar a parar la propagación del COVID-19 y proteger la privacidad de los individuos.\n\nPara más información, visita",
+    "authorities_add_button_label": "Añadir fuente de datos fiable",
+    "authorities_add_url": "Añadir organismo vía web",
+    "authorities_desc": "Elige las autoridades sanitarias de tu zona para obtener datos sobre posibles contactos con el COVID. Selecciona un nombre de la lista global, o introduce la URL del sitio web de una autoridad sanitaria que haya usado PathCheck.",
+    "authorities_input_placeholder": "Introduce la URL aquí",
+    "authorities_new_in_area_msg": "Suscribirse a {{count}} nueva autoridad sanitaria fiable en tu zona",
+    "authorities_new_in_area_title": "Autoridad sanitaria nueva",
+    "authorities_new_in_area_title_plural": "Autoridades sanitarias nuevas",
+    "authorities_new_subscription_msg": "Te has suscrito a {{count}} nueva autoridad en tu zona",
+    "authorities_new_subscription_msg_plural": "Te has suscrito a {{count}} nuevas autoridades en tu zona",
+    "authorities_new_subscription_title": "Nueva suscripción",
+    "authorities_new_subscription_title_plural": "Nuevas suscripciones",
+    "authorities_no_sources": "No hay fuentes de datos",
+    "authorities_removal_alert_cancel": "Cancelar",
+    "authorities_removal_alert_desc": "Quieres eliminar este organismo como fuente de datos?",
+    "authorities_removal_alert_proceed": "Adelante",
+    "authorities_removal_alert_title": "Eliminar organismo",
+    "auto_subscribe_checkbox": "Habilitar la suscripción automática",
+    "choose_provider_subtitle": "Para informarte de posibles contactos, debes suscribirte a una autoridad sanitaria.",
+    "choose_provider_title": "Elegir autoridades sanitarias",
+    "default_news_site_name": "Noticias de PathCheck",
+    "enter_authority_url": "Introduzca o pegue la URL",
+    "event_history_subtitle": "Entiende tu exposición al COVID-19 según los datos publicados por las autoridades sanitarias.",
+    "event_history_title": "Historial de exposición",
+    "filter_authorities_by_gps_history": "Filtrar por sus ubicaciones",
+    "import_success": "Importado con éxito",
+    "latest_news": "Últimas noticias",
+    "launch_access_bluetooth": "Permitir rastreabilidad de contactos",
+    "launch_access_location": "Acceder a tu ubicación",
+    "launch_allow_location": "Permitir acceso a la ubicación",
+    "launch_authority_access": "Suscribirse a las autoridades sanitarias más cercanas",
+    "launch_authority_header": "Las autoridades sanitarias proporcionarán a su dispositivo los datos para saber si se ha cruzado con alguien infectado",
+    "launch_authority_subheader": "Suscribirse automáticamente para recibir las últimas actualizaciones de las autoridades sanitarias de tu zona.",
+    "launch_done_header": "Ya estás listo",
+    "launch_done_subheader": "Preparados para comenzar. Recuerda que puedes cambiar tus preferencias más tarde.",
+    "launch_enable_auto_subscription": "Habilitar la suscripción automática",
+    "launch_enable_bluetooth": "Habilitar Bluetooth",
+    "launch_enable_exposure_notif": "Habilitar",
+    "launch_enable_notif": "Permitir notificaciones",
+    "launch_finish_set_up": "Finalizar configuración",
+    "launch_get_started": "Iniciar",
+    "launch_header_bluetooth": "Para saber con quién ha estado en contacto, su teléfono necesita acceder a su Bluetooth.",
+    "launch_header_location": "Para recordar donde has estado, tu teléfono móvil necesita registrar tu ubicación.",
+    "launch_next": "Siguiente",
+    "launch_notif_header": "Con las notificaciones, podrás saber si has estado cerca de alguien con COVID.",
+    "launch_notif_subheader": "No te molestaremos salvo para enviarte información sobre tu riesgo de exposición.",
+    "launch_notification_access": "Permitir notificaciones",
+    "launch_screen1_header": "Bienvenido a PathCheck",
+    "launch_screen2_header_bluetooth": "El teléfono recuerda otros dispositivos que encuentra, pero no te identificará con otras personas.",
+    "launch_screen2_header_location": "Recibe notificaciones si has estado con alguien que después dé positivo en COVID-19.",
+    "launch_screen2_subheader_bluetooth": "La fecha y la duración del encuentro se registran junto con una estimación de cuán cerca pudieron haber estado los dos teléfonos.",
+    "launch_screen2_subheader_location": "La información es poder.",
+    "launch_screen3_header_bluetooth": "Todos los datos están encriptados y almacenados de forma privada en su teléfono.",
+    "launch_screen3_header_location": "Si das positivo, puedes optar por compartir tus datos de forma anónima",
+    "launch_screen3_subheader_bluetooth": "Su teléfono no compartirá información personal con otros usuarios de PathCheck a menos que elija informar anónimamente un diagnóstico positivo.",
+    "launch_screen3_subheader_location": "Ayuda a proteger a tu entorno más cercano.",
+    "launch_screen4_header_bluetooth": "Reciba una notificación si el propietario de un teléfono que ha encontrado ha sido diagnosticado con COVID-19 y eligió compartir anónimamente su estado de salud.",
+    "launch_screen4_header_location": "Compartir depende de ti. Tus datos solo se guardan en tu móvil.",
+    "launch_screen4_subheader_bluetooth": "En este caso, busque información de su Autoridad Sanitaria Local sobre qué hacer a continuación.",
+    "launch_screen4_subheader_location": "Si has dado positivo, solo tú eliges si quieres compartirlos.",
+    "launch_set_up_phone_bluetooth": "Siguiente",
+    "launch_set_up_phone_location": "Configurar mi dispositivo",
+    "launch_subheader": "No te preocupes, estos datos nunca saldrán de tu móvil sin tu consentimiento expreso.",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street \nBox 441621 \nSomerville, MA 02144",
+    "legal_page_header_bluetooth": "PathCheck Bluetooth",
+    "legal_page_header_location": "PathCheck GPS",
+    "authorities_new_in_area_msg_plural": "Suscribirse a {{count}} nuevas autoridades sanitarias fiables en tu zona",
+    "loading_public_data": "cargando datos…",
+    "location_disabled_message": "PathCheck necesita tu ubicación.",
+    "location_disabled_title": "Registro de ubicación desactivado",
+    "location_enabled_message": "PathCheck está registrando en tu dispositivo tus coordenadas GPS cada 5 minutos de forma segura.",
+    "location_enabled_title": "PathCheck habilitado",
+    "logging_active_bluetooth": "Notificaciones de Exposición Activas",
+    "logging_active_location": "Localización activada",
+    "logging_inactive_bluetooth": "Notificaciones de Exposición Inactivas",
+    "logging_inactive_location": "Localización desactivada",
+    "news_subtitle": "Novedades sobre el COVID-19 de tus autoridades sanitarias y noticias en general.",
+    "news_title": "Últimas Noticias",
+    "no_data": "No hay datos",
+    "privacy_policy": "Política de privacidad",
+    "push_at_risk_message": "Has estado cerca de alguien con COVID-19",
+    "push_at_risk_title": "Puedes estar en riesgo",
+    "see_exposure_history": "Ver historial de exposición",
+    "settings_title": "Panel de control",
+    "skip_this_step": "Omitir este paso",
+    "team": "Equipo",
+    "team_para": "El equipo se compone de un consorcio de epidemiólogos, ingenieros, analistas de datos, defensores de la privacidad digital, profesores e investigadores de instituciones reconocidas como MIT, Harvard, la Mayo Clinic, TripleBlind, EyeNetra, Ernst & Young y Link Ventures.",
+    "terms_of_use": "Condiciones de uso"
+  },
+  "navigation": {
+    "history": "Historial",
+    "home": "Inicio",
+    "locations": "Ubicaciones",
+    "more": "Más",
+    "partners": "Socios"
+  },
+  "onboarding": {
+    "eula_checkbox": "Acepto el acuerdo de licencia",
+    "eula_continue": "Continuar",
+    "eula_message": "*Debe aceptar para poder utilizar PathCheck",
+    "location_header": "Para determinar cuándo puede haberse cruzado con el virus, PathCheck necesita acceso a la ubicación.",
+    "location_subheader": "Su historial de localización PathCheck sólo incluye coordenadas GPS, fechas y horas.\n\nSus datos no serán compartidos con nadie a menos que usted decida hacerlo.",
+    "maybe_later": "Quizá después",
+    "notification_header": "¿Desea recibir notificaciones cuando pueda haberse cruzado con el virus?",
+    "notification_subheader": "Para recibir las notificaciones de exposición, es necesario estar en una zona cubierta por un socio del Departamento de Salud local.\n\nSi aún no hay un Departamento de Salud asociado local o regional en su área, notifíquelo cuando se agreguen nuevos Departamentos de Salud cerca de usted."
+  },
+  "screen_titles": {
+    "about": "Acerca de",
+    "faq": "Preguntas frecuentes",
+    "legal": "Aviso legal",
+    "more": "Más",
+    "report_issue": "Reportar un problema"
+  },
+  "settings": {
+    "share_test_result": "Informar un resultado positivo de la prueba"
+  },
+  "share": {
+    "button_text": "Comparte tus datos",
+    "paragraph_first": "Si has dado positivo en COVID-19, ayuda a las autoridades locales compartiendo tu historial de ubicaciones.",
+    "paragraph_second": "Tu historial se envía como una simple lista de ubicaciones en el tiempo, sin revelar datos personales.",
+    "subtitle": "Puedes compartir tus datos con las autoridades sanitarias u otros agentes, o guardar una copia de seguridad",
+    "title": "Compartir ubicaciones"
+  },
+  "version_update": {
+    "alert_label": "PathCheck no está actualizado",
+    "alert_sublabel": "¿Actualizar con la nueva versión?",
+    "later": "Más tarde",
+    "push_notification_message": "Por favor actualice su aplicación",
+    "push_notification_title": "La aplicación no está actualizada",
+    "update": "Actualizar"
+  }
+}

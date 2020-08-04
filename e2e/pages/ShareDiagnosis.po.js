@@ -4,8 +4,7 @@ const screenshotText = 'Onboarding - Page 4';
 class ShareDiagnosis {
   async tapButton(languageStrings) {
     await element(
-      by.label(languageStrings.label.launch_set_up_phone_location),
-    ).tap();
+      by.label(languageStrings.label.launch_set_up_phone_location)  ).tap();
   }
 
   async takeScreenshot() {

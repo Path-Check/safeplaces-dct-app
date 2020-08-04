@@ -1,0 +1,242 @@
+{
+  "_display_name": "English",
+  "about": {
+    "operating_system_abbr": "OS:",
+    "version": "Version:"
+  },
+  "assessment": {
+    "agree_question_description": "Stop and call emergency services if you are experiencing:\n• Severe, constant chest pain or pressure \n• Extreme difficulty breathing \n• Severe, constant lightheadedness \n• Serious disorientation or unresponsiveness",
+    "agree_question_text": "Is this an emergency?",
+    "agreement_cta": "I understand and consent",
+    "agreement_description": "The screening helps you make decisions about seeking appropriate medical care. It is not intended for the diagnosis or treatment of disease or other conditions.",
+    "agreement_footer": "By proceeding, you agree that your survey results are not intended for diagnosis or treatment.",
+    "agreement_title": "This is not for diagnosis",
+    "caregiver_cta": "Next",
+    "caregiver_description": "Notify a healthcare provider in your long-term care facility. Living in a long-term care facility or nursing home may put you at risk for severe illness.\n\nTell a caregiver at the facility that you are sick and need to see a medical provider as soon as possible.",
+    "caregiver_title": "Notify Caregiver",
+    "complete_cta": "Done",
+    "complete_description": "By sharing your health status and location history anonymously with your community, you are being proactive about fighting the spread of COVID-19.",
+    "complete_title": "Thanks for keeping your community safe!",
+    "distancing_cta": "Next",
+    "distancing_description": "Please follow your local, state, or national guidelines for social distancing and Personal Protection Equipment (PPE) like masks and/or gloves. No additional action is needed at this time.",
+    "distancing_title": "Distancing & PPE",
+    "emergency_cta": "Call 911",
+    "emergency_description": " Based on your reported symptoms, you should seek care immediately.",
+    "emergency_title": "Call Emergency Services",
+    "isolate_cta": "Next",
+    "isolate_description": "You have some symptoms that may be related to COVID-19. Call your healthcare provider if your symptoms get worse. Start home isolation.",
+    "isolate_title": "Isolate Yourself",
+    "next": "Next",
+    "share_cta": "I understand and consent",
+    "share_description": "Your anonymous data helps the {{authority}} analyze, track, and contain the spread of COVID-19. Your data will be aggregated that from other PathCheck users who choose to share.\n\nYour data contains your survey responses and zip code, but no additional or personally-identifying information.\n\nThe {{authority}} will retain your anonymous data for a specific period of time.",
+    "share_title": "Publish anonymized data",
+    "start_cta": "Start",
+    "start_description": "Your information is private, anonymized, and encrypted. No data leaves your device unless you give permission.",
+    "start_title": "Answer questions about your symptoms and medical history to learn what to do next about COVID-19"
+  },
+  "authorities": {
+    "automatically_follow": "Automatically follow Health Departments nearby",
+    "custom_url": "Manually Add Via URL",
+    "custom_url_title": "Add Via Url",
+    "info_body": "Local and regional Health Departments that partner with PathCheck can share information and resources about COVID-19 for their area using the PathCheck app, including anonymized data that allows PathCheck to estimate when you may have crossed paths with the virus.",
+    "invalid_url": "Invalid YAML URL",
+    "title": "Health Departments",
+    "url_instructions": "Enter a URL for the Health Department you would like to add",
+    "view_button_label": "View your Health Departments"
+  },
+  "common": {
+    "add": "Add",
+    "done": "Done",
+    "next": "Next",
+    "something_went_wrong": "Something went wrong",
+    "start": "Start",
+    "submit": "Submit"
+  },
+  "export": {
+    "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
+    "code_input_error": "Try a different code",
+    "code_input_title": "Enter your verification code",
+    "complete_body": "By sharing your health status and location history anonymously with your community, you’re being proactive about fighting the spread of COVID-19.",
+    "complete_title": "Thanks for keeping your community safe!",
+    "confirm_upload_body": "This will help in contact tracing efforts.\n\nIf you choose not to send your Location History to {{name}}, you are choosing to opt out of contact tracing efforts that help keep your community safe.",
+    "confirm_upload_button": "Send Location History",
+    "confirm_upload_title": "Send your location history to your HA",
+    "consent_button_subtitle": "By proceeding, you agree that your Healthcare Authority can retain your data for a period of time.",
+    "consent_button_title": "I understand and consent",
+    "exit_warning_body": "You will need to restart this process",
+    "exit_warning_cancel": "Cancel",
+    "exit_warning_confirm": "Yes, I'm sure",
+    "exit_warning_title": "Are you sure?",
+    "location_consent_body": "Your location history is used by representatives of {{name}} to interview you about places you visited and when you were there.\n\nOnce you send your location history to {{name}}, they will retain your data for a specific period of time.",
+    "location_consent_link": "Please view their privacy policy here.",
+    "location_consent_title": "Use of location history",
+    "publish_consent_body": "During the interview with {{name}} your interviewer can remove private locations, such as homes and apartments. They can also add any additional places you believe should be included.\n\n{{name}} may share the GPS coordinates from your location history, including date, time, and duration of your visits to let others in your community know if they may have crossed paths with the virus.\n\nI understand that the {{name}} representative will ask me verbally at the end of the interview if I consent.",
+    "publish_consent_title": "Publish anonymized data",
+    "select_ha_title": "Select your Health Department",
+    "start_body": "Work with a representative from your local Health Department to remove personally-identifying information from your location history during your contact tracing interview.",
+    "start_title": "Share your anonymized location history with your community if you have tested positive for COVID-19."
+  },
+  "exposure_datum": {
+    "no_data": {
+      "explanation": "This happens when location access is disabled for your PathCheck app or the date selected was more than 14 days ago. No exposure notifications will be available for this day.",
+      "title": "No information available for this day"
+    },
+    "no_known": {
+      "explanation": "Your exposure history will be updated if this changes in the future.",
+      "title": "No reports received at this time"
+    },
+    "possible": {
+      "duration": "Possible Exposure Time: {{duration}}",
+      "explanation": {
+        "gps": "For {{duration}} throughout this day, your phone was within 100 feet of someone who was later diagnosed with COVID-19."
+      }
+    }
+  },
+  "exposure_history": {
+    "gps": {
+      "how_does_this_work_para": "Whenever location access is enabled for your PathCheck app, the app saves the following information about each place you take your phone: the GPS coordinates, date, and times your phone was at that location.\n\nThis information is stored in an encrypted list within your phone for 14 days. If one or more of your local or regional Health Departments has partnered with PathCheck, and you have elected to receive exposure notifications from them in your PathCheck app, they can send your app encrypted collections of anonymized GPS coordinates, dates, and times gathered from their community members who later received positive diagnoses and chose to share.\n\nYour phone then locally (within your app) compares your encrypted location history to the data shared by your selected local Health Departments to inform you about possible exposures.",
+      "why_did_i_get_an_en_para": "You will receive exposure notifications when your PathCheck app estimates that your phone was, for an extended period, within 100 feet of another individual who later received a positive diagnosis and chose to share their location diary with their local Health Department."
+    },
+    "how_does_this_work": "How does this work?",
+    "last_days": "Last 21 days",
+    "legend": {
+      "exposure_possible": "Exposure possible",
+      "no_exposure_detected": "No exposure detected",
+      "today": "Today"
+    },
+    "legend_button": "LEGEND",
+    "next_steps": {
+      "button_text": "See Recommendations",
+      "ha_self_assessment": "Follow the advice from {{healthAuthorityName}} about what to do next.",
+      "possible_crossed_paths": "Based on your location history, it is possible that you may have crossed paths with somebody who has been diagnosed with COVID-19.",
+      "possible_infection_precaution": "This does not mean that you are infected, but you should take precautions anyway. People who don't exhibit symptoms can sometimes still be contagious."
+    },
+    "why_did_i_get_an_en": "Why did I get an exposure notification?"
+  },
+  "home": {
+    "gps": {
+      "all_services_on_header": "PathCheck",
+      "all_services_on_no_ha_available": "You will not receive exposure notifications while you are outside a region served by Health Department partners",
+      "all_services_on_subheader": "PathCheck is saving the places you visit to create your private location diary",
+      "auto_start_header": "Auto Start Disabled",
+      "auto_start_subheader": "PathCheck needs to be able to auto start to privately save the places you visit. Please enable it in your app settings",
+      "tracing_off_button": "Allow Location Access",
+      "tracing_off_header": "Location Access Disabled",
+      "tracing_off_subheader": "PathCheck needs location access in Settings to privately save the places you visit"
+    },
+    "shared": {
+      "no_authorities_header": "No local Health Department",
+      "no_authorities_subheader": "Your phone is outside any areas covered by Health Department on PathCheck \n\n You will be notified when Health Departments are added near you",
+      "notifications_off_button": "Allow Notifications",
+      "notifications_off_header": "Notifications Disabled",
+      "notifications_off_subheader": "You will not receive notifications about possible exposures nor when new Health Departments are added in your area",
+      "select_authority_button": "Add Health Department",
+      "select_authority_header": "No local Health Department Selected",
+      "select_authority_subheader": "Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area"
+    }
+  },
+  "import": {
+    "button_text": "Import past locations",
+    "error": "Something went wrong while importing your data.",
+    "google": {
+      "disclaimer": "PathCheck has no affiliation with Google and never shares your data.",
+      "file_open_error": "Could not open the file. \nPlease, make sure the file is opened from Google Drive",
+      "instructions_detailed": "Visit Google Takeout and export your Location History using the following settings: \n1. Delivery method: \"Add to Drive\" \n2. Frequency: \"Export once\" \n3. File type & size: \".zip\" and \"1GB\"\n4. Google sends an email when the export is ready \n5. Return here to import locations from Google Drive",
+      "instructions_first": "Adding location data from Google will give you a head start on building your recent locations.",
+      "instructions_second": "Before you can import, you must first \"Take out\" your location data from Google.",
+      "invalid_file_format": "Provided file format is not supported. \nSupported formats: \".zip\".",
+      "no_recent_locations": "Takeout doesn't have any recent locations.",
+      "title": "Google Maps",
+      "visit_button_text": "Visit Google Takeout"
+    },
+    "mockData": {
+      "custom_url_title": "Import from URL",
+      "instruction_info": "Data must be in JSON format!",
+      "invalid_url": "Invalid JSON URL!",
+      "url_instructions": "Enter a URL containing test location data you would like to add"
+    },
+    "subtitle": "To see if you encountered someone with COVID-19 prior to downloading this app, you can import your personal location history.",
+    "title": "Import Locations"
+  },
+  "label": {
+    "about_header_location": "PathCheck GPS",
+    "about_para": "The PathCheck app is made available by the PathCheck Foundation, a non-profit organization that is committed to providing free software to help stop the spread of COVID-19 and protect the privacy of individuals. \n\nFor more information, visit",
+    "authorities_no_sources": "No Health Departments",
+    "bell_icon": "Bell icon",
+    "close_icon": "Close icon",
+    "doctors_image": "Illustration of a doctor and nurse wearing masks",
+    "exposure_icon": "Circle icon with eight dots surrounding it",
+    "heart_icon": "Heart icon with cross inside",
+    "import_success": "Imported successfully",
+    "language_icon": "Outlined icon of a globe",
+    "launch_allow_location": "Allow Location Access",
+    "launch_disable_exposure_notif": "Don't Enable",
+    "launch_enable_exposure_notif": "Enable",
+    "launch_enable_notif": "Enable Notifications",
+    "launch_exposure_notif_header": "Enable Exposure Notifications",
+    "launch_exposure_notif_subheader": "To be notified about updates to your exposure history, your phone needs permission to exchange anonymous Bluetooth random ID with other devices.\n\nExposure Notifications only work with other devices with the setting enabled.\n\nYou can turn off this notifications at any time.",
+    "launch_get_started": "Get Started",
+    "launch_next": "Next",
+    "launch_screen1_header": "Welcome to PathCheck",
+    "launch_screen2_header_location": "PathCheck remembers the places you visit and saves them privately on your phone for 14 days.",
+    "launch_screen2_subheader_location": "Your PathCheck location diary is encrypted and never leaves your phone unless you choose to send it to your local or regional Health Department.",
+    "launch_screen3_header_location": "Help contain the spread of the virus and protect others in your community.",
+    "launch_screen3_subheader_location": "If you are diagnosed, you can choose to share your location diary with your local Health Department so they can anonymously inform others who may have crossed paths with the virus.",
+    "launch_screen4_header_location": "Be notified when your PathCheck app estimates that you may have crossed paths with the virus.",
+    "launch_set_up_phone_location": "Set up my phone",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_location": "PathCheck GPS",
+    "location_disabled_message": "PathCheck requires location services.",
+    "location_disabled_title": "Location Tracking Was Disabled",
+    "location_enabled_message": "PathCheck is securely storing your GPS coordinates once every five minutes on this device.",
+    "location_enabled_title": "PathCheck Enabled",
+    "logging_active_location": "Location Active",
+    "logging_inactive_location": "Location Inactive",
+    "pin_icon": "Pin point icon",
+    "privacy_policy": "Privacy Policy",
+    "push_at_risk_message": "You have crossed paths with a COVID-19 patient",
+    "push_at_risk_title": "You may be at risk",
+    "question_icon": "Question mark icon",
+    "unknown": "unknown"
+  },
+  "location": {
+    "data": {
+      "delete_warning_body": "This will delete your location history stored on this phone.",
+      "delete_warning_cancel": "Cancel",
+      "delete_warning_confirm": "Yes, I'm sure",
+      "delete_warning_title": "Are you sure?"
+    }
+  },
+  "navigation": {
+    "history": "History",
+    "home": "Home",
+    "locations": "Locations",
+    "more": "More",
+    "partners": "Partners"
+  },
+  "onboarding": {
+    "eula_checkbox": "I accept the licensing agreement",
+    "eula_continue": "Continue",
+    "eula_message": "*You must accept in order to use PathCheck",
+    "location_header": "To determine when you may have crossed paths with the virus, PathCheck needs location access.",
+    "location_subheader": "Your PathCheck location diary only includes GPS coordinates, dates, and times.\n\nYour data will not be shared with anyone unless you choose to do so.",
+    "maybe_later": "Maybe Later",
+    "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
+    "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by one of our Health Department partners, you can receive exposure notifications from your Health Department."
+  },
+  "screen_titles": {
+    "about": "About",
+    "delete_location_history": "Delete Location History",
+    "exposure_history": "Exposure History",
+    "legal": "Legal",
+    "more_info": "More Info"
+  },
+  "version_update": {
+    "alert_label": "PathCheck is outdated",
+    "alert_sublabel": "Update to a new version?",
+    "later": "Later",
+    "push_notification_message": "Please update your application",
+    "push_notification_title": "Application is outdated",
+    "update": "Update"
+  }
+}

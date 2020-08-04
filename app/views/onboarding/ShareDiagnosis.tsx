@@ -26,7 +26,7 @@ const ShareDiagnosis: FunctionComponent = () => {
     icon: StrategyAssets.shareDiagnosisIcon,
     header: t('label.launch_screen4_header_location'),
     iconLabel: t('label.bell_icon'),
-    body: t('label.launch_screen4_subheader_location'),
+   // body: t('label.launch_screen4_header_location'),
     primaryButtonLabel: t('label.launch_set_up_phone_location'),
   };
 

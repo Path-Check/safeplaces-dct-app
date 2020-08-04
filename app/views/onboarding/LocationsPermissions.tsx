@@ -92,7 +92,7 @@ const LocationsPermissions = (): JSX.Element => {
           onPress={handleOnPressMaybeLater}
           style={styles.maybeLaterButton}>
           <Typography style={styles.maybeLaterButtonText}>
-            {t('onboarding.maybe_later')}
+            {t('onboarding.maybe_later'  )}
           </Typography>
         </TouchableOpacity>
       </View>

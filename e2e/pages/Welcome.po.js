@@ -3,7 +3,7 @@ const screenshotText = 'Onboarding - Page 1';
 
 class Welcome {
   async tapButton(languageStrings) {
-    await element(by.label(languageStrings.label.launch_get_started)).tap();
+    await element(by.label(languageStrings.label.launch_get_started)  ).tap();
   }
 
   async takeScreenshot() {

@@ -3,7 +3,7 @@ const screenshotText = 'Onboarding - PersonalPrivacy';
 
 class PersonalPrivacy {
   async tapButton(languageStrings) {
-    await element(by.label(languageStrings.label.launch_next)).tap();
+    await element(by.label(languageStrings.label.launch_next)  ).tap();
   }
 
   async takeScreenshot() {
