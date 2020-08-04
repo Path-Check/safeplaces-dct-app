@@ -74,4 +74,18 @@ export const styles = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 20,
   },
+  bottomSheet: {
+    backgroundColor: Colors.bottomSheetBackground,
+    padding: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: Colors.formInputBorder,
+  },
+  hyperlink: {
+    color: Colors.linkText,
+    textDecorationLine: 'underline',
+    position: 'relative',
+  },
 });

@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  StatusBar,
-  StyleSheet,
-  TouchableHighlight,
-  View,
-  FlatList,
-  SafeAreaView,
-} from 'react-native';
+import { StyleSheet, TouchableHighlight, View, FlatList } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import { useDispatch, useSelector } from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Button } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
@@ -19,7 +13,7 @@ import getHealthcareAuthorities from '../../store/actions/healthcareAuthorities/
 import healthcareAuthorityOptionsSelector from '../../store/selectors/healthcareAuthorityOptionsSelector';
 import customUrlhealthcareAuthorityOptionsSelector from '../../store/selectors/customUrlhealthcareAuthorityOptionsSelector';
 
-import { Screens } from '../../navigation';
+import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
 import { Colors, Spacing } from '../../styles';
@@ -49,13 +43,10 @@ export const ExportSelectHA = ({ navigation }) => {
     }
   };
 
+  useStatusBarEffect('dark-content');
+
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar
-        barStyle='dark-content'
-        backgroundColor={Colors.primaryBackgroundFaintShade}
-        translucent={false}
-      />
       <View style={styles.wrapper}>
         <SafeAreaView style={{ flex: 1, paddingBottom: 0 }}>
           <View style={{ paddingHorizontal: 24, paddingBottom: 20 }}>
@@ -93,7 +84,7 @@ export const ExportSelectHA = ({ navigation }) => {
                     flexDirection: 'row',
                   }}>
                   <Typography
-                    style={{ fontWeight: '500', paddingRight: 30 }}
+                    style={{ fontWeight: '500', paddingRight: 30, flex: 1 }}
                     use='body1'>
                     {HA.name}
                   </Typography>
@@ -117,20 +108,18 @@ export const ExportSelectHA = ({ navigation }) => {
           />
         </SafeAreaView>
         <View style={styles.card}>
-          <SafeAreaView style={{ marginVertical: 44 }}>
-            <View style={{ paddingHorizontal: 24 }}>
-              <Button
-                invert
-                label={t('common.next')}
-                onPress={() =>
-                  navigation.navigate(Screens.ExportCodeInput, {
-                    selectedAuthority,
-                  })
-                }
-                disabled={!selectedAuthority}
-              />
-            </View>
-          </SafeAreaView>
+          <View style={{ paddingHorizontal: 24, marginVertical: 44 }}>
+            <Button
+              invert
+              label={t('common.next')}
+              onPress={() =>
+                navigation.navigate(Screens.ExportCodeInput, {
+                  selectedAuthority,
+                })
+              }
+              disabled={!selectedAuthority}
+            />
+          </View>
         </View>
       </View>
     </View>

@@ -21,8 +21,9 @@ export const Main = () => {
   useStatusBarEffect('light-content');
   const navigation = useNavigation();
   const { notification } = useContext(PermissionsContext);
-  const hasSelectedAuthorities =
-    useSelector(selectedHealthcareAuthoritiesSelector).length > 0;
+  const selectedAuthorities = useSelector(
+    selectedHealthcareAuthoritiesSelector,
+  );
   const [canTrack, setCanTrack] = useState(true);
 
   const updateStateInfo = useCallback(async () => {
@@ -50,11 +51,11 @@ export const Main = () => {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
-  } else if (hasSelectedAuthorities === false) {
+  } else if (selectedAuthorities.length === 0) {
     // TODO: enable this for testing versions of app
     // return <SelectAuthorityScreen />;
-    return <AllServicesOnScreen noHaAvailable />;
+    return <AllServicesOnScreen navigation={navigation} noHaAvailable />;
   } else {
-    return <AllServicesOnScreen />;
+    return <AllServicesOnScreen navigation={navigation} />;
   }
 };
