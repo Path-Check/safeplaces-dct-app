@@ -14,3 +14,11 @@ export default Factory.define<ExposureDatum>(() => {
     transmissionRiskLevel: 7,
   };
 });
+
+export const mockPossible = (exposureDatum: ExposureDatum): ExposureDatum => ({
+  ...exposureDatum,
+  kind: 'Possible',
+  duration: 300000,
+  totalRiskScore: 4,
+  transmissionRiskLevel: 7,
+});

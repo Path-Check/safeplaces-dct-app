@@ -25,16 +25,12 @@ export type Screen =
   | 'ExportComplete'
   | 'ExposureHistory'
   | 'ExportLocally'
-  | 'NextSteps'
   | 'MoreInfo'
-  | 'ENDebugMenu'
-  | 'ENLocalDiagnosisKey'
-  | 'ExposureListDebugScreen'
   | 'Settings'
   | 'About'
   | 'Licenses'
   | 'FeatureFlags'
-  | 'Import'
+  | 'ImportFromGoogle'
   | 'ImportFromUrl'
   | 'Welcome'
   | 'PersonalPrivacy'
@@ -42,7 +38,6 @@ export type Screen =
   | 'ShareDiagnosis'
   | 'OnboardingLocationPermissions'
   | 'OnboardingNotificationPermissions'
-  | 'NotificationPermissionsBT'
   | 'EnableExposureNotifications'
   | 'ExportFlow'
   | 'SelfAssessment'
@@ -70,16 +65,12 @@ export const Screens: { [key in Screen]: Screen } = {
   ExportComplete: 'ExportComplete',
   ExposureHistory: 'ExposureHistory',
   ExportLocally: 'ExportLocally',
-  NextSteps: 'NextSteps',
   MoreInfo: 'MoreInfo',
-  ENDebugMenu: 'ENDebugMenu',
-  ENLocalDiagnosisKey: 'ENLocalDiagnosisKey',
-  ExposureListDebugScreen: 'ExposureListDebugScreen',
   Settings: 'Settings',
   About: 'About',
   Licenses: 'Licenses',
   FeatureFlags: 'FeatureFlags',
-  Import: 'Import',
+  ImportFromGoogle: 'ImportFromGoogle',
   ImportFromUrl: 'ImportFromUrl',
   Welcome: 'Welcome',
   PersonalPrivacy: 'PersonalPrivacy',
@@ -87,7 +78,6 @@ export const Screens: { [key in Screen]: Screen } = {
   ShareDiagnosis: 'ShareDiagnosis',
   OnboardingLocationPermissions: 'OnboardingLocationPermissions',
   OnboardingNotificationPermissions: 'OnboardingNotificationPermissions',
-  NotificationPermissionsBT: 'NotificationPermissionsBT',
   EnableExposureNotifications: 'EnableExposureNotifications',
   ExportFlow: 'ExportFlow',
   SelfAssessment: 'SelfAssessment',
@@ -124,11 +114,17 @@ export const Stacks: { [key in Stack]: Stack } = {
 
 type BarStyle = 'dark-content' | 'light-content';
 
-export const useStatusBarEffect = (barStyle: BarStyle): void => {
+export const useStatusBarEffect = (
+  barStyle: BarStyle,
+  backgroundColor?: string,
+): void => {
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle(barStyle);
-      Platform.OS === 'android' && StatusBar.setTranslucent(true);
-    }, [barStyle]),
+      Platform.OS === 'android' &&
+        StatusBar.setTranslucent(true) &&
+        backgroundColor &&
+        StatusBar.setBackgroundColor(backgroundColor);
+    }, [barStyle, backgroundColor]),
   );
 };

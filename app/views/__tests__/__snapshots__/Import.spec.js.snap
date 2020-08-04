@@ -6,7 +6,6 @@ exports[`Import component renders correctly 1`] = `
     Object {
       "backgroundColor": "#1f2c9b",
       "flex": 1,
-      "paddingTop": 0,
     }
   }
 >
@@ -18,6 +17,7 @@ exports[`Import component renders correctly 1`] = `
         "flexDirection": "row",
         "justifyContent": "flex-start",
         "paddingHorizontal": 16,
+        "paddingTop": undefined,
         "paddingVertical": 8,
       }
     }
@@ -52,7 +52,7 @@ exports[`Import component renders correctly 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "flex": 3,
+          "flex": 5,
         }
       }
     >
@@ -250,46 +250,6 @@ exports[`Import component renders correctly 1`] = `
           }
         >
           Import Locations
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.2}
-        onPress={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "backgroundColor": "#4051db",
-            "borderColor": "#4051db",
-            "borderRadius": 8,
-            "flexDirection": "row",
-            "justifyContent": "center",
-            "marginBottom": 20,
-            "paddingHorizontal": 20,
-            "paddingVertical": 16,
-          }
-        }
-      >
-        <Text
-          style={
-            Array [
-              Object {
-                "color": "#2e2e2e",
-                "fontFamily": "IBMPlexSans",
-                "fontSize": 17,
-                "lineHeight": 24,
-              },
-              Object {
-                "writingDirection": "ltr",
-              },
-              Object {
-                "color": "#ffffff",
-                "fontSize": 19,
-                "fontWeight": "500",
-              },
-            ]
-          }
-        >
-          Import from URL
         </Text>
       </TouchableOpacity>
     </ScrollView>

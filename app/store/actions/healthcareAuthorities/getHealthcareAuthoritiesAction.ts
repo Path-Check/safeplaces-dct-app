@@ -3,9 +3,10 @@ import { createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
 
 import { AppThunk } from '../../types';
-import getHealthcareAuthoritiesApi, {
-  HealthcareAuthority,
-} from '../../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
+import getHealthcareAuthoritiesApi from '../../../api/healthcareAuthorities/getHealthcareAuthoritiesApi';
+import { Coordinates, HealthcareAuthority } from '../../../common/types';
+import { isLocationWithinBounds } from '../../../helpers/autoSubscribe';
+import toggleSelectedHealthcareAuthorityAction from './toggleSelectedHealthcareAuthorityAction';
 
 const GET_HEALTHCARE_AUTHORITIES_STARTED = 'GET_HEALTHCARE_AUTHORITIES_STARTED';
 const GET_HEALTHCARE_AUTHORITIES_SUCCESS = 'GET_HEALTHCARE_AUTHORITIES_SUCCESS';
@@ -20,6 +21,11 @@ type Payload = {
   usesCustomUrl: boolean;
 };
 
+type GetHAActionOptions = {
+  customYamlUrl?: string;
+  autoSubscriptionLocation?: Coordinates;
+};
+
 const getHealthcareAuthorities_success = createAction(
   GET_HEALTHCARE_AUTHORITIES_SUCCESS,
   ({ healthcareAuthorities, usesCustomUrl }: Payload) => ({
@@ -32,9 +38,11 @@ const getHealthcareAuthorities_failure = createAction(
 );
 
 const getHealthcareAuthoritiesAction = (
-  customYamlUrl?: string,
+  actionOptions?: GetHAActionOptions,
 ): AppThunk<void> => async (dispatch: Dispatch): Promise<void> => {
   dispatch(getHealthcareAuthorities_started());
+  const { customYamlUrl, autoSubscriptionLocation } = actionOptions || {};
+
   try {
     const healthcareAuthorities = await getHealthcareAuthoritiesApi(
       customYamlUrl,
@@ -45,6 +53,21 @@ const getHealthcareAuthoritiesAction = (
         usesCustomUrl: !!customYamlUrl, // Hack to hijack this action for custom YAML configs. This is for testing only.
       }),
     );
+
+    if (autoSubscriptionLocation) {
+      const localHealthAuthority = healthcareAuthorities.find((ha) =>
+        isLocationWithinBounds(ha, autoSubscriptionLocation),
+      );
+
+      if (localHealthAuthority) {
+        dispatch(
+          toggleSelectedHealthcareAuthorityAction(
+            { authority: localHealthAuthority, overrideValue: true },
+            { triggerIntersect: false },
+          ),
+        );
+      }
+    }
   } catch (error) {
     dispatch(getHealthcareAuthorities_failure({ error }));
   }

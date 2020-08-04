@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
 import { useStatusBarEffect } from '../../navigation';
-import { useStrategyContent } from '../../TracingStrategyContext';
 
 import { Spacing, Typography as TypographyStyles } from '../../styles';
 
@@ -14,7 +13,6 @@ const MoreInfo = (): JSX.Element => {
   const { t } = useTranslation();
   const navigation = useNavigation();
   useStatusBarEffect('light-content');
-  const { StrategyCopy } = useStrategyContent();
 
   const handleOnBackPress = () => {
     navigation.goBack();
@@ -30,7 +28,7 @@ const MoreInfo = (): JSX.Element => {
             {t('exposure_history.why_did_i_get_an_en')}
           </Typography>
           <Typography style={styles.contentText}>
-            {StrategyCopy.moreInfoWhyContent}
+            {t('exposure_history.gps.why_did_i_get_an_en_para')}
           </Typography>
         </View>
         <View style={styles.contentContainer}>
@@ -38,7 +36,7 @@ const MoreInfo = (): JSX.Element => {
             {t('exposure_history.how_does_this_work')}
           </Typography>
           <Typography style={styles.contentText}>
-            {StrategyCopy.moreInfoHowContent}
+            {t('exposure_history.gps.how_does_this_work_para')}
           </Typography>
         </View>
       </ScrollView>

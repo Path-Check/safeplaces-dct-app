@@ -8,6 +8,7 @@ import {
   getHealthcareAuthorities_success,
 } from '../actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import toggleSelectedHealthcareAuthorityAction from '../actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
+import toggleHealthcareAuthorityAutoSubscription from '../actions/healthcareAuthorities/toggleHealthcareAuthorityAutoSubscription';
 
 type HealthCareReducerState = {
   // Because we control this list to be super small and have type safety, we use the full models
@@ -15,6 +16,7 @@ type HealthCareReducerState = {
   availableAuthorities: HealthcareAuthority[];
   availableCustomAuthorities: HealthcareAuthority[];
   selectedAuthorities: HealthcareAuthority[];
+  autoSubscriptionEnabled: boolean;
   request: ApiRequest;
 };
 
@@ -22,6 +24,7 @@ const initialState: HealthCareReducerState = {
   availableAuthorities: [],
   availableCustomAuthorities: [], // For testing, from a custom uploaded YAML
   selectedAuthorities: [],
+  autoSubscriptionEnabled: true,
   request: {
     status: ApiStatus.INITIAL,
     errorMessage: null,
@@ -77,6 +80,12 @@ const healthcareAuthoritiesReducer = createReducer(initialState, (builder) =>
         if (overrideValue) {
           state.selectedAuthorities.push(authority);
         }
+      },
+    )
+    .addCase(
+      toggleHealthcareAuthorityAutoSubscription,
+      (state, { payload: { autoSubscriptionEnabled } }) => {
+        state.autoSubscriptionEnabled = autoSubscriptionEnabled;
       },
     ),
 );

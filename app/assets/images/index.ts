@@ -9,6 +9,7 @@ const ForeArrow = require('./foreArrow.png');
 const IsolatePathBackground = require('./isolatePathBackground.png');
 const MultipleCrossPathBackground = require('./multipleCrossPathBackground.png');
 const SingleCrossPathBackground = require('./singleCrossPathBackground.png');
+const CurveMask = require('./curveMask.png');
 
 export const Images = {
   BlueGradientBackground,
@@ -22,4 +23,5 @@ export const Images = {
   IsolatePathBackground,
   MultipleCrossPathBackground,
   SingleCrossPathBackground,
+  CurveMask,
 };

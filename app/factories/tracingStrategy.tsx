@@ -2,11 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Factory } from 'fishery';
 
-import {
-  TracingStrategy,
-  StrategyCopyContent,
-  StrategyAssets,
-} from '../tracingStrategy';
+import { TracingStrategy, StrategyAssets } from '../tracingStrategy';
 
 import { Images } from '../../app/assets/images';
 
@@ -23,7 +19,6 @@ export default Factory.define<TracingStrategy>(() => ({
   homeScreenComponent: HomeScreen,
   affectedUserFlow: AffectedUserFlow,
   assets: testStrategyAssets,
-  useCopy: () => testStrategyCopy,
 }));
 
 const PermissionsProvider = ({
@@ -40,32 +35,6 @@ const HomeScreen = () => {
 
 const AffectedUserFlow = () => {
   return <View testID={'affected-user-flow'} />;
-};
-
-export const testStrategyCopy: StrategyCopyContent = {
-  aboutHeader: 'aboutHeader',
-  detailedHistoryWhatThisMeansPara: 'detailedHistoryWhatThisMeansPara',
-  exportCompleteBody: 'exportCompleteBody',
-  exportPublishButtonSubtitle: 'exportPublishButtonSubtitle',
-  exposureNotificationsNotAvailableHeader:
-    'exposureNotificationsNotAvailableHeader',
-  exposureNotificationsNotAvailableSubheader:
-    'exposureNotificationsNotAvailableSubheader',
-  legalHeader: 'legalHeader',
-  moreInfoHowContent: 'moreInfoHowContent',
-  moreInfoWhyContent: 'moreInfoWhyContent',
-  personalPrivacyHeader: 'onboarding2Header',
-  personalPrivacyIconLabel: 'personalPrivacyIconLabel',
-  personalPrivacySubheader: 'onboarding2Subheader',
-  notificationDetailsHeader: 'onboarding3Header',
-  notificationDetailsIconLabel: 'notificationDetailsIconLabel',
-  notificationDetailsSubheader: 'onboarding3Subheader',
-  shareDiagnosisButton: 'onboarding4Button',
-  shareDiagnosisHeader: 'onboarding4Header',
-  shareDiagnosisIconLabel: 'shareDiagnosisIconLabel',
-  shareDiagnosisSubheader: 'onboarding4Subheader',
-  settingsLoggingActive: 'settingsLoggingActive)',
-  settingsLoggingInactive: 'settingsLoggingInactive',
 };
 
 export const testStrategyAssets: StrategyAssets = {

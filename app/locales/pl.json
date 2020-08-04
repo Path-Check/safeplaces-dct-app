@@ -7,18 +7,28 @@
     "version": "Wersja:"
   },
   "assessment": {
+    "agree_alert_description": "Aby skorzystać z programu SafePaths COVID-19, należy zaznaczyć, że zgadzają się Państwo na jego zastosowanie i rozumieją jego cel.",
     "agree_alert_title": "Wymagana umowa",
     "agree_option_agree": "Zgadzam się",
     "agree_option_disagree": "Nie zgadzam się",
+    "agree_question_description": "Zatrzymaj się i zadzwoń na pogotowie, jeśli występują: \n • Silny, stały ból lub ucisk w klatce piersiowej \n • Skrajne trudności w oddychaniu \n • Ciężka, ciągła zawroty głowy \n • Poważna dezorientacja lub brak reakcji",
+    "agree_question_text": "Czy to nagły wypadek?",
+    "agreement_cta": "Rozumiem i wyrażam zgodę",
+    "agreement_description": "Badanie przesiewowe pomaga w podjęciu decyzji o poszukiwaniu odpowiedniej opieki medycznej. Nie jest on przeznaczony do diagnozowania lub leczenia choroby lub innych schorzeń.",
+    "agreement_footer": "Kontynuując, zgadzasz się, że wyniki ankiety nie są przeznaczone do diagnozy ani leczenia.",
+    "agreement_title": "To nie jest do diagnozy",
     "cancel": "Anuluj",
     "caregiver_cta": "Dalej",
     "caregiver_title": "Powiadom opiekuna",
     "complete_cta": "Gotowe",
+    "complete_description": "Udostępniając anonimowo swój stan zdrowia i historię lokalizacji swojej społeczności, aktywnie walczysz z rozprzestrzenianiem się COVID-19.",
     "complete_title": "Wszystko gotowe!",
     "distancing_cta": "Dalej",
     "emergency_cta": "Wezwij służby ratunkowe",
+    "emergency_description": "Na podstawie zgłoszonych objawów należy natychmiast zwrócić się o pomoc.",
     "emergency_title": "Służby ratunkowe",
     "isolate_cta": "Dalej",
+    "isolate_description": "Masz pewne objawy, które mogą być związane z COVID-19. Skontaktuj się z lekarzem, jeśli objawy się nasilą. Rozpocznij izolację domową.",
     "isolate_title": "Odizoluj się",
     "next": "Dalej",
     "settings_title": "Ankieta",
@@ -47,17 +57,31 @@
     "done": "Gotowe",
     "next": "Dalej",
     "ok": "Ok",
+    "settings": "Otwórz ustawienia",
     "something_went_wrong": "Coś poszło nie tak",
-    "start": "Start"
+    "start": "Start",
+    "submit": "Zatwierdź"
   },
   "export": {
+    "code_input_body_bluetooth": "Wpisz swój kod weryfikacyjny",
+    "code_input_button_cancel": "Anuluj",
+    "code_input_button_submit": "Zatwierdź",
     "code_input_error": "Wypróbuj inny kod",
     "code_input_title": "Wpisz swój kod weryfikacyjny",
     "code_input_title_bluetooth": "Zweryfikuj swoją diagnozę",
+    "complete_body": "Dzieląc się anonimowo swoim stanem zdrowia i historią lokalizacji ze swoją społecznością, aktywnie walczysz z rozprzestrzenianiem się COVID-19.",
     "complete_body_bluetooth": "Wybierając opcję dzielenia się swoim statusem i anonimowego powiadamiania innych, pomagasz powstrzymać rozprzestrzenianie się wirusa i chronić innych w swojej społeczności.",
     "complete_title": "Dziękujemy za zapewnienie bezpieczeństwa Twojej społeczności!",
     "confirm_upload_button": "Wyślij historię lokalizacji",
+    "confirm_upload_title": "Wyślij historię lokalizacji do Departamentu Zdrowia",
+    "consent_button_cancel": "Anuluj",
+    "consent_button_subtitle": "Kontynuując, zgadzasz się na to, aby Twój organ opieki zdrowotnej mógł przechowywać Twoje dane przez pewien okres.",
     "consent_button_title": "Rozumiem i wyrażam zgodę",
+    "error": {
+      "invalid_code": "Wypróbuj inny kod",
+      "unknown_code_verification_error": "Wypróbuj inny kod",
+      "verification_code_used": "Kod weryfikacyjny został już użyty"
+    },
     "exit_warning_body": "Będziesz musiał wznowić ten proces",
     "exit_warning_cancel": "Anuluj",
     "exit_warning_confirm": "Tak, jestem pewny",
@@ -68,17 +92,45 @@
     "publish_consent_title": "Publikuj anonimowe dane",
     "publish_consent_title_bluetooth": "Powiadom innych w swojej społeczności",
     "select_ha_title": "Wybierz organ opieki zdrowotnej",
+    "start_body": "Współpracuj z przedstawicielem lokalnego Departamentu Zdrowia, aby usunąć dane osobowe z historii lokalizacji podczas wywiadu dotyczącego śledzenia kontaktów.",
     "start_body_bluetooth": "Wybierz anonimowe powiadomienie innych osób, z którymi mogłeś się spotkać i pomóż swojej społeczności powstrzymać rozprzestrzenianie się wirusa.",
     "start_title": "Podziel się anonimowo historią lokalizacji ze swoją społecznością jeśli uzyskałeś pozytywny wynik testu na COVID-19.",
     "start_title_bluetooth": "Pomóż powstrzymać rozprzestrzenianie się wirusa i chroń innych w Twojej społeczności, jeśli zdiagnozowano u Ciebie pozytywny wynik testu na COVID-19."
   },
+  "exposure_datum": {
+    "no_data": {
+      "explanation": "Dzieje się tak, gdy dostęp do lokalizacji jest wyłączony dla aplikacji PathCheck lub wybrana data była większa niż 14 dni temu. Na ten dzień nie będą dostępne żadne powiadomienia o ekspozycji."
+    },
+    "no_known": {
+      "explanation": "Twoja historia ekspozycji zostanie zaktualizowana, jeśli zmieni się to w przyszłości."
+    },
+    "possible": {
+      "what_next": "Co mam robić dalej?"
+    }
+  },
   "exposure_history": {
     "bt": {
-      "how_does_this_work": "Jak to działa?"
+      "how_does_this_work": "Jak to działa?",
+      "why_did_i_get_an_en_para": "Otrzymasz powiadomienie o narażeniu, gdy osoba, którą napotkałeś na swojej drodze, otrzyma potwierdzoną, pozytywną diagnozę lub test na COVID-19 i zdecyduje się powiadomić innych"
+    },
+    "gps": {
+      "how_does_this_work_para": "Gdy dostęp do lokalizacji jest włączony dla aplikacji PathCheck, aplikacja zapisuje następujące informacje o każdym miejscu, do którego zabierasz telefon: współrzędne GPS, datę i godzinę, kiedy telefon był w tej lokalizacji. \n\nInformacje te są przechowywane na zaszyfrowanej liście w telefonie przez 14 dni. Jeśli co najmniej jeden z lokalnych lub regionalnych Departamentów Zdrowia nawiązał współpracę z PathCheck, a Ty zdecydowałeś się otrzymywać od nich powiadomienia o ekspozycji w aplikacji PathCheck, mogą one wysyłać zaszyfrowane zbiory anonimowych współrzędnych GPS, dat i godzin zebranych od członków społeczności, którzy później otrzymali pozytywne diagnozy i postanowili się podzielić. \n\nTelefon następnie lokalnie (w aplikacji) porównuje zaszyfrowaną historię lokalizacji z danymi udostępnianymi przez wybrane lokalne Departamenty Zdrowia, aby poinformować Cię o możliwych zagrożeniach.",
+      "why_did_i_get_an_en_para": "Otrzymasz powiadomienia o narażeniu, gdy aplikacja PathCheck oceni, że Twój telefon był przez dłuższy czas w odległości 30 metrów od innej osoby, która później uzyskała pozytywną diagnozę i postanowiła udostępnić dziennik lokalizacji swojemu lokalnemu Departamentowi Zdrowia."
     },
     "how_does_this_work": "Jak to działa?",
-    "last_days": "Ostatnie 21 dni",
+    "last_days": "Ostatnie 14 dni",
     "legend_button": "LEGENDA",
+    "legend": {
+      "exposure_possible": "Możliwa ekspozycja",
+      "new_exposure": "Nowa możliwa ekspozycja",
+      "no_exposure_detected": "Nie wykryto ekspozycji",
+      "today": "Dziś"
+    },
+    "next_steps": {
+      "button_text": "Zobacz rekomendacje",
+      "possible_crossed_paths": "Na podstawie historii lokalizacji możliwe jest, że napotkałeś na swojej drodze osobę, u której zdiagnozowano COVID-19.",
+      "possible_infection_precaution": "Nie oznacza to, że jesteś zarażony, ale i tak powinieneś zachować ostrożność. Ludzie, którzy nie wykazują objawów, mogą czasem być zakażeni."
+    },
     "why_did_i_get_an_en": "Dlaczego otrzymałem powiadomienie o ekspozycji?"
   },
   "history": {
@@ -98,6 +150,8 @@
       "tracing_off_button": "Zezwolenie na powiadomienia o narażeniu",
       "tracing_off_header": "Powiadomienia o narażeniu wyłączone",
       "tracing_off_subheader": "Włącz powiadomienia o narażeniu, aby otrzymywać informacje o możliwych ekspozycjach",
+      "unauthorized_error_message": "Aby kontynuować, musisz autoryzować rejestrowanie ekspozycji COVID-19 w Ustawieniach aplikacji.",
+      "unauthorized_error_title": "Zaktualizuj ustawienia",
       "unavailable_header": "Powiadomienia o historii narażenia nie są jeszcze dostępne",
       "unavailable_subheader": "Twój telefon nie jest obecnie objęty systemem PathCheck przez władze opieki zdrowotnej."
     },
@@ -137,6 +191,12 @@
       "title": "Google Maps",
       "visit_button_text": "Odwiedź Google Takeout"
     },
+    "mockData": {
+      "custom_url_title": "Importuj z adresu URL",
+      "instruction_info": "Dane muszą być w formacie JSON!",
+      "invalid_url": "Nieprawidłowy adres URL JSON!",
+      "url_instructions": "Wprowadź adres URL zawierający dane lokalizacji testu, który chcesz dodać"
+    },
     "subtitle": "Aby sprawdzić, czy spotkałeś kogoś z COVID-19 przed pobraniem tej aplikacji, możesz zaimportować swoją osobistą historię lokalizacji.",
     "success": "Ostatnie lokalizacje zostały pomyślnie zaimportowane!",
     "title": "Importowanie lokalizacji"
@@ -144,6 +204,7 @@
   "label": {
     "about_header_bluetooth": "PathCheck Bluetooth",
     "about_header_location": "PathCheck GPS",
+    "about_para": "Aplikacja PathCheck jest udostępniana przez PathCheck Foundation, organizację non-profit, która jest zobowiązana do dostarczania bezpłatnego oprogramowania, które pomaga powstrzymać rozprzestrzenianie się COVID-19 i chronić prywatność osób. \n\n Po więcej informacji odwiedź",
     "authorities_add_button_label": "Dodaj organ opieki zdrowotnej",
     "authorities_add_url": "Dodaj instytucję poprzez adres URL",
     "authorities_desc": "Wybierz jeden lub więcej organów opieki zdrowotnej w Twojej okolicy, aby uzyskać informacje na temat COVID-19 w pobliżu, jeśli są dostępne. \n\nWybierz nazwę z rejestru globalnego lub wprowadź adres internetowy podany przez organ opieki zdrowotnej, który wdrożył PathCheck.",
@@ -164,6 +225,8 @@
     "choose_provider_title": "Twój organ opieki zdrowotnej",
     "default_news_site_name": "PathCheck Informacje",
     "enter_authority_url": "Wprowadź lub wklej adres URL",
+    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
+    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "event_history_subtitle": "Dowiedz się o swoim osobistym narażeniu na ryzyko zakażenia na podstawie informacji udostępnionych przez instytucje opieki zdrowotnej.",
     "event_history_title": "Historia narażenia na zakażenie",
     "filter_authorities_by_gps_history": "Filtruj według lokalizacji",
@@ -180,10 +243,10 @@
     "launch_done_subheader": "Możesz zaczynać. Pamiętaj, że zawsze możesz później zaktualizować swoje preferencje.",
     "launch_enable_auto_subscription": "Włącz automatyczną subskrypcję",
     "launch_enable_bluetooth": "Włącz Bluetooth",
-    "authorities_new_in_area_msg_0": "Subskrybuj {{count}} nową zaufaną instytucję opieki zdrowotnej w swojej lokalizacji",
-    "authorities_new_in_area_msg_3": "Subskrybuj {{count}} nowe zaufane instytucje opieki zdrowotnej w swojej lokalizacji",
     "launch_enable_exposure_notif": "Włącz",
     "launch_enable_notif": "Włącz powiadomienia",
+    "launch_exposure_notif_header": "Włącz powiadomienia o ekspozycji",
+    "launch_exposure_notif_subheader": "Aby otrzymywać powiadomienia o aktualizacjach historii narażenia, telefon potrzebuje pozwolenia na wymianę anonimowego losowego identyfikatora Bluetooth z innymi urządzeniami. \n\nPowiadomienia o ekspozycji działają tylko z innymi urządzeniami z włączonym ustawieniem. \n\nMożesz wyłączyć te powiadomienia w dowolnym momencie.",
     "launch_finish_set_up": "Zakończ konfigurację",
     "launch_get_started": "Zaczynamy",
     "launch_header_bluetooth": "Aby wiedzieć, z kim miałeś kontakt, Twój telefon musi mieć dostęp do Bluetooth.",
@@ -236,6 +299,7 @@
   },
   "navigation": {
     "history": "Historia",
+    "home": "Strona główna",
     "locations": "Lokalizacje",
     "more": "Więcej",
     "partners": "Partnerzy",
@@ -244,7 +308,12 @@
   "onboarding": {
     "eula_checkbox": "Akceptuję umowę licencyjną",
     "eula_continue": "Dalej",
-    "eula_message": "*Musisz zaakceptować, jeśli chcesz korzystać z PathCheck"
+    "eula_message": "*Musisz zaakceptować, jeśli chcesz korzystać z PathCheck",
+    "location_header": "Aby określić, kiedy mógł nastąpić kontakt z wirusem, PathCheck potrzebuje dostępu do lokalizacji.",
+    "location_subheader": "Twój dziennik lokalizacji PathCheck zawiera tylko współrzędne GPS, daty i godziny. \n\n Twoje dane nie będą udostępniane nikomu, chyba że zdecydujesz się to zrobić.",
+    "maybe_later": "Może później",
+    "notification_header": "Czy chcesz otrzymywać powiadomienia o tym, kiedy mogłeś skrzyżować swoje ścieżki z wirusem?",
+    "notification_subheader": "PathCheck współpracuje z lokalnymi oddziałami zdrowia w celu śledzenia wirusa. Jeśli znajdujesz się w jurysdykcji obsługiwanej przez jednego z partnerów naszego Departamentu Zdrowia, możesz otrzymywać powiadomienia o narażeniu od swojego Departamentu Zdrowia."
   },
   "screen_titles": {
     "about": "O nas",

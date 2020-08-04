@@ -5,7 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableHighlight,
-  TouchableOpacity,
+  Alert,
+  NativeModules,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { SvgXml } from 'react-native-svg';
@@ -19,17 +20,10 @@ import { getLocalNames } from '../../locales/languages';
 import FeatureFlag from '../../components/FeatureFlag';
 import { Typography } from '../../components/Typography';
 import { NavigationBarWrapper } from '../../components/NavigationBarWrapper';
-import { isGPS } from '../../COVIDSafePathsConfig';
-import GoogleMapsImport from './GoogleMapsImport';
 import { Screens, useStatusBarEffect } from '../../navigation';
 
 import { Icons } from '../../assets';
-import {
-  Buttons,
-  Colors,
-  Spacing,
-  Typography as TypographyStyles,
-} from '../../styles';
+import { Colors, Spacing, Typography as TypographyStyles } from '../../styles';
 import { FeatureFlagOption, RootState } from '../../store/types';
 import { useSelector } from 'react-redux';
 
@@ -83,6 +77,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     onPress: () => void;
     description?: string;
     style?: ViewStyle;
+    textColor?: string;
   }
 
   const SettingsListItem = ({
@@ -90,6 +85,7 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     onPress,
     description,
     style,
+    textColor,
   }: SettingsListItemProps) => {
     return (
       <TouchableHighlight
@@ -97,7 +93,9 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
         style={[styles.listItem, style]}
         onPress={onPress}>
         <View>
-          <Typography style={styles.listItemText}>{label}</Typography>
+          <Typography style={{ ...styles.listItemText, color: textColor }}>
+            {label}
+          </Typography>
           {description ? (
             <Typography style={styles.descriptionText}>
               {description}
@@ -108,26 +106,35 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
     );
   };
 
+  const handleOnPressDeleteLocationHistory = () => {
+    return Alert.alert(
+      t('location.data.delete_warning_title'),
+      t('location.data.delete_warning_body'),
+      [
+        {
+          text: t('location.data.delete_warning_cancel'),
+          onPress: () => {},
+        },
+        {
+          text: t('location.data.delete_warning_confirm'),
+          onPress: onConfirmPress,
+          style: 'destructive',
+        },
+      ],
+      { cancelable: false },
+    );
+  };
+
+  const onConfirmPress = async () => {
+    await NativeModules.SecureStorageManager.removeAllLocations();
+    return;
+  };
+
   return (
     <NavigationBarWrapper
       title={t('navigation.more')}
       includeBackButton={false}>
       <ScrollView style={styles.container}>
-        {!isGPS && (
-          <View style={styles.sectionPrimary}>
-            <Typography>
-              {t('settings.share_test_result_description')}
-            </Typography>
-            <TouchableOpacity
-              onPress={navigateTo(Screens.ExportFlow)}
-              style={styles.button}>
-              <Typography style={styles.buttonText}>
-                {t('settings.share_test_result')}
-              </Typography>
-            </TouchableOpacity>
-          </View>
-        )}
-
         <View style={styles.section}>
           <LanguageSelectionListItem
             label={languageName || t('label.unknown')}
@@ -136,16 +143,6 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             onPress={navigateTo(Screens.LanguageSelection)}
           />
         </View>
-
-        {isGPS ? (
-          <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
-            <View style={styles.section}>
-              <View style={styles.listItem}>
-                <GoogleMapsImport navigation={navigation} />
-              </View>
-            </View>
-          </FeatureFlag>
-        ) : null}
 
         <View style={styles.section}>
           <SettingsListItem
@@ -160,25 +157,14 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
           />
         </View>
 
-        {!isGPS ? (
-          <View style={styles.section}>
-            <SettingsListItem
-              label='EN Debug Menu'
-              onPress={navigateTo(Screens.ENDebugMenu)}
-              style={styles.lastListItem}
-            />
-          </View>
-        ) : null}
-
-        <FeatureFlag flag={FeatureFlagOption.GOOGLE_IMPORT}>
-          <View style={styles.section}>
-            <SettingsListItem
-              label={'Download Locally'}
-              onPress={navigateTo(Screens.ExportLocally)}
-              style={styles.lastListItem}
-            />
-          </View>
-        </FeatureFlag>
+        <View style={styles.section}>
+          <SettingsListItem
+            label={t('screen_titles.delete_location_history')}
+            onPress={handleOnPressDeleteLocationHistory}
+            style={styles.lastListItem}
+            textColor={Colors.red}
+          />
+        </View>
 
         {enableFlags && (
           <View style={styles.section}>
@@ -189,6 +175,34 @@ const SettingsScreen = ({ navigation }: SettingsScreenProps): JSX.Element => {
             />
           </View>
         )}
+
+        <FeatureFlag flag={FeatureFlagOption.IMPORT_LOCATIONS_JSON_URL}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Import Location Data (JSON URL)'}
+              onPress={navigateTo(Screens.ImportFromUrl)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
+        <FeatureFlag flag={FeatureFlagOption.IMPORT_LOCATIONS_GOOGLE}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Import Location Data (Google Maps)'}
+              onPress={navigateTo(Screens.ImportFromGoogle)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
+        <FeatureFlag flag={FeatureFlagOption.DOWNLOAD_LOCALLY}>
+          <View style={styles.section}>
+            <SettingsListItem
+              label={'Download Locally'}
+              onPress={navigateTo(Screens.ExportLocally)}
+              style={styles.lastListItem}
+            />
+          </View>
+        </FeatureFlag>
       </ScrollView>
     </NavigationBarWrapper>
   );
@@ -213,17 +227,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colors.tertiaryViolet,
-  },
-  sectionPrimary: {
-    flex: 1,
-    margin: Spacing.medium,
-  },
-  button: {
-    ...Buttons.largeSecondaryBlue,
-    marginTop: Spacing.medium,
-  },
-  buttonText: {
-    ...TypographyStyles.buttonTextLight,
   },
   icon: {
     maxWidth: Spacing.icon,

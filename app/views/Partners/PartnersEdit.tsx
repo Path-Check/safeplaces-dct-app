@@ -20,7 +20,7 @@ import NoAuthoritiesMessage from '../../components/NoAuthoritiesMessage';
 import FeatureFlag from '../../components/FeatureFlag';
 
 import { Icons } from '../../assets';
-import { Colors, Buttons, Spacing } from '../../styles';
+import { Colors, Spacing } from '../../styles';
 
 type PartnersEditScreenProps = {
   navigation: NavigationProp;
@@ -64,10 +64,10 @@ const PartnersScreen = ({
 
   const toggleSelected = (HA: HealthcareAuthority) => {
     dispatch(
-      toggleSelectedHealthcareAuthorityAction({
-        authority: HA,
-        overrideValue: !isSelected(HA),
-      }),
+      toggleSelectedHealthcareAuthorityAction(
+        { authority: HA, overrideValue: !isSelected(HA) },
+        { triggerIntersect: true },
+      ),
     );
   };
 
@@ -94,7 +94,7 @@ const PartnersScreen = ({
                 flexDirection: 'row',
               }}>
               <Typography
-                style={{ fontWeight: '500', paddingRight: 30 }}
+                style={{ fontWeight: '500', paddingRight: 30, flex: 1 }}
                 use='body1'>
                 {HA.name}
               </Typography>
@@ -122,9 +122,9 @@ const PartnersScreen = ({
       <FeatureFlag flag={FeatureFlagOption.CUSTOM_URL}>
         <View style={{ padding: Spacing.large }}>
           <Button
+            invert
             label={t('authorities.custom_url')}
             onPress={() => navigation.navigate(Screens.PartnersCustomUrl)}
-            style={styles.button}
           />
         </View>
       </FeatureFlag>
@@ -138,9 +138,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: Spacing.xLarge,
-  },
-  button: {
-    ...Buttons.largeBlue,
   },
 });
 export default PartnersScreen;

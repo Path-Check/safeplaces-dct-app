@@ -16,6 +16,7 @@ import {
 interface ExposureDatumIndicatorProps {
   exposureDatum: ExposureDatum;
   isSelected: boolean;
+  disabled?: boolean;
 }
 
 type IndicatorStyle = [ViewStyle, TextStyle];
@@ -23,6 +24,7 @@ type IndicatorStyle = [ViewStyle, TextStyle];
 const ExposureDatumIndicator = ({
   exposureDatum,
   isSelected,
+  disabled,
 }: ExposureDatumIndicatorProps): JSX.Element => {
   const isToday = DateTimeUtils.isToday(exposureDatum.date);
 
@@ -30,7 +32,7 @@ const ExposureDatumIndicator = ({
     return (
       <>
         {indicator}
-        <View style={styles.selectedBadge} />
+        <View style={styles.todayBadge} />
       </>
     );
   };
@@ -109,7 +111,11 @@ const ExposureDatumIndicator = ({
 
   const dayNumber = dayjs(exposureDatum.date).format('D');
 
-  const indicator = <Text style={textStyle}>{dayNumber}</Text>;
+  const indicator = (
+    <Text style={[textStyle, disabled && { color: Colors.quaternaryViolet }]}>
+      {dayNumber}
+    </Text>
+  );
 
   return (
     <View style={circleStyle}>
@@ -132,11 +138,10 @@ const styles = StyleSheet.create({
   textBase: {
     ...Typography.smallFont,
     ...Typography.monospace,
-    color: Colors.primaryText,
     fontWeight: Typography.heavyWeight,
   },
-  selectedBadge: {
-    ...Affordances.bottomDotBadge(Colors.primaryText),
+  todayBadge: {
+    ...Affordances.bottomDotBadge(Colors.primaryBlue),
   },
 });
 

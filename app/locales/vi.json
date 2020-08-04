@@ -11,6 +11,8 @@
     "next": "Tiếp theo"
   },
   "export": {
+    "code_input_button_cancel": "Hủy",
+    "consent_button_cancel": "Hủy",
     "exit_warning_cancel": "Hủy"
   },
   "home": {

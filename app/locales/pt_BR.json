@@ -32,6 +32,8 @@
     "ok": "Ok"
   },
   "export": {
+    "code_input_button_cancel": "Cancelar",
+    "consent_button_cancel": "Cancelar",
     "exit_warning_cancel": "Cancelar",
     "location_consent_body": "Seu histórico de localização é usado por um(a) representantes de {{name}} para entrevistá-lo(a) sobre lugares que você visitou e quando você esteve lá.\n\nUma vez que você enviar seu histórico de localização para {{name}}, eles reterão seus dados por um período específico de tempo.",
     "location_consent_title": "Uso do histórico de localização"
@@ -91,12 +93,9 @@
     "authorities_desc": "Escolha autoridades de saúde de sua região para obter dados de exposição. Selecione o nome a partir do registro mundial, ou entre o endereço da web fornecido pela autoridade que implementou PathCheck.",
     "authorities_input_placeholder": "Cole o endereço URL aqui",
     "authorities_new_in_area_msg": "Se inscreva em {{count}} nova autoridade de saúde de confiança em sua área.",
-    "authorities_new_in_area_title": "Nova Autoridade de Saúde",
-    "authorities_new_in_area_title_plural": "Novas Autoridades de Saúde",
-    "authorities_new_subscription_msg": "Voce foi inscrito(a) em {{count}} nova autoridade em sua localização",
-    "authorities_new_subscription_msg_plural": "Voce foi inscrito(a) em {{count}} novas autoridades em sua localização",
-    "authorities_new_subscription_title": "Nova Inscrição",
-    "authorities_new_subscription_title_plural": "Novas Inscrições",
+    "authorities_new_in_area_title": "{\"one\":\"Nova Autoridade de Sa\\u00fade\",\"other\":\"Novas Autoridades de Sa\\u00fade\"}",
+    "authorities_new_subscription_msg": "{\"one\":\"Voce foi inscrito(a) em [%1$s:count] nova autoridade em sua localiza\\u00e7\\u00e3o\",\"other\":\"Voce foi inscrito(a) em [%1$s:count] novas autoridades em sua localiza\\u00e7\\u00e3o\"}",
+    "authorities_new_subscription_title": "{\"one\":\"Nova Inscri\\u00e7\\u00e3o\",\"other\":\"Novas Inscri\\u00e7\\u00f5es\"}",
     "authorities_no_sources": "Sem dados até o momento",
     "authorities_removal_alert_cancel": "Cancelar",
     "authorities_removal_alert_desc": "Confirma a exclusão da autoridade de saúde como fonte de dados?",

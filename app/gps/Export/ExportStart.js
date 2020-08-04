@@ -8,7 +8,7 @@ export const ExportStart = ({ navigation }) => {
   const { t } = useTranslation();
 
   const onNext = () => {
-    navigation.navigate(Screens.ExportSelectHA);
+    navigation.navigate(Screens.ExportFlow);
   };
 
   return (

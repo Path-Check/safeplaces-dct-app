@@ -9,7 +9,7 @@
       src="./assets/Safe_Paths_Logo.png"
     />
   </a>
-  
+
   <b>**https://pathcheck.org/**</b>
 </div>
 
@@ -19,9 +19,9 @@
 
 Help us stop COVID-19.
 
-COVID Safe Paths is a mobile app for digital contract tracing (DCT) sponsored by Path Check a nonprofit and developed by a growing global community of engineers, designers, and contributors. Safe Paths is based on research originally conducted at the MIT Media Lab. 
+COVID Safe Paths is a mobile app for digital contract tracing (DCT) sponsored by Path Check a nonprofit and developed by a growing global community of engineers, designers, and contributors. Safe Paths is based on research originally conducted at the MIT Media Lab.
 
-## Privacy Preserving 
+## Privacy Preserving
 
 What’s truly special about Safe Paths is our strong commitment to preserving the privacy of individual users. We're building an application that can help contain outbreaks of COVID-19 without forcing users to sacrifice their personal privacy. For example, if a user chooses to use Safe Paths to maintain a record of their locations use a time stamped GPS log, which stores 14 days of data in 5 minute increments. The location log is stored on the user's phone. The logged data only leaves the device if the user chooses to send the information to an authorized public health authority (PHA) as part of the contact tracing process.
 
@@ -29,14 +29,14 @@ What’s truly special about Safe Paths is our strong commitment to preserving t
 
 Safe Paths is designed to support a range of DCT and public health use cases. Currently the main build uses GPS for location tracking. Our roadmap includes adding support for other location and proximity technologies, symptom tracking, and communication with PHAs.
 
-## Multiple Implementation Strategies 
+## Multiple Implementation Strategies
 
 The Safe Paths app is being developed to support a variety of build 'flavors' of the application around core health and tracing functionality. Reach out to our team to discuss creating a flavor for your use-case.
 
 ### Path Check Release of COVID Safe Paths
-Safe Paths is available as an app published by Path Check in the [Apple App Store](https://apps.apple.com/us/app/covid-safe-paths/id1508266966) and the [Google Play App Store](https://play.google.com/store/apps/details?id=org.pathcheck.covidsafepaths). Any authorized pubic health authority can use Safe Paths. 
+Safe Paths is available as an app published by Path Check in the [Apple App Store](https://apps.apple.com/us/app/covid-safe-paths/id1508266966) and the [Google Play App Store](https://play.google.com/store/apps/details?id=org.pathcheck.covidsafepaths). Any authorized pubic health authority can use Safe Paths.
 
-### Custom Builds 
+### Custom Builds
 
 We welcome public health authorities and other organizations implementing digital contact tracing strategies to create custom builds for their specific needs, incorporate Safe Paths features into their applications, or create downstream projects that stay linked to the Safe Paths project. If intending to fork the repository and develop off of it, be aware that this comes "at your own risk" for continued maintenance.
 
@@ -44,7 +44,7 @@ We welcome public health authorities and other organizations implementing digita
 
 Safe Paths is designed to work with Safe Places, a tool for contact tracing teams to work with location data in the course of contact tracing interviews and to publish points of concern. Without having to sharing their own location history, a Safe Paths user can download the points of concern from their PHA to identify if they have had risk of an exposure.
 
-## Broad Non-Developer Community 
+## Broad Non-Developer Community
 
 One of the important aspects of the Safe Paths open source project is that it's supported by a large community of volunteers in addition to the open source developer community. Spanning as diverse domains as product management, user research, cryptography, security, compliance, design, and videography more than 1,400 Path Check volunteers are working together to support Safe Paths and help drive adoption around the world.
 
@@ -54,9 +54,9 @@ One of the important aspects of the Safe Paths open source project is that it's 
 
 [Apps Gone Rogue: Maintaining Personal Privacy in an Epidemic](https://drive.google.com/file/d/1nwOR4drE3YdkCkyy_HBd6giQPPhLEkRc/view?usp=sharing) - The original white paper.
 
-[COVID Safe Paths Slack](covidsafepaths.slack.com) - Where the community lives. 
+[COVID Safe Paths Slack](covidsafepaths.slack.com) - Where the community lives.
 
-[Path-Check/gaen-mobile] - PathCheck's GAEN based contract tracing solution.
+[Path-Check/gaen-mobile](https://github.com/Path-Check/gaen-mobile) - PathCheck's GAEN based contract tracing solution.
 
 ### Downloads for COVID Safe Paths
 
@@ -117,7 +117,7 @@ Populate the following 2 `.env` files with the relevant urls for your GAEN serve
 #### Android (Windows, Linux, macOS)
 
 ```
-yarn run-android-gps ## for the location enabled app
+yarn run-android ## for the location enabled app
 ```
 
 Device storage can be cleared by long-pressing on the app icon in the simulator, clicking "App info", then "Storage", and lastly, "Clear Storage".
@@ -133,7 +133,7 @@ yarn install:pod ## only needs to be ran once
 Then, run the application:
 
 ```
-yarn run-ios-gps ## for the location enabled app
+yarn run-ios ## for the location enabled app
 ```
 
 Device storage can be cleared by clicking "Hardware" on the system toolbar, and then "Erase all content and settings".

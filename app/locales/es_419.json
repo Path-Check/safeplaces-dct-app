@@ -29,6 +29,8 @@
     "start": "Inicio"
   },
   "export": {
+    "code_input_button_cancel": "Cancelar",
+    "consent_button_cancel": "Cancelar",
     "location_consent_title": "Uso del historial de ubicaciones"
   },
   "history": {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -48,6 +48,14 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
     }
   };
 
+  // refreshes state
+  useEffect(() => {
+    const updatedExposureHistory: ExposureDatum | null =
+      exposureHistory.find((datum) => datum.date === selectedDatum?.date) ||
+      null;
+    setSelectedDatum(updatedExposureHistory);
+  }, [exposureHistory]);
+
   const handleOnPressMoreInfo = () => {
     navigation.navigate(Screens.MoreInfo);
   };
@@ -62,7 +70,9 @@ const History = ({ exposureHistory }: HistoryProps): JSX.Element => {
       <ScrollView style={styles.container} alwaysBounceVertical={false}>
         <View>
           <View style={styles.headerRow}>
-            <Typography style={styles.headerText}>{titleText}</Typography>
+            <View style={{ flexShrink: 1 }}>
+              <Typography style={styles.headerText}>{titleText}</Typography>
+            </View>
             <TouchableOpacity
               onPress={handleOnPressMoreInfo}
               style={styles.moreInfoButton}>
@@ -101,8 +111,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryBackground,
   },
   headerRow: {
+    alignItems: 'center',
     flexDirection: 'row',
-    flexWrap: 'wrap',
     marginTop: Spacing.xSmall,
   },
   headerText: {
