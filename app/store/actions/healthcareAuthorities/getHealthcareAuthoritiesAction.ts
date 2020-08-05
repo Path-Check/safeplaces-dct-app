@@ -55,15 +55,18 @@ const getHealthcareAuthoritiesAction = (
     );
 
     if (autoSubscriptionLocation) {
-      const localHealthAuthority = healthcareAuthorities.find((ha) =>
-        isLocationWithinBounds(ha, autoSubscriptionLocation),
+      const localHealthAuthority = healthcareAuthorities.find(
+        (ha) => isLocationWithinBounds(ha, autoSubscriptionLocation) || true,
       );
 
       if (localHealthAuthority) {
         dispatch(
           toggleSelectedHealthcareAuthorityAction(
             { authority: localHealthAuthority, overrideValue: true },
-            { triggerIntersect: false },
+            {
+              triggerIntersect: false,
+              autoSubscribed: !!autoSubscriptionLocation,
+            },
           ),
         );
       }

@@ -7,7 +7,8 @@ type Payload = {
 };
 
 type Meta = {
-  triggerIntersect: boolean;
+  triggerIntersect?: boolean; // indicates that this action should trigger a recomputation of possible exposure notifications
+  autoSubscribed?: boolean; // indicates that this was triggered via geofencing auto subscription
 };
 
 const TOGGLE_SELECTED_HEALTHCARE_AUTHORITY =
@@ -15,9 +16,12 @@ const TOGGLE_SELECTED_HEALTHCARE_AUTHORITY =
 
 const toggleSelectedHealthcareAuthorityAction = createAction(
   TOGGLE_SELECTED_HEALTHCARE_AUTHORITY,
-  ({ authority, overrideValue }: Payload, { triggerIntersect }: Meta) => ({
+  (
+    { authority, overrideValue }: Payload,
+    { triggerIntersect, autoSubscribed }: Meta,
+  ) => ({
     payload: { authority, overrideValue },
-    meta: { triggerIntersect },
+    meta: { triggerIntersect, autoSubscribed },
   }),
 );
 

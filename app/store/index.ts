@@ -19,7 +19,7 @@ const enhancers = composeWithDevTools(
   ),
 );
 
-export const STORE_VERSION = 1;
+export const STORE_VERSION = 2;
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
