@@ -99,8 +99,7 @@ android/app/release
 safepaths.realm
 
 # env files
-.env
-.env.bt*
+.env**
 
 # private resources
 pathcheck-mobile-resources
