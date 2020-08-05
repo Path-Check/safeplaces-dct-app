@@ -5,9 +5,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    debug: ".env.gps",
-    staging: ".env.gps.staging",
-    release: ".env.gps.release",
+    debug: ".env.debug",
+    staging: ".env.staging",
+    release: ".env.release",
 ]
 
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"

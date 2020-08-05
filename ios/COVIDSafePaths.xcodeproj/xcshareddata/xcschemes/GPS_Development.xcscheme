@@ -10,7 +10,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "echo &quot;.env.gps&quot; &gt; /tmp/envfile   # use .env.gps&#10;">
+               scriptText = "echo &quot;.env.dev&quot; &gt; /tmp/envfile   # use .env.dev&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
