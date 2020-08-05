@@ -55,8 +55,8 @@ const getHealthcareAuthoritiesAction = (
     );
 
     if (autoSubscriptionLocation) {
-      const localHealthAuthority = healthcareAuthorities.find(
-        (ha) => isLocationWithinBounds(ha, autoSubscriptionLocation) || true,
+      const localHealthAuthority = healthcareAuthorities.find((ha) =>
+        isLocationWithinBounds(ha, autoSubscriptionLocation),
       );
 
       if (localHealthAuthority) {
