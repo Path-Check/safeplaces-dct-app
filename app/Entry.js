@@ -33,6 +33,7 @@ import ShareDiagnosis from './views/onboarding/ShareDiagnosis';
 import NotificationsPermissions from './views/onboarding/NotificationsPermissions';
 import LocationsPermissions from './views/onboarding/LocationsPermissions';
 import LanguageSelection from './views/LanguageSelection';
+import ReportIssueForm from './views/ReportIssueForm';
 
 import { Screens, Stacks } from './navigation';
 
@@ -89,6 +90,7 @@ const MoreTabStack = () => (
     <Stack.Screen name={Screens.ImportFromGoogle} component={ImportScreen} />
     <Stack.Screen name={Screens.ImportFromUrl} component={ImportFromUrl} />
     <Stack.Screen name={Screens.ExportLocally} component={ExportLocally} />
+    <Stack.Screen name={Screens.ReportIssue} component={ReportIssueForm} />
   </Stack.Navigator>
 );
 

@@ -50,7 +50,8 @@ export type Screen =
   | 'AffectedUserPublishConsent'
   | 'AffectedUserConfirmUpload'
   | 'AffectedUserExportDone'
-  | 'AffectedUserComplete';
+  | 'AffectedUserComplete'
+  | 'ReportIssue';
 
 export const Screens: { [key in Screen]: Screen } = {
   ExportStart: 'ExportStart',
@@ -91,6 +92,7 @@ export const Screens: { [key in Screen]: Screen } = {
   AffectedUserConfirmUpload: 'AffectedUserConfirmUpload',
   AffectedUserExportDone: 'AffectedUserExportDone',
   AffectedUserComplete: 'AffectedUserComplete',
+  ReportIssue: 'ReportIssue',
 };
 
 export type Stack =

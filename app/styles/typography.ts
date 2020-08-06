@@ -211,7 +211,6 @@ export const primaryTextInput: TextStyle = {
   ...extraBold,
   fontSize: larger,
   lineHeight: largest,
-  textAlign: 'center',
   color: Colors.primaryText,
 };
 

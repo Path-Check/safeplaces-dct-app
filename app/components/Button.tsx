@@ -44,10 +44,13 @@ export const Button = ({
       accessibilityRole='button'
       disabled={disabled || loading}
       style={[styles.button, style]}>
-      {loading ? (
-        <ActivityIndicator size={'large'} />
-      ) : (
-        <Typography style={buttonTextStyle}>{label}</Typography>
+      <Typography style={buttonTextStyle}>{loading ? ' ' : label}</Typography>
+      {loading && (
+        <ActivityIndicator
+          size={'large'}
+          style={{ position: 'absolute' }}
+          color={buttonTextStyle.color}
+        />
       )}
     </TouchableOpacity>
   );
