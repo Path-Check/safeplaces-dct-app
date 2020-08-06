@@ -513,7 +513,7 @@ async function getPageData(authority, page) {
   let pageData = await GetStoreData(cacheKey, false);
 
   if (
-    (!pageData || !!shouldUpdatePage(page, pageData)) &&
+    (!pageData || shouldUpdatePage(page, pageData)) &&
     (await shouldDownloadPageData())
   ) {
     try {
