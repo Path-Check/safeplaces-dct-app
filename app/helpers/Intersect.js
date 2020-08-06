@@ -509,12 +509,16 @@ export function disableDebugMode() {
 async function getPageData(authority, page) {
   // this function should always return an object.
   // if there's no data, return an empty object.
-  const cacheKey = page.checksum || authority.internal_id + '|page:' + page.id;
+  const cacheKey = authority.internal_id + '|page:' + page.id;
   let pageData = await GetStoreData(cacheKey, false);
-  if (!pageData && (await shouldDownloadPageData())) {
+
+  if (
+    (!pageData || !!shouldUpdatePage(page, pageData)) &&
+    (await shouldDownloadPageData())
+  ) {
     try {
       pageData = await retrieveUrlAsJson(page.filename);
-      SetStoreData(cacheKey, pageData);
+      SetStoreData(cacheKey, { ...pageData, checksum: page.checksum || null });
     } catch (e) {
       // sometimes the url isn't right, the download will fail
       console.log(
@@ -526,6 +530,12 @@ async function getPageData(authority, page) {
     }
   }
   return pageData || {};
+}
+
+function shouldUpdatePage(page, pageData) {
+  if (pageData.version !== '1.0') {
+    return page.checksum !== pageData.checksum;
+  }
 }
 
 async function shouldDownloadPageData() {
