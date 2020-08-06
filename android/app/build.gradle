@@ -5,7 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'realm-android'
 
 project.ext.envConfigFiles = [
-    debug: ".env.debug",
+    debug: ".env.dev",
     staging: ".env.staging",
     release: ".env.release",
 ]
