@@ -9,7 +9,7 @@ import com.facebook.react.uimanager.ViewManager
 
 class RealmPackage : ReactPackage {
   override fun createNativeModules(reactContext: ReactApplicationContext): MutableList<NativeModule> {
-    return mutableListOf(SecureStorageManager(reactContext))
+    return mutableListOf(SecureStorageManager(reactContext),Device(reactContext))
   }
 
   override fun createViewManagers(reactContext: ReactApplicationContext): MutableList<ViewManager<View, ReactShadowNode<*>>> {

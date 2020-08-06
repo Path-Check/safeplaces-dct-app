@@ -26,6 +26,8 @@
 		08445F6824284A52008754AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08445F6724284A52008754AC /* UIKit.framework */; };
 		12922BC2C16E4BCCB3F4EA44 /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 668BDA050EF549C6B0759425 /* IBMPlexSans-Bold.ttf */; };
 		1360D7CA70F14549967C9912 /* IBMPlexMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3918820E06534ED8B0C3323C /* IBMPlexMono-ThinItalic.ttf */; };
+		1CA81E4F24DBFC99003BCFD4 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA81E4E24DBFC99003BCFD4 /* Device.m */; };
+		1CA81E5024DBFC99003BCFD4 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CA81E4E24DBFC99003BCFD4 /* Device.m */; };
 		25004E4C90704C6B807B88C7 /* IBMPlexMono-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71F26FBF5BDA423184286546 /* IBMPlexMono-MediumItalic.ttf */; };
 		2606D1B2B11C4D419867361F /* IBMPlexSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A57577D96B89452694B53982 /* IBMPlexSans-MediumItalic.ttf */; };
 		271089B024698720009AC76F /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271089AF24698720009AC76F /* LocationTests.swift */; };
@@ -133,6 +135,8 @@
 		1423A22FF9E04F88BEEE42D6 /* IBMPlexSans-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Thin.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Thin.ttf"; sourceTree = "<group>"; };
 		145476A32A7724DCC004C292 /* Pods-GPS.staging-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.staging-gps.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.staging-gps.xcconfig"; sourceTree = "<group>"; };
 		167DF82F84E242A39CBEB042 /* IBMPlexMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-ExtraLightItalic.ttf"; path = "../shared/assets/fonts/IBMPlexMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		1CA81E4E24DBFC99003BCFD4 /* Device.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		1CA81E5324DBFCAC003BCFD4 /* Device.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		20E5EE8E6065465F9558DCDB /* IBMPlexMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexMono-SemiBoldItalic.ttf"; path = "../app/assets/fonts/IBMPlexMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		210E5F50B07048118538B796 /* IBMPlexSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "IBMPlexSans-Italic.ttf"; path = "../shared/assets/fonts/IBMPlexSans-Italic.ttf"; sourceTree = "<group>"; };
 		22E0DA6B2DECC1B29A4C7B64 /* Pods-GPS.release-gps.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GPS.release-gps.xcconfig"; path = "Target Support Files/Pods-GPS/Pods-GPS.release-gps.xcconfig"; sourceTree = "<group>"; };
@@ -622,6 +626,8 @@
 				D4B4A89E24C8A1A700E00A99 /* GPS-Bridging-Header.h */,
 				D4B4A89D24C8A1A700E00A99 /* SecureStorageManager.m */,
 				D4B4A89F24C8A1A700E00A99 /* SecureStorageManager.swift */,
+				1CA81E4E24DBFC99003BCFD4 /* Device.m */,
+				1CA81E5324DBFCAC003BCFD4 /* Device.h */,
 			);
 			path = Bridge;
 			sourceTree = "<group>";
@@ -919,6 +925,7 @@
 				271089B024698720009AC76F /* LocationTests.swift in Sources */,
 				68D8971C24809FB50091A254 /* Array+ExtensionTests.swift in Sources */,
 				00E356F31AD99517003FC87E /* COVIDSafePathsTests.m in Sources */,
+				1CA81E5024DBFC99003BCFD4 /* Device.m in Sources */,
 				68D8971824809F5C0091A254 /* MARULocation+ExtensionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -937,6 +944,7 @@
 				D4B4A86124C8A16400E00A99 /* AppDelegate.m in Sources */,
 				B52D88C2248F0FD90071ED51 /* GPSSecureStorage.swift in Sources */,
 				D4B4A8A024C8A1A700E00A99 /* MAURLocation+Extension.swift in Sources */,
+				1CA81E4F24DBFC99003BCFD4 /* Device.m in Sources */,
 				276AB15C245291DE00D39B58 /* Location.swift in Sources */,
 				D4B4A86024C8A16400E00A99 /* main.m in Sources */,
 			);
@@ -1133,7 +1141,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
- 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
@@ -1294,7 +1302,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
- 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);
@@ -1450,7 +1458,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-geolocation\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-safe-area-context\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-splash-screen\"",
- 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-viewpager\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/react-native-webview\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/rn-fetch-blob\"",
 				);

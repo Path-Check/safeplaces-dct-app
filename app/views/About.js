@@ -9,8 +9,8 @@ import {
   View,
   Alert,
   TouchableWithoutFeedback,
+  NativeModules,
 } from 'react-native';
-import { getVersion, getBuildNumber } from 'react-native-device-info';
 
 import { NavigationBarWrapper, Typography } from '../components';
 
@@ -19,26 +19,45 @@ import toggleAllowFeatureFlagsAction from '../store/actions/featureFlags/toggleA
 import { Colors, Spacing, Typography as TypographyStyles } from '../styles';
 
 const CLICKS_TO_ENABLE_FEATURE_FLAGS = 10;
-const VERSION = getVersion();
-
-// Append "ALPHA" to our iOS builds that are 1.0.0, as we use
-// a separate Alpha TestFlight that is always 1.0.0.
-// On android we include "ALPHA" directly in the version name.
-const isAlpha = VERSION === '1.0.0';
-const APP_VERSION = `${
-  isAlpha && Platform.OS === 'ios' ? 'ALPHA ' : ''
-}${VERSION} (${getBuildNumber()})`;
 
 export const AboutScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [clickCount, setClickCount] = useState(0);
+  const [appVersion, setAppVersion] = useState('');
+  const [buildVersion, setBuildVersion] = useState('');
+
+  useEffect(() => {
+    //method getBuildNumber from native code
+    NativeModules.Device.getBuildNumber((err, buildNumber) => {
+      if (!err) {
+        setBuildVersion(buildNumber);
+      }
+    });
+    //method getVersion from native code
+    NativeModules.Device.getVersion((err, versionNumber) => {
+      if (!err) {
+        setAppVersion(versionNumber);
+      }
+    });
+  }, []);
+
   useEffect(() => {
     if (clickCount === CLICKS_TO_ENABLE_FEATURE_FLAGS) {
       Alert.alert('Feature Flags Enabled!');
       dispatch(toggleAllowFeatureFlagsAction({ overrideValue: true }));
     }
   }, [clickCount, dispatch]);
+
+  const VERSION = appVersion;
+
+  // Append "ALPHA" to our iOS builds that are 1.0.0, as we use
+  // a separate Alpha TestFlight that is always 1.0.0.
+  // On android we include "ALPHA" directly in the version name.
+  const isAlpha = VERSION === '1.0.0';
+  const APP_VERSION = `${
+    isAlpha && Platform.OS === 'ios' ? 'ALPHA ' : ''
+  }${VERSION} (${buildVersion})`;
 
   const incrementClickCount = () => setClickCount(clickCount + 1);
 
