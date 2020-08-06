@@ -509,7 +509,7 @@ export function disableDebugMode() {
 async function getPageData(authority, page) {
   // this function should always return an object.
   // if there's no data, return an empty object.
-  const cacheKey = authority.internal_id + '|page:' + page.id;
+  const cacheKey = page.checksum || authority.internal_id + '|page:' + page.id;
   let pageData = await GetStoreData(cacheKey, false);
   if (!pageData && (await shouldDownloadPageData())) {
     try {
@@ -534,7 +534,7 @@ async function shouldDownloadPageData() {
   if (store === null) {
     throw Error.new(
       'Attempting to access a not set store checking for intersect',
-    );
+    );  
   }
 
   const reduxState = store.getState();

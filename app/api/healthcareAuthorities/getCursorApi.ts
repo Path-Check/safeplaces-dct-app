@@ -5,6 +5,7 @@ type Page = {
   startTimestamp: number;
   endTimestamp: number;
   filename: string; // to be appended to 'api_endpoint_url'
+  checksum?: string;
 };
 
 export type Cursor = {
