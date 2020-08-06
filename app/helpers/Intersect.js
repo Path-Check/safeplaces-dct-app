@@ -534,7 +534,7 @@ async function shouldDownloadPageData() {
   if (store === null) {
     throw Error.new(
       'Attempting to access a not set store checking for intersect',
-    );  
+    );
   }
 
   const reduxState = store.getState();
