@@ -113,8 +113,6 @@ You can configure `AUTHORITIES_YAML_ROUTE` against `https://raw.githubuserconten
 
 `ZENDESK_URL` can be omitted in development, and the Report Issue page will throw an error when submitting.
 
-**Note:** Members of the `Path-Check` org can complete this step by running `yarn set-ha` and passing in the 2-letter ha abbreviation as the first argument (i.e. `yarn set-ha pc`)
-
 ## Running
 
 **Note:** In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.
