@@ -533,7 +533,7 @@ async function getPageData(authority, page) {
 }
 
 function shouldUpdatePage(page, pageData) {
-  if (pageData.version !== '1.0') {
+  if (pageData.version >= '1.0') {
     return page.checksum !== pageData.checksum;
   }
   return false;
