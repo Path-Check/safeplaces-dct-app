@@ -18,7 +18,9 @@
     "done": "Done",
     "next": "Next",
     "something_went_wrong": "Something went wrong",
-    "start": "Start"
+    "start": "Start",
+    "submit": "Submit",
+    "success": "Success"
   },
   "export": {
     "code_input_body": "The representative from {{name}} will provide a verification code over the phone to link your data with {{name}}.",
@@ -182,12 +184,22 @@
     "notification_header": "Would you like to receive notifications when you may have crossed paths with the virus?",
     "notification_subheader": "PathCheck partners with local Health Departments to track the virus. If you are located in a jurisdiction served by one of our Health Department partners, you can receive exposure notifications from your Health Department."
   },
+  "report_issue": {
+    "body": "Feedback (required)",
+    "email": "Email (required)",
+    "errors": {
+      "invalid_email": "The email seems to be invalid, please check again"
+    },
+    "name": "Full Name",
+    "success": "We received your feedback. Thank you!"
+  },
   "screen_titles": {
     "about": "About",
     "delete_location_history": "Delete Location History",
     "exposure_history": "Exposure History",
     "legal": "Legal",
-    "more_info": "More Info"
+    "more_info": "More Info",
+    "report_issue": "Report an Issue"
   },
   "version_update": {
     "alert_label": "PathCheck is outdated",
