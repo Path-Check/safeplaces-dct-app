@@ -21,11 +21,6 @@ import { Typography } from '../../components/Typography';
 import { Images, Icons } from '../../assets';
 import { Colors } from '../../styles';
 
-import { useSelector, useDispatch } from 'react-redux';
-import toggleHealthcareAuthorityAutoSubscription from '../../store/actions/healthcareAuthorities/toggleHealthcareAuthorityAutoSubscription';
-import isAutoSubscriptionEnabledSelector from '../../store/selectors/isAutoSubscriptionEnabledSelector';
-import { Switch } from 'react-native-gesture-handler';
-
 // For fixing image width issues
 const win = Dimensions.get('window');
 
@@ -71,19 +66,7 @@ const PartnersIllustration = (): JSX.Element => {
 
 const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const navigateToViewHAs = () => navigation.navigate('PartnersEdit');
-
-  const autoSubscriptionEnabled = useSelector(
-    isAutoSubscriptionEnabledSelector,
-  );
-  const onToggleAutoSubscription = (value: boolean) => {
-    dispatch(
-      toggleHealthcareAuthorityAutoSubscription({
-        autoSubscriptionEnabled: value,
-      }),
-    );
-  };
 
   return (
     <NavigationBarWrapper
@@ -130,26 +113,6 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         <View style={styles.divider} />
         <View style={{ height: 24 }} />
       </ScrollView>
-      {__DEV__ && (
-        <View style={styles.bottomSheet}>
-          <Typography
-            style={{
-              // Prevent from forcing overflow on parent
-              flex: 1,
-            }}>
-            {t('authorities.automatically_follow')}
-          </Typography>
-          <View style={{ width: 16 }} />
-          <Switch
-            trackColor={{
-              true: Colors.switchEnabled,
-              false: Colors.switchDisabled,
-            }}
-            value={autoSubscriptionEnabled}
-            onValueChange={onToggleAutoSubscription}
-          />
-        </View>
-      )}
     </NavigationBarWrapper>
   );
 };
@@ -159,15 +122,6 @@ const styles = StyleSheet.create({
   backgroundWrapper: {
     backgroundColor: Colors.primaryBackground,
     flex: 1,
-  },
-  bottomSheet: {
-    backgroundColor: Colors.bottomSheetBackground,
-    padding: 24,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: Colors.formInputBorder,
   },
   divider: {
     height: 1,

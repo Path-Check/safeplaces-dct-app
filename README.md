@@ -34,6 +34,7 @@ Safe Paths is designed to support a range of DCT and public health use cases. Cu
 The Safe Paths app is being developed to support a variety of build 'flavors' of the application around core health and tracing functionality. Reach out to our team to discuss creating a flavor for your use-case.
 
 ### Path Check Release of COVID Safe Paths
+
 Safe Paths is available as an app published by Path Check in the [Apple App Store](https://apps.apple.com/us/app/covid-safe-paths/id1508266966) and the [Google Play App Store](https://play.google.com/store/apps/details?id=org.pathcheck.covidsafepaths). Any authorized pubic health authority can use Safe Paths.
 
 ### Custom Builds
@@ -80,43 +81,45 @@ If you're looking for a first ticket - please check out the backlog for a bug or
 
 View the [architecture diagram](docs/Private_Kit_Diagram.png) for a basic overview on the sequencing of generalized events and services that are used by Safe Paths.
 
-
 ## Developer Setup
 
 First, run the appropriate setup script for your system. This will install relevant packages, walk through Android Studio configuration, etc.
 
 **Note:** You will still need to [configure an Android Virtual Device (AVD)](https://developer.android.com/studio/run/managing-avds#createavd) after running the script.
 
-#### Linux/MacOS
+### Linux/MacOS
 
-```
+```Shell
 dev_setup.sh
 ```
 
-#### Windows
+### Windows
 
-```
+```Shell
 dev_setup.bat
 ```
 
-#### Environment
+### Environment
 
-Populate the following 2 `.env` files with the relevant urls for your GAEN server:
+Populate the following `.env` files. View an example file at `example.env`
 
+```Shell
+.env.dev
+.env.staging
+.env.release
 ```
-.env.bt
-.env.bt.release
-```
 
-**Note:** Members of the `Path-Check` org can complete this step by running `yarn set-ha` and passing in the 2-letter ha abbreviation as the first argument (i.e. `yarn set-ha pc`)
+You can configure `AUTHORITIES_YAML_ROUTE` against `https://raw.githubusercontent.com/Path-Check/trusted-authorities/master/staging/authorities.1.0.1.yaml`.
+
+`ZENDESK_URL` can be omitted in development, and the Report Issue page will throw an error when submitting.
 
 ## Running
 
 **Note:** In some cases, these procedures can lead to the error `Failed to load bundle - Could not connect to development server`. In these cases, kill all other react-native processes and try it again.
 
-#### Android (Windows, Linux, macOS)
+### Android (Windows, Linux, macOS)
 
-```
+```Shell
 yarn run-android ## for the location enabled app
 ```
 
@@ -126,13 +129,13 @@ Device storage can be cleared by long-pressing on the app icon in the simulator,
 
 First, install the pod files:
 
-```
+```Shell
 yarn install:pod ## only needs to be ran once
 ```
 
 Then, run the application:
 
-```
+```Shell
 yarn run-ios ## for the location enabled app
 ```
 
@@ -159,7 +162,7 @@ This project is using
 [typescript](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html).
 
 Run the complier with:
-```
+```Shell
 yarn tsc
 ```
 
@@ -200,7 +203,7 @@ Tests are ran automatically through Github actions - PRs are not able to be merg
 
 To run the static analysis tools:
 
-```
+```Shell
 yarn validate
 ```
 
@@ -208,13 +211,13 @@ yarn validate
 
 To run the unit tests:
 
-```
+```Shell
 yarn test --watch
 ```
 
 [Snapshot testing](https://jestjs.io/docs/en/snapshot-testing) is used as a quick way to verify that the UI has not changed. To update the snapshots:
 
-```
+```Shell
 yarn update-snapshots
 ```
 

@@ -8,7 +8,7 @@ import {
   getHealthcareAuthorities_success,
 } from '../actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
 import toggleSelectedHealthcareAuthorityAction from '../actions/healthcareAuthorities/toggleSelectedHealthcareAuthorityAction';
-import toggleHealthcareAuthorityAutoSubscription from '../actions/healthcareAuthorities/toggleHealthcareAuthorityAutoSubscription';
+import toggleAutoSubscriptionBannerAction from '../actions/healthcareAuthorities/toggleAutoSubscriptionBannerAction';
 
 type HealthCareReducerState = {
   // Because we control this list to be super small and have type safety, we use the full models
@@ -16,18 +16,26 @@ type HealthCareReducerState = {
   availableAuthorities: HealthcareAuthority[];
   availableCustomAuthorities: HealthcareAuthority[];
   selectedAuthorities: HealthcareAuthority[];
-  autoSubscriptionEnabled: boolean;
   request: ApiRequest;
+  autoSubscription: {
+    active: boolean; // controls firing. We set to false after any toggle so that auto-subscribe happens max of once, and before manual.
+    bannerDismissed: boolean; // independently show banner until dismissed
+    selectedAuthority: HealthcareAuthority | null;
+  };
 };
 
 const initialState: HealthCareReducerState = {
   availableAuthorities: [],
   availableCustomAuthorities: [], // For testing, from a custom uploaded YAML
   selectedAuthorities: [],
-  autoSubscriptionEnabled: true,
   request: {
     status: ApiStatus.INITIAL,
     errorMessage: null,
+  },
+  autoSubscription: {
+    active: true,
+    bannerDismissed: false,
+    selectedAuthority: null,
   },
 };
 
@@ -71,7 +79,10 @@ const healthcareAuthoritiesReducer = createReducer(initialState, (builder) =>
     })
     .addCase(
       toggleSelectedHealthcareAuthorityAction,
-      (state, { payload: { authority, overrideValue } }) => {
+      (
+        state,
+        { payload: { authority, overrideValue }, meta: { autoSubscribed } },
+      ) => {
         // always remove
         state.selectedAuthorities = state.selectedAuthorities.filter(
           ({ internal_id }) => internal_id !== authority.internal_id,
@@ -79,13 +90,20 @@ const healthcareAuthoritiesReducer = createReducer(initialState, (builder) =>
         // add if needed
         if (overrideValue) {
           state.selectedAuthorities.push(authority);
+          state.autoSubscription.active = false; // after we subscribe, for any reason, prevent auto-subscribing
+        }
+
+        // Display banner that HA was auto-subscribed to
+        if (autoSubscribed) {
+          state.autoSubscription.bannerDismissed = false;
+          state.autoSubscription.selectedAuthority = authority;
         }
       },
     )
     .addCase(
-      toggleHealthcareAuthorityAutoSubscription,
-      (state, { payload: { autoSubscriptionEnabled } }) => {
-        state.autoSubscriptionEnabled = autoSubscriptionEnabled;
+      toggleAutoSubscriptionBannerAction,
+      (state, { payload: { overrideValue } }) => {
+        state.autoSubscription.bannerDismissed = !overrideValue;
       },
     ),
 );
