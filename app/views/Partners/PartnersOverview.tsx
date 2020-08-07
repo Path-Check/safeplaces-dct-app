@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Image,
@@ -6,7 +6,6 @@ import {
   StyleSheet,
   View,
   TouchableHighlight,
-  Switch,
   Dimensions,
 } from 'react-native';
 import {
@@ -22,6 +21,11 @@ import { Typography } from '../../components/Typography';
 import { Images, Icons } from '../../assets';
 import { Colors } from '../../styles';
 
+import { useSelector, useDispatch } from 'react-redux';
+import toggleHealthcareAuthorityAutoSubscription from '../../store/actions/healthcareAuthorities/toggleHealthcareAuthorityAutoSubscription';
+import isAutoSubscriptionEnabledSelector from '../../store/selectors/isAutoSubscriptionEnabledSelector';
+import { Switch } from 'react-native-gesture-handler';
+
 // For fixing image width issues
 const win = Dimensions.get('window');
 
@@ -29,10 +33,57 @@ type PartnersScreenProps = {
   navigation: NavigationScreenProp<NavigationState, NavigationParams>;
 };
 
+const PartnersIllustration = (): JSX.Element => {
+  const { t } = useTranslation();
+  return (
+    <View
+      style={{
+        maxHeight: (win.width * 900) / 1125,
+        flexGrow: 1,
+        overflow: 'hidden',
+      }}>
+      <Image
+        // Hard code to the dimensions of the image. Fixes ScrollView issues
+        style={{
+          width: win.width,
+          height: (win.width * 900) / 1125,
+          position: 'absolute',
+        }}
+        resizeMode={'contain'}
+        source={Images.Doctors}
+        accessible
+        accessibilityLabel={t('label.doctors_image')}
+      />
+      {/* Mask over the bottom of the image so it has a curve on the bottom, regardless of height */}
+      <Image
+        source={Images.CurveMask}
+        style={{
+          width: win.width,
+          height: (win.width * 120) / 1125,
+          position: 'absolute',
+          bottom: 0,
+        }}
+        resizeMode={'cover'}
+      />
+    </View>
+  );
+};
+
 const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
   const { t } = useTranslation();
-  const [toggleActive, setToggleActive] = useState(false); // mocked
+  const dispatch = useDispatch();
   const navigateToViewHAs = () => navigation.navigate('PartnersEdit');
+
+  const autoSubscriptionEnabled = useSelector(
+    isAutoSubscriptionEnabledSelector,
+  );
+  const onToggleAutoSubscription = (value: boolean) => {
+    dispatch(
+      toggleHealthcareAuthorityAutoSubscription({
+        autoSubscriptionEnabled: value,
+      }),
+    );
+  };
 
   return (
     <NavigationBarWrapper
@@ -41,16 +92,14 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
       <ScrollView
         style={styles.backgroundWrapper}
         alwaysBounceVertical={false}
-        contentContainerStyle={{ flexGrow: 1 }}>
-        <Image
-          // Hard code to the dimensions of the image. Fixes ScrollView issues
-          style={{ width: win.width, height: (win.width * 900) / 1125 }}
-          resizeMode={'contain'}
-          source={Images.Doctors}
-          accessible
-          accessibilityLabel={t('label.doctors_image')}
-        />
-        <View style={{ height: 20 }} />
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}>
+        {win.height < 600 ? (
+          <View style={{ height: 20 }} />
+        ) : (
+          <PartnersIllustration />
+        )}
         <View style={styles.horizontalPadding}>
           <Typography use={'headline2'}>{t('authorities.title')}</Typography>
           <View style={{ height: 8 }} />
@@ -81,7 +130,6 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
         <View style={styles.divider} />
         <View style={{ height: 24 }} />
       </ScrollView>
-      {/* UI is ready, this is currently not a feature though. */}
       {__DEV__ && (
         <View style={styles.bottomSheet}>
           <Typography
@@ -97,8 +145,8 @@ const PartnersScreen = ({ navigation }: PartnersScreenProps): JSX.Element => {
               true: Colors.switchEnabled,
               false: Colors.switchDisabled,
             }}
-            value={toggleActive}
-            onValueChange={setToggleActive}
+            value={autoSubscriptionEnabled}
+            onValueChange={onToggleAutoSubscription}
           />
         </View>
       )}
@@ -112,6 +160,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.primaryBackground,
     flex: 1,
   },
+  bottomSheet: {
+    backgroundColor: Colors.bottomSheetBackground,
+    padding: 24,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: Colors.formInputBorder,
+  },
   divider: {
     height: 1,
     backgroundColor: Colors.formInputBorder,
@@ -119,16 +176,5 @@ const styles = StyleSheet.create({
   },
   horizontalPadding: {
     paddingHorizontal: 24,
-  },
-  bottomSheet: {
-    backgroundColor: Colors.bottomSheetBackground,
-    padding: 24,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    // TODO: Standardize bottom sheets. We mix shadows & borders.
-    // Since this is on a main tab, borders are consistent.
-    borderTopWidth: StyleSheet.hairlineWidth,
-    borderTopColor: Colors.formInputBorder,
   },
 });

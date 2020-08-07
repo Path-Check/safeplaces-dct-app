@@ -22,6 +22,9 @@ NativeModules.ExposureEventEmitter = NativeModules.ExposureEventEmitter || {
 jest.mock('react-native-pulse');
 jest.mock('react-native-linear-gradient');
 jest.mock('@mauron85/react-native-background-geolocation');
+jest.mock('@react-native-community/geolocation', () => ({
+  getCurrentPosition: () => {},
+}));
 
 // Silence YellowBox useNativeDriver warning
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
@@ -36,13 +39,6 @@ jest.mock('rn-fetch-blob', () => 'Blob');
 jest.mock('react-native-background-timer', () => ({
   runBackgroundTimer: () => {},
   stopBackgroundTimer: () => {},
-}));
-jest.mock('react-native-popup-menu', () => ({
-  Menu: 'Menu',
-  MenuProvider: 'MenuProvider',
-  MenuOptions: 'MenuOptions',
-  MenuOption: 'MenuOption',
-  MenuTrigger: 'MenuTrigger',
 }));
 
 jest.mock('redux-persist', () => ({

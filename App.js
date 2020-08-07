@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { MenuProvider } from 'react-native-popup-menu';
 import SplashScreen from 'react-native-splash-screen';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -15,11 +14,9 @@ import BackgroundTaskService from './app/services/BackgroundTaskService';
 
 // For snapshot testing. In tests, we provide a mock store wrapper if needed.
 export const UnconnectedApp = () => (
-  <MenuProvider>
-    <TracingStrategyProvider strategy={gpsStrategy}>
-      <Entry />
-    </TracingStrategyProvider>
-  </MenuProvider>
+  <TracingStrategyProvider strategy={gpsStrategy}>
+    <Entry />
+  </TracingStrategyProvider>
 );
 
 const App = () => {

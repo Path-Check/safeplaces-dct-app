@@ -64,10 +64,10 @@ const PartnersScreen = ({
 
   const toggleSelected = (HA: HealthcareAuthority) => {
     dispatch(
-      toggleSelectedHealthcareAuthorityAction({
-        authority: HA,
-        overrideValue: !isSelected(HA),
-      }),
+      toggleSelectedHealthcareAuthorityAction(
+        { authority: HA, overrideValue: !isSelected(HA) },
+        { triggerIntersect: true },
+      ),
     );
   };
 
@@ -94,7 +94,7 @@ const PartnersScreen = ({
                 flexDirection: 'row',
               }}>
               <Typography
-                style={{ fontWeight: '500', paddingRight: 30 }}
+                style={{ fontWeight: '500', paddingRight: 30, flex: 1 }}
                 use='body1'>
                 {HA.name}
               </Typography>

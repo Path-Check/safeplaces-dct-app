@@ -1,7 +1,7 @@
-import styled from '@emotion/native';
 import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import { Colors } from '../styles';
+import { TouchableOpacity } from 'react-native';
 
 interface IconButtonProps {
   icon: string;
@@ -19,18 +19,19 @@ export const IconButton = ({
   ...otherProps
 }: IconButtonProps): JSX.Element => {
   return (
-    <Container accessibilityLabel={accessibilityLabel} {...otherProps}>
+    <TouchableOpacity
+      style={{
+        alignItems: 'center',
+        alignContent: 'center',
+      }}
+      accessibilityLabel={accessibilityLabel}
+      {...otherProps}>
       <SvgXml
         color={color || Colors.icon}
         xml={icon}
         width={size || 24}
         height={size || 24}
       />
-    </Container>
+    </TouchableOpacity>
   );
 };
-
-const Container = styled.TouchableOpacity`
-  align-items: center;
-  align-content: center;
-`;

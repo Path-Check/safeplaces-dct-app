@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +33,7 @@ const LocationsPermissions = (): JSX.Element => {
   const dispatch = useDispatch();
   const { location } = useContext(PermissionsContext);
 
-  useStatusBarEffect('dark-content');
+  useStatusBarEffect('light-content');
 
   const requestLocationAccess = async () => {
     await location.request();
@@ -58,6 +59,11 @@ const LocationsPermissions = (): JSX.Element => {
     <ImageBackground
       source={Images.BlueGradientBackground}
       style={styles.backgroundImage}>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor='transparent'
+        translucent
+      />
       <View style={styles.container}>
         <ScrollView
           alwaysBounceVertical={false}

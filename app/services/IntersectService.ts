@@ -15,17 +15,21 @@ class IntersectService {
     }
     this.isServiceRunning = true;
 
-    intersect(healthcareAuthorities).then((dayBins) => {
-      this.isServiceRunning = false;
+    intersect(healthcareAuthorities)
+      .then((dayBins) => {
+        this.isServiceRunning = false;
 
-      if (this.nextJob) {
-        const job = this.nextJob;
-        this.nextJob = null;
-        this.checkIntersect(job);
-      } else {
-        emitResultDayBins(dayBins);
-      }
-    });
+        if (this.nextJob) {
+          const job = this.nextJob;
+          this.nextJob = null;
+          this.checkIntersect(job);
+        } else {
+          emitResultDayBins(dayBins);
+        }
+      })
+      .catch(() => {
+        this.isServiceRunning = false;
+      });
 
     return 'started';
   };

@@ -25,9 +25,7 @@ export type Screen =
   | 'ExportComplete'
   | 'ExposureHistory'
   | 'ExportLocally'
-  | 'NextSteps'
   | 'MoreInfo'
-  | 'ExposureListDebugScreen'
   | 'Settings'
   | 'About'
   | 'Licenses'
@@ -67,9 +65,7 @@ export const Screens: { [key in Screen]: Screen } = {
   ExportComplete: 'ExportComplete',
   ExposureHistory: 'ExposureHistory',
   ExportLocally: 'ExportLocally',
-  NextSteps: 'NextSteps',
   MoreInfo: 'MoreInfo',
-  ExposureListDebugScreen: 'ExposureListDebugScreen',
   Settings: 'Settings',
   About: 'About',
   Licenses: 'Licenses',
@@ -118,11 +114,17 @@ export const Stacks: { [key in Stack]: Stack } = {
 
 type BarStyle = 'dark-content' | 'light-content';
 
-export const useStatusBarEffect = (barStyle: BarStyle): void => {
+export const useStatusBarEffect = (
+  barStyle: BarStyle,
+  backgroundColor?: string,
+): void => {
   useFocusEffect(
     useCallback(() => {
       StatusBar.setBarStyle(barStyle);
-      Platform.OS === 'android' && StatusBar.setTranslucent(true);
-    }, [barStyle]),
+      Platform.OS === 'android' &&
+        StatusBar.setTranslucent(true) &&
+        backgroundColor &&
+        StatusBar.setBackgroundColor(backgroundColor);
+    }, [barStyle, backgroundColor]),
   );
 };

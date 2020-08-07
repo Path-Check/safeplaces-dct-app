@@ -22,12 +22,10 @@ import { LicensesScreen } from './views/Licenses';
 import { ExportStart, ExportLocally } from './gps/Export';
 
 import ExposureHistoryScreen from './views/ExposureHistory';
-import NextSteps from './views/ExposureHistory/NextSteps';
 import MoreInfo from './views/ExposureHistory/MoreInfo';
 import ImportFromUrl from './views/Settings/ImportFromUrl';
 import { FeatureFlagsScreen } from './views/FeatureFlagToggles';
 import ImportScreen from './views/Import';
-import { EnableExposureNotifications } from './views/onboarding/EnableExposureNotifications';
 import Welcome from './views/onboarding/Welcome';
 import PersonalPrivacy from './views/onboarding/PersonalPrivacy';
 import NotificationDetails from './views/onboarding/NotificationDetails';
@@ -77,7 +75,6 @@ const ExposureHistoryStack = ({ navigation }) => {
         name={Screens.ExposureHistory}
         component={ExposureHistoryScreen}
       />
-      <Stack.Screen name={Screens.NextSteps} component={NextSteps} />
       <Stack.Screen name={Screens.MoreInfo} component={MoreInfo} />
     </Stack.Navigator>
   );
@@ -223,10 +220,6 @@ const OnboardingStack = () => (
     <Stack.Screen
       name={Screens.OnboardingLocationPermissions}
       component={LocationsPermissions}
-    />
-    <Stack.Screen
-      name={Screens.EnableExposureNotifications}
-      component={EnableExposureNotifications}
     />
   </Stack.Navigator>
 );
