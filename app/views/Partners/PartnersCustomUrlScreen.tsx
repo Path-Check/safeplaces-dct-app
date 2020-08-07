@@ -49,7 +49,7 @@ const PartnersScreen = ({
 
   // Fetch list on screen mount
   const searchForUrl = () => {
-    dispatch(getHealthcareAuthoritiesAction(url));
+    dispatch(getHealthcareAuthoritiesAction({ customYamlUrl: url }));
   };
 
   return (

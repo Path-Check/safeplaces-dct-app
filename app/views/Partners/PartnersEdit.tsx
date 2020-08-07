@@ -64,10 +64,10 @@ const PartnersScreen = ({
 
   const toggleSelected = (HA: HealthcareAuthority) => {
     dispatch(
-      toggleSelectedHealthcareAuthorityAction({
-        authority: HA,
-        overrideValue: !isSelected(HA),
-      }),
+      toggleSelectedHealthcareAuthorityAction(
+        { authority: HA, overrideValue: !isSelected(HA) },
+        { triggerIntersect: true },
+      ),
     );
   };
 
