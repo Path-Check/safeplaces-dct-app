@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   KeyboardAvoidingView,
   StyleSheet,
-  Platform,
-  TextInput,
+   TextInput,
   View,
   Keyboard,
   Alert,
@@ -23,6 +22,7 @@ import {
 } from '../styles';
 import { Typography } from '../components/Typography';
 import { NavigationBarWrapper } from '../components/NavigationBarWrapper';
+import { isPlatformiOS } from '../Util';
 
 const ReportIssueForm: FunctionComponent = () => {
   const { t } = useTranslation();
@@ -47,7 +47,6 @@ const ReportIssueForm: FunctionComponent = () => {
 
   useEffect(validate, [email, body]);
 
-  const isIOS = Platform.OS === 'ios';
 
   const clearInputs = () => {
     setBody('');
@@ -81,7 +80,7 @@ const ReportIssueForm: FunctionComponent = () => {
       title={t('screen_titles.report_issue')}
       onBackPress={navigation.goBack}>
       <KeyboardAvoidingView
-        behavior={isIOS ? 'padding' : undefined}
+        behavior={isPlatformiOS() ? 'padding' : undefined}
         keyboardVerticalOffset={-Spacing.tiny}>
         <View style={style.container}>
           <View>
