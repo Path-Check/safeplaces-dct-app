@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   KeyboardAvoidingView,
   StyleSheet,
-   TextInput,
+  TextInput,
   View,
   Keyboard,
   Alert,
@@ -136,23 +136,23 @@ const Input = ({
   multiline,
   onChangeText,
 }: InputProps) => (
-  <View style={style.inputContainer}>
-    <Typography style={style.inputLabel}>{label}</Typography>
-    <TextInput
-      onFocus={() => onChangeText(value.trim())}
-      editable={editable}
-      accessibilityLabel={accessibilityLabel}
-      value={value}
-      style={multiline ? style.descriptionInput : style.textInput}
-      keyboardType={'default'}
-      returnKeyType={'done'}
-      onChangeText={onChangeText}
-      blurOnSubmit={multiline}
-      onSubmitEditing={Keyboard.dismiss}
-      multiline={multiline}
-    />
-  </View>
-);
+    <View style={style.inputContainer}>
+      <Typography style={style.inputLabel}>{label}</Typography>
+      <TextInput
+        onFocus={() => onChangeText(value.trim())}
+        editable={editable}
+        accessibilityLabel={accessibilityLabel}
+        value={value}
+        style={multiline ? style.descriptionInput : style.textInput}
+        keyboardType={'default'}
+        returnKeyType={'done'}
+        onChangeText={onChangeText}
+        blurOnSubmit={multiline}
+        onSubmitEditing={Keyboard.dismiss}
+        multiline={multiline}
+      />
+    </View>
+  );
 
 const style = StyleSheet.create({
   container: {

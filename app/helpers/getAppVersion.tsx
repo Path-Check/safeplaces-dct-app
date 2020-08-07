@@ -1,5 +1,5 @@
 import { getVersion, getBuildNumber } from 'react-native-device-info';
- import { isPlatformiOS } from '../Util';
+import { isPlatformiOS } from '../Util';
 
 const getAppVersion = (): string => {
   const version = getVersion();
@@ -9,7 +9,7 @@ const getAppVersion = (): string => {
   const isAlpha = version === '1.0.0';
   const appVersion = `${
     isAlpha && isPlatformiOS() ? 'ALPHA ' : ''
-  }${version} (${getBuildNumber()})`;
+    }${version} (${getBuildNumber()})`;
   return appVersion;
 };
 
