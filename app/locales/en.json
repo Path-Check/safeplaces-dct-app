@@ -96,7 +96,7 @@
       "notifications_off_subheader": "You will not receive notifications about possible exposures nor when new Health Departments are added in your area",
       "select_authority_button": "Add Health Department",
       "select_authority_header": "No local Health Department Selected",
-      "select_authority_subheader": "Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area"
+      "select_authority_subheader": "Select your local Health Department to receive info about COVID-19 in your area"
     }
   },
   "import": {
