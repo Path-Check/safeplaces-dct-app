@@ -21,8 +21,10 @@ import ht from './ht.json';
 import id from './id.json';
 import it from './it.json';
 import ja from './ja.json';
+import kk from './kk.json';
 import ml from './ml.json';
 import nl from './nl.json';
+import pau from './pau.json';
 import pl from './pl.json';
 import pt_BR from './pt_BR.json';
 import ro from './ro.json';
@@ -105,8 +107,10 @@ const DEV_RESOURCES = {
   id: { label: id._display_name, translation: id },
   it: { label: it._display_name, translation: it },
   ja: { label: ja._display_name, translation: ja },
+  kk: { label: kk._display_name, translation: kk },
   ml: { label: ml._display_name, translation: ml },
   nl: { label: nl._display_name, translation: nl },
+  pau: { label: pau._display_name, translation: pau },
   pl: { label: pl._display_name, translation: pl },
   pt_BR: { label: pt_BR._display_name, translation: pt_BR },
   ro: { label: ro._display_name, translation: ro },
