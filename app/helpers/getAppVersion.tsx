@@ -9,7 +9,7 @@ const getAppVersion = (): string => {
   const isAlpha = version === '1.0.0';
   const appVersion = `${
     isAlpha && isPlatformiOS() ? 'ALPHA ' : ''
-    }${version} (${getBuildNumber()})`;
+  }${version} (${getBuildNumber()})`;
   return appVersion;
 };
 
