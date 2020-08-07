@@ -159,7 +159,7 @@ exports[`select authority screen matches snapshot 1`] = `
             ]
           }
         >
-          Allow PathCheck to add your local Health Department or select one yourself to receive info about COVID-19 in your area
+          Select your local Health Department to receive info about COVID-19 in your area
         </Text>
         <TouchableOpacity
           accessibilityLabel="Add Health Department"
