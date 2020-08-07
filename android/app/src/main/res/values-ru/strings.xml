@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
   <!-- Channel label for notifications shown in App > Notifications > Path Check BT -->
+  <string name="notification_channel_description">PathCheck BT уведомления</string>
+  <!-- Channel label for notifications shown in App > Notifications > Path Check GPS -->
   <string name="notification_channel_description">Настроить местные оповещения</string>
 </resources>

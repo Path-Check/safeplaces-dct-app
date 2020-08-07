@@ -1,0 +1,9 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "يقوم تطبيق PathCheck بتخزين إحداثيات موقعك بأمان مرة واحدة كل خمس دقائق على هذا الجهاز";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "تم إغلاق PathCheck";
+"NSHumanReadableCopyright" = "حقوق الطبع والنشر © 2020 Path Check Inc. جميع الحقوق محفوظة.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "سيتم حفظ سجل المواقع على جهازك ، ولن تتم مشاركته إلا مع الآخرين إذا اخترت القيام بذلك.";
+"NSLocationAlwaysUsageDescription" = "سيتم حفظ سجل المواقع على جهازك ، ولن تتم مشاركته إلا مع الآخرين إذا اخترت القيام بذلك.";
+"NSLocationWhenInUseUsageDescription" = "سيتم حفظ سجل المواقع على جهازك ، ولن تتم مشاركته إلا مع الآخرين إذا اخترت القيام بذلك.";
+"NSMotionUsageDescription" = "نستخدم مستشعر مقياس التسارع الخاص بك للحصول على سجل دقيق للموقع.";

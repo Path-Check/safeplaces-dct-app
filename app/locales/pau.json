@@ -1,0 +1,18 @@
+{
+  "_display_name": "Palauan",
+  "exposure_history": {
+    "how_does_this_work": "Ng mekerang a loureor?",
+    "legend": {
+      "today": "Elechang el sils"
+    },
+    "why_did_i_get_an_en": "Ngera uchul mak melai a uleklatk el kirel tial exposure?"
+  },
+  "home": {
+    "gps": {
+      "all_services_on_no_ha_available": "Sel om ngara ikrel a beluu el kau e kiei er ngii e ke molai a uleklatk ra exposure loltobed er ngii a rechad er a Health Department."
+    }
+  },
+  "onboarding": {
+    "maybe_later": "Locha mo uriul."
+  }
+}

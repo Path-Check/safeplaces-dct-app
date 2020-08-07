@@ -1,0 +1,9 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "PathCheck bezpiecznie przechowuje współrzędne GPS na tym urządzeniu raz na pięć minut.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "Aplikacja PathCheck została zamknięta";
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Wszelkie prawa zastrzeżone.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Historia Twojej lokalizacji zostanie zapisana na Twoim urządzeniu i udostępniona innym tylko wtedy, gdy zdecydujesz się to zrobić.";
+"NSLocationAlwaysUsageDescription" = "Historia Twojej lokalizacji zostanie zapisana na Twoim urządzeniu i udostępniona innym tylko wtedy, gdy zdecydujesz się to zrobić.";
+"NSLocationWhenInUseUsageDescription" = "Historia Twojej lokalizacji zostanie zapisana na Twoim urządzeniu i udostępniona innym tylko wtedy, gdy zdecydujesz się to zrobić.";
+"NSMotionUsageDescription" = "Używamy twojego przyspieszeniomierza, aby uzyskać dokładną historię lokalizacji.";
