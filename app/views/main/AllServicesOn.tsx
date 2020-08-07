@@ -21,18 +21,16 @@ import { RootState } from '../../store/types';
 import toggleAutoSubscriptionBanner from '../../store/actions/healthcareAuthorities/toggleAutoSubscriptionBannerAction';
 
 type AllServicesOnProps = {
-  noHaAvailable: boolean;
   navigation: NavigationProp;
 };
 
 export const AllServicesOnScreen = ({
-  noHaAvailable,
   navigation,
 }: AllServicesOnProps): JSX.Element => {
   const size = Dimensions.get('window').height;
   const { t } = useTranslation();
 
-  const { autoSubscription } = useSelector(
+  const { autoSubscription, selectedAuthorities } = useSelector(
     (state: RootState) => state.healthcareAuthorities,
   );
 
@@ -87,7 +85,7 @@ export const AllServicesOnScreen = ({
           <Typography style={styles.subheaderText}>
             {t('home.gps.all_services_on_subheader')}
           </Typography>
-          {noHaAvailable && (
+          {selectedAuthorities.length === 0 && (
             <Typography style={styles.subheaderText}>
               {t('home.gps.all_services_on_no_ha_available')}
             </Typography>
