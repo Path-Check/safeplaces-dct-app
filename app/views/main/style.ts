@@ -75,6 +75,8 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   bottomSheet: {
+    position: 'absolute',
+    bottom: 0,
     backgroundColor: Colors.bottomSheetBackground,
     padding: 24,
     flexDirection: 'row',

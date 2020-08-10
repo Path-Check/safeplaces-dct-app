@@ -31,33 +31,25 @@ lokalise2 file download \
   --export-empty-as=skip \
   --format strings \
   --include-description \
-  --original-filenames \
-  --placeholder-format=ios \
-  --unzip-to=ios \
+  --original-filenames=false \
+  --bundle-structure "%LANG_ISO%.lproj/InfoPlist.strings" \
+  --unzip-to=ios/GPS \
   --export-sort=a_z \
-  --config .lokalise.yml --token=$LOKALISE_TOKEN
+  --config .lokalise.yml \
+  --token=$LOKALISE_TOKEN
 
-echo "Downloading Android GPS strings.xml"
+echo "Downloading Android strings.xml"
 lokalise2 file download \
   --add-newline-eof \
   --export-empty-as skip \
   --format xml \
   --include-description \
-  --original-filenames \
-  --unzip-to=android/app/src/gps/res \
+  --original-filenames=false \
+  --bundle-structure "values-%LANG_ISO%/strings.xml" \
+  --unzip-to=android/app/src/main/res \
   --export-sort=a_z \
-  --config .lokalise.yml --token=$LOKALISE_TOKEN
-
-echo "Downloading Android BT strings.xml"
-lokalise2 file download \
-  --add-newline-eof \
-  --export-empty-as skip \
-  --format xml \
-  --include-description \
-  --original-filenames \
-  --unzip-to=android/app/src/bt/res \
-  --export-sort=a_z \
-  --config .lokalise.yml --token=$LOKALISE_TOKEN
+  --config .lokalise.yml \
+  --token=$LOKALISE_TOKEN \
 
 echo "Downloading i18next *.json files"
 lokalise2 file download \

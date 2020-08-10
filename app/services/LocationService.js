@@ -5,6 +5,7 @@ import PushNotification from 'react-native-push-notification';
 import { CROSSED_PATHS } from '../constants/storage';
 import { GetStoreData } from '../helpers/General';
 import languages from '../locales/languages';
+import { Colors } from '../styles';
 
 let isBackgroundGeolocationConfigured = false;
 const LOCATION_DISABLED_NOTIFICATION_ID = '55';
@@ -94,6 +95,8 @@ export default class LocationServices {
               id: LOCATION_DISABLED_NOTIFICATION_ID,
               title: languages.t('label.location_disabled_title'),
               message: languages.t('label.location_disabled_message'),
+              smallIcon: 'ic_notificationicon',
+              color: Colors.primaryBlue,
             });
           } else {
             PushNotification.cancelLocalNotifications({
@@ -128,6 +131,8 @@ export default class LocationServices {
       PushNotification.localNotification({
         title: languages.t('label.location_disabled_title'),
         message: languages.t('label.location_disabled_message'),
+        smallIcon: 'ic_notificationicon',
+        color: Colors.primaryBlue,
       });
       console.log('[INFO] stop');
     });
@@ -156,6 +161,8 @@ export default class LocationServices {
     PushNotification.localNotification({
       title: languages.t('label.location_disabled_title'),
       message: languages.t('label.location_disabled_message'),
+      smallIcon: 'ic_notificationicon',
+      color: Colors.primaryBlue,
     });
 
     BackgroundGeolocation.removeAllListeners();

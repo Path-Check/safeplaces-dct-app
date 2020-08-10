@@ -8,6 +8,21 @@ const migrations = {
     }
     return prevState;
   },
+  // Migration 2: Introduce auto-subscription
+  2: (prevState) => {
+    if (prevState && prevState.healthcareAuthorities) {
+      prevState.healthcareAuthorities.autoSubscription = {
+        bannerDismissed: false,
+        selectedAuthority: null,
+        // only auto-subscribe if user has no HAs.
+        active:
+          !prevState.healthcareAuthorities.availableCustomAuthorities ||
+          prevState.healthcareAuthorities.availableCustomAuthorities.length ===
+            0,
+      };
+    }
+    return prevState;
+  },
 };
 
 export default migrations;

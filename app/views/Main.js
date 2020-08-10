@@ -8,14 +8,16 @@ import { AllServicesOnScreen } from './main/AllServicesOn';
 import {
   TracingOffScreen,
   NotificationsOffScreen,
-  // SelectAuthorityScreen,
+  SelectAuthorityScreen,
 } from './main/ServiceOffScreens';
 import PermissionsContext from '../gps/PermissionsContext';
 import { PermissionStatus } from '../permissionStatus';
 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import selectedHealthcareAuthoritiesSelector from '../store/selectors/selectedHealthcareAuthoritiesSelector';
 import { useStatusBarEffect } from '../navigation';
+import getHealthcareAuthoritiesAction from '../store/actions/healthcareAuthorities/getHealthcareAuthoritiesAction';
+import Geolocation from '@react-native-community/geolocation';
 
 export const Main = () => {
   useStatusBarEffect('light-content');
@@ -47,14 +49,35 @@ export const Main = () => {
     };
   }, [navigation, updateStateInfo]);
 
+  const dispatch = useDispatch();
+  const { autoSubscription } = useSelector(
+    (state) => state.healthcareAuthorities,
+  );
+
+  const autoSubscribe = useCallback(async () => {
+    if (autoSubscription.active) {
+      Geolocation.getCurrentPosition(({ coords }) => {
+        dispatch(
+          getHealthcareAuthoritiesAction({ autoSubscriptionLocation: coords }),
+        );
+      });
+    }
+  }, [autoSubscription, dispatch]);
+
+  useEffect(() => {
+    autoSubscribe();
+  }, [autoSubscribe]);
+
   if (!canTrack) {
     return <TracingOffScreen />;
   } else if (notification.status === PermissionStatus.DENIED) {
     return <NotificationsOffScreen />;
   } else if (selectedAuthorities.length === 0) {
-    // TODO: enable this for testing versions of app
-    // return <SelectAuthorityScreen />;
-    return <AllServicesOnScreen navigation={navigation} noHaAvailable />;
+    if (autoSubscription.active) {
+      return <AllServicesOnScreen navigation={navigation} />;
+    } else {
+      return <SelectAuthorityScreen />;
+    }
   } else {
     return <AllServicesOnScreen navigation={navigation} />;
   }

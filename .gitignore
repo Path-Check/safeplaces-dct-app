@@ -93,14 +93,13 @@ ios/COVIDSafePaths-stating-bt.app.dSYM.zip
 
 # Local Android build artifacts
 android/app/src/main/assets/index.android.bundle
+android/app/release
 
 # Local Realm Artifact
 safepaths.realm
 
 # env files
-.env
-.env.bt*
-
+.env.*
 # private resources
 pathcheck-mobile-resources
 

@@ -63,7 +63,10 @@ const getHealthcareAuthoritiesAction = (
         dispatch(
           toggleSelectedHealthcareAuthorityAction(
             { authority: localHealthAuthority, overrideValue: true },
-            { triggerIntersect: false },
+            {
+              triggerIntersect: false,
+              autoSubscribed: !!autoSubscriptionLocation,
+            },
           ),
         );
       }
