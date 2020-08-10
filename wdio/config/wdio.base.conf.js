@@ -169,11 +169,11 @@ exports.config = {
   //
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {
+    helpers: [require.resolve('@babel/register')],
     // Updated the timeout to 30 seconds due to possible longer appium calls
     // When using XPATH
     defaultTimeoutInterval: 90000,
     includeStackTrace: true,
-    helpers: [require.resolve('@babel/register')],
     //
     // The Jasmine framework allows interception of each assertion in order to log the state of the application
     // or website depending on the result. For example, it is pretty handy to take a screenshot every time
@@ -213,7 +213,10 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
   async before() {
-    require('@babel/register');
+    require('@babel/polyfill')
+    require('@babel/register')({
+      ignore: [/(node_modules)/]
+    });
   },
   /**
    * Hook that gets executed before the suite starts
