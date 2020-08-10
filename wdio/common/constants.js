@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export const BUNDLE_IDS = {
     ANDROID: 'org.pathcheck.covidsafepaths',
     IOS: 'org.pathcheck.covid-safepaths'

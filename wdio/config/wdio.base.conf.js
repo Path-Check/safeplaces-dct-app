@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const path = require('path');
 // Module for interacting with the Sauce Labs API
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
