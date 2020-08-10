@@ -1,4 +1,4 @@
-import { isAppRunning } from '../../helpers/applicationState';
+import { isAppRunning } from '../helpers/applicationState';
 
 describe('App installation', () => {
   it('Installs and runs successfully', async () => {

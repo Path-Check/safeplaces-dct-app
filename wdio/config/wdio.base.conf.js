@@ -1,15 +1,7 @@
 const path = require('path');
 // Module for interacting with the Sauce Labs API
-// const sauceLabsMethods = require('../common/sauceLabsService');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-// Method to get the current running spec file
-function getRunningSpecName(specs) {
-  // Get the running spec. Splits the filepath and returns the spec filename
-  const splitFileName = specs[0].split('/').pop();
-  return {
-    runningFileName: splitFileName,
-  };
-}
+
 // // Method to get the test result status
 // function getTestResultStatusPassOrFail(result) {
 //   return result === 0;
@@ -22,6 +14,8 @@ exports.config = {
   // Change this option to true if you want to run tests in debug mode either using IntelliJ breakpoints
   // or WebdriverIO's browser.debug() command within your spec files
   // See http://webdriver.io/guide/testrunner/debugging.html for more info.
+
+  runner: 'local',
   //
   debug: false,
   //
@@ -74,21 +68,26 @@ exports.config = {
   //
   // user: process.env.SAUCE_USERNAME,
   // key: process.env.SAUCE_ACCESS_KEY,
-  user: 'lfalkner',
-  key: '66407d3c-34d2-48f5-bbce-44497ee81856',
-  region: 'us',
-  port: 443,
+  user: '<user>',
+  key: '<key>',
+  // browserstackURL: 'https://<user>:<key>@hub-cloud.browserstack.com/wd/hub',
+  // baseUrl: 'https://hub-cloud.browserstack.com/wd/hub',
+  // region: 'us',
+  // port: 443,
   // sauceConnect: true,
   capabilities: [
     {
       autoLaunch: true,
       deviceOrientation: 'portrait',
-      browserName: '',
-      build: "local",
-      version: "local",
-      // build: process.env.BRANCH_NAME,
-      build: 'liz-local',
-    //   version: process.env.MAJOR_VERSION_STRING + '.' + process.env.PATCH_VERSION,
+      project: 'Hello CoVID Safe Paths World',
+      build : 'Test 1',
+      name: 'Bstack-[Node] Hello World',
+    //   browserName: '',
+    //   build: "local",
+    //   version: "local",
+    //   // build: process.env.BRANCH_NAME,
+    //   build: 'local',
+    // //   version: process.env.MAJOR_VERSION_STRING + '.' + process.env.PATCH_VERSION,
     },
   ],
   //
@@ -108,7 +107,7 @@ exports.config = {
   // Enables colors for log output.
   coloredLogs: true,
   // port
-  port: 4723,
+  // port: 4723,
   // server
   //
   // If you only want to run your tests until a specific amount of tests have failed use
@@ -128,14 +127,20 @@ exports.config = {
   // commands. Instead, they hook themselves up into the test process.
   services: [
     ['appium'],
-    ['sauce', {
-        region: 'us',
-        sauceConnect: false,
-        // tunnelIdentifier: '5bfe8adcab324b3a8db5dba243dc04f7',
-        // sauceConnectOpts: {
-        //     noRemoveCollidingTunnels: true,
-        // },
-    }]
+    ['browserstack', {
+      browserstackLocal: false,
+      // user: '<user>',
+      // key: 'key',
+      debug: true,
+    }],
+    // ['sauce', {
+    //     region: 'us',
+    //     sauceConnect: false,
+    //     // tunnelIdentifier: '<tunnelId>',
+    //     // sauceConnectOpts: {
+    //     //     noRemoveCollidingTunnels: true,
+    //     // },
+    // }]
   ],
   appium: { command: 'appium' },
   //
@@ -209,7 +214,6 @@ exports.config = {
    */
   async before() {
     require('@babel/register');
-    improveStackTrace();
   },
   /**
    * Hook that gets executed before the suite starts
@@ -266,22 +270,8 @@ exports.config = {
   /**
    * Gets executed after all tests are done. You still have access to all global variables from
    * the test.
-   * @param {Number} result 0 - test pass, 1 - test fail
    */
-  after(result) {
-    // Setting Up Reporting in saucelabs
-    // a. Setting Build Capability in capabilities section.
-    // b. Marking Tests as pass/fail.
-    // Marking Tests as pass/fail. If result is 'true' then go and update the sauceJob to passed
-    // Add tags info to the job.
-    // For best practices tag the jobs to identify your tests. Please see this for more info https://wiki.saucelabs.com/display/DOCS/Best+Practice%3A+Use+Build+IDs%2C+Tags%2C+and+Names+to+Identify+Your+Tests
-    // sauceLabsMethods.updateJobStatus({
-    //   sauceUserName: process.env.SAUCE_USERNAME,
-    //   sauceKey: process.env.SAUCE_KEY,
-    //   sessionId: driver.sessionId,
-    //   booleanPassed: getTestResultStatusPassOrFail(result),
-    // });
-    console.log('here is the test result', result);
+  after() {
     driver.deleteSession();
   },
   /**
