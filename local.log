@@ -1,0 +1,12 @@
+
+
+Wed Aug 12 2020 17:55:20 GMT-0400 (EDT) -- ***
+Wed Aug 12 2020 17:55:20 GMT-0400 (EDT) -- Setting the --only-automate parameter will stop local testing via command line from working with BrowserStack Live and BrowserStack Screenshots.
+Wed Aug 12 2020 17:55:20 GMT-0400 (EDT) -- To enable local testing via the command line for Live and Screenshots, rerun BrowserStackLocal without --only-automate.
+Wed Aug 12 2020 17:55:20 GMT-0400 (EDT) -- ***
+
+Wed Aug 12 2020 17:55:21 GMT-0400 (EDT) -- [SUCCESS] You can now access your local server(s) in our remote browser
+
+Wed Aug 12 2020 17:55:22 GMT-0400 (EDT) -- Press Ctrl-C to exit
+
+

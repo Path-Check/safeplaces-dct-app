@@ -1,6 +1,6 @@
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 const _ = require('lodash');
-const defaults = require('./wdio.base.conf').config;
+const defaults = require('./wdio.sauce.base.conf').config;
 
 const defaultIOSCapabilities = {
   platformName: 'iOS',

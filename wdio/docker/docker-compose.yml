@@ -1,0 +1,13 @@
+version: '3.8'
+
+# Export your authentication as environment variables before running:
+  # 'export SAUCE_USER=<username> SAUCE_KEY=<sauceKey> SAUCE_TUNNEL_ID=<tunnelId>'
+services:
+  tunnel:
+    image: henrrich/docker-sauce-connect:latest
+    restart: always
+    expose:
+      - 4445
+    ports:
+      - 4445
+    command: -u ${SAUCE_USER} -k ${SAUCE_KEY} -i ${SAUCE_USER}_local_tunnel -p -x https://ondemand.us-west-1.saucelabs.com/wd/hub

@@ -1,12 +1,7 @@
-/* eslint-disable no-undef */
 const path = require('path');
-// Module for interacting with the Sauce Labs API
+const request = require('request');
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-// // Method to get the test result status
-// function getTestResultStatusPassOrFail(result) {
-//   return result === 0;
-// }
 exports.config = {
   //
   // ============
@@ -15,8 +10,6 @@ exports.config = {
   // Change this option to true if you want to run tests in debug mode either using IntelliJ breakpoints
   // or WebdriverIO's browser.debug() command within your spec files
   // See http://webdriver.io/guide/testrunner/debugging.html for more info.
-
-  runner: 'local',
   //
   debug: false,
   //
@@ -67,28 +60,17 @@ exports.config = {
   // Sauce Labs platform configurator - a great tool to configure your capabilities:
   // https://docs.saucelabs.com/reference/platforms-configurator
   //
-  // user: process.env.SAUCE_USERNAME,
-  // key: process.env.SAUCE_ACCESS_KEY,
-  user: '<user>',
-  key: '<key>',
-  // browserstackURL: 'https://<user>:<key>@hub-cloud.browserstack.com/wd/hub',
-  // baseUrl: 'https://hub-cloud.browserstack.com/wd/hub',
-  // region: 'us',
-  // port: 443,
-  // sauceConnect: true,
+  user: process.env.BS_USER,
+  key: process.env.BS_KEY,
   capabilities: [
     {
+      'browserstack.networkLogs': true,
+      "browserstack.appium_version" : "1.17.0",
       autoLaunch: true,
       deviceOrientation: 'portrait',
       project: 'Hello CoVID Safe Paths World',
       build : 'Test 1',
       name: 'Bstack-[Node] Hello World',
-    //   browserName: '',
-    //   build: "local",
-    //   version: "local",
-    //   // build: process.env.BRANCH_NAME,
-    //   build: 'local',
-    // //   version: process.env.MAJOR_VERSION_STRING + '.' + process.env.PATCH_VERSION,
     },
   ],
   //
@@ -127,23 +109,11 @@ exports.config = {
   // your test setup with almost no effort. Unlike plugins, they don't add new
   // commands. Instead, they hook themselves up into the test process.
   services: [
-    ['appium'],
     ['browserstack', {
-      browserstackLocal: false,
-      // user: '<user>',
-      // key: 'key',
+      browserstackLocal: true,
       debug: true,
     }],
-    // ['sauce', {
-    //     region: 'us',
-    //     sauceConnect: false,
-    //     // tunnelIdentifier: '<tunnelId>',
-    //     // sauceConnectOpts: {
-    //     //     noRemoveCollidingTunnels: true,
-    //     // },
-    // }]
   ],
-  appium: { command: 'appium' },
   //
   // Framework you want to run your specs with.
   // The following are supported: Mocha, Jasmine, and Cucumber
@@ -170,11 +140,11 @@ exports.config = {
   //
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {
-    helpers: [require.resolve('@babel/register')],
     // Updated the timeout to 30 seconds due to possible longer appium calls
     // When using XPATH
     defaultTimeoutInterval: 90000,
     includeStackTrace: true,
+    helpers: [require.resolve('@babel/register')],
     //
     // The Jasmine framework allows interception of each assertion in order to log the state of the application
     // or website depending on the result. For example, it is pretty handy to take a screenshot every time
@@ -214,10 +184,7 @@ exports.config = {
    * @param {Array.<String>} specs List of spec file paths that are to be run
    */
   async before() {
-    require('@babel/polyfill')
-    require('@babel/register')({
-      ignore: [/(node_modules)/]
-    });
+    require('@babel/register');
   },
   /**
    * Hook that gets executed before the suite starts
@@ -275,8 +242,13 @@ exports.config = {
    * Gets executed after all tests are done. You still have access to all global variables from
    * the test.
    */
-  after() {
-    driver.deleteSession();
+  after(result, error) {
+    const testStatus = result === 0 ? 'success' : 'failed';
+    try {
+    request({uri: `https://${process.env.BS_USER}:${process.env.BS_KEY}@api.browserstack.com/app-automate/sessions/${driver.sessionId}.json`, method:"PUT", form: {"status": testStatus, "reason": error.toString()}});
+    } catch(error) {
+      console.log(`Error thrown in updating test status`, error.message);
+    }
   },
   /**
    * Gets executed right after terminating the webdriver session.
