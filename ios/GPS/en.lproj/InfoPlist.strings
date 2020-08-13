@@ -1,3 +1,7 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "PathCheck is securely storing your GPS coordinates once every five minutes on this device.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "PathCheck was closed";
 "NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. All rights reserved.";
 "NSLocationAlwaysAndWhenInUseUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";
 "NSLocationAlwaysUsageDescription" = "Your location history will be saved on your device, and only shared with others if you choose to do so.";

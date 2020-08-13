@@ -1,0 +1,2 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "PathCheck stocke en toute sécurité vos coordonnées GPS une fois toutes les cinq minutes sur cet appareil.";

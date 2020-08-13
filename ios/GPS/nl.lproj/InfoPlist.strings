@@ -1,0 +1,9 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "PathCheck slaat uw GPS-coördinaten eens in de vijf minuten veilig op dit apparaat op.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "PathCheck was afgesloten";
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Alle rechten voorbehouden.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Uw locatiegeschiedenis wordt op uw apparaat opgeslagen en alleen met anderen gedeeld als u daarvoor kiest.";
+"NSLocationAlwaysUsageDescription" = "Uw locatiegeschiedenis wordt op uw apparaat opgeslagen en alleen met anderen gedeeld als u daarvoor kiest.";
+"NSLocationWhenInUseUsageDescription" = "Uw locatiegeschiedenis wordt op uw apparaat opgeslagen en alleen met anderen gedeeld als u daarvoor kiest.";
+"NSMotionUsageDescription" = "We gebruiken uw versnellingsmeter om een nauwkeurige locatiegeschiedenis samen te stellen.";

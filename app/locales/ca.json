@@ -1,0 +1,15 @@
+{
+  "home": {
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    }
+  },
+  "label": {
+    "about_header_location": "PathCheck GPS",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_location": "PathCheck GPS"
+  },
+  "version_update": {
+    "later": "Més tard"
+  }
+}
