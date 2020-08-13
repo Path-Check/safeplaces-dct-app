@@ -2,6 +2,4 @@
 <resources>
   <!-- Channel label for notifications shown in App > Notifications > Path Check BT -->
   <string name="notification_channel_description">PathCheck BT notifikationer</string>
-  <!-- Channel label for notifications shown in App > Notifications > Path Check GPS -->
-  <string name="notification_channel_description">PathCheck BT notifikationer</string>
 </resources>
