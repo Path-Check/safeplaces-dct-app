@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import isEmpty from 'lodash/isEmpty';
 
 export default class Base {
