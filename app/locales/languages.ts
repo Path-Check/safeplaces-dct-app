@@ -9,6 +9,8 @@ import { LANG_OVERRIDE } from '../constants/storage';
 
 import { GetStoreData, SetStoreData } from '../helpers/General';
 import ar from './ar.json';
+import ca from './ca.json';
+import ch from './ch.json';
 import da from './da.json';
 import el from './el.json';
 import en from './en.json';
@@ -21,8 +23,10 @@ import ht from './ht.json';
 import id from './id.json';
 import it from './it.json';
 import ja from './ja.json';
+import kk from './kk.json';
 import ml from './ml.json';
 import nl from './nl.json';
+import pau from './pau.json';
 import pl from './pl.json';
 import pt_BR from './pt_BR.json';
 import ro from './ro.json';
@@ -96,6 +100,8 @@ const PROD_RESOURCES = {
 /** Languages only available in feature flag. */
 const DEV_RESOURCES = {
   ar: { label: ar._display_name, translation: ar },
+  ca: { label: ca._display_name, translation: ca },
+  ch: { label: ch._display_name, translation: ch },  
   da: { label: da._display_name, translation: da },
   el: { label: el._display_name, translation: el },
   es: { label: es._display_name, translation: es },
@@ -105,8 +111,10 @@ const DEV_RESOURCES = {
   id: { label: id._display_name, translation: id },
   it: { label: it._display_name, translation: it },
   ja: { label: ja._display_name, translation: ja },
+  kk: { label: kk._display_name, translation: kk },
   ml: { label: ml._display_name, translation: ml },
   nl: { label: nl._display_name, translation: nl },
+  pau: { label: pau._display_name, translation: pau },
   pl: { label: pl._display_name, translation: pl },
   pt_BR: { label: pt_BR._display_name, translation: pt_BR },
   ro: { label: ro._display_name, translation: ro },
