@@ -1,0 +1,9 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "Το PathCheck αποθηκεύει με ασφάλεια τις συντεταγμένες GPS σας κάθε πέντε λεπτά σε αυτήν τη συσκευή.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "Το PathCheck έκλεισε";
+"NSHumanReadableCopyright" = "Πνευματικά δικαιώματα © 2020 Path Check Inc. Όλα τα δικαιώματα διατηρούνται.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Το ιστορικό τοποθεσίας σας θα αποθηκευτεί στη συσκευή σας και θα κοινοποιηθεί σε άλλους μόνο εάν το επιλέξετε.";
+"NSLocationAlwaysUsageDescription" = "Το ιστορικό τοποθεσίας σας θα αποθηκευτεί στη συσκευή σας και θα κοινοποιηθεί σε άλλους μόνο εάν το επιλέξετε.";
+"NSLocationWhenInUseUsageDescription" = "Το ιστορικό τοποθεσίας σας θα αποθηκευτεί στη συσκευή σας και θα κοινοποιηθεί σε άλλους μόνο εάν το επιλέξετε.";
+"NSMotionUsageDescription" = "Χρησιμοποιούμε το επιταχυνσιόμετρό σας για ακριβές ιστορικό τοποθεσίας.";

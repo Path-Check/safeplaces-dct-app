@@ -1,0 +1,9 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "Ligtas na iniimbak ng PathCheck ang iyong mga coordinates sa GPS isang beses kada limang minuto sa device o aparatong ito.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "Nakasara ang PathCheck";
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Nakalaan ang lahat ng mga karapatan.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Ang iyong kasaysayan ng lokasyon o location history ay iniimbak sa iyong cellphone o device, at ibabahagi lamang sa iba kung pipiliin mong gawin ito.";
+"NSLocationAlwaysUsageDescription" = "Ang iyong kasaysayan ng lokasyon o location history ay iiimbak sa iyong cellphone o device, at ibabahagi lamang sa iba kung pinili mong gawin ito. ";
+"NSLocationWhenInUseUsageDescription" = "Ang iyong kasaysayan ng lokasyon o location history ay iniimbak sa iyong cellphone o device, at ibabahagi lamang sa iba kung pipiliin mong gawin ito.";
+"NSMotionUsageDescription" = "Ginagamit namin ang inyong accelerometer para sa wastong kasaysayan ng lokasyon o location history.";

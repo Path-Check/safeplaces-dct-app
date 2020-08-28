@@ -1,0 +1,9 @@
+/* Body text of notification when app is closed on iOS */
+"ios.app_closed_alert_text" = "PathCheck gemmer på sikker vis dine GPS koordinater på din enhed hvert femte minut.";
+/* Title of notification when app is closed on iOS */
+"ios.app_closed_alert_title" = "PathCheck blev lukket";
+"NSHumanReadableCopyright" = "Copyright © 2020 Path Check Inc. Alle rettigheder forbeholdes.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Din placeringshistorik gemmes på din enhed og deles kun med andre, hvis du vælger at gøre det.";
+"NSLocationAlwaysUsageDescription" = "Din placeringshistorik gemmes på din enhed og deles kun med andre, hvis du vælger at gøre det.";
+"NSLocationWhenInUseUsageDescription" = "Din placeringshistorik gemmes på din enhed og deles kun med andre, hvis du vælger at gøre det.";
+"NSMotionUsageDescription" = "Vi bruger dit accelerometer til nøjagtig placeringshistorik.";

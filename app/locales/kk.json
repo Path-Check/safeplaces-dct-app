@@ -1,0 +1,151 @@
+{
+  "_display_name": "Қазақ",
+  "about": {
+    "operating_system_abbr": "Операциялық жүйе:",
+    "version": "Нұсқа:"
+  },
+  "authorities": {
+    "custom_url": "URL арқылы қолмен қосу",
+    "custom_url_title": "Url арқылы қосу",
+    "invalid_url": "Жарамсыз YAML URL",
+    "title": "Денсаулық сақтау басқармалары",
+    "url_instructions": "Қосқыңыз келетін денсаулық сақтау басқармасының URL  енгізіңіз"
+  },
+  "common": {
+    "add": "Қосу",
+    "done": "Дайын",
+    "next": "Келесі",
+    "something_went_wrong": "Бірдеңе дұрыс болмады",
+    "start": "Бастау",
+    "submit": "Жіберу"
+  },
+  "export": {
+    "code_input_error": "Басқа кодты қолданып көріңіз",
+    "code_input_title": "Растау кодын енгізіңіз",
+    "consent_button_title": "Мен түсінемін және келісемін",
+    "exit_warning_body": "Бұл процесті қайта бастау керек",
+    "exit_warning_cancel": "Болдырмау",
+    "exit_warning_confirm": "Ия, мен сенімдімін",
+    "exit_warning_title": "Сенімдісіз бе?",
+    "publish_consent_title": "Анонимді мәліметтерді жариялау"
+  },
+  "exposure_datum": {
+    "no_data": {
+      "title": "Бұл күн туралы ақпарат жоқ"
+    },
+    "no_known": {
+      "title": "Осы уақытта ешқандай есептер келіп түскен жоқ"
+    },
+    "possible": {
+      "explanation": {
+        "gps": "Сіздің телефоныңыз бүгін {{duration}} бойында, кейіннен расталған оң COVID-19 диагнозын алған адамнан 30 метр қашықтықта болды."
+      }
+    }
+  },
+  "exposure_history": {
+    "how_does_this_work": "Бұл қалай жұмыс істейді?",
+    "last_days": "Соңғы 21 күн",
+    "legend": {
+      "today": "Бүгін"
+    }
+  },
+  "home": {
+    "gps": {
+      "all_services_on_header": "PathCheck"
+    },
+    "shared": {
+      "notifications_off_button": "Хабарландыруларға рұқсат ету",
+      "notifications_off_header": "Хабарландырулар бұғатталған",
+      "notifications_off_subheader": "Сіз қауіпті аймақта болған кезде, сондай-ақ сіздің аймағыңыздағы денсаулық сақтау басқармаларының қосылуы туралы хабарлама алмайсыз",
+      "select_authority_button": "Денсаулық сақтау бөлімін қосу",
+      "select_authority_header": "Жергілікті денсаулық сақтау басқармасы таңдалмаған",
+      "select_authority_subheader": "Сіздің аймағыңыздағы COVID-19 туралы ақпаратты алу үшін PathCheck-ке жергілікті денсаулық сақтау бөлімін қосуға рұқсат етіңіз немесе өзіңізді таңдаңыз"
+    }
+  },
+  "import": {
+    "button_text": "Соңғы орналасқан жерлерін импорттау",
+    "error": "Сіздің деректеріңізді импорттау кезінде ақау пайда болды",
+    "google": {
+      "disclaimer": "PathCheck Google серіктесі емес және сіздің деректеріңізді таратпайды.",
+      "file_open_error": "Файлды ашу мүмкін емес. \nФайл Google дискінен ашылғанына көз жеткізіңіз.",
+      "instructions_detailed": "Google Takeout-ке кіріп, орналасқан жерлеріңіздің тарихын келесі параметрлерді пайдалана отырып экспорттаңыз: \n1. Алу әдісі: \"Дискіге қосу\" \n2. Экспорт түрі: \"Бір реттік экспорт\" \n3.  Файл форматы және өлшемі: \".zip\" и \"1GB\"\n4. Экспорт аяқталған кезде, сіздің электрондық поштаға хат келеді \n5. Осында оралыңыз және орналасқан жерлеріңіздің тарихын импорттаңыз. Импорттау параметрлерді:\n- Google дискінен импорттау\n- Браузер арқылы жүктеу, содан кейін телефондағы файлдардан импорттау. Файлдар үлкен болуы мүмкін болғандықтан, сіз WiFi желісінде екеніне көз жеткізіңіз.",
+      "instructions_first": "Google геопозиция мәліметтерін қосу арқылы сіз үшін соңғы орналасқан жеріңізді бақылауға оңайырақ болады.",
+      "instructions_second": "Импорттауды бастамас бұрын, сізге Google-дан орналасқан жерлер туралы деректерді 'алу' қажет.",
+      "invalid_file_format": "Бұл файл пішіміне қолдау көрсетілмейді. \nҚолдау көрсетілетін пішімдер: \".zip\".",
+      "no_recent_locations": "Takeout-те соңғы орындар жоқ.",
+      "title": "Google карталары",
+      "visit_button_text": "Google Takeout-ке өту"
+    },
+    "mockData": {
+      "custom_url_title": "URL мекенжайынан импорттау",
+      "instruction_info": "Деректер JSON форматында болуы керек!",
+      "invalid_url": "Жарамсыз JSON URL!",
+      "url_instructions": "Қосқыңыз келетін сынақ орны деректерін қамтитын URL мекенжайын енгізіңіз"
+    },
+    "subtitle": "Қолданбаны орнатқанға дейін COVID-19 науқастарымен қарым-қатынас жасағаныңызды білу үшін, өзіңіздің қозғалу тарихын импорттаңыз.",
+    "title": "Орындарды импорттау"
+  },
+  "label": {
+    "about_header_location": "PathCheck GPS",
+    "authorities_no_sources": "Деректер көзі жоқ",
+    "bell_icon": "Қоңырау белгішесі",
+    "close_icon": "Жабу белгішесі",
+    "doctors_image": "Бетперде киіп жүрген дәрігер мен мейірбикенің суреті",
+    "heart_icon": "Ішкі кіресі бар жүрек белгішесі",
+    "import_success": "Сәтті импортталған",
+    "language_icon": "Жер шары белгішесі",
+    "launch_enable_notif": "Ескертулерді қосу",
+    "launch_get_started": "Бастау",
+    "launch_next": "Келесі",
+    "launch_screen1_header": "PathCheck-ке қош келдіңіз",
+    "launch_screen2_header_location": "Егер сіз COVID-19 диагноз қойылған адамның жанында болсаңыз, біз сізге хабарламыз",
+    "launch_screen2_subheader_location": "Білім – күш.",
+    "launch_screen3_header_location": "Егер сіздің COVID-19 тестіңіз оң болса, сіз өз мәліметтеріңізді жасырын түрде бере аласыз",
+    "launch_screen3_subheader_location": "Бұл сіздің ортаңыздың қауіпсіздігіне ықпал етеді.",
+    "launch_screen4_header_location": "Барлығы сіздің бақылауыңызбен. Деректер тек сіздің телефоныңызда сақталады.",
+    "launch_screen4_subheader_location": "Егер сіздің COVID-19 тестіңіз оң болса, тек сіз осы ақпаратпен бөлісуді шешесіз.",
+    "launch_set_up_phone_location": "Телефонды баптау",
+    "legal_page_address": "PathCheck Foundation\n58 Day Street\nBox 441621\nSomerville, MA 02144",
+    "legal_page_header_location": "PathCheck GPS",
+    "pin_icon": "Бекіту белгішесі",
+    "push_at_risk_title": "Сіз тәуекелге баруыңыз мүмкін",
+    "question_icon": "Сұрақ белгісінің белгішесі",
+    "unknown": "белгісіз"
+  },
+  "location": {
+    "data": {
+      "delete_warning_body": "Бұл телефонда сақталған орын тарихын жояды.",
+      "delete_warning_cancel": "Болдырмау",
+      "delete_warning_confirm": "Ия, мен сенімдімін",
+      "delete_warning_title": "Сенімдісіз бе?"
+    }
+  },
+  "navigation": {
+    "history": "Тарих",
+    "home": "Басты бет",
+    "locations": "Орындар",
+    "more": "Көбірек",
+    "partners": "Серіктестер"
+  },
+  "onboarding": {
+    "eula_checkbox": "Мен лицензиялық келісімді қабылдаймын",
+    "eula_continue": "Жалғастыру",
+    "eula_message": "*PathCheck пайдалану үшін қабылдаңыз",
+    "location_subheader": "PathCheck орналасу күнделігінде тек GPS координаттары, күндері мен уақыттары бар. \n\n Егер сіз өзіңіз таңдамасаңыз, сіздің деректеріңіз ешкіммен бөлісілмейді.",
+    "maybe_later": "Мүмкін кейінірек",
+    "notification_header": "Егер сіз вирустың тасымалдаушысының жанында болсаңыз, сізге хабарлағыңыз келе ме?"
+  },
+  "screen_titles": {
+    "about": "Біз туралы",
+    "delete_location_history": "Орындар тарихын жою",
+    "more_info": "Қосымша ақпарат"
+  },
+  "version_update": {
+    "alert_label": "PathCheck ескірген",
+    "alert_sublabel": "Қолданба нұсқасын жаңарту?",
+    "later": "Кейінірек",
+    "push_notification_message": "Қолданбаны жаңартыңыз",
+    "push_notification_title": "Сіз қосымшаның ескірген нұсқасын пайдаланасыз",
+    "update": "Жаңарту"
+  }
+}
