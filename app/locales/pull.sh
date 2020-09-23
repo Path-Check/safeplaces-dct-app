@@ -22,6 +22,7 @@ if ! found_exe lokalise2; then
 
   else
     curl -sfL https://raw.githubusercontent.com/lokalise/lokalise-cli-2-go/master/install.sh | sh
+    export PATH="$PATH:./bin"
   fi
 fi
 
