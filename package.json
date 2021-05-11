@@ -72,7 +72,7 @@
     "geolib": "^3.2.1",
     "i18next": "^19.3.3",
     "js-yaml": "^3.13.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "patch-package": "^6.2.2",
     "pluralize": "^8.0.0",
     "postinstall-postinstall": "^2.0.0",
