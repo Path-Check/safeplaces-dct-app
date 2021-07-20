@@ -79,7 +79,7 @@
     "prop-types": "^15.7.2",
     "react": "16.9.0",
     "react-i18next": "^11.4.0",
-    "react-native": "0.61.5",
+    "react-native": "0.62.3",
     "react-native-background-fetch": "^3.0.4",
     "react-native-background-timer": "^2.2.0",
     "react-native-config": "^1.2.1",
