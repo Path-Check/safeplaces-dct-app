@@ -106,7 +106,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
     "rn-fetch-blob": "^0.12.0",
-    "semver": "^7.3.2",
+    "semver": "^7.5.2",
     "text-encoding-polyfill": "^0.6.7",
     "typesafe-actions": "^5.1.0"
   },
